@@ -1,6 +1,6 @@
 # Team Overview
 
-### Team Alef ($\aleph$)
+### Team Alef $\aleph$
 
 - Hieu Nguyen [HieuHongHao](https://github.com/PPhan-sil/)
 - Peter Phan [PPhan-sil](https://github.com/HieuHongHao)
