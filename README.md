@@ -2,9 +2,9 @@
 
 ### Team Alef ( $\aleph$ )
 
-- Hieu Nguyen ([HieuHongHao](https://github.com/PPhan-sil/))
-- Peter Phan ([PPhan-sil](https://github.com/HieuHongHao))
-- Phat Nguyen ([PeterNg15](https://github.com/HieuHongHao))
+- Hieu Nguyen ([HieuHongHao](https://github.com/HieuHongHao))
+- Peter Phan ([PPhan-sil](https://github.com/PPhan-sil/))
+- Phat Nguyen ([PeterNg15](https://github.com/PeterNg15))
 
 # Innovative Idea
 
