@@ -1,4 +1,6 @@
-### Team Alef <img src="https://latex.codecogs.com/gif.latex?(\aleph)" /> $\aleph$
+# Team Overview
+
+### Team Alef ($\aleph$)
 
 - Hieu Nguyen [HieuHongHao](https://github.com/PPhan-sil/)
 - Peter Phan [PPhan-sil](https://github.com/HieuHongHao)
