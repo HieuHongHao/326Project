@@ -71,9 +71,42 @@
     .drawing-tool-container .large-pen{
         font-size: 30px;
     }
+
+    .active-people-container{
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        padding: 0.4em;
+        position: absolute;
+    }
+    .active-people-container i{
+        font-size: 25px;
+    }
+    .active-people-container .red-user{
+        color: #c25d5d;
+    }
+    .active-people-container .blue-user{
+        color: #4e75b5;
+    }
+    .active-people-container .yellow-user{
+        color: #bfa532;
+    }
+    .active-people-container .green-user{
+        color: #80ab52;
+    }
+    .active-people-container .purple-user{
+        color: #865699;
+    }
 </style>
 
 <body>
+    <div class="active-people-container">
+        <i class="fa-solid fa-circle-user red-user"></i>
+        <i class="fa-solid fa-circle-user blue-user"></i>
+        <i class="fa-solid fa-circle-user green-user"></i>
+        <i class="fa-solid fa-circle-user yellow-user"></i>
+        <i class="fa-solid fa-circle-user purple-user"></i>
+    </div>
     <div id="canvas">
         <div class="drawing-container">
             <div class="drawing-tool-container">
@@ -91,6 +124,7 @@
         </div>
         <div class="chat-container">
             <div class="chat-texts-container" id="chat-texts">
+                <div class="text"><div class="green-text">Veni vidi vici</div></div>
                 <div class="text"><div class="text-dummy"></div><div class="my-text">Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</div></div>
                 <div class="text"><div class="yellow-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</div></div>
                 <div class="text"><div class="text-dummy"></div><div class="my-text">Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</div></div>
@@ -187,18 +221,23 @@
         float: left;
     }
 
-    .chat-texts-container .blue-text{
-        background-color: #4e75b5;
-        color: white;
-    }
-
-    .chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text{
+    .chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
         /* display:block; */
         max-width: 70%;
         padding: 0.6em;
         margin: 0.5em 0 0.9em 0.7em;
         border-radius: 12px;
         word-wrap: break-word;
+    }
+
+    .chat-texts-container .blue-text{
+        background-color: #4e75b5;
+        color: white;
+    }
+
+    .chat-texts-container .green-text{
+        background-color: #80ab52;
+        color: white;
     }
     
     .chat-texts-container .yellow-text{
