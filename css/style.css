@@ -1,0 +1,12 @@
+:root {
+  --bg-color: #fff;
+}
+
+html[data-theme="dark"] {
+  --bg-color: #1d2025;
+}
+
+html,
+body {
+  background-color: var(--bg-color);
+}
