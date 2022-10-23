@@ -20,7 +20,7 @@ Kanvaswire
 Our website is hosted ([here](https://pphan-sil.github.io/326Project/)): https://pphan-sil.github.io/326Project/
 
 ### Canvas Page
-Here is the design of our canvas page. Users will have the option to chat in this page (on the right side of the screen) as well as collaboratively draw on the canvas (on the left side of the screen). Some drawing tools (as can be seen on the left) will be helpful for the users in order to customize and personalize their experiences. The drawing tools includes a marker, an eraser, a paint bucket, a cntrl+z option, a way to change font size, and a color bucket to choose their paint color. We have made our UI extremely intuitve while not sacrificing its functionality. 
+Here is the design of our canvas page. Users will have the option to chat in this page (on the right side of the screen) as well as collaboratively draw on the canvas (on the left side of the screen). Some drawing tools (as can be seen on the left) will be helpful for the users in order to customize and personalize their experiences. The drawing tools includes a marker, an eraser, a paint bucket, a cntrl+z option, a way to change font size, and a color bucket to choose their paint color. Finally, at the bottom we will be able to see who is simultaneously in the canvas page (like google docs)! We have made our UI extremely intuitve while not sacrificing its functionality. 
 ![Canvas demo](../demos/canvas_demo.gif)
 
 ### 404 Page Not Found
