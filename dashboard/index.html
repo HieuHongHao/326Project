@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="public/logo.svg" alt="Logo" style="width:40px;" class="rounded-pill">
@@ -34,9 +34,166 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalLoginForm">Sign
-          Up</button>
-        <div class="modal fade" id="modalLoginForm" tabindex="-1" aria-labelledby="ModalLoginForm" aria-hidden="true">
+        <a class="btn btn-danger" type="button" href="/">Sign out</a>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-secondary min-vh-100">
+
+    <div class="row justify-content-center border-bottom">
+      <div class="col-5">
+        <nav class="navbar navbar-expand-lg bg-secondary">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse px-3" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active text-light" aria-current="page" href="#">Your Projects</a>
+                <a class="nav-link text-light" href="#">Settings</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row justify-content-center me-5 my-4">
+      <div class="col-2">
+        <div class="d-flex flex-column align-items-end">
+          <div class="d-flex flex-column">
+            <img src="public/logo.svg" alt="Logo" style="width:200px;" class="rounded-pill bg-dark">
+            <h5 class="pt-3">Username</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 me-5">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card h-100 shadow">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                  dy=".3em">Image
+                  cap</text>
+              </svg>
+              <div class="card-body p-2">
+                <div class="d-flex justify-content-between">
+                  <h6 class="card-title">Project 1</h6>
+                  <div>
+                    <a class="btn text-secondary px-1" href="/forums"><i class="fas fa-eye fs-4"></i></a>
+                    <a class="btn text-primary px-1" href="/canvas"><i class="fas fa-pen fs-4"></i></a>
+                    <a class="btn text-danger px-1" type="button" data-bs-toggle="modal"
+                      data-bs-target="#deleteProject"><i class="fas fa-trash-can fs-4"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                  dy=".3em">Image
+                  cap</text>
+              </svg>
+              <div class="card-body p-2">
+                <div class="d-flex justify-content-between">
+                  <h6 class="card-title">Project 2</h6>
+                  <div>
+                    <a class="btn text-secondary px-1" href="/forums"><i class="fas fa-eye fs-4"></i></a>
+                    <a class="btn text-primary px-1" href="/canvas"><i class="fas fa-pen fs-4"></i></a>
+                    <a class="btn text-danger px-1" data-bs-toggle="modal" data-bs-target="#deleteProject"><i
+                        class="fas fa-trash-can fs-4"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                  dy=".3em">Image
+                  cap</text>
+              </svg>
+              <div class="card-body p-2">
+                <div class="d-flex justify-content-between">
+                  <h6 class="card-title">Project 3 (some other author)</h6>
+                  <div>
+                    <a class="btn text-secondary px-1" href="/forums"><i class="fas fa-eye fs-4"></i></a>
+                    <a class="btn text-primary px-1" href="/canvas"><i class="fas fa-pen fs-4"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                  dy=".3em">Image
+                  cap</text>
+              </svg>
+              <div class="card-body p-2">
+                <div class="d-flex justify-content-between">
+                  <h6 class="card-title">Project 4</h6>
+                  <div>
+                    <a class="btn text-secondary px-1" href="/forums"><i class="fas fa-eye fs-4"></i></a>
+                    <a class="btn text-primary px-1" href="/canvas"><i class="fas fa-pen fs-4"></i></a>
+                    <a class="btn text-danger px-1" data-bs-toggle="modal" data-bs-target="#deleteProject"><i
+                        class="fas fa-trash-can fs-4"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <br>
+        <br>
+        <br>
+
+
+
+        <div id="settings">
+          <div class="d-flex py-2">
+            <i class="fas text-danger fs-5 fa-heart pe-2"></i>
+            <p class="text-light">999 Likes</p>
+          </div>
+          <div class="d-flex py-2">
+            <i class="fas text-light fs-5 fa-image pe-2"></i>
+            <p class="text-light">4 Current Projects</p>
+          </div>
+          <div class="d-flex py-2">
+            <i class="fas text-light fs-5 fa-images pe-2"></i>
+            <p class="text-light">3 Created Projects</p>
+          </div>
+          <div class="d-flex py-2">
+            <i class="fas text-light fs-5 fa-comment pe-2"></i>
+            <p class="text-light">52 Comments</p>
+          </div>
+          <div class="d-flex py-2">
+            <i class="fas text-light fs-5 fa-clock pe-2"></i>
+            <p class="text-light"> &lt 1 day old</p>
+          </div>
+          <div class="d-flex py-2">
+            <a class="btn btn-warning shadow" type="button" data-bs-toggle="modal"
+              data-bs-target="#changePassword">Change Password</a>
+          </div>
+          <div class="d-flex py-2">
+            <a class="btn btn-danger shadow" type="button" data-bs-toggle="modal" data-bs-target="#deleteAccount">Delete
+              account</a>
+          </div>
+        </div>
+
+        <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="ModalLoginForm" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
@@ -44,19 +201,18 @@
                   <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
                 </div>
                 <div class="d-flex flex-column col-10 mx-auto bg-light">
-                  <h1 class="display-5 text-center pb-1">Login Form</h1>
+                  <h3 class="text-center pb-1">Change Password</h3>
                   <form>
                     <div class="mb-3 mt-4">
-                      <label for="exampleInputEmail1" class="form-label">Username</label>
+                      <label for="exampleInputEmail1" class="form-label">New Password</label>
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1">
                     </div>
                     <div class="d-flex flex-column text-center pt-4 col-8 mx-auto">
-                      <button type="submit" class="btn btn-primary py-2">LOGIN</button>
-                      <p class="pt-3">Not a member? <a href="#">Signup now</a></p>
+                      <button type="submit" class="btn btn-warning py-2">Change Password</button>
                     </div>
                   </form>
                 </div>
@@ -64,9 +220,62 @@
             </div>
           </div>
         </div>
-      </form>
+
+
+        <div class="modal fade" id="deleteAccount" tabindex="-1" aria-labelledby="ModalLoginForm" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-end">
+                  <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
+                </div>
+                <div class="d-flex flex-column col-10 mx-auto bg-light">
+                  <h3 class="text-center pb-1">Delete Account</h3>
+                  <form>
+                    <div class="mb-3 mt-4">
+                      <label for="exampleInputEmail1" class="form-label">Password</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="d-flex flex-column text-center pt-4 col-6 mx-auto">
+                      <button type="submit" class="btn btn-danger py-2">Are you sure????</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="deleteProject" tabindex="-1" aria-labelledby="ModalLoginForm" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-end">
+                  <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
+                </div>
+                <div class="d-flex flex-column col-10 mx-auto bg-light">
+                  <h3 class="text-center pb-1">Delete Project</h3>
+                  <form>
+                    <div class="mb-3 mt-4">
+                      <label for="exampleInputEmail1" class="form-label">Password</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="d-flex flex-column text-center pt-4 col-6 mx-auto">
+                      <button type="submit" class="btn btn-danger py-2">Are you sure????</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
-  </nav>
+
+  </div>
 
 
 
@@ -83,8 +292,6 @@
       </section>
     </div>
   </footer>
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
