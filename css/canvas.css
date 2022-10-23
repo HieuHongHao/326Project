@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    border: 0;
+    padding :0;
+    overflow: hidden;
+}
+#canvas .drawing-container{
+    width: 75%;
+    height: 100%;
+    float: left;
+    position: absolute;
+}
+#canvas .chat-container{
+    width: 25%;
+    height: 100%;
+    float: right;
+    right: 0;
+    position: absolute;
+    background-color: #424b59;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.chat-container .chat-texts-container{
+    max-height: calc(100vh - 8.5em);
+    bottom: 8.5em;
+    float: bottom;
+    position: absolute;
+    background-color: #424b59;
+    overflow: auto;
+    right: 0;
+    width: 100%;
+}
+.chat-container .chat-input-container{
+    bottom: 4em;
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    height: 4em;
+    overflow: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.chat-input-container input[type=text]{
+    border-radius: 12px;
+    color: #e8e8e8;
+    background-color: #535e6e;
+    outline: 0;
+    padding: 1em;
+    width: 95%;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+}
+
+.chat-texts-container .text{
+    position: relative;
+    width: 100%;
+}
+
+
+.chat-texts-container .my-text{
+    background-color: #798699;
+    width: 75%;
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+}
+
+.chat-texts-container .text-dummy{
+    width: 23%;
+    /* float: left; */
+    height: 0.1em;
+    float: left;
+}
+
+.chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
+    /* display:block; */
+    max-width: 70%;
+    padding: 0.6em;
+    margin: 0.5em 0 0.9em 0.7em;
+    border-radius: 12px;
+    word-wrap: break-word;
+}
+
+.chat-texts-container .blue-text{
+    background-color: #4e75b5;
+    color: white;
+}
+
+.chat-texts-container .green-text{
+    background-color: #80ab52;
+    color: white;
+}
+
+.chat-texts-container .yellow-text{
+    background-color: #bfa532;
+    color: white;
+}
+
+.chat-texts-container .red-text{
+    background-color: #c25d5d;
+    color: white;
+}
+
+.chat-texts-container .purple-text{
+    background-color: #865699;
+    color: white;
+}
+
+.chat-texts-container .math-text{
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+#canvas-pad{
+    width: 100%;
+    background-color: #333333;
+
+}
+
+.drawing-tools-container{
+    position: absolute;
+    /* bottom: 0; */
+    top: 2em;
+    left: 0em;
+}
+
+.drawing-tools-container input[type=color]{
+    /* display: none; */
+    opacity: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    /* border: 0; */
+}
+
+.drawing-tools-container span{
+    border-radius: 50%;
+    padding: 0.5em;
+    display: inline-block;
+    z-index: 10000;
+    font-size: 20px;
+    color: white;
+}
+
+.drawing-tools-container span:hover{
+    color: rgb(204, 204, 204);
+    cursor: pointer;
+}
+
+.active-people-container{
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 0.4em;
+    position: absolute;
+}
+.active-people-container i{
+    font-size: 25px;
+}
+.active-people-container .red-user{
+    color: #c25d5d;
+}
+.active-people-container .blue-user{
+    color: #4e75b5;
+}
+.active-people-container .yellow-user{
+    color: #bfa532;
+}
+.active-people-container .green-user{
+    color: #80ab52;
+}
+.active-people-container .purple-user{
+    color: #865699;
+}
