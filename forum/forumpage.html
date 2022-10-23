@@ -49,36 +49,50 @@
         </form>
       </div>
     </nav>
+    
     <!-- Main content-->
     <div class="container text-center mt-4">
       <!-- First row-->
       <div class="row">
-        <div class="col">
-          <div class="card rounded-3 shadow p-3 bg-white sidebar">
+        <!-- Projects of the day-->
+        <div class="col" id="projects-of-the-day">
+          <div class="card rounded-3 shadow p-3 bg-white">
             <div class="card-title">
               <figure>
                 <span class="d-inline-block btn float-left">
-                  <img src="../public/weed.svg" class="rounded-pill center-block" />
+                  <img
+                    src="../public/weed.svg"
+                    class="rounded-pill center-block"
+                  />
                 </span>
-                <h7 class="d-inline-block fw-bold ">Newest Projects of the day</h7>
+                <h6 class="d-inline-block fw-bold">
+                  Newest Projects of the day
+                </h6>
                 <figcaption class="figure-caption">
-                   Brand new projects with fresh ideas
+                  Brand new projects with fresh ideas
                 </figcaption>
               </figure>
               <figure>
-                <span class="d-inline-block btn float-left ">
-                  <img src="../public/board.svg" class="rounded-pill center-block d-block" />
+                <span class="d-inline-block btn float-left">
+                  <img
+                    src="../public/board.svg"
+                    class="rounded-pill center-block d-block"
+                  />
                 </span>
-                <h7 class="d-inline-block fw-bold">Top 5 Projects of the day</h7>
+                <h6 class="d-inline-block fw-bold">
+                  Top 5 Projects of the day
+                </h6>
                 <figcaption class="figure-caption">
-                  Top 5 unique projects 
+                  Top 5 unique projects
                 </figcaption>
               </figure>
               <figure>
                 <span class="d-inline-block btn float-left">
                   <img src="../public/threedots.svg" class="rounded-pill" />
                 </span>
-                <h7 class="d-inline-block fw-bold">Top 3 projects of the month</h7>
+                <h6 class="d-inline-block fw-bold">
+                  Top 3 projects of the month
+                </h6>
                 <figcaption class="figure-caption">
                   Most loved projects of the month
                 </figcaption>
@@ -86,7 +100,9 @@
             </div>
           </div>
         </div>
-        <div class="col">
+
+        <!--Single project post-->
+        <div class="col" id="project-post">
           <div class="card rounded-3 shadow p-3 bg-white post">
             <h5 class="card-title fw-bold fs-3 text-start">
               Enterprise AI Platform - simple, scalable, and extensible models
@@ -122,129 +138,247 @@
                 easily use words to justify violent thoughts which might have
                 become violent actions.
               </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="class-body text-start">
+              <div class="card-title text-end">
+                <button type="button" class="btn btn-outline-primary">
+                  Whiteboard
+                </button>
+              </div>
+              <button class="btn">
+                <figure>
+                  <img
+                    src="../public/heart.svg"
+                    alt="Avatar Logo"
+                    style="width: 20px"
+                    class="rounded-pill"
+                  />
+                  <figcaption class="figure-caption">1000</figcaption>
+                </figure>
+              </button>
+              <button class="btn">
+                <figure>
+                  <img
+                    src="../public/upvote.svg"
+                    alt="Avatar Logo"
+                    style="width: 20px"
+                    class="rounded-pill"
+                  />
+                  <figcaption class="figure-caption">1000</figcaption>
+                </figure>
+              </button>
+              <button class="btn">
+                <figure>
+                  <img
+                    src="../public/like.svg"
+                    alt="Avatar Logo"
+                    style="width: 20px"
+                    class="rounded-pill"
+                  />
+                  <figcaption class="figure-caption">1000</figcaption>
+                </figure>
+              </button>
             </div>
           </div>
         </div>
-        <div class="col">Column</div>
-      </div>
-      <!-- Second row-->
-      <div class="row">
-        <div class="col">Col 2</div>
-        <!-- Comments-->
-        <div class="col">
-          <div class="card rounded-3 shadow p-3 bg-white post mt-4">
-            <div class="card-body text-start">
-              <div class="row">
-                <div class="col-1">
-                  <img
-                    src="../public/logo.svg"
-                    alt="Avatar Logo"
-                    style="width: 40px"
-                    class="rounded-pill"
-                  />
-                </div>
-                <p class="col">
-                  I can do Java, Spring Boot, PostgreSQL,and AWS. I am more of
-                  backend guy, but I can do React if gun to my head.
-                </p>
-              </div>
-              <!-- Logos of heart, like, and upvote-->
-              <div class="btn-group row-cols-lg-1">
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/heart.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/like.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/upvote.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-              </div>
+
+        <!--Related Projects-->
+        <div class="col" id="related-projects">
+          <div
+            class="card rounded-3 shadow p-3 bg-white right-bar"
+            id="right-bar-card"
+          >
+            <div class="card-title fw-bold" id="right-bar-title">
+              Related Projects
             </div>
-          </div>
-          <div class="card rounded-3 shadow p-3 bg-white post mt-4">
-            <div class="card-body text-start">
-              <div class="row">
-                <div class="col-1">
-                  <img
-                    src="../public/logo.svg"
-                    alt="Avatar Logo"
-                    style="width: 40px"
-                    class="rounded-pill"
-                  />
+            <div class="card-body" id="right-bar-card-body">
+              <h6 class="d-inline-block fw-bold">AI/ML to detect cancer</h6>
+              <span class="d-inline-block btn float-left">
+                <div class="badge bg-secondary">React</div>
+                <div class="col-md-auto badge bg-secondary col-1">Python</div>
+                <div class="col-md-auto badge bg-secondary col-1">Java</div>
+                <div class="col-md-auto badge bg-secondary col-1">AI/ML</div>
+                <div class="col-md-auto badge bg-secondary col-1">SAAS</div>
+              </span>
+              <h6 class="d-inline-block fw-bold">Mern Stack Projects</h6>
+              <span class="d-inline-block btn float-left">
+                <div class="col-md-auto badge bg-secondary col-1">React</div>
+                <div class="col-md-auto badge bg-secondary col-1">Java</div>
+                <div class="col-md-auto badge bg-secondary col-1">AWS</div>
+                <div class="col-md-auto badge bg-secondary col-1">Redis</div>
+              </span>
+              <h6 class="d-inline-block fw-bold">
+                Distributed Image Processing Nodes
+              </h6>
+              <span class="d-inline-block btn float-left">
+                <div class="col-md-auto badge bg-secondary col-1">React</div>
+                <div class="col-md-auto badge bg-secondary col-1">Spring</div>
+                <div class="col-md-auto badge bg-secondary col-1">
+                  PostgreSQL
                 </div>
-                <p class="col">
-                  I have some experience working with Pytorch, Tensorflow, and
-                  has strong mathematical knowledge in AI/ML. I am learning
-                  system design along with various AWS services, so I can help
-                  with deploying ml models to the cloud, particularly AWS.
-                </p>
-              </div>
-              <!-- Logos of heart, like, and upvote-->
-              <div class="btn-group">
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/heart.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/like.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-                <button class="btn">
-                  <figure>
-                    <img
-                      src="../public/upvote.svg"
-                      alt="Avatar Logo"
-                      style="width: 20px"
-                      class="rounded-pill"
-                    />
-                    <figcaption class="figure-caption">1000</figcaption>
-                  </figure>
-                </button>
-              </div>
+                <div class="col-md-auto badge bg-secondary col-1">AWS S3</div>
+              </span>
             </div>
           </div>
         </div>
-        <div class="col">Col 3</div>
+
+        <!-- Second row-->
+        <div class="row">
+          <!-- Popular Tech Stacks-->
+          <div class="col" id="popular-tech-stacks">
+            <div class="card rounded-3 shadow p-3 bg-white sidebar mt-3">
+              <div class="card-title fw-bold">Popular Tech Stacks</div>
+              <div class="card-title btn-group-vertical">
+                <figure class="figure">
+                  <span class="d-inline-block btn float-left">
+                    <img src="../public/react.svg" style="width: 30px" />
+                  </span>
+                  <h6 class="d-inline-block fw-bold">React.js</h6>
+                </figure>
+                <figure class="figure">
+                  <span class="d-inline-block btn float-left">
+                    <img src="../public/javascript.svg" style="width: 30px" />
+                  </span>
+                  <h6 class="d-inline-block fw-bold">JavaScript</h6>
+                </figure>
+                <figure>
+                  <span class="d-inline-block btn float-left">
+                    <img src="../public/python.svg" style="width: 30px" />
+                  </span>
+                  <h6 class="d-inline-block fw-bold">Python</h6>
+                </figure>
+                <figure>
+                  <span class="d-inline-block btn float-left">
+                    <img src="../public/go.svg" style="width: 30px" />
+                  </span>
+                  <h6 class="d-inline-block fw-bold">Go</h6>
+                </figure>
+                <figure>
+                  <span class="d-inline-block btn float-left">
+                    <img src="../public/postgresql.svg" style="width: 30px" />
+                  </span>
+                  <h6 class="d-inline-block fw-bold">PostgreSQL</h6>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments-->
+          <div class="col" id="comments">
+            <h5 class="mt-5 text-start">Comments</h5>
+            <div class="card rounded-3 shadow p-3 bg-white post mt-4">
+              <div class="card-body text-start">
+                <div class="row">
+                  <div class="col-1">
+                    <img
+                      src="../public/logo.svg"
+                      alt="Avatar Logo"
+                      style="width: 40px"
+                      class="rounded-pill"
+                    />
+                  </div>
+                  <p class="col">
+                    I can do Java, Spring Boot, PostgreSQL,and AWS. I am more of
+                    backend guy, but I can do React if gun to my head.
+                  </p>
+                </div>
+                <!-- Logos of heart, like, and upvote-->
+                <div class="btn-group row-cols-lg-1">
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/heart.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/like.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/upvote.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-3 shadow p-3 bg-white post mt-4">
+              <div class="card-body text-start">
+                <div class="row">
+                  <div class="col-1">
+                    <img
+                      src="../public/logo.svg"
+                      alt="Avatar Logo"
+                      style="width: 40px"
+                      class="rounded-pill"
+                    />
+                  </div>
+                  <p class="col">
+                    I have some experience working with Pytorch, Tensorflow, and
+                    has strong mathematical knowledge in AI/ML. I am learning
+                    system design along with various AWS services, so I can help
+                    with deploying ml models to the cloud, particularly AWS.
+                  </p>
+                </div>
+                <!-- Logos of heart, like, and upvote-->
+                <div class="btn-group">
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/heart.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/like.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                  <button class="btn">
+                    <figure>
+                      <img
+                        src="../public/upvote.svg"
+                        alt="Avatar Logo"
+                        style="width: 20px"
+                        class="rounded-pill"
+                      />
+                      <figcaption class="figure-caption">1000</figcaption>
+                    </figure>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
       </div>
     </div>
     <script
