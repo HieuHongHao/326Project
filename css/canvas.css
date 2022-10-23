@@ -5,7 +5,6 @@ body {
     overflow: hidden;
 }
 #canvas .drawing-container{
-    background-color: #333333;
     width: 75%;
     height: 100%;
     float: left;
@@ -22,8 +21,8 @@ body {
 }
 
 .chat-container .chat-texts-container{
-    max-height: calc(100vh - 4.5em);
-    bottom: 4.5em;
+    max-height: calc(100vh - 8.5em);
+    bottom: 8.5em;
     float: bottom;
     position: absolute;
     background-color: #424b59;
@@ -32,7 +31,7 @@ body {
     width: 100%;
 }
 .chat-container .chat-input-container{
-    bottom: 0;
+    bottom: 4em;
     width: 100%;
     max-width: 100%;
     position: absolute;
@@ -115,4 +114,66 @@ body {
     color: white;
     text-align: center;
     padding: 1em;
+}
+
+#canvas-pad{
+    width: 100%;
+    background-color: #333333;
+
+}
+
+.drawing-tools-container{
+    position: absolute;
+    /* bottom: 0; */
+    top: 2em;
+    left: 0em;
+}
+
+.drawing-tools-container input[type=color]{
+    /* display: none; */
+    opacity: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    /* border: 0; */
+}
+
+.drawing-tools-container span{
+    border-radius: 50%;
+    padding: 0.5em;
+    display: inline-block;
+    z-index: 10000;
+    font-size: 20px;
+    color: white;
+}
+
+.drawing-tools-container span:hover{
+    color: rgb(204, 204, 204);
+    cursor: pointer;
+}
+
+.active-people-container{
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 0.4em;
+    position: absolute;
+}
+.active-people-container i{
+    font-size: 25px;
+}
+.active-people-container .red-user{
+    color: #c25d5d;
+}
+.active-people-container .blue-user{
+    color: #4e75b5;
+}
+.active-people-container .yellow-user{
+    color: #bfa532;
+}
+.active-people-container .green-user{
+    color: #80ab52;
+}
+.active-people-container .purple-user{
+    color: #865699;
 }

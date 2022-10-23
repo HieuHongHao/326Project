@@ -5,7 +5,8 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/canvas.css" rel="stylesheet">
     <!-- <script type="module" src="scripts/main.js" defer></script> -->
     <script type="module" src="../scripts/canvas.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -20,9 +21,8 @@
         TeX: { noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
         messageStyle: "none"
         });
-    </script>    
+    </script>  
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
-
     <!--Kanvas-->
     <script src="../scripts/konva.min.js"></script>
 
@@ -32,68 +32,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-
-<style>
-    .drawing-container{
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
-    .drawing-container .drawing-tool-container{
-        height: 2.6em;
-        background-color: #f5f5f5;
-        padding: 0em 1em 0em 0em;
-        position: absolute;
-        z-index: 1000;
-    }
-    .drawing-tool-container div{
-        /* margin-top: 0.2em; */
-        font-size: 25px;
-        margin-left: 0.5em;
-        cursor: pointer;
-        padding: 0.2em 0.4em 0.2em 0.4em;
-        display: inline-block;
-        text-align: center;
-    }
-    .drawing-tool-container div:hover{
-        background-color: #ebebeb;
-    }
-    .drawing-tool-container .small-pen{
-        font-size: 10px;
-    }
-    .drawing-tool-container .medium-pen{
-        font-size: 20px;
-    }
-    .drawing-tool-container .large-pen{
-        font-size: 30px;
-    }
-
-    .active-people-container{
-        left: 0;
-        bottom: 0;
-        z-index: 1000;
-        padding: 0.4em;
-        position: absolute;
-    }
-    .active-people-container i{
-        font-size: 25px;
-    }
-    .active-people-container .red-user{
-        color: #c25d5d;
-    }
-    .active-people-container .blue-user{
-        color: #4e75b5;
-    }
-    .active-people-container .yellow-user{
-        color: #bfa532;
-    }
-    .active-people-container .green-user{
-        color: #80ab52;
-    }
-    .active-people-container .purple-user{
-        color: #865699;
-    }
-</style>
 
 
 <body>
@@ -117,7 +55,7 @@
                 <a class="nav-link" href="javascript:void(0)">Account</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)"><i class="fa-solid fa-moon" style="font-size: 20px;color: white;"></i></a>
+                <a class="nav-link" href="javascript:void(0)"><i class="fa-solid fa-moon fs-5 text-white"></i></a>
             </li>
           </ul>
         </div>
@@ -131,46 +69,13 @@
     </div>
     <div id="canvas">
         <div class="drawing-container">
-            <!-- <div class="drawing-tool-container">
-                <div><i class="fa-solid fa-eraser"></i></div>
-                <div><i class="fa-solid fa-paintbrush"></i></div>
-                <div><i class="fa-solid fa-circle small-pen"></i></div>
-                <div><i class="fa-solid fa-circle medium-pen"></i></div>
-                <div><i class="fa-solid fa-circle large-pen"></i></div>
-            </div> -->
-            
-            
-            <div id="canvas-pad">  
-                
-            </div>
-            <div style="position: absolute">
-                <select id="tool" value="brush" style="opacity: 0; z-index: -1000;">
-                    <option value="brush" selected>Brush</option>
-                    <option value="eraser">Eraser</option>
-                </select>
-                <input type="number" id="brush-size" min="1" max="25" step="1" value="5"  style="opacity: 0; z-index: -1000;">
-                <select id="brush-color"  style="opacity: 0; z-index: -1000;">
-                    <option value="white" selected>White</option>
-                    <option value="black">Black</option>
-                    <option value="grey">Grey</option>
-                    <option value="brown">Brown</option>
-                    <option value="red">Red</option>
-                    <option value="orange">Orange</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="green">Green</option>
-                    <option value="blue">Blue</option>
-                    <option value="indigo" >Indigo</option>
-                    <option value="violet" >Violet</option>
-                    <option value="pink">Pink</option>
-                </select>
-            </div>
-            
+            <div id="canvas-pad"></div>
             <div class="drawing-tools-container">
                 <div>
-                    <span><i class="fa-solid fa-paintbrush" id="color-paintbrush"></i></span>
+                    <span><i class="fa-solid fa-paintbrush" id="tool-paintbrush"></i></span>
                 </div>
                 <div>
-                    <span><i class="fa-solid fa-eraser"></i></span>
+                    <span><i class="fa-solid fa-eraser" id="tool-eraser"></i></span>
                 </div>
                 <div>
                     <span><i class="fa-solid fa-fill-drip"></i></span>
@@ -182,51 +87,16 @@
                     <span><i class="fa-solid fa-rotate-right"></i></span>
                 </div>
                 <div>
-                    <input type="color" id="color-picker-input"/>
+                    <span><i class="fa-solid fa-plus" id="tool-increase-size"></i></span>
+                </div>
+                <div>
+                    <span><i class="fa-solid fa-minus" id="tool-decrease-size"></i></span>
+                </div>
+                <div>
+                    <input type="color" id="color-picker-input" value="#ffffff"/>
                     <span id="color-picker"><i class="fa-solid fa-palette"></i></span>
                 </div>
             </div>
-            <style>
-                .drawing-tools-container{
-                    position: absolute;
-                    /* bottom: 0; */
-                    top: 3em;
-                    left: 0em;
-                }
-
-                .drawing-tools-container input[type=color]{
-                    /* display: none; */
-                    opacity: 0;
-                    bottom: 0;
-                    left: 0;
-                    position: absolute;
-                    /* border: 0; */
-                }
-                
-                .drawing-tools-container span{
-                    border-radius: 50%;
-                    padding: 0.5em;
-                    display: inline-block;
-                    z-index: 10000;
-                    font-size: 20px;
-                    color: white;
-                }
-
-                .drawing-tools-container span:hover{
-                    color: rgb(204, 204, 204);
-                    cursor: pointer;
-                }
-            </style>
-            <script>
-                $("#color-picker-input").change(function(event) {
-                    console.log($(this).val());
-                    $("#color-paintbrush").css('color',$(this).val());
-                });
-
-                $("#color-picker").click(function(event) {
-                    $("#color-picker-input").click();
-                });
-            </script>
         </div>
         <div class="chat-container">
             <div class="chat-texts-container" id="chat-texts">
@@ -244,198 +114,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const drawingBoard = document.getElementById("canvas")
-        // var width = 950;
-        const width = drawingBoard.getBoundingClientRect().width
-        const height = window.innerHeight;
-    
-        // first we need Konva core things: stage and layer
-        var stage = new Konva.Stage({
-          container: 'canvas-pad',
-          width: width,
-          height: height,
-        });
-    
-        var layer = new Konva.Layer();
-        stage.add(layer);
-    
-        var isPaint = false;
-        var mode = 'brush';
-        var lastLine;
-    
-        stage.on('mousedown touchstart', function (e) {
-          isPaint = true;
-          var pos = stage.getPointerPosition();
-          lastLine = new Konva.Line({
-            stroke: document.getElementById('brush-color').value,
-            strokeWidth: Math.min(25, parseInt(document.getElementById('brush-size').value)),
-            globalCompositeOperation:
-              mode === 'brush' ? 'source-over' : 'destination-out',
-            // round cap for smoother lines
-            lineCap: 'round',
-            lineJoin: 'round',
-            // add point twice, so we have some drawings even on a simple click
-            points: [pos.x, pos.y, pos.x, pos.y],
-          });
-          layer.add(lastLine);
-        });
-    
-        stage.on('mouseup touchend', function () {
-          isPaint = false;
-        });
-    
-        // and core function - drawing
-        stage.on('mousemove touchmove', function (e) {
-          if (!isPaint) {
-            return;
-          }
-    
-          // prevent scrolling on touch devices
-          e.evt.preventDefault();
-    
-          const pos = stage.getPointerPosition();
-          var newPoints = lastLine.points().concat([pos.x, pos.y]);
-          lastLine.points(newPoints);
-        });
-        var select = document.getElementById('tool');
-        select.addEventListener('change', function () {
-          mode = select.value;
-        });
-    
-    </script>
-
 </body>
-
-
-<style>
-    #canvas-pad{
-        width: 100%;
-        background-color: #333333;
-
-    }
-</style>
-
-<style>
-    body {
-        margin: 0;
-        border: 0;
-        padding :0;
-        overflow: hidden;
-    }
-    #canvas .drawing-container{
-        background-color: yellow;
-        width: 75%;
-        height: 100%;
-        float: left;
-        position: absolute;
-    }
-    #canvas .chat-container{
-        width: 25%;
-        height: 100%;
-        float: right;
-        right: 0;
-        position: absolute;
-        background-color: #424b59;
-        font-family: 'Helvetica', 'Arial', sans-serif;
-    }
-
-    .chat-container .chat-texts-container{
-        max-height: calc(100vh - 8.5em);
-        bottom: 8.5em;
-        float: bottom;
-        position: absolute;
-        background-color: #424b59;
-        overflow: auto;
-        right: 0;
-        width: 100%;
-    }
-    .chat-container .chat-input-container{
-        bottom: 4em;
-        width: 100%;
-        max-width: 100%;
-        position: absolute;
-        height: 4em;
-        overflow: none;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-    .chat-input-container input[type=text]{
-        border-radius: 12px;
-        color: #e8e8e8;
-        background-color: #535e6e;
-        outline: 0;
-        padding: 1em;
-        width: 95%;
-        box-sizing: border-box;
-        outline: 0;
-        border: 0;
-    }
-
-    .chat-texts-container .text{
-        position: relative;
-        width: 100%;
-    }
-
-
-    .chat-texts-container .my-text{
-        background-color: #798699;
-        width: 75%;
-        display: inline-block;
-        box-sizing: border-box;
-        color: white;
-    }
-
-    .chat-texts-container .text-dummy{
-        width: 23%;
-        /* float: left; */
-        height: 0.1em;
-        float: left;
-    }
-
-    .chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
-        /* display:block; */
-        max-width: 70%;
-        padding: 0.6em;
-        margin: 0.5em 0 0.9em 0.7em;
-        border-radius: 12px;
-        word-wrap: break-word;
-    }
-
-    .chat-texts-container .blue-text{
-        background-color: #4e75b5;
-        color: white;
-    }
-
-    .chat-texts-container .green-text{
-        background-color: #80ab52;
-        color: white;
-    }
-    
-    .chat-texts-container .yellow-text{
-        background-color: #bfa532;
-        color: white;
-    }
-    
-    .chat-texts-container .red-text{
-        background-color: #c25d5d;
-        color: white;
-    }
-
-    .chat-texts-container .purple-text{
-        background-color: #865699;
-        color: white;
-    }
-
-    .chat-texts-container .math-text{
-        color: white;
-        text-align: center;
-        padding: 1em;
-    }
-</style>
-
 </html>
