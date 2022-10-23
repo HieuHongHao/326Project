@@ -22,3 +22,7 @@ Our website is hosted ([here](https://pphan-sil.github.io/326Project/)): https:/
 ### Canvas Page
 Here is the design of our canvas page. Users will have the option to chat in this page (on the right side of the screen) as well as collaboratively draw on the canvas (on the left side of the screen). Some drawing tools (as can be seen on the left) will be helpful for the users in order to customize and personalize their experiences. The drawing tools includes a marker, an eraser, a paint bucket, a cntrl+z option, a way to change font size, and a color bucket to choose their paint color. We have made our UI extremely intuitve while not sacrificing its functionality. 
 ![Canvas demo](../demos/canvas_demo.gif)
+
+### 404 Page Not Found
+This is our 404 Page. This page should appear whenever a user tries to access an incorrect page or a page they are not authorized to
+![404 demo](../demos/404_demo.gif)
