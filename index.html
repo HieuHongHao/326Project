@@ -8,7 +8,7 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script type="module" src="scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
@@ -42,7 +42,7 @@
                 </div>
                 <div class="d-flex flex-column col-10 mx-auto bg-light">
                   <h1 class="display-5 text-center pb-1">Login Form</h1>
-                  <form>
+                  <div>
                     <div class="mb-3 mt-4">
                       <label for="exampleInputEmail1" class="form-label">Username</label>
                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -55,7 +55,7 @@
                       <button type="submit" class="btn btn-primary py-2">LOGIN</button>
                       <p class="pt-3">Not a member? <a href="#">Signup now</a></p>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@
 
   <div class="container px-5 pb-5 pt-4 d-flex flex-column col-7">
     <h1 class="display-2 text-center pb-4 fw-bold">Find Projects</h1>
-      <div class="input-group input-group-lg px-5 pb-5">
+    <div class="input-group input-group-lg px-5 pb-5">
       <input type="text" class="form-control" placeholder="Search Projects" aria-label="Search Projects"
         aria-describedby="button-addon2">
       <button class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-magnifying-glass"></i></button>
@@ -135,7 +135,7 @@
       <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
           <div class="card h-100 border-0">
-            <img class="card-img-top" src="public/project_dummy_image.png"/>
+            <img class="card-img-top" src="public/project_dummy_image.png" />
             <div class="card-body">
               <h5 class="card-title">Fully Autonomous Self-Driving</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
@@ -147,7 +147,7 @@
         </div>
         <div class="col">
           <div class="card h-100 border-0">
-            <img class="card-img-top" src="public/project_dummy_image.png"/>
+            <img class="card-img-top" src="public/project_dummy_image.png" />
             <div class="card-body">
               <h5 class="card-title">Camera Motion Estimation</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
@@ -159,25 +159,25 @@
         </div>
         <div class="col">
           <div class="card h-100 border-0">
-            <img class="card-img-top" src="public/project_dummy_image.png"/>
+            <img class="card-img-top" src="public/project_dummy_image.png" />
             <div class="card-body">
               <h5 class="card-title">Dogecoin</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
                 consectetur cupidatat...</p>
-                <span class="pn-card-group-type pn-card-type-yellow">Finance</span>
+              <span class="pn-card-group-type pn-card-type-yellow">Finance</span>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="card h-100 border-0">
-            <img class="card-img-top" src="public/project_dummy_image.png"/>
+            <img class="card-img-top" src="public/project_dummy_image.png" />
             <div class="card-body">
               <h5 class="card-title">KanvasWire</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
                 consectetur cupidatat... </p>
-                <span class="pn-card-group-type pn-card-type-yellow">Tech-Startup</span>
-                <span class="pn-card-group-type pn-card-type-blue">Canvas</span>
-                <span class="pn-card-group-type pn-card-type-red">Art</span>
+              <span class="pn-card-group-type pn-card-type-yellow">Tech-Startup</span>
+              <span class="pn-card-group-type pn-card-type-blue">Canvas</span>
+              <span class="pn-card-group-type pn-card-type-red">Art</span>
             </div>
           </div>
         </div>
