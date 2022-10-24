@@ -12,7 +12,7 @@ Kanvaswire
 - Project posts, upvotes, comments, messages, stars, tags (programming tags, key word tages)
 - Github repo lists
 - Chat/comment messages
-- Room session drwaings
+- Room session drawings
 
 # Part 1: Wireframes
 ### Landing Wireframe
@@ -32,6 +32,11 @@ Kanvaswire
 
 # Part 2: HTML and CSS
 Our website is hosted ([here](https://pphan-sil.github.io/326Project/)): https://pphan-sil.github.io/326Project/
+* Link to landing page (https://pphan-sil.github.io/326Project/)
+* Link to forum page (https://pphan-sil.github.io/326Project/forums/)
+* Link to dashboard page (https://pphan-sil.github.io/326Project/dashboard/)
+* Link to search page (https://pphan-sil.github.io/326Project/search/)
+* Link to 404 page (https://pphan-sil.github.io/326Project/404/)
 
 ### Canvas Page
 Here is the design of our canvas page. Users will have the option to chat in this page (on the right side of the screen) as well as collaboratively draw on the canvas (on the left side of the screen). Up to 5 people could be in the same canvas room at the same time. Chatting is very straight-forward, you only need to type in the input and press enter to send a message. We will also make it possible to send math equations as well so that we reach our targeted audience (STEM projects). Some drawing tools (as can be seen on the left) will be helpful for the users in order to customize and personalize their experiences. The drawing tools includes a marker, an eraser, a paint bucket, a cntrl+z option, a way to change font size, and a color bucket to choose their paint color. Finally, at the bottom we will be able to see who is simultaneously in the canvas page (like google docs)! We have made our UI extremely intuitve while not sacrificing its functionality. 
