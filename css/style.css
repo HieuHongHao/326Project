@@ -1,5 +1,7 @@
 :root {
   --bg-color:  36, 39, 58 !important;
+  --bs-secondary-rgb: 36, 39, 58 !important;
+  --bs-bg-opacity: 0;
 }
 
 
@@ -48,4 +50,12 @@ html[data-theme="dark"] {
 .pn-card-type-blue
 {
   background: #7dc4e4;
+}
+
+.kanvaswire-card .text-danger{
+  color: #e78284 !important;
+}
+
+.kanvaswire-card .text-primary{
+  color: #85c1dc !important;
 }
