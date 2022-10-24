@@ -67,4 +67,4 @@ This is our 404 Page. This page should appear whenever a user tries to access an
 ### Part 3: Divsion of Labor
  - Peter Phan: Design in figma and create the HTML/CSS for the landing page and search page 
  - Phat Nguyen: Design in figma and create the HTML/CSS for the canvas page and account page
- - Hieu Nguyen: Design in figma and create the HTML/CSS for the forum page and write milestone1.md
+ - Hieu Nguyen: Design in figma and create the HTML/CSS for the project page and write milestone1.md
