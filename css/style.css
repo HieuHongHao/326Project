@@ -60,7 +60,7 @@ html[data-theme="dark"] {
   color: #85c1dc !important;
 }
 
-.navbar img{
+.navbar img, .feed-post img, .tech-stacks img{
   width:2em;
 }
 
