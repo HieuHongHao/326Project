@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-  <title>Document</title>
+  <title>KanvasWire</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <script type="module" src="scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
@@ -24,10 +24,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/forums/">Forums</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/search/">Search</a>
+          <a class="nav-link" href="/search/">Feed</a>
         </li>
         <li class="nav-item">
           <a class="nav-link"><i class="fas fa-circle-half-stroke fs-5"></i></a>
@@ -36,7 +33,7 @@
       <form class="d-flex">
         <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#modalLoginForm">Sign
           Up</button>
-        <div class="modal fade" id="modalLoginForm" tabindex="-1" aria-labelledby="ModalLoginForm" aria-hidden="true">
+        <div class="modal fade" id="modalLoginForm" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
@@ -44,11 +41,11 @@
                   <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
                 </div>
                 <div class="d-flex flex-column col-10 mx-auto bg-light">
-                  <h1 class="display-5 text-center pb-1">Login Form</h1>
-                  <form>
+                  <p class="display-5 text-center pb-1">Login Form</p>
+                  <div>
                     <div class="mb-3 mt-4">
                       <label for="exampleInputEmail1" class="form-label">Username</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -58,7 +55,7 @@
                       <button type="submit" class="btn btn-primary py-2">LOGIN</button>
                       <p class="pt-3">Not a member? <a href="#">Signup now</a></p>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -67,7 +64,7 @@
       </form>
     </div>
   </nav>
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
       </div>
@@ -89,13 +86,6 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active bg-secondary">
-        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="650" -->
-        <!--   xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" -->
-        <!--   preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-        <!--   <title>Placeholder</title> -->
-        <!--   <rect width="100%" height="100%" fill="#555"></rect><text x="50%" y="50%" fill="#333" dy=".3em">First -->
-        <!--     slide</text> -->
-        <!-- </svg> -->
         <img src="public/canvas_demo.gif" class="" alt="canvas_demo" width="800" height="650" />
       </div>
       <div class="carousel-item">
@@ -127,63 +117,67 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
+  </div> -->
 
 
-  <div class="container px-5 pb-5 pt-4 d-flex flex-column mx-auto col-6">
+  <div class="container px-5 pb-5 pt-4 d-flex flex-column col-7">
     <h1 class="display-2 text-center pb-4 fw-bold">Find Projects</h1>
-      <div class="input-group input-group-lg px-5 pb-5">
+    <div class="input-group input-group-lg px-5 pb-5">
       <input type="text" class="form-control" placeholder="Search Projects" aria-label="Search Projects"
         aria-describedby="button-addon2">
       <button class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-magnifying-glass"></i></button>
     </div>
   </div>
 
-  <div class="bg-secondary pb-5">
+  <div class="bg-secondary pb-5 kanvaswire-card">
     <div class="container">
       <h1 class="display-3 text-center pb-3 pt-4 fw-bold text-light">Top Projects</h1>
       <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
-          <div class="card h-100">
-            <img src="public/drawing.png" alt="" class="card-img-top">
+          <div class="card h-100 border-0">
+            <img class="card-img-top" src="public/project_dummy_image.png" alt="dummy">
             <div class="card-body">
-              <h5 class="card-title">Project 1</h5>
+              <h5 class="card-title">Fully Autonomous Self-Driving</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat.</p>
+                consectetur cupidatat...</p>
+              <span class="pn-card-group-type pn-card-type-red">Research</span>
+              <span class="pn-card-group-type pn-card-type-yellow">Machine Learning</span>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="card h-100">
-            <img src="public/drawing.png" alt="" class="card-img-top">
+          <div class="card h-100 border-0">
+            <img class="card-img-top" src="public/project_dummy_image.png" alt="dummy">
             <div class="card-body">
-              <h5 class="card-title">Project 2</h5>
+              <h5 class="card-title">Camera Motion Estimation</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat.</p>
+                consectetur cupidatat...</p>
+              <span class="pn-card-group-type pn-card-type-red">Research</span>
+              <span class="pn-card-group-type pn-card-type-blue">Computer Vision</span>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="card h-100">
-            <img src="public/drawing.png" class="card-img-top" >
+          <div class="card h-100 border-0">
+            <img class="card-img-top" src="public/project_dummy_image.png" alt="dummy">
             <div class="card-body">
-              <h5 class="card-title">Project 3</h5>
+              <h5 class="card-title">Dogecoin</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat.</p>
+                consectetur cupidatat...</p>
+              <span class="pn-card-group-type pn-card-type-yellow">Finance</span>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="card h-100">
-            <img src="public/drawing.png" alt="" class="card-img-top">
+          <div class="card h-100 border-0">
+            <img class="card-img-top" src="public/project_dummy_image.png" alt="dummy">
             <div class="card-body">
-              <h5 class="card-title">Project 4</h5>
+              <h5 class="card-title">KanvasWire</h5>
               <p class="card-text">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                consectetur cupidatat. </p>
+                consectetur cupidatat... </p>
+              <span class="pn-card-group-type pn-card-type-yellow">Tech-Startup</span>
+              <span class="pn-card-group-type pn-card-type-blue">Canvas</span>
+              <span class="pn-card-group-type pn-card-type-red">Art</span>
             </div>
           </div>
         </div>
@@ -193,14 +187,14 @@
 
   <footer class="bg-light text-center text-white">
     <div class="container pt-4">
-      <section class="mb-4">
+      <div class="mb-4">
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
         <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
-      </section>
+      </div>
     </div>
   </footer>
 

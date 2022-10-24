@@ -1,12 +1,61 @@
 :root {
-  --bg-color: #fff;
+  --bg-color:  36, 39, 58 !important;
+  --bs-secondary-rgb: 36, 39, 58 !important;
+  --bs-bg-opacity: 0;
 }
+
 
 html[data-theme="dark"] {
-  --bg-color: #1d2025;
+  --bg-color: 36, 39, 58 !important;
 }
 
-html,
-body {
-  background-color: var(--bg-color);
+
+.kanvaswire-card .card-body{
+  background-color: #51576d;
+  color:  #d1e3ff;
+  cursor: pointer;
+}
+
+.kanvaswire-card .card-body:hover{
+  background-color: #626880;
+}
+
+.kanvaswire-card img{
+  cursor: pointer;
+}
+
+.kanvaswire-card p{
+  margin-top: 1em;
+}
+
+.pn-card-group-type
+{
+  color: #1e2030;
+  left: 1.5em;
+  padding: 0.3em 1em;
+  width: 4em;
+  font-size: 15px;
+  z-index: 2;
+  margin-right: 0.4em;
+  border-radius: 9px;
+}
+.pn-card-type-red
+{
+  background: #ed8796;
+}
+.pn-card-type-yellow
+{
+  background: #eed49f;
+}
+.pn-card-type-blue
+{
+  background: #7dc4e4;
+}
+
+.kanvaswire-card .text-danger{
+  color: #e78284 !important;
+}
+
+.kanvaswire-card .text-primary{
+  color: #85c1dc !important;
 }
