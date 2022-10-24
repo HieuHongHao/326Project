@@ -15,8 +15,20 @@ Kanvaswire
 - Room session drwaings
 
 # Part 1: Wireframes
+### Landing Wireframe
+<img src= "../public/landing-wireframe.png">
 
+### Canvas Wireframe
+<img src= "../public/canvas-wireframe.png">
 
+### Feed Wireframe
+<img src= "../public/feed-wireframe.png">
+
+### Account Wireframe
+<img src= "../public/accountwireframe.png">
+
+### Project Wireframe
+<img src= "../public/project-wireframe.png">
 
 # Part 2: HTML and CSS
 Our website is hosted ([here](https://pphan-sil.github.io/326Project/)): https://pphan-sil.github.io/326Project/
