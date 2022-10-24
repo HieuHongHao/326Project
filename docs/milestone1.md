@@ -62,3 +62,9 @@ The Project Page can be accessed by clicking in a project post in the Feed Page.
 ### 404 Page Not Found
 This is our 404 Page. This page should appear whenever a user tries to access an incorrect page or a page they are not authorized to
 ![404 demo](../demos/404_demo.gif)
+
+
+### Part 3: Divsion of Labor
+ - Peter Phan: Design in figma and create the HTML/CSS for the landing page and search page 
+ - Phat Nguyen: Design in figma and create the HTML/CSS for the canvas page and account page
+ - Hieu Nguyen: Design in figma and create the HTML/CSS for the forum page and write milestone1.md
