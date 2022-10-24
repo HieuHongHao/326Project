@@ -67,3 +67,7 @@ html[data-theme="dark"] {
 .account-info img{
   width: 13em;
 }
+
+.commenters {
+  width: 3em;
+}
