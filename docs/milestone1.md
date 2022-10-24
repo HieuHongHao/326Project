@@ -43,6 +43,10 @@ This is our landing page. When user is not logged in, they will visit the landin
 <img src= "../public/LandingPage(1).png">
 <img src= "../public/LandingPage(2).png">
 
+We also made part of our website responsive
+
+![Responsive](../demos/phone_demo.png)
+
 ### Account Page
 The account page is where user can configure, edit, and view personal informations and their past projects.
 <img src="../public/accountpage.png">
