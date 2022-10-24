@@ -53,6 +53,9 @@ If a user is logged in, they will be taken to the Feed Page instead of the landi
 
 <img src="../public/feedpage.png">
 
+## Responsive Landing Page
+<img src="../public/reponsive.png">
+
 
 ### Project Page
 The Project Page can be accessed by clicking in a project post in the Feed Page. This page will show more in-depth details about a single project, with tags and comments. The post also a link to the whiteboard, where users can access our canvas. Users can upvotes, hearts, or likes a project in here. This page also has the same side bars as the feed page, since we want to provide fast access for user to the top projects or the related projects without having to return to the Feed Page
