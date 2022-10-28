@@ -8,8 +8,33 @@ const options = {
 };
 const io = require("socket.io")(httpServer, options);
 
+const sockets = {};
+const clients = {};
+const inbox = {};
+let counter = 1
 io.on("connection", (socket) => {
   console.log(`socket ${socket.id} connected`);
+  
+  if(!socket.id in sockets){
+    sockets[socket.id] = `client ${counter}`;
+    clients[`client ${counter}`] = socket.id;
+    if(`client ${counter}` in inbox && inbox[`client ${counter}`].length > 0){
+        socket.emit("consume-inbox-msg",inbox[`client ${counter}`]);
+        inbox[`client ${counter}`] = [];
+    }
+    counter += 1;
+  }
+  socket.on("send-message",payload => {
+    const {receiver,message} = payload;
+    if(receiver in clients){
+        clients[receiver].emit("response-message",{sender: sockets[socket.id], message: message});
+    }else{
+        inbox[receiver] = message;
+    }
+})
+  socket.on("disconnect",() => {
+    console.log(`client ${sockets[socket.id]} disconnecting ... `);
+  })
 });
 
 app.get("/", (req, res) => {
