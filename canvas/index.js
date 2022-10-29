@@ -5,13 +5,14 @@ let textInput = document.getElementById("text-input");
 const username = localStorage.getItem("username");
 const users = ["Alpha Shrek","Shrek FanBoy"];
 
-
+thegmah
 
 function addChatElement(message){
     const chatElement = document.createElement("div");
     const innerChat = document.createElement("div");
     const chatBox = document.getElementById("chat-texts");
     chatElement.classList.add("text");
+    
     innerChat.classList.add("blue-text");
     innerChat.innerHTML = message;
     chatElement.appendChild(innerChat);
