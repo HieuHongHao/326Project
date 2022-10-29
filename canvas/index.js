@@ -9,13 +9,27 @@ const users = ["Alpha Shrek","Shrek FanBoy"];
 
 function addChatElement(message){
     const chatElement = document.createElement("div");
-    chatElement.classList.add("text");
     const innerChat = document.createElement("div");
-    innerChat.classList.add("blue-text")
+    const chatBox = document.getElementById("chat-texts");
+    chatElement.classList.add("text");
+    innerChat.classList.add("blue-text");
     innerChat.innerHTML = message;
     chatElement.appendChild(innerChat);
-    document.getElementsByClassName("chat-container")[0].appendChild(chatElement);
+    chatBox.appendChild(chatElement);
+    autoScroll(chatElement);
 }
+function autoScroll(message){
+    const messageStyle = getComputedStyle(message);
+    const messageMargin = parseInt(messageStyle.marginBottom);
+    const messageHeight = message.offsetHeight + messageMargin;
+    const visibleHeight = message.offsetHeight;
+    const containerHeight = message.scrollHeight;
+    const scrollOffset = message.scrollTop + visibleHeight;
+    if(containerHeight - messageHeight <= scrollOffset){
+        message.scrollTop = message.scrollHeight;
+    }
+}
+
 textInput.addEventListener("keypress",(event) => {
     if (event.key === "Enter") {
         event.preventDefault();
