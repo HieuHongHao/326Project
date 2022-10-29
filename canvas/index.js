@@ -5,8 +5,6 @@ let textInput = document.getElementById("text-input");
 const username = localStorage.getItem("username");
 const users = ["Alpha Shrek","Shrek FanBoy"];
 
-thegmah
-
 function addChatElement(message){
     const chatElement = document.createElement("div");
     const innerChat = document.createElement("div");
