@@ -74,12 +74,12 @@
   <div class="container-fluid bg-secondary min-vh-100">
     <div class="row justify-content-center pt-4">
       <div class="col-2">
-        <div class="card rounded-3 shadow p-3 bg-white">
+        <div class="card rounded-3 shadow p-3 cat-bg-light cat-text-light border">
           <div class="card-title">
             <div class="d-flex flex-column">
-              <span class="d-inline-block btn float-left">
-                <img src="../public/weed.svg" class="rounded-pill center-block d-block" alt="weed">
-              </span>
+              <div class="py-1">
+                <i class="fas fa-seedling fa-xl"></i>
+              </div>
               <h6 class="d-inline-block fw-bold">
                 Newest Projects of the day
               </h6>
@@ -88,9 +88,9 @@
               </p>
             </div>
             <div class="d-flex flex-column">
-              <span class="d-inline-block btn float-left">
-                <img src="../public/board.svg" class="rounded-pill center-block d-block" alt="board">
-              </span>
+              <div class="py-1">
+                <i class="fas fa-ranking-star fa-xl"></i>
+              </div>
               <h6 class="d-inline-block fw-bold">
                 Top 5 Projects of the day
               </h6>
@@ -99,9 +99,9 @@
               </p>
             </div>
             <div class="d-flex flex-column">
-              <span class="d-inline-block btn float-left">
-                <img src="../public/threedots.svg" class="rounded-pill center-block d-block" alt="threedots">
-              </span>
+              <div class="py-1">
+                <i class="fas fa-cubes fa-xl"></i>
+              </div>
               <h6 class="d-inline-block fw-bold">
                 Top 3 projects of the month
               </h6>
@@ -111,46 +111,67 @@
             </div>
           </div>
         </div>
-        <div class="col" id="popular-tech-stacks">
-          <div class="card rounded-3 shadow p-3 bg-white sidebar mt-3">
-            <div class="card-title fw-bold">Popular Tech Stacks</div>
-            <div class="card-title btn-group-vertical">
-              <div class="figure">
-                <span class="d-inline-block btn float-left">
-                  <img src="../public/react.svg" alt="react">
-                </span>
-                <h6 class="d-inline-block fw-bold">React.js</h6>
-              </div>
-              <div class="figure">
-                <span class="d-inline-block btn float-left">
-                  <img src="../public/javascript.svg" alt="javascript">
-                </span>
-                <h6 class="d-inline-block fw-bold">JavaScript</h6>
-              </div>
-              <div>
-                <span class="d-inline-block btn float-left">
-                  <img src="../public/python.svg" alt="python">
-                </span>
-                <h6 class="d-inline-block fw-bold">Python</h6>
-              </div>
-              <div>
-                <span class="d-inline-block btn float-left">
-                  <img src="../public/go.svg" alt="go">
-                </span>
-                <h6 class="d-inline-block fw-bold">Go</h6>
-              </div>
-              <div>
-                <span class="d-inline-block btn float-left">
-                  <img src="../public/postgresql.svg" alt="postgres">
-                </span>
-                <h6 class="d-inline-block fw-bold">PostgreSQL</h6>
-              </div>
-            </div>
+        <div class="card rounded-3 shadow p-3 sidebar mt-3 tech-stacks cat-bg-light cat-text-light border">
+          <div class="card-title fw-bold">Popular Tech Stacks</div>
+          <div class="card-title btn-group-vertical">
+            <figure class="figure">
+              <span class="d-inline-block btn float-left">
+                <i class="fa-brands fa-react fa-xl cat-text-light"></i>
+              </span>
+              <h6 class="d-inline-block fw-bold">React.js</h6>
+            </figure>
+            <figure class="figure">
+              <span class="d-inline-block btn float-left">
+                <i class="fa-brands fa-js fa-xl cat-text-light"></i>
+              </span>
+              <h6 class="d-inline-block fw-bold">JavaScript</h6>
+            </figure>
+            <figure>
+              <span class="d-inline-block btn float-left">
+                <i class="fa-brands fa-python fa-xl cat-text-light"></i>
+              </span>
+              <h6 class="d-inline-block fw-bold">Python</h6>
+            </figure>
+            <figure>
+              <span class="d-inline-block btn float-left">
+                <i class="fa-brands fa-golang fa-xl cat-text-light"></i>
+              </span>
+              <h6 class="d-inline-block fw-bold">Go</h6>
+            </figure>
+            <figure>
+              <span class="d-inline-block btn float-left">
+                <i class="fas fa-database fa-xl cat-text-light"></i>
+              </span>
+              <h6 class="d-inline-block fw-bold">PostgreSQL</h6>
+            </figure>
           </div>
         </div>
       </div>
+
+
       <div class="col-5">
-        <div class="card rounded-3 shadow p-3 bg-white post">
+        <div class="d-flex flex-column cat-bg-light cat-text-light border rounded-3 feed-post p-3">
+          <div>
+            <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+            <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">Username1</a></span>
+          </div>
+          <div>
+            <h5 class="fw-bold fs-3">
+              Enterprise AI Platform - simple, scalable, and extensible models
+              for industry uses
+            </h5>
+            <div class="d-flex">
+              <div class="badge pn-card-type-blue px-1">React</div>
+              <div class="badge pn-card-type-yellow px-1">Python</div>
+              <div class="badge pn-card-type-blue px-1">
+                Enterprise
+              </div>
+              <div class="badge pn-card-type-blue">AI/ML</div>
+              <div class="badge pn-card-type-red">SAAS</div>
+            </div>
+          </div>
+        </div>
+        <div class="card rounded-3 shadow p-3 bg-light post">
           <h5 class="card-title fw-bold fs-3 text-start">
             Enterprise AI Platform - simple, scalable, and extensible models
             for industry uses
@@ -204,112 +225,116 @@
           </div>
         </div>
 
-        <div class="py-4">
-          <h5 class="text-start text-light">Comments</h5>
-          <div class="card rounded-3 shadow p-3 bg-white post">
-            <div class="card-body text-start">
-              <div class="row">
-                <div class="col-1">
-                  <img src="../public/logo.svg" alt="Avatar Logo" class="rounded-pill commenters">
+        <div class="d-flex flex-column bg-light my-2 border-2 rounded-3 feed-post">
+          <div id="comments" class="p-3">
+            <p class="fs-5 fw-bold mb-1">Comments</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item px-0 d-flex">
+                <div class="input-group input-group">
+                  <input type="text" class="form-control" placeholder="Add a comment" aria-label="Search Projects"
+                    aria-describedby="button-addon2">
+                  <button class="btn btn-primary" type="button" id="button-addon2"><i
+                      class="fas fa-paper-plane"></i></button>
                 </div>
-                <p class="col">
-                  I can do Java, Spring Boot, PostgreSQL,and AWS. I am more of
-                  backend guy, but I can do React if gun to my head.
-                </p>
-              </div>
-              <!-- Logos of heart, like, and upvote-->
-              <div class="btn-group row-cols-lg-1">
-                <button class="btn">
-                  <img src="../public/heart.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-                <button class="btn">
-                  <img src="../public/like.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-                <button class="btn">
-                  <img src="../public/upvote.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="card rounded-3 shadow p-3 bg-white post mt-4">
-            <div class="card-body text-start">
-              <div class="row">
-                <div class="col-1">
-                  <img src="../public/logo.svg" alt="Avatar Logo" class="rounded-pill commenters">
+              </li>
+              <li class="list-group-item px-0 d-flex">
+                <div class="align-top">
+                  <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
                 </div>
-                <p class="col">
-                  I have some experience working with Pytorch, Tensorflow, and
-                  has strong mathematical knowledge in AI/ML. I am learning
-                  system design along with various AWS services, so I can help
-                  with deploying ml models to the cloud, particularly AWS.
-                </p>
-              </div>
-              <!-- Logos of heart, like, and upvote-->
-              <div class="btn-group">
-                <button class="btn">
-                  <img src="../public/heart.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-                <button class="btn">
-                  <img src="../public/like.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-                <button class="btn">
-                  <img src="../public/upvote.svg" alt="Avatar Logo" class="rounded-pill">
-                </button>
-              </div>
-            </div>
+                <div class="px-1">
+                  <div class="d-flex">
+                    <p class="m-0 me-2">Username</p>
+                    <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+                  </div>
+                  <p class="fw-light">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
+                    sint
+                    consectetur
+                    cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
+                    consectetur
+                    cupidatat.</p>
+                </div>
+              </li>
+              <li class="list-group-item px-0 d-flex">
+                <div class="align-top">
+                  <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+                </div>
+                <div class="px-1">
+                  <div class="d-flex">
+                    <p class="m-0 me-2">Username1</p>
+                    <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+                  </div>
+                  <p class="fw-light">Lorem ipsum dolor sit amet.</p>
+                </div>
+              </li>
+              <li class="list-group-item px-0 d-flex">
+                <div class="align-top">
+                  <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+                </div>
+                <div class="px-1">
+                  <div class="d-flex">
+                    <p class="m-0 me-2">Username2</p>
+                    <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+                  </div>
+                  <p class="fw-light">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
+                    sint
+                    consectetur
+                    cupidatat.</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
 
+
+
+
+      </div>
       <div class="col-2">
-        <div class="card rounded-3 shadow p-3 bg-white right-bar" id="right-bar-card">
+        <div class="card rounded-3 shadow p-3 cat-bg-light cat-text-light border right-bar" id="right-bar-card">
           <div class="card-title fw-bold" id="right-bar-title">
             Related Projects
           </div>
           <div class="card-body" id="right-bar-card-body">
             <h6 class="d-inline-block fw-bold">AI/ML to detect cancer</h6>
             <div class="d-inline-block btn float-left">
-              <div class="badge bg-secondary">React</div>
-              <div class="col-md-auto badge bg-secondary col-1">Python</div>
-              <div class="col-md-auto badge bg-secondary col-1">Java</div>
-              <div class="col-md-auto badge bg-secondary col-1">AI/ML</div>
-              <div class="col-md-auto badge bg-secondary col-1">SAAS</div>
+              <div class="badge pn-card-type-blue">React</div>
+              <div class="badge pn-card-type-yellow">Python</div>
+              <div class="badge pn-card-type-red">Java</div>
+              <div class="badge pn-card-type-yellow">AI/ML</div>
+              <div class="badge pn-card-type-red">SAAS</div>
             </div>
             <h6 class="d-inline-block fw-bold">Mern Stack Projects</h6>
             <div class="d-inline-block btn float-left">
-              <div class="col-md-auto badge bg-secondary col-1">React</div>
-              <div class="col-md-auto badge bg-secondary col-1">Java</div>
-              <div class="col-md-auto badge bg-secondary col-1">AWS</div>
-              <div class="col-md-auto badge bg-secondary col-1">Redis</div>
+              <div class="badge pn-card-type-blue">React</div>
+              <div class="badge pn-card-type-red">Java</div>
+              <div class="badge pn-card-type-red">AWS</div>
+              <div class="badge pn-card-type-red">Redis</div>
             </div>
             <h6 class="d-inline-block fw-bold">
               Distributed Image Processing Nodes
             </h6>
             <div class="d-inline-block btn float-left">
-              <div class="col-md-auto badge bg-secondary col-1">React</div>
-              <div class="col-md-auto badge bg-secondary col-1">Spring</div>
-              <div class="col-md-auto badge bg-secondary col-1">
-                PostgreSQL
-              </div>
-              <div class="col-md-auto badge bg-secondary col-1">AWS S3</div>
+              <div class="badge pn-card-type-blue">React</div>
+              <div class="badge pn-card-type-blue">Spring</div>
+              <div class="badge pn-card-type-yellow">PostgreSQL</div>
+              <div class="badge pn-card-type-red">AWS S3</div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
 
-  <footer class="bg-light text-center text-white">
-    <div class="container pt-4">
-      <div class="mb-4">
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-        <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
-      </div>
+  <footer class="cat-bg-light text-center ">
+    <div class="container py-4">
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
