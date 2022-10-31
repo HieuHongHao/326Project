@@ -13,21 +13,21 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img src="public/logo.svg" alt="Logo" class="rounded-pill">
+  <nav class="navbar navbar-expand-sm cat-bg-dark">
+    <div class="container-fluid justify-content-around">
+      <a class="navbar-brand cat-text-light" href="/">
+        <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
         <span class="ps-3">KanvasWire</span>
       </a>
       <ul class="navbar-nav ms-auto pe-2">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link cat-text-light" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/search/">Feed</a>
+          <a class="nav-link cat-text-light" href="/search/">Feed</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-circle-half-stroke fs-5"></i></a>
+          <a class="nav-link cat-text-light" id="theme-toggle"><i class="fas fa-circle-half-stroke fs-5"></i></a>
         </li>
       </ul>
       <form class="d-flex">
@@ -41,7 +41,7 @@
                   <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
                 </div>
                 <div class="d-flex flex-column col-10 mx-auto bg-light">
-                  <p class="display-5 text-center pb-1">Login Form</p>
+                  <h1 class="display-5 text-center pb-1">Login Form</h1>
                   <div>
                     <div class="mb-3 mt-4">
                       <label for="exampleInputEmail1" class="form-label">Username</label>
@@ -123,7 +123,7 @@
   <div class="container-fluid px-5 pb-5 pt-4 cat-bg-light">
     <div class="row justify-content-center">
       <div class="col col-7">
-        <h1 class="display-2 text-center pb-4 fw-bold cat-text-dark">Find Projects</h1>
+        <h1 class="display-2 text-center pb-4 fw-bold cat-text-light">Find Projects</h1>
         <div class="input-group input-group-lg px-5 pb-5">
           <input type="text" class="form-control" placeholder="Search Projects" aria-label="Search Projects"
             aria-describedby="button-addon2">
