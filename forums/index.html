@@ -13,27 +13,27 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
+  <nav class="navbar navbar-expand-sm cat-bg-dark">
+    <div class="container-fluid justify-content-around">
+      <a class="navbar-brand cat-text-light" href="/">
         <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
         <span class="ps-3">KanvasWire</span>
       </a>
       <ul class="navbar-nav ms-auto pe-2">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link cat-text-light" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/search/">Feed</a>
+          <a class="nav-link cat-text-light" href="/search/">Feed</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/canvas/">Canvas</a>
+          <a class="nav-link cat-text-light" href="/canvas/">Canvas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard/">Account</a>
+          <a class="nav-link cat-text-light" href="/dashboard/">Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-circle-half-stroke fs-5"></i></a>
+          <a class="nav-link cat-text-light" id="theme-toggle"><i class="fas fa-circle-half-stroke fs-5"></i></a>
         </li>
       </ul>
       <form class="d-flex">
@@ -160,76 +160,45 @@
               Enterprise AI Platform - simple, scalable, and extensible models
               for industry uses
             </h5>
-            <div class="d-flex">
-              <div class="badge pn-card-type-blue px-1">React</div>
-              <div class="badge pn-card-type-yellow px-1">Python</div>
-              <div class="badge pn-card-type-blue px-1">
+            <div class="d-flex py-1">
+              <div class="badge pn-card-type-blue me-2">React</div>
+              <div class="badge pn-card-type-yellow me-2">Python</div>
+              <div class="badge pn-card-type-blue me-2">
                 Enterprise
               </div>
-              <div class="badge pn-card-type-blue">AI/ML</div>
-              <div class="badge pn-card-type-red">SAAS</div>
+              <div class="badge pn-card-type-blue me-2">AI/ML</div>
+              <div class="badge pn-card-type-red me-2">SAAS</div>
             </div>
-          </div>
-        </div>
-        <div class="card rounded-3 shadow p-3 bg-light post">
-          <h5 class="card-title fw-bold fs-3 text-start">
-            Enterprise AI Platform - simple, scalable, and extensible models
-            for industry uses
-          </h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-auto badge bg-secondary col-1">React</div>
-              <div class="col-md-auto"></div>
-              <div class="col-md-auto badge bg-secondary col-1">Python</div>
-              <div class="col-md-auto"></div>
-              <div class="col-md-auto badge bg-secondary col-1">
-                Enterprise
-              </div>
-              <div class="col-md-auto"></div>
-              <div class="col-md-auto badge bg-secondary col-1">AI/ML</div>
-              <div class="col-md-auto"></div>
-              <div class="col-md-auto badge bg-secondary col-1">SAAS</div>
+            <div class="pt-2">
+              <p class="">
+                Watching the news the other day, it occurred to me that people
+                who have “words to live by” often begin to attack and even kill
+                others. I thought back to my own angry youth, when I could
+                easily use words to justify violent thoughts which might have
+                become violent actions.
+              </p>
+              <p class="">
+                Watching the news the other day, it occurred to me that people
+                who have “words to live by” often begin to attack and even kill
+                others. I thought back to my own angry youth, when I could
+                easily use words to justify violent thoughts which might have
+                become violent actions.
+              </p>
             </div>
-          </div>
-          <div class="card-body">
-            <p class="card-text text-start">
-              Watching the news the other day, it occurred to me that people
-              who have “words to live by” often begin to attack and even kill
-              others. I thought back to my own angry youth, when I could
-              easily use words to justify violent thoughts which might have
-              become violent actions.
-            </p>
-            <p class="card-text text-start">
-              Watching the news the other day, it occurred to me that people
-              who have “words to live by” often begin to attack and even kill
-              others. I thought back to my own angry youth, when I could
-              easily use words to justify violent thoughts which might have
-              become violent actions.
-            </p>
-          </div>
-          <div class="class-body text-start">
-            <div class="card-title text-end">
-              <button type="button" class="btn btn-outline-primary">
+            <div class="d-flex justify-content-between">
+              <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pt-3 pe-1"></i> 999 Likes</p>
+              <button type="button" class="btn btn-primary">
                 Whiteboard
               </button>
             </div>
-            <button class="btn">
-              <img src="../public/heart.svg" alt="Avatar Logo" class="rounded-pill">
-            </button>
-            <button class="btn">
-              <img src="../public/upvote.svg" alt="Avatar Logo" class="rounded-pill">
-            </button>
-            <button class="btn">
-              <img src="../public/like.svg" alt="Avatar Logo" class="rounded-pill">
-            </button>
           </div>
         </div>
 
-        <div class="d-flex flex-column bg-light my-2 border-2 rounded-3 feed-post">
-          <div id="comments" class="p-3">
-            <p class="fs-5 fw-bold mb-1">Comments</p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item px-0 d-flex">
+        <div class="d-flex flex-column cat-bg-light cat-text-light mt-3 border rounded-3 feed-post">
+          <div id="comments" class="px-3 py-3">
+            <div class="fs-5 fw-bold">Comments</div>
+            <ul class="list-group list-group-flush cat-text-light border-danger">
+              <li class="list-group-item px-0 d-flex cat-bg-light">
                 <div class="input-group input-group">
                   <input type="text" class="form-control" placeholder="Add a comment" aria-label="Search Projects"
                     aria-describedby="button-addon2">
@@ -237,7 +206,7 @@
                       class="fas fa-paper-plane"></i></button>
                 </div>
               </li>
-              <li class="list-group-item px-0 d-flex">
+              <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
                 <div class="align-top">
                   <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
                 </div>
@@ -254,7 +223,7 @@
                     cupidatat.</p>
                 </div>
               </li>
-              <li class="list-group-item px-0 d-flex">
+              <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
                 <div class="align-top">
                   <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
                 </div>
@@ -266,7 +235,7 @@
                   <p class="fw-light">Lorem ipsum dolor sit amet.</p>
                 </div>
               </li>
-              <li class="list-group-item px-0 d-flex">
+              <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
                 <div class="align-top">
                   <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
                 </div>
