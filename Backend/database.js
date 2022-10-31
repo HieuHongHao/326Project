@@ -25,8 +25,20 @@ class CrudService{
 class UserService extends CrudService{
     constructor(){
         super(users);
+        this.posts = posts;
+    }
+    getAllposts(user_id){
+        const post_ids = new Set(this.data[user_id].posts);
+        let res = [];
+        for(const post of this.posts){
+            if(post_ids.has(post.id)){
+                res.push(post);
+            }
+        }
+        return post;
     }
 }
+
 
 class PostService extends CrudService{
     constructor(){
@@ -57,4 +69,9 @@ class CanvasService extends CrudService{
 }
 
 
-const postService = new PostService();
+module.exports = {
+    PostService,
+    UserService,
+    CommentService,
+    CanvasService
+}

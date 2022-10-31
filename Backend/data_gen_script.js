@@ -19,10 +19,10 @@ for(let i = 0 ; i < 100 ; i++){
     comments.push(comment);
 }
 
-fs.writeFileSync("comments.json",JSON.stringify(comments),"utf-8");
-fs.writeFileSync("users.json",JSON.stringify(users),"utf-8");
-fs.writeFileSync("canvas.json",JSON.stringify(canvases),"utf-8");
-fs.writeFileSync("posts.json",JSON.stringify(posts),"utf-8");
+// fs.writeFileSync("comments.json",JSON.stringify(comments),"utf-8");
+// fs.writeFileSync("users.json",JSON.stringify(users),"utf-8");
+// fs.writeFileSync("canvas.json",JSON.stringify(canvases),"utf-8");
+// fs.writeFileSync("posts.json",JSON.stringify(posts),"utf-8");
 
 
 module.exports  = {
