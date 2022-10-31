@@ -13,6 +13,7 @@ class Comment {
     this.hearts = hearts;
     this.postId = postId;
   }
+  
 }
 
 class User {
