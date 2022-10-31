@@ -2,6 +2,7 @@ const { faker } = require("@faker-js/faker");
 class Comment {
   constructor(
     authorId,
+    postId,
     content = faker.lorem.paragraph(),
     likes = faker.datatype.number(),
     hearts = faker.datatype.number()
@@ -10,9 +11,9 @@ class Comment {
     this.authorId = authorId;
     this.likes = likes;
     this.hearts = hearts;
+    this.postId = postId;
   }
 }
-
 class User {
   constructor(
     id,
@@ -53,7 +54,7 @@ class Canvas {
   constructor(
     postId,
     ownerId,
-    drawing = faker.image.technics(),
+    drawing = faker.image.abstract(),
     users = []
   ) {
     this.postId = postId;
