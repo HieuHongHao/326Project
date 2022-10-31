@@ -5,6 +5,7 @@
   <title>KanvasWire | Canvas</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="../scripts/main.js" defer></script>
   <link href="../css/style.css" rel="stylesheet" />
   <link href="../css/canvas.css" rel="stylesheet" />
   <!-- <script type="module" src="scripts/main.js" defer></script> -->
@@ -36,27 +37,27 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img src="../public/logo.svg" alt="Avatar Logo" class="rounded-pill" />
-        <span class="ps-3">Site Name</span>
+  <nav class="navbar navbar-expand-sm cat-bg-dark">
+    <div class="container-fluid justify-content-around">
+      <a class="navbar-brand cat-text-light" href="/">
+        <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+        <span class="ps-3">KanvasWire</span>
       </a>
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto pe-2">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link cat-text-light" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/forums/">Forums</a>
+          <a class="nav-link cat-text-light" href="/forums/">Forums</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/search/">Search</a>
+          <a class="nav-link cat-text-light" href="/search/">Feed</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Account</a>
+          <a class="nav-link cat-text-light" href="/dashboard/">Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)"><i class="fa-solid fa-moon fs-5 cat-text-light"></i></a>
+          <a class="nav-link cat-text-light" id="theme-toggle"><i class="fas fa-circle-half-stroke fs-5"></i></a>
         </li>
       </ul>
     </div>
