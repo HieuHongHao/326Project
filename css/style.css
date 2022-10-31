@@ -1,8 +1,35 @@
-:root {
+html[data-theme='light'] {
+  --bg-color: #eff1f5 !important;
+  --bs-secondary-rgb: #eff1f5 !important;
+
+ /* Catppuccin Colors */
+  --cat-red-light: #ed1140;
+  --cat-red: #d20f39;
+  --cat-red-dark: #bd0e33;
+  --cat-orange-light: #fe7323;
+  --cat-orange: #fe640b;
+  --cat-orange-dark: #ed5801;
+  --cat-yellow-light: #e49a32;
+  --cat-yellow: #df8e1d;
+  --cat-yellow-dark: #c9801a;
+  --cat-green-light: #4ab832;
+  --cat-green: #40a02b;
+  --cat-green-dark: #3a9027;
+  --cat-blue-light: #3475f6;
+  --cat-blue: #1e66f5;
+  --cat-blue-dark: #0b56ed;
+  --cat-text-dark: #c6d0f5;
+  --cat-text-med: #6e738d;
+  --cat-text-light: #181926;
+  --cat-surface: #e6e9ef;
+  --cat-base: #eff1f5;
+  --cat-crust: #dce0e8;
+}
+
+html[data-theme='dark'] {
   --bg-color:  36, 39, 58 !important;
   --bs-secondary-rgb: 36, 39, 58 !important;
   --bs-bg-opacity: 0;
-
  /* Catppuccin Colors */
   --cat-red-light: #ef93a0;
   --cat-red: #ed8796;
@@ -22,9 +49,9 @@
   --cat-text-light: #c6d0f5;
   --cat-text-med: #6e738d;
   --cat-text-dark: #181926;
-  --cat-surface: #5b6078;
+  --cat-surface: #494d64;
   --cat-base: #24273a;
-  --cat-mantle: #1e2030;
+  --cat-crust: #181926;
 }
 
 /* Button Colors */
@@ -111,14 +138,13 @@
   background-color: var(--cat-surface) !important;
 }
 .cat-bg-dark {
-  background-color: var(--cat-mantle) !important;
+  background-color: var(--cat-crust) !important;
 }
 .cat-bg-med {
   background-color: var(--cat-base) !important;
 }
 
-
-
+/* Navbar Colors */
 
 
 .bg-dark .navbar-dark .btn-outline-dark {
@@ -156,15 +182,18 @@
 }
 .pn-card-type-red
 {
-  background: var(--cat-red);
+  color: var(--cat-text-crust);
+  background: var(--cat-red-dark);
 }
 .pn-card-type-yellow
 {
-  background: var(--cat-yellow);
+  color: var(--cat-text-crust);
+  background: var(--cat-yellow-dark);
 }
 .pn-card-type-blue
 {
-  background: var(--cat-blue);
+  color: var(--cat-text-crust);
+  background: var(--cat-blue-dark);
 }
 
 .kanvaswire-card .text-danger{
@@ -181,4 +210,8 @@
 
 .account-info img{
   width: 13em;
+}
+
+.list-group-item {
+  border-color: var(--cat-text-light) !important;
 }
