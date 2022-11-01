@@ -44,6 +44,7 @@ class PostService extends CrudService{
     constructor(){
         super(posts);
         this.comments = comments;
+        this.counter = 100;
     }
     getAllComments(post_id){
         const comments_id = new Set(this.data[post_id].commentsId);

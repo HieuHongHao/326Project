@@ -1,19 +1,23 @@
 const { faker } = require("@faker-js/faker");
+
+
+
 class Comment {
   constructor(
     authorId,
     postId,
+    id,
     content = faker.lorem.paragraph(),
     likes = faker.datatype.number(),
     hearts = faker.datatype.number()
   ) {
+    this.id = id;
     this.content = content;
     this.authorId = authorId;
     this.likes = likes;
     this.hearts = hearts;
     this.postId = postId;
   }
-  
 }
 
 class User {
@@ -32,7 +36,7 @@ class User {
     this.avatar = avatar;
     this.posts = posts;
     this.favouriteTechStack = favouriteTechStack;
-    this.password = password
+    this.password = password;
   }
 }
 
@@ -43,7 +47,10 @@ class Post {
     content = faker.lorem.paragraph(),
     likes = faker.datatype.number(),
     hearts = faker.datatype.number(),
-    commentsId = []
+    title = faker.hacker.noun(),
+    commentsId = Array.from({ length: Math.floor(Math.random() * 100) }, () =>
+      Math.floor(Math.random() * 100)
+    )
   ) {
     this.id = id;
     this.content = content;
@@ -51,16 +58,12 @@ class Post {
     this.hearts = hearts;
     this.authorId = authorId;
     this.commentsId = commentsId;
+    this.title = title;
   }
 }
 
 class Canvas {
-  constructor(
-    postId,
-    ownerId,
-    drawing = faker.image.technics(),
-    users = []
-  ) {
+  constructor(postId, ownerId, drawing = faker.image.technics(), users = []) {
     this.postId = postId;
     this.ownerId = ownerId;
     this.drawing = drawing;
@@ -68,4 +71,4 @@ class Canvas {
   }
 }
 
-module.exports =  { Comment, User, Post, Canvas };
+module.exports = { Comment, User, Post, Canvas };

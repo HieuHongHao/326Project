@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:9000");
 console.log(socket);
 
 let textInput = document.getElementById("text-input");
