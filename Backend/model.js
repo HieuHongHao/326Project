@@ -16,7 +16,6 @@ class Comment {
     this.authorId = authorId;
     this.likes = likes;
     this.hearts = hearts;
-    this.postId = postId;
   }
 }
 

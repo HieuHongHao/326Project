@@ -76,6 +76,6 @@ newPostBtn.addEventListener("click",async () => {
         content,
         title
     }});
-    const newPost = await createNewPost(result.post);
+    const newPost = createNewPost(result.post);
     postContainer.prepend(newPost);
 })

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const morgan = require("morgan");
 const options = {
   cors: {
     origin: "*",
@@ -18,53 +19,81 @@ const posts = new PostService();
 const comments = new CommentService();
 const canvases = new CanvasService();
 
-
-app.use(cors({
-  origin: true,
-  optionsSuccessStatus: 200,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
 app.use(express.json());
+app.use(morgan('tiny'));
+
 
 app.get("/", (req, res) => {
   res.writeHead(200, { "Content-type": "text/html" });
   res.end("<h1>React is the best</h1>");
 });
 
-app.get("/api/v1/posts",(req,res) => {
+app.get("/api/v1/posts", (req, res) => {
+  const filter = req.query ? req.query : {};
   res.status(200).json({
     status: "Sucess",
-    posts: posts.find()
-  })
+    posts: posts.find(filter),
+  });
 });
-app.get("/api/v1/posts/:id/comments",(req,res) => {
+app.get("/api/v1/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
     status: "Sucess",
-    post: posts.getAllComments(postId)
-  })
+    comments: posts.getAllComments(postId),
+  });
 });
 
-app.get("/api/v1/posts/:id",(req,res) => {
+app.post("/api/v1/posts/:id/comments", (req, res) => {
+  const postId = req.params.id;
+  const authorId = req.body.comment.authorId;
+  const content  =req.body.comment.content;
+  const commentId = comments.counter;
+  console.log(req.body.comment);
+  const newComment = comments.insert({
+    authorId,
+    content,
+    postId,
+    id:commentId
+  })
+  comments.counter += 1;
+  res.status(200).json({
+    status: "Sucess",
+    post: posts.addComment(postId,commentId),
+  });
+});
+
+app.get("/api/v1/posts/:id", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
     status: "Sucess",
-    comments: posts.findById(postId)
-  })
+    comments: posts.findById(postId),
+  });
 });
 
-app.post("/api/v1/posts",(req,res) => {
-  console.log(req.body);
+app.post("/api/v1/posts", (req, res) => {
   const newPost = req.body.newPost;
-  newPost["id"] = posts.counter + 1;
+  newPost["id"] = posts.counter;
   posts.counter += 1;
-  posts.insert(newPost)
+  posts.insert(newPost);
   res.status(200).json({
     status: "Sucess",
-    post: newPost
-  })
+    post: newPost,
+  });
 });
 
+app.put("/api/v1/posts/:id", (req, res) => {
+  res.status(200).json({
+    status: "Sucess",
+    post: posts.findByIdAndUpdate(req.params.id,req.body.update),
+  });
+});
 
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer, options);
@@ -99,5 +128,6 @@ io.on("connection", (socket) => {
     delete usernames[socket.id];
   });
 });
+
 httpServer.listen(9000, () => console.log("Server running on port 9000"));
 // WARNING !!! app.listen(3000); will not work here, as it creates a new HTTP server
