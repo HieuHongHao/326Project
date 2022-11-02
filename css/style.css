@@ -24,6 +24,7 @@ html[data-theme='light'] {
   --cat-surface: #e6e9ef;
   --cat-base: #eff1f5;
   --cat-crust: #dce0e8;
+  --cat-golang-dark:  #29BEB0;
 }
 
 html[data-theme='dark'] {
@@ -52,6 +53,7 @@ html[data-theme='dark'] {
   --cat-surface: #494d64;
   --cat-base: #24273a;
   --cat-crust: #181926;
+  --cat-golang-dark:  #29BEB0;
 }
 
 /* Button Colors */
@@ -194,6 +196,10 @@ html[data-theme='dark'] {
 {
   color: var(--cat-text-crust);
   background: var(--cat-blue-dark);
+}
+.pn-card-type-light-sea-green{
+  color: var(--cat-text-crust);
+  background: var(--cat-golang-dark);
 }
 
 .kanvaswire-card .text-danger{

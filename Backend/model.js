@@ -43,6 +43,7 @@ class Post {
   constructor(
     id,
     authorId,
+    tag,
     content = faker.lorem.paragraph(),
     likes = faker.datatype.number(),
     hearts = faker.datatype.number(),
@@ -58,6 +59,7 @@ class Post {
     this.authorId = authorId;
     this.commentsId = commentsId;
     this.title = title;
+    this.tag = tag;
   }
 }
 

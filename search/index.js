@@ -1,5 +1,8 @@
 const newPostBtn = document.getElementById("post-button");
 const postContainer = document.getElementById("post-container");
+const addTag = document.getElementById("add-tags");
+const tagContainer = document.getElementById("post-tags");
+const enterTag = document.getElementById("enter-tags");
 const URL = "http://localhost:9000/api/v1";
 const postClass = ["d-flex", "flex-column", "cat-bg-light", "cat-text-light", "my-3", "border", "rounded-3", "feed-post"]
 
@@ -69,6 +72,7 @@ function createUserAvatarAndName(){
 }
 
 
+
 newPostBtn.addEventListener("click",async () => {
     const content = document.getElementById("post-text-area").value;
     const title = document.getElementById("post-title").value;
@@ -79,3 +83,29 @@ newPostBtn.addEventListener("click",async () => {
     const newPost = createNewPost(result.post);
     postContainer.prepend(newPost);
 })
+
+addTag.addEventListener("click",() => {
+    const tag = enterTag.value;
+    const tagElement = document.createElement("div");
+    tagElement.innerHTML = tag;
+    tagElement.classList.add("badge");
+    switch (tag) {
+        case "React":
+            tagElement.classList.add("pn-card-type-blue");
+            break;
+        case "Python":
+            tagElement.classList.add("pn-card-type-yellow");
+            break;
+        case "Java":
+            tagElement.classList.add("pn-card-type-red");
+            break;
+        case "Go":
+            tagElement.classList.add("pn-card-type-light-sea-green");
+            break;
+        default:
+            tagElement.classList.add("pn-card-type-blue");
+            break;
+    }
+    tagContainer.appendChild(tagElement);
+})
+

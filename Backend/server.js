@@ -27,8 +27,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(morgan('tiny'));
-
+app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
   res.writeHead(200, { "Content-type": "text/html" });
@@ -53,19 +52,19 @@ app.get("/api/v1/posts/:id/comments", (req, res) => {
 app.post("/api/v1/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   const authorId = req.body.comment.authorId;
-  const content  =req.body.comment.content;
+  const content = req.body.comment.content;
   const commentId = comments.counter;
   console.log(req.body.comment);
   const newComment = comments.insert({
     authorId,
     content,
     postId,
-    id:commentId
-  })
+    id: commentId,
+  });
   comments.counter += 1;
   res.status(200).json({
     status: "Sucess",
-    post: posts.addComment(postId,commentId),
+    post: posts.addComment(postId, commentId),
   });
 });
 
@@ -91,7 +90,7 @@ app.post("/api/v1/posts", (req, res) => {
 app.put("/api/v1/posts/:id", (req, res) => {
   res.status(200).json({
     status: "Sucess",
-    post: posts.findByIdAndUpdate(req.params.id,req.body.update),
+    post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
 

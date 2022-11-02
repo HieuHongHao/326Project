@@ -248,6 +248,22 @@
                       ></textarea>
                     </div>
                   </div>
+                  <div class="px-3">
+                    <input
+                      type="text"
+                      class="cat-bg-light border mb-3 form-control"
+                      placeholder="Add Tags"
+                      id="enter-tags"
+                    />
+                    <button
+                      class="btn btn-outline-light mx-1"
+                      type="button"
+                      id="add-tags"
+                    >
+                      + Add Tag
+                    </button>
+                  </div>
+                  <div class="d-inline-block btn float-left" id="post-tags"></div>
                   <div class="text-center mb-3">
                     <button
                       type="button"
@@ -486,8 +502,11 @@
     ></script>
     <script type="module">
       import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
-      autoAnimate(document.getElementById("post-container"),{
-        duration: 250
+      autoAnimate(document.getElementById("post-container"), {
+        duration: 250,
+      });
+      autoAnimate(document.getElementById("post-tags"), {
+        duration: 250,
       });
     </script>
   </body>
