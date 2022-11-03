@@ -3,6 +3,9 @@ const postContainer = document.getElementById("feed");
 const addTag = document.getElementById("add-tags");
 const tagContainer = document.getElementById("post-tags");
 const enterTag = document.getElementById("enter-tags");
+const searchBar = document.getElementById("search-bar");
+const searchButton = document.getElementById("button-addon1");
+
 const URL = "http://localhost:9000/api/v1";
 const postClass = [
   "d-flex",
@@ -14,14 +17,14 @@ const postClass = [
   "rounded-3",
   "feed-post",
 ];
-const tagStyles ={
-  "React": "pn-card-type-blue",
-  "Java": "pn-card-type-red",
-  "Python": "pn-card-type-yellow",
-  "Go": "pn-card-type-light-sea-green",
-  "PostgreSQL": "pn-card-type-blue"
-}
-let currentTags = []
+const tagStyles = {
+  React: "pn-card-type-blue",
+  Java: "pn-card-type-red",
+  Python: "pn-card-type-yellow",
+  Go: "pn-card-type-light-sea-green",
+  PostgreSQL: "pn-card-type-blue",
+};
+let currentTags = [];
 async function postRequest(data) {
   const response = await fetch(URL + "/posts", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -40,7 +43,6 @@ async function postRequest(data) {
   return response_json;
 }
 
-
 function createNewPost(data) {
   const newPost = document.createElement("div");
   for (const classname of postClass) {
@@ -51,11 +53,10 @@ function createNewPost(data) {
   return newPost;
 }
 
-
-function createTag(tags){
+function createTag(tags) {
   const tagWrapper = document.createElement("div");
   tagWrapper.classList.add("mt-3");
-  for(const tag of tags){
+  for (const tag of tags) {
     const tagElement = document.createElement("div");
     tagElement.innerHTML = tag;
     tagElement.classList.add("badge");
@@ -65,11 +66,10 @@ function createTag(tags){
   return tagWrapper;
 }
 
-
 function createBodyContent(data) {
   const wrapper = document.createElement("div");
   const title = document.createElement("p");
-  const tags = createTag(data.currentTags);
+  const tags = createTag(data.tags);
   const content = document.createElement("div");
 
   title.classList.add("fs-4", "fw-bold", "m-0");
@@ -113,7 +113,7 @@ newPostBtn.addEventListener("click", async () => {
     newPost: {
       content,
       title,
-      currentTags
+      tags:currentTags,
     },
   });
   const newPost = createNewPost(result.post);
@@ -146,7 +146,23 @@ addTag.addEventListener("click", () => {
   currentTags.push(tag);
 });
 
-
+searchButton.addEventListener("click", async () => {
+  const query = searchBar.value.split(":");
+  let result;
+  switch (query[0]) {
+    case "tag":
+      result = await fetch(URL + `/posts?tag=${query[1]}`);
+      break;
+    case "title":
+      result = await fetch(URL + `/posts?title=${query[1]}`);
+      break;
+    default:
+      break;
+  }
+  const response_json = await result.json();
+  postContainer.replaceChildren();
+  response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+});
 
 async function getFeed() {
   let res = await fetch("../posts.json");
@@ -182,6 +198,5 @@ async function getFeed() {
     postContainer.appendChild(newDiv);
   }
 }
-
 
 window.onload = getFeed;
