@@ -207,7 +207,7 @@
               </div>
             </form>
           </div>
-          <div id="feed" class="container p-0" id="post-container">
+          <div id="feed" class="container p-0">
           </div>
         </div>
       </div>
@@ -263,7 +263,7 @@
     crossorigin="anonymous"></script>
   <script type="module">
     import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
-    autoAnimate(document.getElementById("post-container"), {
+    autoAnimate(document.getElementById("feed"), {
       duration: 250,
     });
     autoAnimate(document.getElementById("post-tags"), {

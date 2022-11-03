@@ -1,5 +1,5 @@
 const newPostBtn = document.getElementById("post-button");
-const postContainer = document.getElementById("post-container");
+const postContainer = document.getElementById("feed");
 const addTag = document.getElementById("add-tags");
 const tagContainer = document.getElementById("post-tags");
 const enterTag = document.getElementById("enter-tags");
@@ -112,7 +112,6 @@ addTag.addEventListener("click", () => {
 })
 
 async function getFeed() {
-  const feed = document.getElementById("feed");
   let res = await fetch("../posts.json");
   const posts = await res.json();
   res = await fetch("../users.json");
@@ -132,7 +131,7 @@ async function getFeed() {
     <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pe-1"></i> ` + posts[i].likes + `</p>
   </div>
 </div>`;
-    feed.appendChild(newDiv);
+   postContainer.appendChild(newDiv);
   }
 }
 
