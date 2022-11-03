@@ -50,12 +50,12 @@
         </button>
         <div class="modal fade" id="modalLoginForm" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content cat-bg-light cat-text-light">
               <div class="modal-body">
                 <div class="text-end">
                   <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
                 </div>
-                <div class="d-flex flex-column col-10 mx-auto bg-light">
+                <div class="d-flex flex-column col-10 mx-auto">
                   <h1 class="display-5 text-center pb-1">Login Form</h1>
                   <div>
                     <div class="mb-3 mt-4">
@@ -157,20 +157,24 @@
 
       <div class="col-5">
         <div class="d-flex flex-column mx-auto">
-          <div class="container p-2 rounded-3 border cat-bg-light">
-            <button type="button" class="btn btn-outline-light mx-1">
-              <i class="fas fa-fire"></i> Hot
-            </button>
-            <button type="button" class="btn btn-outline-light mx-1">
-              <i class="fas fa-certificate"></i> New
-            </button>
-            <button type="button" class="btn btn-outline-light mx-1">
-              <i class="fas fa-ranking-star"></i> Top
-            </button>
-            <button class="btn btn-outline-light mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#newPost"
-              aria-expanded="false" aria-controls="collapseExample">
-              + New Post
-            </button>
+          <div class="d-flex justify-content-between p-2 rounded-3 border cat-bg-light">
+            <div>
+              <button type="button" class="btn btn-outline-light mx-1">
+                <i class="fas fa-fire"></i> Hot
+              </button>
+              <button type="button" class="btn btn-outline-light mx-1">
+                <i class="fas fa-certificate"></i> New
+              </button>
+              <button type="button" class="btn btn-outline-light mx-1">
+                <i class="fas fa-ranking-star"></i> Top
+              </button>
+            </div>
+            <div>
+              <button class="btn btn-success  mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#newPost"
+                aria-expanded="false" aria-controls="collapseExample">
+                + New Post
+              </button>
+            </div>
           </div>
           <div class="collapse" id="newPost">
             <form>
@@ -180,16 +184,16 @@
                   <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">Username1</a></span>
                 </div>
                 <div class="px-3">
-                  <input type="text" class="cat-bg-light cat-text-light border-light mb-3 form-control"
+                  <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
                     placeholder="Enter title" id="post-title" />
                   <div class="pb-4 mb-3 w-100">
-                    <textarea rows="3" class="cat-bg-light cat-text-light border form-control"
+                    <textarea rows="3" class="cat-bg-light cat-border-light cat-text-light form-control"
                       placeholder="Enter post content" id="post-text-area"></textarea>
                   </div>
                 </div>
                 <div class="px-3">
-                  <input type="text" class="cat-bg-light cat-text-light border mb-3 form-control" placeholder="Add Tags"
-                    id="enter-tags" />
+                  <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
+                    placeholder="Add Tags" id="enter-tags" />
                   <button class="btn btn-outline-light mx-1" type="button" id="add-tags">
                     + Add Tag
                   </button>
