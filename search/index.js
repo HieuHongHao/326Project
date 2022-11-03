@@ -14,7 +14,14 @@ const postClass = [
   "rounded-3",
   "feed-post",
 ];
-
+const tagStyles ={
+  "React": "pn-card-type-blue",
+  "Java": "pn-card-type-red",
+  "Python": "pn-card-type-yellow",
+  "Go": "pn-card-type-light-sea-green",
+  "PostgreSQL": "pn-card-type-blue"
+}
+let currentTags = []
 async function postRequest(data) {
   const response = await fetch(URL + "/posts", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -32,19 +39,37 @@ async function postRequest(data) {
   const response_json = await response.json();
   return response_json;
 }
+
+
 function createNewPost(data) {
   const newPost = document.createElement("div");
   for (const classname of postClass) {
     newPost.classList.add(classname);
   }
-  console.log(data);
   newPost.appendChild(createUserAvatarAndName());
   newPost.appendChild(createBodyContent(data));
   return newPost;
 }
+
+
+function createTag(tags){
+  const tagWrapper = document.createElement("div");
+  tagWrapper.classList.add("mt-3");
+  for(const tag of tags){
+    const tagElement = document.createElement("div");
+    tagElement.innerHTML = tag;
+    tagElement.classList.add("badge");
+    tagElement.classList.add(tagStyles[tag]);
+    tagWrapper.appendChild(tagElement);
+  }
+  return tagWrapper;
+}
+
+
 function createBodyContent(data) {
   const wrapper = document.createElement("div");
   const title = document.createElement("p");
+  const tags = createTag(data.currentTags);
   const content = document.createElement("div");
 
   title.classList.add("fs-4", "fw-bold", "m-0");
@@ -54,6 +79,7 @@ function createBodyContent(data) {
   content.innerHTML = data.content;
 
   wrapper.classList.add("px-3");
+  wrapper.appendChild(tags);
   wrapper.appendChild(title);
   wrapper.appendChild(content);
   return wrapper;
@@ -87,6 +113,7 @@ newPostBtn.addEventListener("click", async () => {
     newPost: {
       content,
       title,
+      currentTags
     },
   });
   const newPost = createNewPost(result.post);
@@ -116,16 +143,11 @@ addTag.addEventListener("click", () => {
       break;
   }
   tagContainer.appendChild(tagElement);
+  currentTags.push(tag);
 });
 
 
-const tagStyles ={
-  "React": "pn-card-type-blue",
-  "Java": "pn-card-type-red",
-  "Python": "pn-card-type-yellow",
-  "Go": "pn-card-type-light-sea-green",
-  "PostgreSQL": "pn-card-type-blue"
-}
+
 async function getFeed() {
   let res = await fetch("../posts.json");
   const posts = await res.json();
@@ -144,7 +166,7 @@ async function getFeed() {
       users[posts[i].authorId].name +
       `</a></span>
   </div>
-  <div class="px-3 mt-3" id="tags">
+  <div class="px-3 mt-3" id="tag ${i}">
     <div class="badge ${tagStyles[posts[i].tags]}">${posts[i].tags}</div>
   </div>
   <div id="content1" class="px-3">
