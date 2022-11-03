@@ -4,21 +4,30 @@ const addTag = document.getElementById("add-tags");
 const tagContainer = document.getElementById("post-tags");
 const enterTag = document.getElementById("enter-tags");
 const URL = "http://localhost:9000/api/v1";
-const postClass = ["d-flex", "flex-column", "cat-bg-light", "cat-text-light", "my-3", "border", "rounded-3", "feed-post"]
+const postClass = [
+  "d-flex",
+  "flex-column",
+  "cat-bg-light",
+  "cat-text-light",
+  "my-3",
+  "border",
+  "rounded-3",
+  "feed-post",
+];
 
 async function postRequest(data) {
   const response = await fetch(URL + "/posts", {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
   });
   const response_json = await response.json();
   return response_json;
@@ -47,7 +56,7 @@ function createBodyContent(data) {
   wrapper.classList.add("px-3");
   wrapper.appendChild(title);
   wrapper.appendChild(content);
-  return wrapper
+  return wrapper;
 }
 
 function createUserAvatarAndName() {
@@ -61,7 +70,7 @@ function createUserAvatarAndName() {
   image.classList.add("rounded-pill");
 
   innerText.classList.add("cat-text-light", "text-decoration-none");
-  innerText.innerHTML = "Username1"
+  innerText.innerHTML = "Username1";
   name.classList.add("ms-1");
   name.appendChild(innerText);
 
@@ -71,20 +80,18 @@ function createUserAvatarAndName() {
   return user;
 }
 
-
-
 newPostBtn.addEventListener("click", async () => {
   const content = document.getElementById("post-text-area").value;
   const title = document.getElementById("post-title").value;
   const result = await postRequest({
     newPost: {
       content,
-      title
-    }
+      title,
+    },
   });
   const newPost = createNewPost(result.post);
   postContainer.prepend(newPost);
-})
+});
 
 addTag.addEventListener("click", () => {
   const tag = enterTag.value;
@@ -109,8 +116,16 @@ addTag.addEventListener("click", () => {
       break;
   }
   tagContainer.appendChild(tagElement);
-})
+});
 
+
+const tagStyles ={
+  "React": "pn-card-type-blue",
+  "Java": "pn-card-type-red",
+  "Python": "pn-card-type-yellow",
+  "Go": "pn-card-type-light-sea-green",
+  "PostgreSQL": "pn-card-type-blue"
+}
 async function getFeed() {
   let res = await fetch("../posts.json");
   const posts = await res.json();
@@ -119,20 +134,32 @@ async function getFeed() {
 
   for (let i = 0; i < posts.length; i++) {
     const newDiv = document.createElement("div");
-    newDiv.innerHTML = `<div class="d-flex flex-column cat-bg-light cat-text-light my-3 border rounded-3 feed-post">
+    newDiv.innerHTML =
+      `<div class="d-flex flex-column cat-bg-light cat-text-light my-3 border rounded-3 feed-post">
   <div class="px-3 pt-3">
-    <img src="` + users[posts[i].authorId].avatar + `" alt="Logo" class="rounded-circle">
-      <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">` + users[posts[i].authorId].name + `</a></span>
+    <img src="` +
+      users[posts[i].authorId].avatar +
+      `" alt="Logo" class="rounded-circle">
+      <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">` +
+      users[posts[i].authorId].name +
+      `</a></span>
+  </div>
+  <div class="px-3 mt-3" id="tags">
+    <div class="badge ${tagStyles[posts[i].tags]}">${posts[i].tags}</div>
   </div>
   <div id="content1" class="px-3">
     <p class="fs-4 fw-bold m-0">Project Name 1</p>
-    <div class="pb-4">` + posts[i].content +
+    <div class="pb-4">` +
+      posts[i].content +
       `</div>
-    <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pe-1"></i> ` + posts[i].likes + `</p>
+    <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pe-1"></i> ` +
+      posts[i].likes +
+      `</p>
   </div>
 </div>`;
-   postContainer.appendChild(newDiv);
+    postContainer.appendChild(newDiv);
   }
 }
+
 
 window.onload = getFeed;
