@@ -25,7 +25,7 @@ class User {
     id,
     email = faker.internet.email(),
     name = faker.name.firstName() + " " + faker.name.lastName(),
-    avatar = faker.image.abstract(),
+    avatar = faker.image.abstract(480, 480, true),
     posts = [],
     favouriteTechStack = faker.database.engine(),
     password = faker.random.alphaNumeric(15)

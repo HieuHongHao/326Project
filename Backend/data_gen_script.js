@@ -1,7 +1,7 @@
 const fs = require("fs");
-const {User,Post,Comment,Canvas} = require("./model");
+const { User, Post, Comment, Canvas } = require("./model");
 
-let comments =  [];
+let comments = [];
 let users = [];
 let canvases = [];
 let posts = [];
@@ -25,9 +25,9 @@ fs.writeFileSync("canvas.json",JSON.stringify(canvases),"utf-8");
 fs.writeFileSync("posts.json",JSON.stringify(posts),"utf-8");
 
 
-module.exports  = {
-    comments,
-    users,
-    canvases,
-    posts
+module.exports = {
+  comments,
+  users,
+  canvases,
+  posts
 }
