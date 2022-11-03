@@ -146,7 +146,14 @@ html[data-theme='dark'] {
   background-color: var(--cat-base) !important;
 }
 
-/* Navbar Colors */
+/* Border colors */
+.cat-border-light {
+  border-color: var(--cat-text-light) !important;
+}
+.cat-border-dark {
+  border-color: var(--cat-crust) !important;
+}
+
 
 
 .bg-dark .navbar-dark .btn-outline-dark {
