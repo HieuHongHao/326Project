@@ -12,6 +12,7 @@ class Comment {
     hearts = faker.datatype.number()
   ) {
     this.id = id;
+    this.postId = postId;
     this.content = content;
     this.authorId = authorId;
     this.likes = likes;
@@ -43,7 +44,7 @@ class Post {
   constructor(
     id,
     authorId,
-    tag,
+    tags = [],
     content = faker.lorem.paragraph(),
     likes = faker.datatype.number(),
     hearts = faker.datatype.number(),
@@ -59,7 +60,7 @@ class Post {
     this.authorId = authorId;
     this.commentsId = commentsId;
     this.title = title;
-    this.tag = tag;
+    this.tags = tags;
   }
 }
 
