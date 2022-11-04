@@ -13,7 +13,7 @@ const {
   PostService,
   CommentService,
   CanvasService,
-} = require("./misc/database");
+} = require("./Backend/database");
 const users = new UserService();
 const posts = new PostService();
 const comments = new CommentService();
