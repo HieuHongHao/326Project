@@ -1,7 +1,7 @@
 async function loadDash() {
   const userId = window.localStorage.getItem("loggedIn");
   if (userId !== null) {
-    const res = await fetch("../users.json");
+    const res = await fetch("../api/users.json");
     const users = await res.json();
     const user = users.filter(x => x.id === parseInt(userId))[0];
 
@@ -24,4 +24,4 @@ async function loadDash() {
   }
 }
 
-window.onload = loadDash;
+loadDash();
