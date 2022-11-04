@@ -34,8 +34,7 @@ function closeModal(tag) {
 
 function loginSuccess(acc) {
   const storage = window.localStorage;
-  storage["loggedIn"] = acc;
-  console.log(storage["loggedIn"]);
+  storage.setItem("loggedIn", acc);
 }
 
 async function login() {
@@ -45,8 +44,9 @@ async function login() {
   const users = await res.json();
   const user = users.filter(x => x.name === username || x.email === username);
   if (user.length !== 0 && user[0].password === password) {
-    loginSuccess(users[0].id);
+    loginSuccess(user[0].id);
     closeModal("modalLoginForm");
+    window.location.href = "/dashboard/";
   } else {
     alert("Username or password is incorrect")
   }

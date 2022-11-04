@@ -10,6 +10,7 @@
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <script type="module" src="../scripts/main.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <script src="index.js"></script>
 </head>
 
 <body>
@@ -59,21 +60,22 @@
         <div class="d-flex flex-column align-items-end">
           <div class="d-flex flex-column">
             <img alt="profile picture" src="../public/logo.svg" class="rounded-pill">
-            <h5 class="py-2 cat-text-light">@Username</h5>
+            <h5 id="username" class="py-2 cat-text-light">@Username</h5>
             <div class="d-flex py-2">
-              <p class="cat-text-light"><i class="fas cat-text-danger fs-5 fa-heart pe-2"></i> 999 Likes</p>
+              <p id="likes" class="cat-text-light"><i class="fas cat-text-danger fs-5 fa-heart pe-2"></i> </p>
             </div>
             <div class="d-flex py-2">
-              <p class="cat-text-light"><i class="fas cat-text-light fs-5 fa-image pe-2"></i> 4 Current Projects</p>
+              <p id="currPosts" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-image pe-2"></i> </p>
             </div>
             <div class="d-flex py-2">
-              <p class="cat-text-light"><i class="fas cat-text-light fs-5 fa-images pe-2"></i> 3 Created Projects</p>
+              <p id="totalPosts" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-images pe-2"></i> </p>
             </div>
             <div class="d-flex py-2">
-              <p class="cat-text-light"><i class="fas cat-text-light fs-5 fa-comment pe-2"></i> 52 Comments</p>
+              <p id="comments" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-comment pe-2"></i> </p>
             </div>
             <div class="d-flex py-2">
-              <p class="cat-text-light"><i class="fas cat-text-light fs-5 fa-clock pe-2"></i> &lt; 1 day old</p>
+              <p id="created" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-clock pe-2"></i>
+              </p>
             </div>
           </div>
         </div>
