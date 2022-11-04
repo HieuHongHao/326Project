@@ -113,7 +113,7 @@ newPostBtn.addEventListener("click", async () => {
     newPost: {
       content,
       title,
-      tags:currentTags,
+      tags: currentTags,
     },
   });
   const newPost = createNewPost(result.post);
@@ -164,6 +164,18 @@ searchButton.addEventListener("click", async () => {
   response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
 });
 
+
+function getTags(posts, id) {
+  let html = "";
+  const tags = posts[id].tags;
+  for (let i = 0; i < tags.length; i++) {
+    html += `<div class="badge ${tagStyles[tags[i]]} me-2">${tags[i]}</div>`
+
+  }
+  return html;
+}
+
+
 async function getFeed() {
   let res = await fetch("../posts.json");
   const posts = await res.json();
@@ -174,27 +186,25 @@ async function getFeed() {
     const newDiv = document.createElement("div");
     newDiv.innerHTML =
       `<div class="d-flex flex-column cat-bg-light cat-text-light my-3 border rounded-3 feed-post">
-  <div class="px-3 pt-3">
-    <img src="` +
-      users[posts[i].authorId].avatar +
-      `" alt="Logo" class="rounded-circle">
-      <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">` +
-      users[posts[i].authorId].name +
-      `</a></span>
-  </div>
-  <div class="px-3 mt-3" id="tag ${i}">
-    <div class="badge ${tagStyles[posts[i].tags]}">${posts[i].tags}</div>
-  </div>
-  <div id="content1" class="px-3">
-    <p class="fs-4 fw-bold m-0">Project Name 1</p>
-    <div class="pb-4">` +
-      posts[i].content +
-      `</div>
-    <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pe-1"></i> ` +
-      posts[i].likes +
-      `</p>
-  </div>
-</div>`;
+        <div class="px-3 pt-3">
+          <img src="${users[posts[i].authorId].avatar}" alt="Logo" class="rounded-circle">
+          <span class="ms-1">
+            <a href="" class="cat-text-light text-decoration-none">
+              ${users[posts[i].authorId].name}
+            </a>
+          </span>
+        </div>
+        <div class="px-3 pt-1" id="tag ${i}">
+          ${getTags(posts, i)}
+        </div>
+        <div id="content1" class="px-3">
+          <p class="fs-4 fw-bold m-0">Project Name 1</p>
+          <div class="pb-4">${posts[i].content}</div>
+          <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pe-1"></i>
+            ${posts[i].likes}
+          </p>
+        </div>
+      </div>`;
     postContainer.appendChild(newDiv);
   }
 }
