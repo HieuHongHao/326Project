@@ -24,8 +24,18 @@ toggle.onclick = function() {
   localStorage.setItem('theme', targetTheme);
 };
 
-function loginSuccess() {
 
+// Temp login funcions
+function closeModal(tag) {
+  const modalElem = document.getElementById(tag);
+  const modal = bootstrap.Modal.getInstance(modalElem);
+  modal.hide();
+}
+
+function loginSuccess(acc) {
+  const storage = window.localStorage;
+  storage["loggedIn"] = acc;
+  console.log(storage["loggedIn"]);
 }
 
 async function login() {
@@ -35,7 +45,8 @@ async function login() {
   const users = await res.json();
   const user = users.filter(x => x.name === username || x.email === username);
   if (user.length !== 0 && user[0].password === password) {
-    loginSuccess();
+    loginSuccess(users[0].id);
+    closeModal("modalLoginForm");
   } else {
     alert("Username or password is incorrect")
   }
