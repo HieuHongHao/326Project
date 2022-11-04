@@ -7,12 +7,12 @@ export const routes = {
     let route = window.location.search.substring(2);
     if (route !== "") {
       if (pages.includes(route)) {
-        await utils.loadModule(`components/${route}.html`, 'content');
+        await utils.loadModule(`pages/${route}.html`, 'content');
       } else {
         await utils.load404();
       }
     } else {
-      await utils.loadModule(`components/index.html`, 'content');
+      await utils.loadModule(`pages/index.html`, 'content');
     }
   }
 }
