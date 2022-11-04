@@ -23,8 +23,8 @@
       <div class="ms-auto ps-5">
         <div class="input-group input-group">
           <input type="text" class="form-control" placeholder="Search Projects" aria-label="Search Projects"
-            aria-describedby="button-addon1" />
-          <button class="btn btn-primary" type="button" id="button-addon1">
+            aria-describedby="button-addon1" id="search-bar"/>
+          <button class="btn btn-primary" type="button" id="button-addon1" >
             <i class="fas fa-magnifying-glass"></i>
           </button>
         </div>
@@ -264,7 +264,7 @@
   <script type="module">
     import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
     autoAnimate(document.getElementById("feed"), {
-      duration: 250,
+      duration: 500,
     });
     autoAnimate(document.getElementById("post-tags"), {
       duration: 250,

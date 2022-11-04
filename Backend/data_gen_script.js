@@ -9,7 +9,7 @@ let posts = [];
 let tags = ["React","Python","Java","PostgreSQL","Go"]
 
 for(let i = 0 ; i < 100 ; i++){
-    const post = new Post(i,Math.floor(Math.random() * 100),tags[Math.floor(Math.random() * tags.length)]);
+    const post = new Post(i,Math.floor(Math.random() * 100),[tags[Math.floor(Math.random() * tags.length)]]);
     const user = new User(i);
     const canvas = new Canvas(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100));
     const comment = new Comment(i,Math.floor(Math.random() * 100),Math.floor(Math.random() * 100));

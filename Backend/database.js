@@ -12,9 +12,15 @@ class CrudService {
     if (keys.length === 0) {
       return this.data;
     }
-    return this.data.filter((object) => {
-      keys.every((key) => filterParameter[key] === object[key]);
-    });
+    return this.data.filter((object) =>
+      keys.every((key) => {
+        if (key === "tag") {
+          const tag = filterParameter["tag"];
+          return object["tags"].includes(tag);
+        }
+        return filterParameter[key] === object[key];
+      })
+    );
   }
   findByIdAndUpdate(id, update) {
     console.log(id);
@@ -64,18 +70,16 @@ class PostService extends CrudService {
     }
     return res;
   }
-  addComment(post_id,commentId){
+  addComment(post_id, commentId) {
     const post = this.findById(post_id);
-    if("commentsId" in post){
-        post.commentsId.push(commentId);
-    }else{
-        post["commentsId"] = [commentId];
+    if ("commentsId" in post) {
+      post.commentsId.push(commentId);
+    } else {
+      post["commentsId"] = [commentId];
     }
     return post;
   }
 }
-
-
 
 class CommentService extends CrudService {
   constructor() {
