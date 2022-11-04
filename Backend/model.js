@@ -27,6 +27,10 @@ class User {
     name = faker.name.firstName() + " " + faker.name.lastName(),
     avatar = faker.image.abstract(480, 480, true),
     posts = [],
+    totalPosts = faker.datatype.number(),
+    likes = faker.datatype.number(),
+    comments = [],
+    created = faker.date.past().toString().substring(4, 15),
     favouriteTechStack = faker.database.engine(),
     password = faker.random.alphaNumeric(15)
   ) {
@@ -35,6 +39,10 @@ class User {
     this.name = name;
     this.avatar = avatar;
     this.posts = posts;
+    this.totalPosts = totalPosts;
+    this.likes = likes;
+    this.comments = comments;
+    this.created = created;
     this.favouriteTechStack = favouriteTechStack;
     this.password = password;
   }
