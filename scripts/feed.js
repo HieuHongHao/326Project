@@ -6,7 +6,7 @@ const enterTag = document.getElementById("enter-tags");
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("button-addon1");
 
-const URL = "http://localhost:9000/api/";
+const URL = "http://localhost:9000/api";
 const postClass = [
   "d-flex",
   "flex-column",
