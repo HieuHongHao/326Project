@@ -176,7 +176,7 @@ function getTags(posts, id) {
 }
 
 async function getFeed() {
-  let res = await fetch(URL + "posts");
+  let res = await fetch(URL + "/posts");
   const res_json = await res.json();
   const posts = res_json.posts;
   res = await fetch("../api/users.json");
