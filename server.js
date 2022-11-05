@@ -26,8 +26,6 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
-  // res.writeHead(200, { "Content-type": "text/html" });
-  // res.end("<h1>React is the best</h1>");
   res.sendFile('index.html', { root: __dirname })
 });
 
@@ -51,7 +49,6 @@ app.post("/api/posts/:id/comments", (req, res) => {
   const authorId = req.body.comment.authorId;
   const content = req.body.comment.content;
   const commentId = comments.counter;
-  console.log(req.body.comment);
   const newComment = comments.insert({
     authorId,
     content,
@@ -60,7 +57,7 @@ app.post("/api/posts/:id/comments", (req, res) => {
   });
   comments.counter += 1;
   res.status(200).json({
-    status: "Sucess",
+    status: "Success",
     post: posts.addComment(postId, commentId),
   });
 });
@@ -68,7 +65,7 @@ app.post("/api/posts/:id/comments", (req, res) => {
 app.get("/api/posts/:id", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
-    status: "Sucess",
+    status: "Success",
     comments: posts.findById(postId),
   });
 });
@@ -79,14 +76,14 @@ app.post("/api/posts", (req, res) => {
   posts.counter += 1;
   posts.insert(newPost);
   res.status(200).json({
-    status: "Sucess",
+    status: "Success",
     post: newPost,
   });
 });
 
 app.put("/api/posts/:id", (req, res) => {
   res.status(200).json({
-    status: "Sucess",
+    status: "Success",
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
