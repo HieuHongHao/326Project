@@ -27,6 +27,6 @@ export const utils = {
   },
   // Load 404 page
   load404: async () => {
-    window.location.href = '../404.html';
+    window.location.href = '../pages/404.html';
   },
 };

@@ -2,12 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
-const options = {
-  cors: {
-    origin: "*",
-    method: ["GET", "PUT", "POST"],
-  },
-};
 const {
   UserService,
   PostService,
@@ -37,14 +31,14 @@ app.get("/", (req, res) => {
   res.sendFile('index.html', { root: __dirname })
 });
 
-app.get("/api/v1/posts", (req, res) => {
+app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({
     status: "Sucess",
     posts: posts.find(filter),
   });
 });
-app.get("/api/v1/posts/:id/comments", (req, res) => {
+app.get("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
     status: "Sucess",
@@ -52,7 +46,7 @@ app.get("/api/v1/posts/:id/comments", (req, res) => {
   });
 });
 
-app.post("/api/v1/posts/:id/comments", (req, res) => {
+app.post("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   const authorId = req.body.comment.authorId;
   const content = req.body.comment.content;
@@ -71,7 +65,7 @@ app.post("/api/v1/posts/:id/comments", (req, res) => {
   });
 });
 
-app.get("/api/v1/posts/:id", (req, res) => {
+app.get("/api/posts/:id", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
     status: "Sucess",
@@ -79,7 +73,7 @@ app.get("/api/v1/posts/:id", (req, res) => {
   });
 });
 
-app.post("/api/v1/posts", (req, res) => {
+app.post("/api/posts", (req, res) => {
   const newPost = req.body.newPost;
   newPost["id"] = posts.counter;
   posts.counter += 1;
@@ -90,13 +84,24 @@ app.post("/api/v1/posts", (req, res) => {
   });
 });
 
-app.put("/api/v1/posts/:id", (req, res) => {
+app.put("/api/posts/:id", (req, res) => {
   res.status(200).json({
     status: "Sucess",
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
 
+
+
+
+
+
+const options = {
+  cors: {
+    origin: "*",
+    method: ["GET", "PUT", "POST"],
+  },
+};
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer, options);
 const sockets = {};
@@ -132,4 +137,3 @@ io.on("connection", (socket) => {
 });
 
 httpServer.listen(9000, () => console.log("Server running on port 9000"));
-// WARNING !!! app.listen(3000); will not work here, as it creates a new HTTP server
