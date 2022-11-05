@@ -176,11 +176,11 @@ function getTags(posts, id) {
 }
 
 async function getFeed() {
-  let res = await fetch("../api/posts.json");
-  const posts = await res.json();
+  let res = await fetch(URL + "posts");
+  const res_json = await res.json();
+  const posts = res_json.posts;
   res = await fetch("../api/users.json");
   const users = await res.json();
-
   for (let i = 0; i < posts.length; i++) {
     const newDiv = document.createElement("div");
     newDiv.innerHTML =
@@ -207,6 +207,6 @@ async function getFeed() {
     postContainer.appendChild(newDiv);
   }
 }
-
 getFeed();
+
 

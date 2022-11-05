@@ -51,7 +51,6 @@ app.post("/api/posts/:id/comments", (req, res) => {
   const authorId = req.body.comment.authorId;
   const content = req.body.comment.content;
   const commentId = comments.counter;
-  console.log(req.body.comment);
   const newComment = comments.insert({
     authorId,
     content,
@@ -90,11 +89,6 @@ app.put("/api/posts/:id", (req, res) => {
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
-
-
-
-
-
 
 const options = {
   cors: {
