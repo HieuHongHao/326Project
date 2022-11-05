@@ -1,4 +1,5 @@
 import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
+
 export const utils = {
   // Load module
   loadModule: async (component, elementId) => {
