@@ -13,6 +13,7 @@ export const routes = {
         await utils.loadModule(`pages/${route}.html`, 'content');
       } else if (route === 'dashboard') {
         await utils.loadModule(`pages/${route}.html`, 'content');
+        
       } else if (route === 'canvas') {
         await utils.loadModule(`pages/${route}.html`, 'content');
       } else {

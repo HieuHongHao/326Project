@@ -88,11 +88,6 @@ app.put("/api/posts/:id", (req, res) => {
   });
 });
 
-
-
-
-
-
 const options = {
   cors: {
     origin: "*",
