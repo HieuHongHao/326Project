@@ -20,7 +20,7 @@ async function loadDash() {
     comments.innerHTML += user.totalPosts + " Comments";
     created.innerHTML += user.created;
   } else {
-    window.location.href = "/404";
+    window.location.href = "?=404";
   }
 }
 

@@ -4,14 +4,7 @@
       <img src="public/logo.svg" alt="Logo" class="rounded-pill">
       <span class="ps-3">KanvasWire</span>
     </a>
-    <div class="ms-auto ps-5">
-      <div class="input-group input-group">
-        <input type="text" class="form-control" placeholder="Search Projects" aria-label="Search Projects"
-          aria-describedby="button-addon1" id="search-bar" />
-        <button class="btn btn-primary" type="button" id="button-addon1">
-          <i class="fas fa-magnifying-glass"></i>
-        </button>
-      </div>
+    <div id="topSearch" class="ms-auto ps-5">
     </div>
     <ul class="navbar-nav ms-auto pe-2">
       <li class="nav-item">
@@ -20,27 +13,16 @@
       <li class="nav-item">
         <a class="nav-link cat-text-light" href="?=feed">Feed</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link cat-text-light" href="?=forum">Forum</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link cat-text-light" href="?=canvas">Canvas</a>
-      </li>
-      <li class="nav-item">
+      <li id="nav-acc" class="nav-item">
         <a class="nav-link cat-text-light" href="?=dashboard">Account</a>
       </li>
       <li class="nav-item">
         <a class="nav-link cat-text-light" id="theme-toggle"><i class="fas fa-circle-half-stroke fs-5"></i></a>
       </li>
     </ul>
-    <form class="d-flex">
-      <button class="btn btn-primary cat-text-dark" type="button" data-bs-toggle="modal"
-        data-bs-target="#modalLoginForm">
-        Sign Up
-      </button>
+    <form id="loginDiv" class="d-flex">
     </form>
-    <form class="d-flex">
-      <a class="btn btn-danger cat-text-dark" href="/">Sign out</a>
+    <form id="logoutDiv" class="d-flex">
     </form>
   </div>
 </nav>

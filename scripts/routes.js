@@ -6,15 +6,18 @@ export const routes = {
     let route = window.location.search.substring(2);
     if (route !== "") {
       if (route === 'feed') {
+        await utils.loadModule(`components/searchBar.html`, 'topSearch');
         await utils.loadModule(`pages/${route}.html`, 'content');
         const toAnimate = { "feed": 500, "post-tags": 250 };
         await utils.loadAnimate(toAnimate);
       } else if (route === 'forum') {
+        await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
       } else if (route === 'dashboard') {
         await utils.loadModule(`pages/${route}.html`, 'content');
         
       } else if (route === 'canvas') {
+        await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
       } else {
         await utils.load404();
