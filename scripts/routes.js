@@ -10,7 +10,7 @@ async function signBtn() {
   } else {
     await utils.loadModule(`components/nav-logout.html`, 'logoutDiv');
     document.getElementById('logoutBtn').addEventListener("click", async () => {
-      window.localStorage.removeItem('loggedIn');
+      await window.localStorage.removeItem('loggedIn');
       window.location.href = "/";
     });
   }
