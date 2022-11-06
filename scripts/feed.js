@@ -5,6 +5,7 @@ const tagContainer = document.getElementById("post-tags");
 const enterTag = document.getElementById("enter-tags");
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("button-addon1");
+const topPostButton = document.getElementById("top-post-button");
 
 const URL = "http://localhost:9000/api";
 const postClass = [
@@ -175,8 +176,8 @@ function getTags(posts, id) {
   return html;
 }
 
-async function getFeed() {
-  let res = await fetch(URL + "/posts");
+async function getFeed(query) {
+  let res = await fetch(URL + "/posts" + query);
   const res_json = await res.json();
   const posts = res_json.posts;
   res = await fetch("../api/users.json");
@@ -207,6 +208,10 @@ async function getFeed() {
     postContainer.appendChild(newDiv);
   }
 }
-getFeed();
+topPostButton.addEventListener("click",async () =>{
+  await getFeed("?sort=desc");
+})
+
+getFeed("");
 
 
