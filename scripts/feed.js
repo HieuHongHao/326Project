@@ -149,17 +149,17 @@ addTag.addEventListener("click", () => {
 
 searchButton.addEventListener("click", async () => {
   const query = searchBar.value.split(":");
-  let result;
-  switch (query[0]) {
-    case "tag":
-      result = await fetch(URL + `/posts?tag=${query[1]}`);
-      break;
-    case "title":
-      result = await fetch(URL + `/posts?title=${query[1]}`);
-      break;
-    default:
-      break;
-  }
+  const result = await fetch(URL + `/posts?${query[0]}=${query[1]}`) ;
+  // switch (query[0]) {
+  //   case "tag":
+  //     result = await fetch(URL + `/posts?tag=${query[1]}`);
+  //     break;
+  //   case "title":
+  //     result = await fetch(URL + `/posts?title=${query[1]}`);
+  //     break;
+  //   default:
+  //     break;
+  // }
   const response_json = await result.json();
   postContainer.replaceChildren();
   response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
