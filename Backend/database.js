@@ -12,6 +12,13 @@ class CrudService {
     if (keys.length === 0) {
       return this.data;
     }
+    console.log(filterParameter);
+    if("sort" in filterParameter){
+      if (filterParameter["sort"] === "asc"){
+        return this.data.sort((p1,p2) => p1.likes - p2.likes).slice(0,5);
+      }
+      return this.data.sort((p1,p2) => p2.likes - p1.likes).slice(0,5);
+    }
     return this.data.filter((object) =>
       keys.every((key) => {
         if (key === "tag") {
