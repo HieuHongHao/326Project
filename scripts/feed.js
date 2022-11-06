@@ -210,7 +210,9 @@ async function getFeed(query) {
 }
 topPostButton.addEventListener("click",async () =>{
   postContainer.replaceChildren();
-  await getFeed("?sort=desc");
+  setTimeout(async () => {
+    await getFeed("?sort=desc");  
+  }, 600);
 })
 
 getFeed("");
