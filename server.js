@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+const { Octokit } = require("octokit");
+
+const octokit = new Octokit();
 
 const {
   UserService,
@@ -27,7 +30,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
-  res.sendFile('index.html', { root: __dirname })
+  res.sendFile("index.html", { root: __dirname });
 });
 
 app.get("/api/users", (req, res) => {
@@ -69,12 +72,15 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
-app.get("/api/github_repos",(req,res) =>{
+app.get("/api/github_repos", async (req, res) => {
+  const repos = await octokit.rest.search.repos({
+    q: "react in:topics",
+  });
   res.status(200).json({
-    status: "Sucess"
-  })
-})
-
+    status: "Sucess",
+    repos
+  });
+});
 
 app.post("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
@@ -119,9 +125,6 @@ app.put("/api/posts/:id", (req, res) => {
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
-
-
-
 
 const options = {
   cors: {
@@ -188,4 +191,6 @@ io.on("connection", (socket) => {
 //   });
 // });
 
-httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port 9000"));
+httpServer.listen(process.env.PORT || 9000, () =>
+  console.log("Server running on port 9000")
+);
