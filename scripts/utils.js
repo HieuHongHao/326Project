@@ -40,4 +40,8 @@ export const utils = {
       });
     }
   },
+
+  setTitle: async (title) => {
+    document.title = title;
+  },
 };
