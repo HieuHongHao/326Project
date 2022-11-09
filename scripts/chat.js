@@ -2,8 +2,8 @@ import { api } from './api.js';
 
 export const chat = {
     init: async () => {
-        const socket = io("http://localhost:9000");
-        // const socket = io("https://cs326project.herokuapp.com:9000");
+        // const socket = io("http://localhost:9000");
+        const socket = io("https://cs326project.herokuapp.com:9000");
         // const socket = io("128.119.202.240:9000");
 
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
