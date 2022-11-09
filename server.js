@@ -45,6 +45,23 @@ app.get("/api/posts", (req, res) => {
     posts: posts.find(filter),
   });
 });
+
+app.get("/api/canvas", (req, res) => {
+  const filter = req.query ? req.query : {};
+  res.status(200).json({
+    status: "Success",
+    posts: canvases.find(filter),
+  });
+});
+
+app.get("/api/posts/:id", (req, res) => {
+  const postId = req.params.id;
+  res.status(200).json({
+    status: "Success",
+    comments: canvases.findById(postId),
+  });
+});
+
 app.get("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
