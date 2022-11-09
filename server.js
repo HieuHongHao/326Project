@@ -198,10 +198,4 @@ io.on("connection", (socket) => {
 //   });
 // });
 
-<<<<<<< HEAD
 httpServer.listen(9000, () => console.log("Server running on port" + process.env.PORT));
-=======
-httpServer.listen(process.env.PORT || 9000, () =>
-  console.log("Server running on port 9000")
-);
->>>>>>> 88ea801a3e1843a847aeb76f7d71059113169c28
