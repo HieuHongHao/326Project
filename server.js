@@ -105,14 +105,19 @@ app.put("/api/posts/:id", (req, res) => {
 // };
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer);
-// const sockets = {};
-// const usernames = {};
-// const inbox = {};
+const sockets = {};
+const usernames = {};
+const inbox = {};
 io.on("connection", (socket) => {
   socket.on("login", (username) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
   });
+  if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
+    const username = usernames[socket.id];
+    sockets[username].emit("inbox-message", inbox[username]);
+    inbox[username] = null;
+  }
 });
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
