@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 
-
 const {
   UserService,
   PostService,
@@ -146,9 +145,9 @@ io.on("connection", (socket) => {
     }
   });
   socket.on("disconnect", () => {
-      const username = usernames[socket.id];
-      delete sockets[username];
-      delete usernames[socket.id];
+    const username = usernames[socket.id];
+    delete sockets[username];
+    delete usernames[socket.id];
   });
 });
 // io.on("connection", (socket) => {
