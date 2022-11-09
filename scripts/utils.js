@@ -31,6 +31,7 @@ export const utils = {
   load404: async () => {
     window.location.href = '../pages/404.html';
   },
+
   // Animate {"id": time}
   loadAnimate: async (toAnimate) => {
     for (const key in toAnimate) {
@@ -38,5 +39,5 @@ export const utils = {
         duration: toAnimate[key],
       });
     }
-  }
+  },
 };
