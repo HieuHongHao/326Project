@@ -46,6 +46,6 @@ app.get("/", (req, res) => {
   res.writeHead(200, { "Content-type": "text/html" });
   res.end("<h1>React is the best</h1>");
 });
-httpServer.listen(3000, () => console.log("Server running on port 3000"));
+httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port 3000"));
 // WARNING !!! app.listen(3000); will not work here, as it creates a new HTTP server
 

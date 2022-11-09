@@ -77,7 +77,7 @@ class Canvas {
     this.postId = postId;
     this.ownerId = ownerId;
     this.drawing = drawing;
-    this.users = [...users];
+    this.users = [0,1,2];
   }
 }
 
