@@ -19,7 +19,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
     "socket.io": "^4.5.3",
-    "socket.io-client": "^4.5.3"
+    "socket.io-client": "^4.5.3",
+    "@faker-js/faker": "^7.6.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"
@@ -33,6 +34,6 @@
     ]
   },
   "engines": {
-    "node": "18.12.1"
+    "node": "16.15.0"
   }
 }
