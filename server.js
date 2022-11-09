@@ -4,19 +4,18 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 
-const {
-  UserService,
-  PostService,
-  CommentService,
-  CanvasService,
-} = require("./Backend/database");
-const users = new UserService();
-const posts = new PostService();
-const comments = new CommentService();
-const canvases = new CanvasService();
+// const {
+//   UserService,
+//   PostService,
+//   CommentService,
+//   CanvasService,
+// } = require("./Backend/database");
+// const users = new UserService();
+// const posts = new PostService();
+// const comments = new CommentService();
+// const canvases = new CanvasService();
 
-let distDir = __dirname;
-app.use(express.static(distDir));
+app.use(express.static(__dirname));
 
 app.use(
   cors({
@@ -97,7 +96,7 @@ const options = {
     method: ["GET", "PUT", "POST"],
   },
 };
-// const httpServer = require("http").createServer(app);
+const httpServer = require("http").createServer(app);
 // const io = require("socket.io")(httpServer, options);
 // const sockets = {};
 // const usernames = {};
