@@ -3,7 +3,7 @@ import { api } from './api.js';
 export const chat = {
     init: async () => {
         // const socket = io("http://localhost:9000");
-        const socket = io("https://cs326project.herokuapp.com:9000");
+        const socket = io("https://cs326project.herokuapp.com:" + process.env.PORT || 9000);
         // const socket = io();
         // const socket = io("128.119.202.240:9000");
 
@@ -29,8 +29,8 @@ export const chat = {
             const chatBox = document.getElementById("chat-texts");
             chatElement.classList.add("text");
             if(isIncoming){
-                const users = await api.fetchData('users');
-                const user = users.users.filter(x => x.id === parseInt(sender))[0];
+                const usersDB = await api.fetchData('users');
+                const user = usersDB.users.filter(x => x.id === parseInt(sender))[0];
                 const imgElement = document.createElement("img");
                 imgElement.src = user.avatar;
                 imgElement.crossOrigin = "anonymous";
@@ -78,7 +78,6 @@ export const chat = {
         })
         
         socket.on("response-message",(payload) => {
-            console.log(`From ${sender}: ` + message);
             const {sender,message} = payload;
             addChatElement(message, sender, true);
         })
