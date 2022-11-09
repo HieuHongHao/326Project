@@ -1,8 +1,9 @@
+import { autoScroll } from './chat.js';
+
 export const canvas = {
   init: async () => {
     /*Chat is initiated by being at the bottom*/
-    const texts_container = document.getElementById("chat-texts");
-    texts_container.scrollTop = texts_container.scrollHeight - texts_container.clientHeight;
+    autoScroll();
 
     const drawingBoard = document.getElementById("canvas")
     const colorPicker = document.getElementById("color-picker-input")
@@ -18,7 +19,7 @@ export const canvas = {
     const height = window.innerHeight;
 
     // first we need Konva core things: stage and layer
-    var stage = new Konva.Stage({
+    const stage = new Konva.Stage({
       container: 'canvas-pad',
       width: width,
       height: height,

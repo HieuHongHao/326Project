@@ -3,4 +3,9 @@ export const chat = {
         
     }
 }
+
+export function autoScroll(){
+    const texts_container = document.getElementById("chat-texts");
+    texts_container.scrollTop = texts_container.scrollHeight - texts_container.clientHeight;
+}
   
