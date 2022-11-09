@@ -104,11 +104,16 @@ app.put("/api/posts/:id", (req, res) => {
 //   },
 // };
 const httpServer = require("http").createServer(app);
-// const io = require("socket.io")(httpServer, options);
+const io = require("socket.io")(httpServer);
 // const sockets = {};
 // const usernames = {};
 // const inbox = {};
-
+io.on("connection", (socket) => {
+  socket.on("login", (username) => {
+    sockets[username] = socket;
+    usernames[socket.id] = username;
+  });
+});
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
 //     sockets[username] = socket;
