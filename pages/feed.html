@@ -1,0 +1,164 @@
+<div class="container-fluid bg-secondary min-vh-100 py-4">
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <div class="card rounded-3 shadow p-3 cat-bg-light cat-text-light border">
+        <div class="card-title">
+          <div class="d-flex flex-column">
+            <div class="py-1">
+              <i class="fas fa-seedling fa-xl"></i>
+            </div>
+            <h6 class="d-inline-block fw-bold">
+              Newest Projects of the day
+            </h6>
+            <p>Brand new projects with fresh ideas</p>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="py-1">
+              <i class="fas fa-ranking-star fa-xl"></i>
+            </div>
+            <h6 class="d-inline-block fw-bold">
+              Top 5 Projects of the day
+            </h6>
+            <p>Top 5 unique projects</p>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="py-1">
+              <i class="fas fa-cubes fa-xl"></i>
+            </div>
+            <h6 class="d-inline-block fw-bold">
+              Top 3 projects of the month
+            </h6>
+            <p>Most loved projects of the month</p>
+          </div>
+        </div>
+      </div>
+      <div class="card rounded-3 shadow p-3 sidebar mt-3 tech-stacks cat-bg-light cat-text-light border">
+        <div class="card-title fw-bold">Popular Tech Stacks</div>
+        <div class="card-title btn-group-vertical">
+          <figure class="figure">
+            <span class="d-inline-block btn float-left">
+              <i class="fa-brands fa-react fa-xl cat-text-light"></i>
+            </span>
+            <h6 class="d-inline-block fw-bold">React.js</h6>
+          </figure>
+          <figure class="figure">
+            <span class="d-inline-block btn float-left">
+              <i class="fa-brands fa-js fa-xl cat-text-light"></i>
+            </span>
+            <h6 class="d-inline-block fw-bold">JavaScript</h6>
+          </figure>
+          <figure>
+            <span class="d-inline-block btn float-left">
+              <i class="fa-brands fa-python fa-xl cat-text-light"></i>
+            </span>
+            <h6 class="d-inline-block fw-bold">Python</h6>
+          </figure>
+          <figure>
+            <span class="d-inline-block btn float-left">
+              <i class="fa-brands fa-golang fa-xl cat-text-light"></i>
+            </span>
+            <h6 class="d-inline-block fw-bold">Go</h6>
+          </figure>
+          <figure>
+            <span class="d-inline-block btn float-left">
+              <i class="fas fa-database fa-xl cat-text-light"></i>
+            </span>
+            <h6 class="d-inline-block fw-bold">PostgreSQL</h6>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <div class="d-flex flex-column mx-auto">
+        <div class="d-flex justify-content-between p-2 rounded-3 border cat-bg-light">
+          <div>
+            <button type="button" class="btn btn-outline-light mx-1">
+              <i class="fas fa-fire"></i> Hot
+            </button>
+            <button type="button" class="btn btn-outline-light mx-1">
+              <i class="fas fa-certificate"></i> New
+            </button>
+            <button type="button" class="btn btn-outline-light mx-1" id="top-post-button">
+              <i class="fas fa-ranking-star"></i> Top
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-success  mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#newPost"
+              aria-expanded="false" aria-controls="collapseExample">
+              + New Post
+            </button>
+          </div>
+        </div>
+        <div class="collapse" id="newPost">
+          <form>
+            <div class="d-flex flex-column cat-bg-light cat-text-light my-3 border rounded-3 feed-post">
+              <div class="px-3 pt-3">
+                <img src="../public/logo.svg" alt="Logo" class="rounded-pill" />
+                <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">Username1</a></span>
+              </div>
+              <div class="px-3">
+                <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
+                  placeholder="Enter title" id="post-title" />
+                <div class="pb-4 mb-3 w-100">
+                  <textarea rows="3" class="cat-bg-light cat-border-light cat-text-light form-control"
+                    placeholder="Enter post content" id="post-text-area"></textarea>
+                </div>
+              </div>
+              <div class="px-3">
+                <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
+                  placeholder="Add Tags" id="enter-tags" />
+                <button class="btn btn-outline-light mx-1" type="button" id="add-tags">
+                  + Add Tag
+                </button>
+              </div>
+              <div class="d-inline-block btn float-left" id="post-tags"></div>
+              <div class="text-center mb-3">
+                <button type="button" class="btn btn-outline-light mx-1" id="post-button">
+                  Post
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="feed" class="container p-0">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="card rounded-3 shadow p-3 cat-bg-light cat-text-light border right-bar" id="right-bar-card">
+        <div class="card-title fw-bold" id="right-bar-title">
+          Related Projects
+        </div>
+        <div class="card-body" id="right-bar-card-body">
+          <h6 class="d-inline-block fw-bold">AI/ML to detect cancer</h6>
+          <div class="d-inline-block btn float-left">
+            <div class="badge pn-card-type-blue">React</div>
+            <div class="badge pn-card-type-yellow">Python</div>
+            <div class="badge pn-card-type-red">Java</div>
+            <div class="badge pn-card-type-yellow">AI/ML</div>
+            <div class="badge pn-card-type-red">SAAS</div>
+          </div>
+          <h6 class="d-inline-block fw-bold">Mern Stack Projects</h6>
+          <div class="d-inline-block btn float-left">
+            <div class="badge pn-card-type-blue">React</div>
+            <div class="badge pn-card-type-red">Java</div>
+            <div class="badge pn-card-type-red">AWS</div>
+            <div class="badge pn-card-type-red">Redis</div>
+          </div>
+          <h6 class="d-inline-block fw-bold">
+            Distributed Image Processing Nodes
+          </h6>
+          <div class="d-inline-block btn float-left">
+            <div class="badge pn-card-type-blue">React</div>
+            <div class="badge pn-card-type-blue">Spring</div>
+            <div class="badge pn-card-type-yellow">PostgreSQL</div>
+            <div class="badge pn-card-type-red">AWS S3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../scripts/feed.js"></script>
