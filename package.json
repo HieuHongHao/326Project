@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "heroku-postbuild": "npm install --only=dev && npm install && npm run start",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run generate && npm run build && npm run start",
     "generate": "node Backend/data_gen_script.js"
   },
   "keywords": [],
