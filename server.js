@@ -13,7 +13,8 @@ const posts = new PostService();
 const comments = new CommentService();
 const canvases = new CanvasService();
 
-app.use(express.static(__dirname));
+// let distDir = __dirname + "/dist/";
+// app.use(express.static(distDir));
 
 app.use(
   cors({
