@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install npm",
     "generate": "node Backend/data_gen_script.js"
   },
   "keywords": [],
