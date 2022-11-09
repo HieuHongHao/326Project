@@ -118,6 +118,16 @@ io.on("connection", (socket) => {
     sockets[username].emit("inbox-message", inbox[username]);
     inbox[username] = null;
   }
+  socket.on("send-message", (payload) => {
+    const { receiver, message } = payload;
+    console.log(message);
+    const sender = usernames[socket.id];
+    if (!(receiver in sockets)) {
+      inbox[receiver] = { sender, message };
+    } else {
+      sockets[receiver].emit("response-message", { sender, message });
+    }
+  });
 });
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
