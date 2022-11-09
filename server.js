@@ -5,8 +5,8 @@ const morgan = require("morgan");
 
 const {
   UserService,
-  PostService,
   CommentService,
+  PostService,
   CanvasService,
 } = require("./Backend/database");
 const users = new UserService();
@@ -69,6 +69,13 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
+app.get("/api/github_repos",(req,res) =>{
+  res.status(200).json({
+    status: "Sucess"
+  })
+})
+
+
 app.post("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
   const authorId = req.body.comment.authorId;
@@ -113,12 +120,24 @@ app.put("/api/posts/:id", (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 const options = {
   cors: {
     origin: "*",
     method: ["GET", "PUT", "POST"],
   },
 };
+=======
+
+
+
+// const options = {
+//   cors: {
+//     origin: "*",
+//     method: ["GET", "PUT", "POST"],
+//   },
+// };
+>>>>>>> 632e9dc7e0099d84e17928cdc898ad0acc069f63
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer, options);
 const sockets = {};
