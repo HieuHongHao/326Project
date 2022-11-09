@@ -12,7 +12,7 @@ function loginSuccess(acc) {
 }
 
 async function getUserData(){
-  const URL = "https://cs326project.herokuapp.com/api/data";
+  const URL = "https://cs326project.herokuapp.com/api/users";
     let response = await fetch(URL);
     if (response.ok) {
       return await response.json();
