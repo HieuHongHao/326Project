@@ -132,7 +132,7 @@ const options = {
   },
 };
 const httpServer = require("http").createServer(app);
-const io = require("socket.io")(httpServer, options);
+const io = module.exports.io = require("socket.io")(httpServer, options);
 const sockets = {};
 const usernames = {};
 const inbox = {};
