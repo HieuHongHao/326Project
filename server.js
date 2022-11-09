@@ -55,10 +55,10 @@ app.get("/api/canvas", (req, res) => {
 });
 
 app.get("/api/canvas/:id", (req, res) => {
-  const postId = req.params.id;
+  const canvasId = req.params.id;
   res.status(200).json({
     status: "Success",
-    comments: canvases.findById(postId),
+    comments: canvases.findById(canvasId),
   });
 });
 

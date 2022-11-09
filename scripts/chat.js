@@ -10,7 +10,7 @@ export const chat = {
         const postId = 1;
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
-        const canvasDB = await api.fetchData('canvases');
+        const canvasDB = await api.fetchData('canvas');
         console.log(canvasDB)
         const canvas = canvasDB.filter(x => x.id === parseInt(userId))[0];
         console.log(canvas)
