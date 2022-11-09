@@ -31,5 +31,8 @@
       "canvas.json",
       "users.json"
     ]
+  },
+  "engines": {
+    "node": "8.19.2"
   }
 }
