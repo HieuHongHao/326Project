@@ -24,8 +24,6 @@
 // // fs.writeFileSync("api/canvas.json", JSON.stringify(canvases), "utf-8");
 // // fs.writeFileSync("api/posts.json", JSON.stringify(posts), "utf-8");
 
-
-
 // module.exports = {
 //   comments,
 //   users,
