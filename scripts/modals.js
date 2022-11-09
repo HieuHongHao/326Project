@@ -18,7 +18,7 @@ async function login() {
   // const user = users.filter(x => x.name === username || x.email === username);
 
   const users = await api.fetchData('users');
-  const user = users.users.filter(x => x.id === parseInt(userId))[0];
+  const user = users.users.filter(x => x.email === username)[0];
   if (user.length !== 0 && user[0].password === password) {
     loginSuccess(user[0].id);
     closeModal("modalLoginForm");
