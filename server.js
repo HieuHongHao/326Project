@@ -97,37 +97,37 @@ app.put("/api/posts/:id", (req, res) => {
 //   },
 // };
 const httpServer = require("https").createServer(app);
-const io = require("socket.io")(httpServer, options);
-const sockets = {};
-const usernames = {};
-const inbox = {};
+// const io = require("socket.io")(httpServer, options);
+// const sockets = {};
+// const usernames = {};
+// const inbox = {};
 
-io.on("connection", (socket) => {
-  socket.on("login", (username) => {
-    sockets[username] = socket;
-    usernames[socket.id] = username;
-  });
-  if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
-    const username = usernames[socket.id];
-    sockets[username].emit("inbox-message", inbox[username]);
-    inbox[username] = null;
-  }
-  socket.on("send-message", (payload) => {
-    const { receiver, message } = payload;
-    console.log(message);
-    const sender = usernames[socket.id];
-    if (!(receiver in sockets)) {
-      inbox[receiver] = { sender, message };
-    } else {
-      sockets[receiver].emit("response-message", { sender, message });
-    }
-  });
-  socket.on("disconnect", () => {
-    const username = usernames[socket.id];
-    console.log(`${username} disconnecting ... `);
-    delete sockets[username];
-    delete usernames[socket.id];
-  });
-});
+// io.on("connection", (socket) => {
+//   socket.on("login", (username) => {
+//     sockets[username] = socket;
+//     usernames[socket.id] = username;
+//   });
+//   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
+//     const username = usernames[socket.id];
+//     sockets[username].emit("inbox-message", inbox[username]);
+//     inbox[username] = null;
+//   }
+//   socket.on("send-message", (payload) => {
+//     const { receiver, message } = payload;
+//     console.log(message);
+//     const sender = usernames[socket.id];
+//     if (!(receiver in sockets)) {
+//       inbox[receiver] = { sender, message };
+//     } else {
+//       sockets[receiver].emit("response-message", { sender, message });
+//     }
+//   });
+//   socket.on("disconnect", () => {
+//     const username = usernames[socket.id];
+//     console.log(`${username} disconnecting ... `);
+//     delete sockets[username];
+//     delete usernames[socket.id];
+//   });
+// });
 
 httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port 9000"));
