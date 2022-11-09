@@ -93,6 +93,7 @@ let canvases = [{
   ]
 }];
 
+
 class CrudService {
   constructor(data) {
     this.data = data;
