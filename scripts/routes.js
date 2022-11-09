@@ -2,6 +2,7 @@ import { utils } from './utils.js';
 import { feed } from './feed.js';
 import { dashboard } from './dashboard.js';
 import { canvas } from './canvas.js';
+import {chat} from './chat.js';
 
 function isLoggedIn() {
   return window.localStorage.getItem("loggedIn") !== null;
@@ -51,6 +52,7 @@ export const routes = {
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
         await canvas.init();
+        await chat.init();
 
         // Run 404
       } else {
