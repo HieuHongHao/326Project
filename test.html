@@ -8,7 +8,22 @@
 </head>
 
 <body>
-  <p>Hi</p>
+  <p id="write">Hi</p>
+  <a id="asd">see my page!</a>
+
 </body>
+
+<script>
+    /*From source*/
+    var para = new URLSearchParams();
+    para.append("KEY", "VALUEasdfsdf");
+      /*The href*/
+    document.getElementById("asd").href = "test.html?" + para.toString();
+    
+    /*Get value from certain key;*/
+    var para2 = new URLSearchParams(window.location.search);
+    var pass = para.get("KEY");
+    document.getElementById("write").innerHTML = pass;
+</script>
 
 </html>

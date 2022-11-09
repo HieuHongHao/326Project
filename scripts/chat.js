@@ -1,7 +1,15 @@
+
+
 export const chat = {
     init: async () => {
         const socket = io("http://localhost:9000");
         console.log(socket);
+        const userId = localStorage.getItem("loggedIn");
+        const res = await fetch("../api/users.json");
+        const usersDB = await res.json();
+        console.log(userId);
+        const user = usersDB.filter(x => x.id === parseInt(userId))[0];
+        console.log(user);
 
         let textInput = document.getElementById("text-input");
         const username = localStorage.getItem("username");

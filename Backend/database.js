@@ -101,6 +101,7 @@ class CanvasService extends CrudService {
 }
 
 module.exports = {
+  CrudService,
   PostService,
   UserService,
   CommentService,

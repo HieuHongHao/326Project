@@ -3,6 +3,8 @@ import { autoScroll } from './chat.js';
 export const canvas = {
   init: async () => {
     /*Chat is initiated by being at the bottom*/
+    document.body.style = "overflow-y: hidden";
+    
     autoScroll();
 
     const drawingBoard = document.getElementById("canvas")

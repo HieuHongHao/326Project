@@ -1,6 +1,3 @@
-body{
-    overflow-y: hidden;
-}
 #canvas .drawing-container{
     width: 75%;
     height: 100%;
@@ -82,6 +79,9 @@ body{
     border-radius: 12px;
     word-wrap: break-word;
 }
+.chat-texts-container .blue-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
+    margin-left: 2em;
+}
 
 .chat-texts-container .blue-text{
     background-color: #4e75b5;
@@ -112,6 +112,21 @@ body{
     color: white;
     text-align: center;
     padding: 1em;
+}
+
+.text img{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-top: 2.5em;
+    margin-left: 0.2em;
+    position: absolute
+}
+
+.text span{
+    color: #c6d0f5;
+    font-size: 12px;
+    margin-left: 3em;
 }
 
 #canvas-pad{
