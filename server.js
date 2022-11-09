@@ -34,8 +34,8 @@ app.get("/", (req, res) => {
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({
-    status: "Success",
-    posts: posts.find(filter),
+    status: "Success"
+    // posts: posts.find(filter),
   });
 });
 // app.get("/api/posts/:id/comments", (req, res) => {
@@ -97,44 +97,10 @@ app.get("/api/posts", (req, res) => {
 //   },
 // };
 const httpServer = require("http").createServer(app);
-<<<<<<< HEAD
-const io = require("socket.io")(httpServer, options);
-const sockets = {};
-const usernames = {};
-const inbox = {};
-
-io.on("connection", (socket) => {
-  socket.on("login", (username) => {
-    sockets[username] = socket;
-    usernames[socket.id] = username;
-  });
-  if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
-    const username = usernames[socket.id];
-    sockets[username].emit("inbox-message", inbox[username]);
-    inbox[username] = null;
-  }
-  socket.on("send-message", (payload) => {
-    const { receiver, message } = payload;
-    const sender = usernames[socket.id];
-    if (!(receiver in sockets)) {
-      inbox[receiver] = { sender, message };
-    } else {
-      sockets[receiver].emit("response-message", { sender, message });
-    }
-  });
-  socket.on("disconnect", () => {
-    const username = usernames[socket.id];
-    console.log(`${username} disconnecting ... `);
-    delete sockets[username];
-    delete usernames[socket.id];
-  });
-});
-=======
 // const io = require("socket.io")(httpServer, options);
 // const sockets = {};
 // const usernames = {};
 // const inbox = {};
->>>>>>> 075bdbdba2228f94c5ad94ffe444670455c021b7
 
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
