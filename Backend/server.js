@@ -11,6 +11,9 @@ const sockets = {};
 const usernames = {};
 const inbox = {};
 
+
+
+
 io.on("connection", (socket) => {
   socket.on("login", (username) => {
     sockets[username] = socket;
@@ -45,3 +48,4 @@ app.get("/", (req, res) => {
 });
 httpServer.listen(3000, () => console.log("Server running on port 3000"));
 // WARNING !!! app.listen(3000); will not work here, as it creates a new HTTP server
+
