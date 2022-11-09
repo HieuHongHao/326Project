@@ -26,6 +26,7 @@ app.use(
 app.use(express.json());
 app.use(morgan("tiny"));
 
+
 app.get("/", (req, res) => {
   res.sendFile('index.html', { root: __dirname })
 });
@@ -119,10 +120,6 @@ app.put("/api/posts/:id", (req, res) => {
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
-
-
-app.set('port', process.env.PORT || 9000);
-app.listen(9000);
 
 
 
