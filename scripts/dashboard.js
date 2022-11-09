@@ -6,7 +6,7 @@ export const dashboard = {
       // const res = await fetch("../api/users.json");
       // const users = await res.json();
       const users = await api.fetchData('users');
-      const user = users.filter(x => x.id === parseInt(userId))[0];
+      const user = users.users.filter(x => x.id === parseInt(userId))[0];
 
       const pfp = document.getElementById("pfp");
       const username = document.getElementById("username");
