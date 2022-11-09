@@ -123,14 +123,14 @@ app.put("/api/posts/:id", (req, res) => {
 
 
 
-// const options = {
-//   cors: {
-//     origin: "*",
-//     method: ["GET", "PUT", "POST"],
-//   },
-// };
+const options = {
+  cors: {
+    origin: "*",
+    method: ["GET", "PUT", "POST"],
+  },
+};
 const httpServer = require("http").createServer(app);
-const io = require("socket.io")(httpServer);
+const io = require("socket.io")(httpServer, options);
 const sockets = {};
 const usernames = {};
 const inbox = {};
