@@ -7,8 +7,8 @@
 
 let users = require("../api/users.json");
 let posts = require("../api/posts.json");
-let comments = require("../api/posts.json");
-let comments = require("../api/canvas.json");
+let comments = require("../api/comments.json");
+let canvases = require("../api/canvas.json");
 
 class CrudService {
   constructor(data) {
