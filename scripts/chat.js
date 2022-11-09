@@ -2,7 +2,8 @@
 
 export const chat = {
     init: async () => {
-        const socket = io("http://localhost:9000");
+        // const socket = io("http://localhost:9000");
+        const socket = io("https://cs326project.herokuapp.com/socket.io/socket.io.js");
 
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
 
