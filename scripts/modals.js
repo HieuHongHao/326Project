@@ -1,3 +1,4 @@
+import { api } from './api.js';
 // Temp login funcions
 function closeModal(tag) {
   const modalElem = document.getElementById(tag);
