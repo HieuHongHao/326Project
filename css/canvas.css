@@ -1,3 +1,6 @@
+body{
+    overflow-y: hidden;
+}
 #canvas .drawing-container{
     width: 75%;
     height: 100%;
@@ -21,6 +24,7 @@
     position: absolute;
     background-color: #424b59;
     overflow: auto;
+    overflow-x: hidden;
     right: 0;
     width: 100%;
 }
