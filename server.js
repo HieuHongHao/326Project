@@ -128,6 +128,11 @@ io.on("connection", (socket) => {
       sockets[receiver].emit("response-message", { sender, message });
     }
   });
+  socket.on("disconnect", () => {
+      const username = usernames[socket.id];
+      delete sockets[username];
+      delete usernames[socket.id];
+  });
 });
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
