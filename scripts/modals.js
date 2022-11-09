@@ -1,4 +1,4 @@
-import { api } from './api.js';
+import { api } from './api';
 // Temp login funcions
 function closeModal(tag) {
   const modalElem = document.getElementById(tag);
