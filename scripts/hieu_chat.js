@@ -1,5 +1,4 @@
 const socket = io("http://localhost:9000");
-console.log(socket);
 
 let textInput = document.getElementById("text-input");
 const username = localStorage.getItem("username");
@@ -29,7 +28,6 @@ textInput.addEventListener("keypress",(event) => {
             message: textInput.value,
             receiver: users[0] === username ? users[1] : users[0]
         }
-        console.log("Hit enter");
         socket.emit("send-message",payload);
     }
 })
