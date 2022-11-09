@@ -13,7 +13,7 @@ const posts = new PostService();
 const comments = new CommentService();
 const canvases = new CanvasService();
 
-// let distDir = __dirname + "/dist/";
+// let distDir = __dirname;
 // app.use(express.static(distDir));
 
 // app.use(
