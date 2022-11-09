@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+const {Octokit} = require("octokit");
+
+const octokit = new Octokit();
+
+
 
 const {
   UserService,
@@ -70,9 +75,14 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
-app.get("/api/github_repos",(req,res) =>{
+app.get("/api/github_repos",async (req,res) =>{
+  const repos = await octokit.rest.search.repos({
+    q: "react in:topics"
+  })
+  const result = repos.slice(0,6)
   res.status(200).json({
-    status: "Sucess"
+    status: "Sucess",
+    post: result
   })
 })
 
