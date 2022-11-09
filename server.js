@@ -54,7 +54,7 @@ app.get("/api/canvas", (req, res) => {
   });
 });
 
-app.get("/api/posts/:id", (req, res) => {
+app.get("/api/canvas/:id", (req, res) => {
   const postId = req.params.id;
   res.status(200).json({
     status: "Success",
