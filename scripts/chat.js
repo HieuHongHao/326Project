@@ -1,4 +1,4 @@
-
+import { api } from './api.js';
 
 export const chat = {
     init: async () => {
@@ -8,9 +8,13 @@ export const chat = {
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
 
         const postId = 1;
-        const res1 = await fetch("../api/canvas.json");
-        const canvasDB = await res1.json();
-        const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
+        // const res1 = await fetch("../api/canvas.json");
+        // const canvasDB = await res1.json();
+        const canvasDB = await api.fetchData('canvases');
+        const canvas = canvasDB.canvases.filter(x => x.id === parseInt(userId))[0];
+        console.log(canvas)
+        const users = canvas["users"]
+        // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
         const userId = localStorage.getItem("loggedIn");
 
