@@ -28,9 +28,9 @@ app.use(
 app.use(express.json());
 app.use(morgan("tiny"));
 
-// app.get("/", (req, res) => {
-//   res.sendFile('index.html', { root: __dirname })
-// });
+app.get("/", (req, res) => {
+  res.sendFile('index.html', { root: __dirname })
+});
 
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
