@@ -2,8 +2,8 @@ import { api } from './api.js';
 
 export const chat = {
     init: async () => {
-        // const socket = io("http://localhost:9000");
-        const socket = io("https://cs326project.herokuapp.com:9000");
+        const socket = io("http://localhost:9000");
+        // const socket = io("https://cs326project.herokuapp.com:9000");
         // const socket = io("128.119.202.240:9000");
 
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
@@ -13,9 +13,7 @@ export const chat = {
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
         const canvasDB = await api.fetchData('canvas');
-        console.log(canvasDB)
         const canvas = canvasDB.posts.filter(x => x.postId === postId)[0];
-        console.log(canvas)
         const users = canvas["users"]
         // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
@@ -74,11 +72,13 @@ export const chat = {
         })
         
         socket.on("inbox-message",(payload) => {
+            console.log(payload);
             const {sender,message} = payload;
             addChatElement(message, sender, false);
         })
         
         socket.on("response-message",(payload) => {
+            console.log(payload);
             const {sender,message} = payload;
             addChatElement(message, sender, true);
         })
