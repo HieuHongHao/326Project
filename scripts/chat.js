@@ -7,17 +7,17 @@ export const chat = {
 
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
 
+        const userId = localStorage.getItem("loggedIn");
         const postId = 1;
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
         const canvasDB = await api.fetchData('canvas');
         console.log(canvasDB)
-        const canvas = canvasDB.posts.filter(x => x.id === parseInt(userId))[0];
+        const canvas = canvasDB.posts.filter(x => x.id === postId)[0];
         console.log(canvas)
         const users = canvas["users"]
         // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
-        const userId = localStorage.getItem("loggedIn");
 
         let textInput = document.getElementById("text-input");
         socket.emit("login",userId)
@@ -29,9 +29,8 @@ export const chat = {
             const chatBox = document.getElementById("chat-texts");
             chatElement.classList.add("text");
             if(isIncoming){
-                const res = await fetch("../api/users.json");
-                const usersDB = await res.json();
-                const user = usersDB.filter(x => x.id === parseInt(sender))[0];
+                const users = await api.fetchData('users');
+                const user = users.users.filter(x => x.id === parseInt(sender))[0];
                 const imgElement = document.createElement("img");
                 imgElement.src = user.avatar;
                 imgElement.crossOrigin = "anonymous";
