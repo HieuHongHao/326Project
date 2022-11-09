@@ -31,13 +31,13 @@ app.get("/", (req, res) => {
   res.sendFile('index.html', { root: __dirname })
 });
 
-// app.get("/api/posts", (req, res) => {
-//   const filter = req.query ? req.query : {};
-//   res.status(200).json({
-//     status: "Sucess",
-//     posts: posts.find(filter),
-//   });
-// });
+app.get("/api/posts", (req, res) => {
+  const filter = req.query ? req.query : {};
+  res.status(200).json({
+    status: "Success",
+    // posts: posts.find(filter),
+  });
+});
 // app.get("/api/posts/:id/comments", (req, res) => {
 //   const postId = req.params.id;
 //   res.status(200).json({
