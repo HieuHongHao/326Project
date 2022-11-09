@@ -1,2 +1,2 @@
 web: npm install
-nodemon server.js
+npm run start
