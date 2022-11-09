@@ -13,7 +13,7 @@ function loginSuccess(acc) {
 async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
-  const res = await fetch("../api/users.json");
+  // const res = await fetch("../api/users.json");
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
 
