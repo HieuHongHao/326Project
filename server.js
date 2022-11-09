@@ -13,22 +13,22 @@ const posts = new PostService();
 const comments = new CommentService();
 const canvases = new CanvasService();
 
-// let distDir = __dirname;
-// app.use(express.static(distDir));
+let distDir = __dirname;
+app.use(express.static(distDir));
 
-// app.use(
-//   cors({
-//     origin: true,
-//     optionsSuccessStatus: 200,
-//     credentials: true,
-//   })
-// );
-// app.use(express.json());
-// app.use(morgan("tiny"));
+app.use(
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
+app.use(express.json());
+app.use(morgan("tiny"));
 
-// app.get("/", (req, res) => {
-//   res.sendFile('index.html', { root: __dirname })
-// });
+app.get("/", (req, res) => {
+  res.sendFile('index.html', { root: __dirname })
+});
 
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
