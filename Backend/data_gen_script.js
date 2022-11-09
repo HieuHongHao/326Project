@@ -1,4 +1,4 @@
-const fs = require("fs");
+// const fs = require("fs");
 const { User, Post, Comment, Canvas } = require("./model");
 
 let comments = [];

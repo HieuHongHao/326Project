@@ -4,16 +4,16 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 
-// const {
-//   UserService,
-//   PostService,
-//   CommentService,
-//   CanvasService,
-// } = require("./Backend/database");
-// const users = new UserService();
-// const posts = new PostService();
-// const comments = new CommentService();
-// const canvases = new CanvasService();
+const {
+  UserService,
+  PostService,
+  CommentService,
+  CanvasService,
+} = require("./Backend/database");
+const users = new UserService();
+const posts = new PostService();
+const comments = new CommentService();
+const canvases = new CanvasService();
 
 app.use(express.static(__dirname));
 
@@ -35,7 +35,7 @@ app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({
     status: "Success",
-    // posts: posts.find(filter),
+    posts: posts.find(filter),
   });
 });
 // app.get("/api/posts/:id/comments", (req, res) => {
