@@ -76,6 +76,7 @@ app.get("/api/github_repos", async (req, res) => {
   const repos = await octokit.rest.search.repos({
     q: "react in:topics",
   });
+  const results = repos.slice(0,6);
   res.status(200).json({
     status: "Sucess",
     repos
