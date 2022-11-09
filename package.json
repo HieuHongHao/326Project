@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "generate": "node misc/data_gen_script.js"
+    "generate": "node Backend/data_gen_script.js"
   },
   "keywords": [],
   "author": "",
