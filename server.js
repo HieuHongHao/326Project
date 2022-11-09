@@ -96,7 +96,7 @@ app.put("/api/posts/:id", (req, res) => {
 //     method: ["GET", "PUT", "POST"],
 //   },
 // };
-const httpServer = require("http").createServer(app);
+const httpServer = require("https").createServer(app);
 const io = require("socket.io")(httpServer, options);
 const sockets = {};
 const usernames = {};
