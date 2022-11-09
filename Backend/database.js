@@ -1,9 +1,9 @@
 // let { users, comments, posts, canvases } = require("./data_gen_script");
 
-async function getData(path) {
-  const res = await fetch("http://localhost:9000/api/" + path);
-  return await res.json();
-}
+// async function getData(path) {
+//   const res = await fetch("http://localhost:9000/api/" + path);
+//   return await res.json();
+// }
 
 let users = [{
   "id": 0,
@@ -105,9 +105,9 @@ class CrudService {
     if (keys.length === 0) {
       return this.data;
     }
-    if("sort" in filterParameter){
-      if (filterParameter["sort"] === "asc"){
-        return this.data.sort((p1,p2) => p1.likes - p2.likes).slice(0,5);
+    if ("sort" in filterParameter) {
+      if (filterParameter["sort"] === "asc") {
+        return this.data.sort((p1, p2) => p1.likes - p2.likes).slice(0, 5);
       }
       return this.data.sort((p1, p2) => p2.likes - p1.likes).slice(0, 5);
     }
