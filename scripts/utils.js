@@ -21,6 +21,7 @@ export const utils = {
           fetch(responseJS)
             .then(response => response.text())
             .then((responseText) => {
+              console.log(responseText);
               const jsFunc = new Function(responseText);
               jsFunc();
             });
