@@ -1,4 +1,7 @@
 import { utils } from './utils.js';
+import { feed } from './feed.js';
+import { dashboard } from './dashboard.js';
+import { canvas } from './canvas.js';
 
 function isLoggedIn() {
   return window.localStorage.getItem("loggedIn") !== null;
@@ -21,27 +24,35 @@ export const routes = {
     // List of pages
     let route = window.location.search.substring(2);
     if (route !== "") {
+      // Run feed 
       if (route === 'feed') {
         signBtn();
         await utils.loadModule(`components/searchBar.html`, 'topSearch');
         await utils.loadModule(`pages/${route}.html`, 'content');
         const toAnimate = { "feed": 500, "post-tags": 250 };
+        await feed.init();
         await utils.loadAnimate(toAnimate);
 
+        // Run forum
       } else if (route === 'forum') {
         signBtn();
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
 
+        // Run dashboard 
       } else if (route === 'dashboard') {
         signBtn();
         await utils.loadModule(`pages/${route}.html`, 'content');
+        await dashboard.init();
 
+        // Run canvas 
       } else if (route === 'canvas') {
         signBtn();
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
+        await canvas.init();
 
+        // Run 404
       } else {
         await utils.load404();
       }
