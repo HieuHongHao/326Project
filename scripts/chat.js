@@ -11,7 +11,8 @@ export const chat = {
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
         const canvasDB = await api.fetchData('canvases');
-        const canvas = canvasDB.canvases.filter(x => x.id === parseInt(userId))[0];
+        console.log(canvasDB)
+        const canvas = canvasDB.filter(x => x.id === parseInt(userId))[0];
         console.log(canvas)
         const users = canvas["users"]
         // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
