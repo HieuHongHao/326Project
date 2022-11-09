@@ -1,9 +1,11 @@
+import { api } from './api.js';
 export const dashboard = {
   init: async () => {
     const userId = window.localStorage.getItem("loggedIn");
     if (userId !== null) {
-      const res = await fetch("../api/users.json");
-      const users = await res.json();
+      // const res = await fetch("../api/users.json");
+      // const users = await res.json();
+      const users = await api.fetchData('users');
       const user = users.filter(x => x.id === parseInt(userId))[0];
 
       const pfp = document.getElementById("pfp");

@@ -31,6 +31,13 @@ app.get("/", (req, res) => {
   res.sendFile('index.html', { root: __dirname })
 });
 
+app.get("/api/users", (req, res) => {
+  const filter = req.query ? req.query : {};
+  res.status(200).json({
+    status: "Success",
+    users: users.find(filter),
+  });
+});
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({
