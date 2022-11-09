@@ -16,15 +16,15 @@ const canvases = new CanvasService();
 // let distDir = __dirname + "/dist/";
 // app.use(express.static(distDir));
 
-app.use(
-  cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
-app.use(express.json());
-app.use(morgan("tiny"));
+// app.use(
+//   cors({
+//     origin: true,
+//     optionsSuccessStatus: 200,
+//     credentials: true,
+//   })
+// );
+// app.use(express.json());
+// app.use(morgan("tiny"));
 
 // app.get("/", (req, res) => {
 //   res.sendFile('index.html', { root: __dirname })
