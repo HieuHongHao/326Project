@@ -120,24 +120,15 @@ app.put("/api/posts/:id", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
+
+
+
 const options = {
   cors: {
     origin: "*",
     method: ["GET", "PUT", "POST"],
   },
 };
-=======
-
-
-
-// const options = {
-//   cors: {
-//     origin: "*",
-//     method: ["GET", "PUT", "POST"],
-//   },
-// };
->>>>>>> 632e9dc7e0099d84e17928cdc898ad0acc069f63
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer, options);
 const sockets = {};
