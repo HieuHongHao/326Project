@@ -1,4 +1,4 @@
-import { api } from './api';
+
 // Temp login funcions
 function closeModal(tag) {
   const modalElem = document.getElementById(tag);
@@ -11,6 +11,14 @@ function loginSuccess(acc) {
   storage.setItem("loggedIn", acc);
 }
 
+async function getUserData(){
+  const URL = "https://cs326project.herokuapp.com/api/data";
+    let response = await fetch(URL);
+    if (response.ok) {
+      return await response.json();
+    }
+}
+
 async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
@@ -18,7 +26,7 @@ async function login() {
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
 
-  const users = await api.fetchData('users');
+  const users = await getUserData();
   const user = users.users.filter(x => x.email === username);
   if (user.length !== 0 && user[0].password === password) {
     loginSuccess(user[0].id);
