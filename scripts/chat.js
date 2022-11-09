@@ -5,6 +5,7 @@ export const chat = {
         // const socket = io("http://localhost:9000");
         const socket = io("https://cs326project.herokuapp.com:9000");
         // const socket = io();
+        // const socket = io("128.119.202.240:9000");
 
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
 
@@ -72,13 +73,12 @@ export const chat = {
         })
         
         socket.on("inbox-message",(payload) => {
-            console.log(payload);
             const {sender,message} = payload;
             addChatElement(message, sender, false);
         })
         
         socket.on("response-message",(payload) => {
-            console.log(payload);
+            console.log(`From ${sender}: ` + message);
             const {sender,message} = payload;
             addChatElement(message, sender, true);
         })
