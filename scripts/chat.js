@@ -23,7 +23,7 @@ export const chat = {
         
 
         let textInput = document.getElementById("text-input");
-        socket.emit("login",userId)
+        socket.timeout(1000).emit("login",userId)
         // const users = ["alpha","beta"];
 
         async function addChatElement(message, sender, isIncoming){
@@ -67,7 +67,7 @@ export const chat = {
                             message: textInput.value,
                             receiver: users[i]
                         }
-                        socket.emit("send-message",payload);
+                        socket.timeout(5000).emit("send-message",payload);
                     }
                 }
                 addChatElement(textInput.value, parseInt(userId), false);
