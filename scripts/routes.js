@@ -27,6 +27,7 @@ export const routes = {
       // Run feed 
       if (route === 'feed') {
         signBtn();
+        utils.setTitle("Feed");
         await utils.loadModule(`components/searchBar.html`, 'topSearch');
         await utils.loadModule(`pages/${route}.html`, 'content');
         const toAnimate = { "feed": 500, "post-tags": 250 };
@@ -36,18 +37,21 @@ export const routes = {
         // Run forum
       } else if (route === 'forum') {
         signBtn();
+        utils.setTitle("Forum");
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
 
         // Run dashboard 
       } else if (route === 'dashboard') {
         signBtn();
+        utils.setTitle("Dashboard");
         await utils.loadModule(`pages/${route}.html`, 'content');
         await dashboard.init();
 
         // Run canvas 
       } else if (route === 'canvas') {
         signBtn();
+        utils.setTitle("Canvas");
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
         await canvas.init();
