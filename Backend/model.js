@@ -1,6 +1,4 @@
-const { faker } = require("@faker-js/faker");
-
-
+import { faker } from '@faker-js/faker';
 
 class Comment {
   constructor(
@@ -77,7 +75,7 @@ class Canvas {
     this.postId = postId;
     this.ownerId = ownerId;
     this.drawing = drawing;
-    this.users = [0,1,2];
+    this.users = [0, 1, 2];
   }
 }
 
