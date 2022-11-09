@@ -5,6 +5,9 @@
 //   return await res.json();
 // }
 
+
+
+
 let users = [{
   "id": 0,
   "email": "Matteo.Kuhlman79@hotmail.com",
@@ -92,6 +95,7 @@ let canvases = [{
     2
   ]
 }];
+
 
 class CrudService {
   constructor(data) {
