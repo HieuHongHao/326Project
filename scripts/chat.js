@@ -10,7 +10,7 @@ export const chat = {
         const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
 
         const userId = localStorage.getItem("loggedIn");
-        const postId = 1;
+        const postId = 0;
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
         const canvasDB = await api.fetchData('canvas');
