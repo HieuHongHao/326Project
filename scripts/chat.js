@@ -12,26 +12,34 @@ export const chat = {
         const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
         const userId = localStorage.getItem("loggedIn");
-        // const res = await fetch("../api/users.json");
-        // const usersDB = await res.json();
-        // console.log(userId);
-        // const user = usersDB.filter(x => x.id === parseInt(userId))[0];
-        // console.log(user);
 
         let textInput = document.getElementById("text-input");
         socket.emit("login",userId)
         // const users = ["alpha","beta"];
 
-        function addChatElement(message, isIncoming){
+        async function addChatElement(message, sender, isIncoming){
             const chatElement = document.createElement("div");
             const innerChat = document.createElement("div");
             const chatBox = document.getElementById("chat-texts");
             chatElement.classList.add("text");
             if(isIncoming){
+                const res = await fetch("../api/users.json");
+                const usersDB = await res.json();
+                const user = usersDB.filter(x => x.id === parseInt(sender))[0];
+                const imgElement = document.createElement("img");
+                imgElement.src = user.avatar;
+                imgElement.crossOrigin = "anonymous";
+                chatElement.appendChild(imgElement);
+                const nameElement = document.createElement("span");
+                nameElement.innerHTML = user.name;
+                chatElement.appendChild(nameElement);
                 const userColor = userChatColor[users.indexOf(parseInt(userId))]
                 innerChat.classList.add(userColor + "-text");
             }
             else{
+                const dummyText = document.createElement("div");
+                dummyText.classList.add("text-dummy")
+                chatElement.append(dummyText);
                 innerChat.classList.add("my-text");
             }
             innerChat.innerHTML = message;
@@ -42,25 +50,31 @@ export const chat = {
         textInput.addEventListener("keypress",(event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                for(let i=0; i<users.length; i++){
-                    const payload = {
-                        message: textInput.value,
-                        receiver: users[i]
-                    }
-                    socket.emit("send-message",payload);
+                if(textInput.value === ""){
+                    return;
                 }
+                for(let i=0; i<users.length; i++){
+                    if(users[i] !== parseInt(userId)){
+                        const payload = {
+                            message: textInput.value,
+                            receiver: users[i]
+                        }
+                        socket.emit("send-message",payload);
+                    }
+                }
+                addChatElement(textInput.value, parseInt(userId), false);
+                textInput.value = "";
             }
         })
         
         socket.on("inbox-message",(payload) => {
             const {sender,message} = payload;
-            addChatElement(`From ${sender}: ` + message, false);
+            addChatElement(message, sender, false);
         })
         
         socket.on("response-message",(payload) => {
             const {sender,message} = payload;
-            console.log(`From ${sender}: ` + message);
-            addChatElement(`From ${sender}: ` + message, true);
+            addChatElement(message, sender, true);
         })
     }
 }

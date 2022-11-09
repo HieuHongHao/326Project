@@ -113,7 +113,6 @@ io.on("connection", (socket) => {
   }
   socket.on("send-message", (payload) => {
     const { receiver, message } = payload;
-    console.log(message);
     const sender = usernames[socket.id];
     if (!(receiver in sockets)) {
       inbox[receiver] = { sender, message };
