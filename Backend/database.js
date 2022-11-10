@@ -5,6 +5,7 @@
 //   return await res.json();
 // }
 
+// HARDCODE BECAUSE HEROKU BROKE WITH API
 let users = [
   {
     id: 0,
