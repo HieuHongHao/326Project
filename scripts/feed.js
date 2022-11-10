@@ -9,7 +9,8 @@ export const feed = {
     const searchBar = document.getElementById("search-bar");
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
-
+    const topBttn = document.getElementById("top-post-button");
+    
     const URL = "https://cs326project.herokuapp.com/api";
     const postClass = [
       "d-flex",
@@ -184,6 +185,12 @@ export const feed = {
     githubPostBtn.addEventListener("click", async () => {
       const response_json = await api.fetchData('github_repos');
       console.log(response_json);
+      postContainer.replaceChildren();
+      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+    })
+
+    topBttn.addEventListener("click",async () => {
+      const response_json = await api.fetchData('posts?sort=desc');
       postContainer.replaceChildren();
       response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
