@@ -68,11 +68,9 @@ Search a user: https://cs326project.herokuapp.com/api/posts/1
 | content       | string      |
 | likes         | [int]       |
 
-View comments: https://cs326project.herokuapp.com/api/posts
-<img src="../demos/api/posts_read.png"/>
-
-Search a comment: https://cs326project.herokuapp.com/api/posts/1 
-<img src="../demos/api/posts_search.png"/>
+Search a comment: https://cs326project.herokuapp.com/api/posts/0/Comment
+Note that a comment must be related to a post
+<img src="../demos/api/comments_search.png"/>
 
 
 ### Canvas Object fields:
