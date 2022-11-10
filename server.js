@@ -152,9 +152,9 @@ app.put("/api/posts/:id", (req, res) => {
 });
 
 app.delete("/api/posts/:id", (req, res) => {
+  posts.delete(req.params.id)
   res.status(200).json({
-    status: "Success",
-    post: posts.delete(req.params.id),
+    status: `Deleted post ${req.params.id}`,
   });
 })
 
