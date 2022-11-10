@@ -50,6 +50,14 @@ app.get("/api/users/:id", (req, res) => {
     users: users.findById(userid)
   });
 });
+
+app.delete("/api/users/:id", (req,res) => {
+  const userid = req.params.id;
+  users.delete(userid);
+  res.status(200).json({
+    status: `Deleted user ${userid}`,
+  });
+})
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({
@@ -65,6 +73,8 @@ app.get("/api/canvas", (req, res) => {
     posts: canvases.find(filter),
   });
 });
+
+
 
 app.get("/api/canvas/:id", (req, res) => {
   const canvasId = req.params.id;
@@ -150,6 +160,8 @@ app.put("/api/posts/:id", (req, res) => {
     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
   });
 });
+
+
 
 app.delete("/api/posts/:id", (req, res) => {
   posts.delete(req.params.id)
