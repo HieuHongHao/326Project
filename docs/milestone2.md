@@ -1,5 +1,6 @@
-## 1 APIs
- Data model:
+
+# Part 0: Project API Planning
+## Data Model
  -  api/posts: returning all the posts 
     query: 
         tag: return all the posts with matching tags
@@ -7,8 +8,39 @@
  -  api/posts/:id: return the data of post with matching id
  -  api/users: return all users information
  
+## APIs
+User Object:
+- Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
+
+| Fields        | Data Type   |
+| ------------- | ----------- |
+| Id            | int         |
+| email         | string      |
+| avatar        | string      |
+| totalPosts    | int         |
+| likes         | int         |
+| comments      | int         |
+| dateCreated   | datetime    |
+| favouriteTech | string      |
+| password      | string      |
 
 
+- API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
+
+Post Object fields:
+- Id, authorId, tags, title, content, likes, commentsId
+- API integration: Yes. Create can be done on feed and dashboard. Read occurs on feed, forum, and dashboard. Update (for likes) occurs on feed and forum. Delete occurs on dashboard.
+
+Comment Object fields:
+- Id, authorId, postId, content, likes
+- API integration: Yes. Create, read, update (likes) occurs on forum page (maybe add deletion later).
+
+Canvas Object fields:
+- id, postId, ownerId, drawing, users
+- API integration: No. Will implement CRUD with database.
+
+
+# Part 1: Back-end Skeleton Code
 ## Application Structure
 
 ```
@@ -31,24 +63,7 @@ root/
 ├─ index.html
 ```
 
-
-User Object:
-- Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
-- API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
-
-Post Object fields:
-- Id, authorId, tags, title, content, likes, commentsId
-- API integration: Yes. Create can be done on feed and dashboard. Read occurs on feed, forum, and dashboard. Update (for likes) occurs on feed and forum. Delete occurs on dashboard.
-
-Comment Object fields:
-- Id, authorId, postId, content, likes
-- API integration: Yes. Create, read, update (likes) occurs on forum page (maybe add deletion later).
-
-Canvas Object fields:
-- id, postId, ownerId, drawing, users
-- API integration: No. Will implement CRUD with database.
-
-## Frontend implementation
+# Part 2: Frontend implementation
 All pages:
 - Can logout and login using modal and JS on all pages when applicable.
 
