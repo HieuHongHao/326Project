@@ -364,7 +364,7 @@ let comments = [
   },
   {
     "id": 40,
-    "postId": 38,
+    "postId": 19,
     "content": "Sapiente autem autem dolorum repellat ratione dicta eum optio. Officiis pariatur quaerat optio quasi quod sunt reiciendis. Molestias assumenda veniam nulla officiis quae adipisci. Voluptatum voluptas et eum sed assumenda. Tempora accusantium animi. Ut voluptate iure vel nihil id facilis voluptates.",
     "authorId": 72,
     "likes": 9750,
@@ -629,7 +629,6 @@ for(let i = 0 ; i < 21;i++){
 for(let i = 21 ; i < 40;i++){
   comments[i].postId = i - 21;
 }
-
 
 
 
