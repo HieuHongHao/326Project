@@ -12,7 +12,7 @@ let users = [
     email: "Matteo.Kuhlman79@hotmail.com",
     name: "Burnice Lebsack",
     avatar: "https://loremflickr.com/480/480/abstract?lock=61721",
-    posts: [],
+    posts: [0, 1, 2, 3, 4],
     totalPosts: 56751,
     likes: 75439,
     comments: [],
