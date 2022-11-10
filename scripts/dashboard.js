@@ -24,31 +24,39 @@ export const dashboard = {
       comments.innerHTML += user.totalPosts + " Comments";
       created.innerHTML += user.created;
 
-      console.log(user)
-      for (let i = 0; i < user.posts.length; i++) {
-        await fetch(`components/searchBar.html`)
-          .then(response => response.text())
-          .then((responseText) => {
-            // Get module js if it exists
-            let responseJS = false;
-            if (responseText.includes('<script')) {
-              const jsSplit = responseText.split('<script');
-              responseText = jsSplit[0];
-              responseJS = jsSplit[1].split('></script>')[0];
-              responseJS = responseJS.match(/"([^']+)"/)[1];
-            }
-            // Load module html
-            document.getElementById('posts').innerHTML += responseText;
-            // Run module js
-            if (responseJS) {
-              fetch(responseJS)
-                .then(response => response.text())
-                .then((responseText) => {
-                  const jsFunc = new Function(responseText);
-                  jsFunc();
-                });
-            }
-          });
+      const allPosts = await api.fetchData('posts');
+      const postIds = user.posts;
+
+      const posts = allPosts.posts.filter(x => postIds.includes(x.id));
+
+      for (let i = 0; i < posts.length; i++) {
+        document.getElementById('posts').innerHTML += `
+          <div id="postId-${posts[i].id}" class="col">
+            <div class="card shadow">
+              <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
+              <div class="card-body p-2 border-1 rounded-bottom">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h5 class="card-title">${posts[i].title}</h6>
+                    <p class="cat-text-light fs-6"><i class="fa-regular fa-heart fa-l pe-1"></i> ${posts[i].likes} Likes</p>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
+                      <a id="delete-${posts[i].id}" class="btn cat-text-danger px-1" data-bs-toggle="" data-bs-target="#deleteProject"><i
+                          class="fas fa-trash-can fs-4"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      for (let i = 0; i < posts.length; i++) {
+        document.getElementById("delete-" + posts[i].id).addEventListener("click", () => {
+          document.getElementById("postId-" + posts[i].id).outerHTML = "";
+        });
       }
 
     } else {
