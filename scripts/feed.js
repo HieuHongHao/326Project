@@ -28,6 +28,7 @@ export const feed = {
       Go: "pn-card-type-light-sea-green",
       PostgreSQL: "pn-card-type-blue",
       Android: "pn-card-type-blue",
+      Guava: "pn-card-type-blue"
     };
     let currentTags = [];
     async function postRequest(data) {
