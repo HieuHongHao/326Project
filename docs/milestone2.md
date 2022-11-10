@@ -141,6 +141,10 @@ root/
 ## Dashboard page:
 - Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
 - View user information using *User* table
+### User's posts gets loaded from API
+<img src="../demos/top_github_repo_demo.gif"/>
+### User's dashboard after deleting some posts
+<img src="../demos/top_github_repo_demo.gif"/>
 
 
 
@@ -154,8 +158,8 @@ root/
 <img src="../demos/chat_demo.gif"/>
 
 ### Canvas Drawing Pad Demo
-<img src="../demos/canvas_demo_2nd_milestone.gif"/>
+<img src="../demos/dashboardBefore.JPG"/>
 
 ## Misc:
 We also implemented a feature to toggle light and dark mode:
-<img src="../demos/toggle_light_dark_demo.gif"/>
+<img src="../demos/dashboadAfter.JPG"/>
