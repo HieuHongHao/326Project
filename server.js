@@ -93,7 +93,7 @@ app.get("/api/github_repos", async (req, res) => {
   console.log(repos);
   res.status(200).json({
     status: "Sucess",
-    post: posts,
+    posts
   });
 });
 
@@ -208,13 +208,13 @@ io.on("connection", (socket) => {
 
 
 
-httpServer.listen(process.env.PORT || 9000, () =>
-  console.log("Server running on port" + process.env.PORT)
-);
-
-
-// httpServer.listen(9000, () =>
+// httpServer.listen(process.env.PORT || 9000, () =>
 //   console.log("Server running on port" + process.env.PORT)
 // );
+
+
+httpServer.listen(9000, () =>
+  console.log("Server running on port" + process.env.PORT)
+);
 
 

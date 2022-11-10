@@ -8,6 +8,7 @@ export const feed = {
     const enterTag = document.getElementById("enter-tags");
     const searchBar = document.getElementById("search-bar");
     const searchButton = document.getElementById("button-addon1");
+    const githubPostBtn = document.getElementById("github-project-button");
 
     const URL = "https://cs326project.herokuapp.com/api";
     const postClass = [
@@ -167,6 +168,12 @@ export const feed = {
       response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
     });
 
+    githubPostBtn.addEventListener("click", async () =>{
+      const response_json = await api.fetchData('github_repos');
+      console.log(response_json);
+      postContainer.replaceChildren();
+      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+    })
 
     async function getFeed() {
       const response_json = await api.fetchData('posts');
