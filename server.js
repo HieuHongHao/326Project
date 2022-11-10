@@ -42,6 +42,12 @@ app.get("/api/users", (req, res) => {
     users: users.find(filter),
   });
 });
+
+app.post("/api/users", (req,res) => {
+  
+  
+})
+
 app.get("/api/users/:id", (req, res) => {
   const userid = req.params.id;
   
