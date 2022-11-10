@@ -11,6 +11,8 @@
 ## Github API Integration
 We will be using the Github API to get the current top 5 repositories in the world. We will use this data and then display it to our feed page.
 
+<img src="../demos/api/github_repos_api.png"/>
+
 ## Our APIs
 ### User Object:
 - Fields: userId, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
@@ -125,7 +127,10 @@ root/
 ### Create and Read Posts
 <img src="../demos/create_feed_demo.gif"/>
 
-### Update a Post (by removing user ID from like array in *Posts* table)
+### Search a Post by tags and titles
+<img src="../demos/search_feed_demo.gif"/>
+
+### Update a Post (by adding/removing a user ID to like array in *Posts* table)
 
 ### Github API to display top repos
 <img src="../demos/top_github_repo_demo.gif"/>
@@ -134,7 +139,10 @@ root/
 - Can like post with like button
 
 ## Dashboard page:
-- Can create posts, delete posts, update user password, delete account
+- Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
+- View user information using *User* table
+
+
 
 ## Canvas:
 - With our canvas page we used the *User* table to do several things including:
