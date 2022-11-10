@@ -151,3 +151,8 @@ root/
 ## Misc:
 We also implemented a feature to toggle light and dark mode:
 <img src="../demos/toggle_light_dark_demo.gif"/>
+
+
+### API Flow:
+
+<img src="../public/Db.excalidraw.png">
