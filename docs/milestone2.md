@@ -121,6 +121,13 @@ root/
 ├─ index.html
 ```
 
+### Server and index
+The deployment of the app is handled on `server.js`. `server.js` sets up the API to be used and serves `index.html` which displays the contents of the website. `socket.io` is also set up in `server.js` for the chat functionality on the canvas page. Every pages of the website is loaded in and out of `index.html` depending on the URL route.
+
+### Routing
+Routing is handled through `router.js`. `router.js` loads the main contents of a page according to the URL then loads the corresponding javascript that runs that particular webpage. Other miscellaneous initializations a page requires is also handled in `router.js`.
+
+
 # Part 2: Frontend implementation
 ## All pages:
 - Can logout and login using modal and JS on all pages when applicable. This uses the *User* table to authenticate login
