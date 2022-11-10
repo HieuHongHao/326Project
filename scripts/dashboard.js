@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { utils } from './utils.js';
 export const dashboard = {
   init: async () => {
     const userId = window.localStorage.getItem("loggedIn");
@@ -22,6 +23,34 @@ export const dashboard = {
       totalPosts.innerHTML += user.totalPosts + " Created Projects";
       comments.innerHTML += user.totalPosts + " Comments";
       created.innerHTML += user.created;
+
+      console.log(user)
+      for (let i = 0; i < user.posts.length; i++) {
+        await fetch(`components/searchBar.html`)
+          .then(response => response.text())
+          .then((responseText) => {
+            // Get module js if it exists
+            let responseJS = false;
+            if (responseText.includes('<script')) {
+              const jsSplit = responseText.split('<script');
+              responseText = jsSplit[0];
+              responseJS = jsSplit[1].split('></script>')[0];
+              responseJS = responseJS.match(/"([^']+)"/)[1];
+            }
+            // Load module html
+            document.getElementById('posts').innerHTML += responseText;
+            // Run module js
+            if (responseJS) {
+              fetch(responseJS)
+                .then(response => response.text())
+                .then((responseText) => {
+                  const jsFunc = new Function(responseText);
+                  jsFunc();
+                });
+            }
+          });
+      }
+
     } else {
       window.location.href = "?=404";
     }

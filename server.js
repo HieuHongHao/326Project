@@ -44,8 +44,12 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users", (req,res) => {
-  
-  
+  const info = req.body;
+  users.insert(info);
+  res.status(200).json({
+    status: "Sucess",
+    user: info
+  })
 })
 
 app.get("/api/users/:id", (req, res) => {
@@ -177,6 +181,9 @@ app.delete("/api/posts/:id", (req, res) => {
 })
 
 
+
+
+
 const options = {
   cors: {
     origin: "*",
@@ -241,6 +248,8 @@ io.on("connection", (socket) => {
 //     delete usernames[socket.id];
 //   });
 // });
+
+
 
 
 

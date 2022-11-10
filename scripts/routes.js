@@ -2,7 +2,7 @@ import { utils } from './utils.js';
 import { feed } from './feed.js';
 import { dashboard } from './dashboard.js';
 import { canvas } from './canvas.js';
-import {chat} from './chat.js';
+import { chat } from './chat.js';
 
 function isLoggedIn() {
   return window.localStorage.getItem("loggedIn") !== null;

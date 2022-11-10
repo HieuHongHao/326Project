@@ -9,7 +9,8 @@ export const feed = {
     const searchBar = document.getElementById("search-bar");
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
-
+    const topBttn = document.getElementById("top-post-button");
+    
     const URL = "https://cs326project.herokuapp.com/api";
     const postClass = [
       "d-flex",
@@ -78,8 +79,8 @@ export const feed = {
       const tags = createTag(data.tags);
       const content = document.createElement("div");
       const likeButton = document.createElement("button");
-      
-      
+
+
 
       title.classList.add("fs-4", "fw-bold", "m-0");
       title.innerHTML = data.title;
@@ -90,9 +91,9 @@ export const feed = {
       likeButton.className = "btn btn-outline-light mx-1 pb-3"
       likeButton.innerHTML = data.likes;
       likeButton.addEventListener("click", () => {
-        likeButton.innerHTML += 1;
+        likeButton.innerHTML = parseInt(likeButton.innerHTML) + 1;
       })
-      
+
 
       wrapper.classList.add("px-3");
       wrapper.appendChild(tags);
@@ -181,9 +182,15 @@ export const feed = {
       response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
     });
 
-    githubPostBtn.addEventListener("click", async () =>{
+    githubPostBtn.addEventListener("click", async () => {
       const response_json = await api.fetchData('github_repos');
       console.log(response_json);
+      postContainer.replaceChildren();
+      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+    })
+
+    topBttn.addEventListener("click",async () => {
+      const response_json = await api.fetchData('posts?sort=desc');
       postContainer.replaceChildren();
       response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
