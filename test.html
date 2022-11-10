@@ -5,12 +5,14 @@
   <title>KanvasWire</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" href="css/canvas.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
   <p id="write">Hi</p>
   <a id="asd">see my page!</a>
-
+<i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
 </body>
 
 <script>
@@ -24,6 +26,7 @@
     var para2 = new URLSearchParams(window.location.search);
     var pass = para.get("KEY");
     document.getElementById("write").innerHTML = pass;
+
 </script>
 
 </html>
