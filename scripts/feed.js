@@ -77,6 +77,9 @@ export const feed = {
       const title = document.createElement("p");
       const tags = createTag(data.tags);
       const content = document.createElement("div");
+      const likeButton = document.createElement("button");
+      
+      
 
       title.classList.add("fs-4", "fw-bold", "m-0");
       title.innerHTML = data.title;
@@ -84,10 +87,14 @@ export const feed = {
       content.classList.add("pb-4");
       content.innerHTML = data.content;
 
+      likeButton.className = "btn btn-outline-light mx-1"
+      likeButton.innerHTML = data.likes;
+
       wrapper.classList.add("px-3");
       wrapper.appendChild(tags);
       wrapper.appendChild(title);
       wrapper.appendChild(content);
+      wrapper.appendChild(likeButton)
       return wrapper;
     }
 
