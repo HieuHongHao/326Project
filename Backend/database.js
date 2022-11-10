@@ -359,8 +359,6 @@ class CrudService {
     );
   }
   findByIdAndUpdate(id, update) {
-    console.log(id);
-    console.log(this.data[id]);
     this.data[id] = { ...this.data[id], ...update };
     return this.data[id];
   }

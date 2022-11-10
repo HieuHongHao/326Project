@@ -44,8 +44,12 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users", (req,res) => {
-  
-  
+  const info = req.body;
+  users.insert(info);
+  res.status(200).json({
+    status: "Sucess",
+    user: info
+  })
 })
 
 app.get("/api/users/:id", (req, res) => {
@@ -177,6 +181,9 @@ app.delete("/api/posts/:id", (req, res) => {
 })
 
 
+
+
+
 const options = {
   cors: {
     origin: "*",
@@ -244,13 +251,15 @@ io.on("connection", (socket) => {
 
 
 
-httpServer.listen(process.env.PORT || 9000, () =>
-  console.log("Server running on port" + process.env.PORT)
-);
 
 
-// httpServer.listen(9000, () =>
+// httpServer.listen(process.env.PORT || 9000, () =>
 //   console.log("Server running on port" + process.env.PORT)
 // );
+
+
+httpServer.listen(9000, () =>
+  console.log("Server running on port" + process.env.PORT)
+);
 
 
