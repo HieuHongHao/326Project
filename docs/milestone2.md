@@ -13,11 +13,12 @@ We will be using the Github API to get the current top 5 repositories in the wor
 
 ## Our APIs
 ### User Object:
-- Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
+- Fields: userId, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
+- API integration: Yes. We will set up a database with authentication. Login functionality currently uses this API.
 
 | Fields        | Data Type   |
 | ------------- | ----------- |
-| Id            | int         |
+| userId        | int         |
 | email         | string      |
 | avatar        | string      |
 | totalPosts    | int         |
@@ -27,21 +28,70 @@ We will be using the Github API to get the current top 5 repositories in the wor
 | favouriteTech | string      |
 | password      | string      |
 
+View user: https://cs326project.herokuapp.com/api/users
 <img src="../demos/api/users_read.png"/>
 
-- API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
+Read user: https://cs326project.herokuapp.com/api/users/1 
+<img src="../demos/api/users_search.png"/>
 
-Post Object fields:
-- Id, authorId, tags, title, content, likes, commentsId
+
+### Post Object fields:
+- Fields: Id, authorId, tags, title, content, likes, commentsId
 - API integration: Yes. Create can be done on feed and dashboard. Read occurs on feed, forum, and dashboard. Update (for likes) occurs on feed and forum. Delete occurs on dashboard.
 
-Comment Object fields:
-- Id, authorId, postId, content, likes
+| Fields        | Data Type   |
+| ------------- | ----------- |
+| postId        | int         |
+| authorId      | int         |
+| tags          | [string]    |
+| title         | string      |
+| content       | string      |
+| likes         | [int]       |
+| commentsId    | [int]       |
+
+View user: https://cs326project.herokuapp.com/api/posts
+<img src="../demos/api/posts_read.png"/>
+
+Search a user: https://cs326project.herokuapp.com/api/posts/1 
+<img src="../demos/api/posts_search.png"/>
+
+
+### Comment Object fields:
+- Field: commentId, authorId, postId, content, likes
 - API integration: Yes. Create, read, update (likes) occurs on forum page (maybe add deletion later).
 
-Canvas Object fields:
-- id, postId, ownerId, drawing, users
-- API integration: No. Will implement CRUD with database.
+| Fields        | Data Type   |
+| ------------- | ----------- |
+| commentId     | int         |
+| authorId      | int         |
+| postId        | int         |
+| content       | string      |
+| likes         | [int]       |
+
+View comments: https://cs326project.herokuapp.com/api/posts
+<img src="../demos/api/posts_read.png"/>
+
+Search a comment: https://cs326project.herokuapp.com/api/posts/1 
+<img src="../demos/api/posts_search.png"/>
+
+
+### Canvas Object fields:
+- Field: canvasId, postId, ownerId, drawing, users
+- API integration: We want to store art strokes (stored as an array) and this is hard to store in a JSON file when multiple users need to write on it simultaneously and in real-time; So we saved this for when we use MongoDB.
+
+| Fields        | Data Type   |
+| ------------- | ----------- |
+| canvasId      | int         |
+| postId        | int         |
+| ownerId       | int         |
+| drawing       | [strokes]   |
+| users         | [int]       |
+
+View canvases: https://cs326project.herokuapp.com/api/canvas
+<img src="../demos/api/canvas_read.png"/>
+
+Search a canvas: https://cs326project.herokuapp.com/api/canvas/1 
+<img src="../demos/api/canvas_search.png"/>
 
 
 # Part 1: Back-end Skeleton Code
@@ -80,5 +130,17 @@ Forum page:
 Dashboard page:
 - Can create posts, delete posts, update user password, delete account
 
-Canvas:
-- Chat socket integration
+## Canvas:
+- With our canvas page we used the *User* table to do several things including:
+    - Check whether user is in a canvas
+    - Get users PFP and name to display in chat
+- We used socket.io to let users from different accounts type to each other; Here is a video demo of our work:
+### Chat Demo
+<img src="../demos/chat_demo.gif"/>
+
+### Canvas Drawing Pad Demo
+<img src="../demos/canvas_demo_2nd_milestone.gif"/>
+
+## Misc:
+We also implemented a feature to toggle light and dark mode:
+<img src="../demos/toggle_light_dark_demo.gif"/>
