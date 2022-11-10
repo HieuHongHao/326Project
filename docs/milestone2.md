@@ -14,6 +14,10 @@ We will be using the Github API to get the current top 5 repositories in the wor
 <img src="../demos/api/github_repos_api.png"/>
 
 ## Our APIs
+
+### API Flow:
+ <img src="../public/Db.excalidraw.png">
+
 ### User Object:
 - Fields: userId, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
 - API integration: Yes. We will set up a database with authentication. Login functionality currently uses this API.
@@ -117,6 +121,13 @@ root/
 ├─ index.html
 ```
 
+### Server and index
+The deployment of the app is handled on `server.js`. `server.js` sets up the API to be used and serves `index.html` which displays the contents of the website. `socket.io` is also set up in `server.js` for the chat functionality on the canvas page. Every pages of the website is loaded in and out of `index.html` depending on the URL route.
+
+### Routing
+Routing is handled through `router.js`. `router.js` loads the main contents of a page according to the URL then loads the corresponding javascript that runs that particular webpage. Other miscellaneous initializations a page requires is also handled in `router.js`.
+
+
 # Part 2: Frontend implementation
 ## All pages:
 - Can logout and login using modal and JS on all pages when applicable. This uses the *User* table to authenticate login
@@ -172,7 +183,3 @@ root/
 ## Misc:
 We also implemented a feature to toggle light and dark mode:
 <img src="../demos/toggle_light_dark_demo.gif"/>
-
-
-### API Flow:
- <img src="../public/Db.excalidraw.png">
