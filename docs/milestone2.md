@@ -15,7 +15,7 @@ We will be using the Github API to get the current top 5 repositories in the wor
 
 ## Our APIs
 
-### API Flow:
+### Database Diagram:
  <img src="../public/Db.excalidraw.png">
 
 ### User Object:
