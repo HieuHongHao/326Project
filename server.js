@@ -208,13 +208,13 @@ io.on("connection", (socket) => {
 
 
 
-// httpServer.listen(process.env.PORT || 9000, () =>
-//   console.log("Server running on port" + process.env.PORT)
-// );
-
-
-httpServer.listen(9000, () =>
+httpServer.listen(process.env.PORT || 9000, () =>
   console.log("Server running on port" + process.env.PORT)
 );
+
+
+// httpServer.listen(9000, () =>
+//   console.log("Server running on port" + process.env.PORT)
+// );
 
 
