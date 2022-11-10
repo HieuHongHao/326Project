@@ -27,7 +27,7 @@ We will be using the Github API to get the current top 5 repositories in the wor
 | favouriteTech | string      |
 | password      | string      |
 
-<img src="users_read.png"/>
+<img src="../demos/users_read.png"/>
 
 - API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
 
