@@ -2,11 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
-const {Octokit} = require("octokit");
+const { Octokit } = require("octokit");
 
 const octokit = new Octokit();
-
-
 
 const {
   UserService,
@@ -31,9 +29,8 @@ app.use(
 app.use(express.json());
 app.use(morgan("tiny"));
 
-
 app.get("/", (req, res) => {
-  res.sendFile('index.html', { root: __dirname })
+  res.sendFile("index.html", { root: __dirname });
 });
 
 app.get("/api/users", (req, res) => {
@@ -75,29 +72,30 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
-app.get("/api/github_repos",async (req,res) =>{
+app.get("/api/github_repos", async (req, res) => {
   const response = await octokit.rest.search.repos({
-    q: "java in:topics"
-  })
-  
-  const repos = response.data.items.slice(0,6);
-  // const posts = repos.map(repo => {
-  //   id: repo.id,
-  //   content: repo.description,
-  //   likes: repo.stargazers_count,
-  //   hearts: repo.watchers_count,
-  //   tags: repo.topics,
-  //   title: repo.full_name
-  // })
+    q: "java in:topics",
+  });
+
+  const repos = response.data.items.slice(0, 6);
+  const posts = repos.map((repo) => {
+    return {
+      id: repo.id,
+      content: repo.description,
+      likes: repo.stargazers_count,
+      hearts: repo.watchers_count,
+      tags: repo.topics.map(
+        (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
+      ),
+      title: repo.full_name,
+    };
+  });
   console.log(repos);
   res.status(200).json({
     status: "Sucess",
-    post: repos
-  })
-})
-
-
-
+    post: posts,
+  });
+});
 
 app.post("/api/posts/:id/comments", (req, res) => {
   const postId = req.params.id;
@@ -143,10 +141,6 @@ app.put("/api/posts/:id", (req, res) => {
   });
 });
 
-
-
-
-
 const options = {
   cors: {
     origin: "*",
@@ -154,7 +148,7 @@ const options = {
   },
 };
 const httpServer = require("http").createServer(app);
-const io = module.exports.io = require("socket.io")(httpServer, options);
+const io = (module.exports.io = require("socket.io")(httpServer, options));
 const sockets = {};
 const usernames = {};
 const inbox = {};
@@ -212,5 +206,8 @@ io.on("connection", (socket) => {
 //   });
 // });
 
-httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port" + process.env.PORT));
+httpServer.listen(process.env.PORT || 9000, () =>
+  console.log("Server running on port" + process.env.PORT)
+);
+
 
