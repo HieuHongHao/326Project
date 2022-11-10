@@ -118,16 +118,24 @@ root/
 ```
 
 # Part 2: Frontend implementation
-All pages:
-- Can logout and login using modal and JS on all pages when applicable.
+## All pages:
+- Can logout and login using modal and JS on all pages when applicable. This uses the *User* table to authenticate login
 
-Feed page:
-- Can create posts, search for posts, and like posts with buttons
+## Feed page:
+- On this page, you can create posts, search for posts, search top Github repos, and like a post. This uses the CRUD of the Posts API as well as GitHub's API
 
-Forum page:
+### Create and Read Posts
+<img src="../demos/create_feed_demo.gif"/>
+
+### Update a Post (by removing user ID from like array in *Posts* table)
+
+### Github API to display top repos
+<img src="../demos/top_github_repo_demo.gif"/>
+
+## Forum page:
 - Can like post with like button
 
-Dashboard page:
+## Dashboard page:
 - Can create posts, delete posts, update user password, delete account
 
 ## Canvas:
@@ -135,6 +143,7 @@ Dashboard page:
     - Check whether user is in a canvas
     - Get users PFP and name to display in chat
 - We used socket.io to let users from different accounts type to each other; Here is a video demo of our work:
+    - The video below demos 2 users (logged in on 2 different browsers) chatting with each other.
 ### Chat Demo
 <img src="../demos/chat_demo.gif"/>
 
