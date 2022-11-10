@@ -143,6 +143,7 @@ root/
 - View user information using *User* table
 ### User's posts gets loaded from API
 <img src="../demos/dashboardBefore.JPG"/>
+
 ### User's dashboard after deleting some posts
 <img src="../demos/dashboadAfter.JPG"/>
 
