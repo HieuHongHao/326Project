@@ -184,3 +184,8 @@ Routing is handled through `router.js`. `router.js` loads the main contents of a
 ## Misc:
 We also implemented a feature to toggle light and dark mode:
 <img src="../demos/toggle_light_dark_demo.gif"/>
+
+## Division of Labor
+ - Peter Phan: Refractored codebase, setup routing, frontend JS, helped debug Heroku, worked on milestone doc
+ - Phat Nguyen: frontend JS, Canvas's `socket.io` chat implementation, helped debug Heroku, worked on milestone doc
+ - Hieu Nguyen: Designed backend API and setup `express.js`, frontend JS, helped debug Heroku, worked on milestone doc
