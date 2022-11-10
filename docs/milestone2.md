@@ -11,6 +11,8 @@
 ## Github API Integration
 We will be using the Github API to get the current top 5 repositories in the world. We will use this data and then display it to our feed page.
 
+<img src="../demos/api/github_repos_api.png"/>
+
 ## Our APIs
 ### User Object:
 - Fields: userId, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
@@ -125,16 +127,35 @@ root/
 ### Create and Read Posts
 <img src="../demos/create_feed_demo.gif"/>
 
-### Update a Post (by removing user ID from like array in *Posts* table)
+### Search a Post by tags and titles
+<img src="../demos/search_feed_demo.gif"/>
+
+### Update a Post (by adding/removing a user ID to like array in *Posts* table)
 
 ### Github API to display top repos
 <img src="../demos/top_github_repo_demo.gif"/>
 
 ## Forum page:
 - Can like post with like button
+     - Purposely makes the like button disappear to incentivize people from unliking a post so that each post they like are serious
+<img src="../demos/heart_liking_post_demo.gif"/>
+
 
 ## Dashboard page:
-- Can create posts, delete posts, update user password, delete account
+- Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
+- View user information using *User* table
+
+### User's posts gets loaded from API (reads *Posts* table)
+<img src="../demos/dashboardBefore.JPG"/>
+
+### User's dashboard after deleting some posts (deletes *Posts* table)
+<img src="../demos/dashboadAfter.JPG"/>
+
+### User's update password (updates *User* table)
+<img src="../demos/change_password.png"/>
+
+### User deletes account (deletes from *User* table)
+<img src="../demos/delete_account.png"/>
 
 ## Canvas:
 - With our canvas page we used the *User* table to do several things including:
@@ -154,5 +175,4 @@ We also implemented a feature to toggle light and dark mode:
 
 
 ### API Flow:
-
-<img src="../public/Db.excalidraw.png">
+ <img src="../public/Db.excalidraw.png">

@@ -11,12 +11,12 @@ function loginSuccess(acc) {
   storage.setItem("loggedIn", acc);
 }
 
-async function getUserData(){
+async function getUserData() {
   const URL = "https://cs326project.herokuapp.com/api/users";
-    let response = await fetch(URL);
-    if (response.ok) {
-      return await response.json();
-    }
+  let response = await fetch(URL);
+  if (response.ok) {
+    return await response.json();
+  }
 }
 
 async function login() {
@@ -39,3 +39,13 @@ async function login() {
 
 const loginBtn = document.getElementById("loginSubmit");
 loginBtn.addEventListener("click", login);
+
+
+// async function deletePost() {
+//   const postsDiv = document.getElementById("posts");
+
+// }
+
+// const deletePostBtn = document.getElementById("deletePost");
+// deletePostBtn.addEventListener("click", deletePost);
+

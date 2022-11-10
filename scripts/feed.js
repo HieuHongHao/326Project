@@ -78,20 +78,32 @@ export const feed = {
       const title = document.createElement("p");
       const tags = createTag(data.tags);
       const content = document.createElement("div");
-      const likeButton = document.createElement("button");
-
-
-
       title.classList.add("fs-4", "fw-bold", "m-0");
       title.innerHTML = data.title;
-
       content.classList.add("pb-4");
       content.innerHTML = data.content;
-
-      likeButton.className = "btn btn-outline-light mx-1 pb-3"
-      likeButton.innerHTML = data.likes;
+      // <i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
+      // const likeButton = document.createElement("button");
+      // title.classList.add("fs-4", "fw-bold", "m-0");
+      // title.innerHTML = data.title;
+      // content.classList.add("pb-4");
+      // content.innerHTML = data.content;
+      // likeButton.className = "btn btn-outline-light mx-1 pb-3"
+      // likeButton.innerHTML = data.likes;
+      // likeButton.addEventListener("click", () => {
+      //   likeButton.innerHTML = parseInt(likeButton.innerHTML) + 1;
+      // })
+      const likeButton = document.createElement("div");
+      const heart = document.createElement("i");
+      const likeText = document.createElement("span");
+      
+      heart.className = "fa-solid fa-heart";
+      likeText.innerHTML = data.likes;
+      likeButton.appendChild(heart);
+      likeButton.appendChild(likeText);
+      likeButton.className = "post-like-container"
       likeButton.addEventListener("click", () => {
-        likeButton.innerHTML = parseInt(likeButton.innerHTML) + 1;
+        likeButton.innerHTML = parseInt(likeText.innerHTML) + 1;
       })
 
 

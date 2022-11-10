@@ -40,49 +40,6 @@
     </div>
     <div class="col-6 me-5">
       <div id="posts" class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card shadow h-100">
-            <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
-            <div class="card-body p-2 border-1 rounded-bottom">
-              <div class="d-flex justify-content-between">
-                <h6 class="card-title">Project 2</h6>
-                <div>
-                  <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
-                  <a href="#" class="btn cat-text-danger px-1" data-bs-toggle="modal" data-bs-target="#deleteProject"><i
-                      class="fas fa-trash-can fs-4"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 shadow">
-            <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
-            <div class="card-body p-2 border-1 rounded-bottom">
-              <div class="d-flex justify-content-between">
-                <h6 class="card-title">Project 3 (some other author)</h6>
-                <div>
-                  <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 shadow">
-            <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
-            <div class="card-body p-2 border-1 rounded-bottom">
-              <div class="d-flex justify-content-between">
-                <h6 class="card-title">Project 4</h6>
-                <div>
-                  <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
-                  <a href="#" class="btn cat-text-danger px-1" data-bs-toggle="modal" data-bs-target="#deleteProject"><i
-                      class="fas fa-trash-can fs-4"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
 
@@ -95,6 +52,9 @@
 
       <div id="settings">
         <div class="d-flex py-2">
+          <a href="?=feed" class="btn btn-success shadow">Create Post</a>
+        </div>
+        <div class="d-flex py-2">
           <a href="#" class="btn btn-warning shadow" data-bs-toggle="modal" data-bs-target="#changePassword">Change
             Password</a>
         </div>
@@ -104,83 +64,8 @@
         </div>
       </div>
 
-      <div class="modal fade" id="changePassword" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content cat-bg-light cat-text-light">
-            <div class="modal-body">
-              <div class="text-end">
-                <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
-              </div>
-              <div class="d-flex flex-column col-10 mx-auto">
-                <h3 class="text-center pb-1">Change Password</h3>
-                <div>
-                  <div class="mb-3 mt-4">
-                    <label for="exampleInputEmail3" class="form-label">New Password</label>
-                    <input type="password" class="form-control" id="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="">
-                  </div>
-                  <div class="d-flex flex-column text-center pt-4 col-8 mx-auto">
-                    <button type="submit" class="btn btn-warning py-2">Change Password</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-      <div class="modal fade" id="deleteAccount" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content cat-bg-light cat-text-light">
-            <div class="modal-body">
-              <div class="text-end">
-                <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
-              </div>
-              <div class="d-flex flex-column col-10 mx-auto">
-                <h3 class="text-center pb-1">Delete Account</h3>
-                <form>
-                  <div class="mb-3 mt-4">
-                    <label for="" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="">
-                  </div>
-                  <div class="d-flex flex-column text-center pt-4 col-6 mx-auto">
-                    <button type="submit" class="btn btn-danger py-2">Are you sure????</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade" id="deleteProject" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content cat-bg-light cat-text-light">
-            <div class="modal-body">
-              <div class="text-end">
-                <a data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-xmark fs-5"></i></a>
-              </div>
-              <div class="d-flex flex-column col-10 mx-auto">
-                <h3 class="text-center pb-1">Delete Project</h3>
-                <form>
-                  <div class="mb-3 mt-4">
-                    <label for="" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="">
-                  </div>
-                  <div class="d-flex flex-column text-center pt-4 col-6 mx-auto">
-                    <button type="submit" class="btn btn-danger py-2">Are you sure????</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
