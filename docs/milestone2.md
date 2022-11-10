@@ -8,8 +8,11 @@
  -  api/posts/:id: return the data of post with matching id
  -  api/users: return all users information
  
-## APIs
-User Object:
+## Github API Integration
+We will be using the Github API to get the current top 5 repositories in the world. We will use this data and then display it to our feed page.
+
+## Our APIs
+### User Object:
 - Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
 
 | Fields        | Data Type   |
@@ -24,6 +27,7 @@ User Object:
 | favouriteTech | string      |
 | password      | string      |
 
+<img src="users_read.png"/>
 
 - API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
 
