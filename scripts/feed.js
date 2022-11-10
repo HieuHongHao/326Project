@@ -89,6 +89,10 @@ export const feed = {
 
       likeButton.className = "btn btn-outline-light mx-1 pb-3"
       likeButton.innerHTML = data.likes;
+      likeButton.addEventListener("click", () => {
+        likeButton.innerHTML += 1;
+      })
+      
 
       wrapper.classList.add("px-3");
       wrapper.appendChild(tags);
