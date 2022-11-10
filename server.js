@@ -76,13 +76,15 @@ app.get("/api/posts/:id/comments", (req, res) => {
 });
 
 app.get("/api/github_repos",async (req,res) =>{
-  const repos = await octokit.rest.search.repos({
+  const response = await octokit.rest.search.repos({
     q: "react in:topics"
   })
-  const result = repos.slice(0,6)
+  
+  const repos = response.data.items.slice(0,6);
+  console.log(repos);
   res.status(200).json({
     status: "Sucess",
-    post: result
+    post: repos
   })
 })
 
@@ -202,4 +204,5 @@ io.on("connection", (socket) => {
 //   });
 // });
 
-httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port" + process.env.PORT));
+// httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port" + process.env.PORT));
+httpServer.listen(9000, () => console.log("Server running on port" + process.env.PORT));
