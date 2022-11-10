@@ -1,5 +1,6 @@
-## 1 APIs
- Data model:
+
+# Part 0: Project API Planning
+## Data Model
  -  api/posts: returning all the posts 
     query: 
         tag: return all the posts with matching tags
@@ -7,13 +8,23 @@
  -  api/posts/:id: return the data of post with matching id
  -  api/users: return all users information
  
-
-
-
-
-## Application Structure
+## APIs
 User Object:
 - Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
+
+| Fields        | Data Type   |
+| ------------- | ----------- |
+| Id            | int         |
+| email         | string      |
+| avatar        | string      |
+| totalPosts    | int         |
+| likes         | int         |
+| comments      | int         |
+| dateCreated   | datetime    |
+| favouriteTech | string      |
+| password      | string      |
+
+
 - API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
 
 Post Object fields:
@@ -28,7 +39,31 @@ Canvas Object fields:
 - id, postId, ownerId, drawing, users
 - API integration: No. Will implement CRUD with database.
 
-## Frontend implementation
+
+# Part 1: Back-end Skeleton Code
+## Application Structure
+
+```
+root/
+├─ css/
+├─ backend/
+│  ├─ database.js
+├─ pages/
+│  ├─ feed.html
+│  ├─ forum.html
+│  ├─ canvas.html
+│  ├─ dashboard.html
+│  ├─ dashboard.html
+├─ scripts/
+│  ├─ main.js
+│  ├─ modals.js
+│  ├─ utils.js
+├─ package.json
+├─ server.js
+├─ index.html
+```
+
+# Part 2: Frontend implementation
 All pages:
 - Can logout and login using modal and JS on all pages when applicable.
 
