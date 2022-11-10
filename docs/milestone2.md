@@ -9,9 +9,29 @@
  
 
 
-
-
 ## Application Structure
+
+```
+root/
+├─ css/
+├─ backend/
+│  ├─ database.js
+├─ pages/
+│  ├─ feed.html
+│  ├─ forum.html
+│  ├─ canvas.html
+│  ├─ dashboard.html
+│  ├─ dashboard.html
+├─ scripts/
+│  ├─ main.js
+│  ├─ modals.js
+│  ├─ utils.js
+├─ package.json
+├─ server.js
+├─ index.html
+```
+
+
 User Object:
 - Fields: Id, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
 - API integration: Yes, but temporary until we set up a database with authentication. Login functionality currently uses this API.
