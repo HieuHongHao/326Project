@@ -130,5 +130,17 @@ Forum page:
 Dashboard page:
 - Can create posts, delete posts, update user password, delete account
 
-Canvas:
-- Chat socket integration
+## Canvas:
+- With our canvas page we used the *User* table to do several things including:
+    - Check whether user is in a canvas
+    - Get users PFP and name to display in chat
+- We used socket.io to let users from different accounts type to each other; Here is a video demo of our work:
+### Chat Demo
+<img src="../demos/chat_demo.gif"/>
+
+### Canvas Drawing Pad Demo
+<img src="../demos/canvas_demo_2nd_milestone.gif"/>
+
+## Misc:
+We also implemented a feature to toggle light and dark mode:
+<img src="../demos/toggle_light_dark_demo.gif"/>
