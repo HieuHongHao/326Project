@@ -229,3 +229,15 @@
 .list-group-item {
   border-color: var(--cat-text-light) !important;
 }
+.post-like-container{
+  padding: 0.2em;
+  padding-bottom: 1em;
+  margin-top: -1em;
+}
+.post-like-container i{
+  color: red;
+  font-size: 14px;
+}
+.post-like-container span{
+  margin-left: 0.3em;
+}
