@@ -22,6 +22,10 @@ export const dashboard = {
       totalPosts.innerHTML += user.totalPosts + " Created Projects";
       comments.innerHTML += user.totalPosts + " Comments";
       created.innerHTML += user.created;
+      console.log(user.posts)
+
+
+
     } else {
       window.location.href = "?=404";
     }
