@@ -141,6 +141,11 @@ root/
 ## Dashboard page:
 - Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
 - View user information using *User* table
+### User's posts gets loaded from API
+<img src="../demos/dashboardBefore.JPG"/>
+
+### User's dashboard after deleting some posts
+<img src="../demos/dashboadAfter.JPG"/>
 
 
 
