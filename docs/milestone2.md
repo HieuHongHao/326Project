@@ -14,6 +14,10 @@ We will be using the Github API to get the current top 5 repositories in the wor
 <img src="../demos/api/github_repos_api.png"/>
 
 ## Our APIs
+
+### API Flow:
+ <img src="../public/Db.excalidraw.png">
+
 ### User Object:
 - Fields: userId, email, name, avatar, posts, totalPosts, likes, comments, dateCreated, favouriteTech, password
 - API integration: Yes. We will set up a database with authentication. Login functionality currently uses this API.
@@ -172,7 +176,3 @@ root/
 ## Misc:
 We also implemented a feature to toggle light and dark mode:
 <img src="../demos/toggle_light_dark_demo.gif"/>
-
-
-### API Flow:
- <img src="../public/Db.excalidraw.png">
