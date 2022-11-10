@@ -8,6 +8,7 @@ export const feed = {
     const enterTag = document.getElementById("enter-tags");
     const searchBar = document.getElementById("search-bar");
     const searchButton = document.getElementById("button-addon1");
+    const githubPostBtn = document.getElementById("github-project-button");
 
     const URL = "https://cs326project.herokuapp.com/api";
     const postClass = [
@@ -26,6 +27,8 @@ export const feed = {
       Python: "pn-card-type-yellow",
       Go: "pn-card-type-light-sea-green",
       PostgreSQL: "pn-card-type-blue",
+      Android: "pn-card-type-blue",
+      Guava: "pn-card-type-blue"
     };
     let currentTags = [];
     async function postRequest(data) {
@@ -74,6 +77,9 @@ export const feed = {
       const title = document.createElement("p");
       const tags = createTag(data.tags);
       const content = document.createElement("div");
+      const likeButton = document.createElement("button");
+      
+      
 
       title.classList.add("fs-4", "fw-bold", "m-0");
       title.innerHTML = data.title;
@@ -81,10 +87,18 @@ export const feed = {
       content.classList.add("pb-4");
       content.innerHTML = data.content;
 
+      likeButton.className = "btn btn-outline-light mx-1 pb-3"
+      likeButton.innerHTML = data.likes;
+      likeButton.addEventListener("click", () => {
+        likeButton.innerHTML += 1;
+      })
+      
+
       wrapper.classList.add("px-3");
       wrapper.appendChild(tags);
       wrapper.appendChild(title);
       wrapper.appendChild(content);
+      wrapper.appendChild(likeButton)
       return wrapper;
     }
 
@@ -167,6 +181,12 @@ export const feed = {
       response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
     });
 
+    githubPostBtn.addEventListener("click", async () =>{
+      const response_json = await api.fetchData('github_repos');
+      console.log(response_json);
+      postContainer.replaceChildren();
+      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+    })
 
     async function getFeed() {
       const response_json = await api.fetchData('posts');
