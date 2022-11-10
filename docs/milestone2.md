@@ -131,6 +131,7 @@ root/
 <img src="../demos/search_feed_demo.gif"/>
 
 ### Update a Post (by adding/removing a user ID to like array in *Posts* table)
+<img src="../demos/heart_liking_post_demo.gif"/>
 
 ### Github API to display top repos
 <img src="../demos/top_github_repo_demo.gif"/>
@@ -138,8 +139,8 @@ root/
 ## Forum page:
 - Can like post with like button
      - Purposely makes the like button disappear to incentivize people from unliking a post so that each post they like are serious
-<img src="../demos/heart_liking_post_demo.gif"/>
 
+<img src="../demos/forum_demo.gif"/>
 
 ## Dashboard page:
 - Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
