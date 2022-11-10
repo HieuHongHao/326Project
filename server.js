@@ -151,6 +151,14 @@ app.put("/api/posts/:id", (req, res) => {
   });
 });
 
+app.delete("/api/posts/:id", (req, res) => {
+  res.status(200).json({
+    status: "Success",
+    post: posts.delete(req.params.id),
+  });
+})
+
+
 const options = {
   cors: {
     origin: "*",
