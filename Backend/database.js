@@ -34,10 +34,12 @@ let users = [
     password: "a8kj6i9djsbzrc6",
   },
 ];
+
+
 let comments = [
   {
-    id: 93,
-    postId: 36,
+    id: 0,
+    postId: 0,
     content:
       "Non illo laborum corrupti. Deserunt et sequi. Accusantium consequatur omnis. Doloremque aperiam corrupti est nesciunt rerum architecto magni quas.",
     authorId: 0,
@@ -45,8 +47,8 @@ let comments = [
     hearts: 23876,
   },
   {
-    id: 35,
-    postId: 77,
+    id: 1,
+    postId: 1,
     content:
       "Rem voluptas recusandae laudantium fugiat laborum. Nihil fugiat nostrum nihil veniam quidem placeat fugit. Doloremque vitae iste ducimus repellat aliquid quisquam.",
     authorId: 1,
@@ -54,8 +56,8 @@ let comments = [
     hearts: 58476,
   },
   {
-    id: 5,
-    postId: 94,
+    id: 2,
+    postId: 2,
     content:
       "Pariatur consectetur voluptate distinctio nam quos sequi. Similique similique tempora perspiciatis perferendis laboriosam odit non animi. Possimus autem ducimus adipisci quia modi incidunt fugiat. Rem praesentium error aperiam eaque.",
     authorId: 2,
@@ -63,7 +65,16 @@ let comments = [
     hearts: 37158,
   },
   {
-    id: 10,
+    id: 3,
+    postId: 3,
+    content:
+      "Rem voluptas recusandae laudantium fugiat laborum. Nihil fugiat nostrum nihil veniam quidem placeat fugit. Doloremque vitae iste ducimus repellat aliquid quisquam.",
+    authorId: 1,
+    likes: 54163,
+    hearts: 58476,
+  },
+  {
+    id: 4,
     postId: 77,
     content:
       "Rem voluptas recusandae laudantium fugiat laborum. Nihil fugiat nostrum nihil veniam quidem placeat fugit. Doloremque vitae iste ducimus repellat aliquid quisquam.",
@@ -72,15 +83,296 @@ let comments = [
     hearts: 58476,
   },
   {
-    id: 90,
-    postId: 77,
-    content:
-      "Rem voluptas recusandae laudantium fugiat laborum. Nihil fugiat nostrum nihil veniam quidem placeat fugit. Doloremque vitae iste ducimus repellat aliquid quisquam.",
-    authorId: 1,
-    likes: 54163,
-    hearts: 58476,
+    "id": 5,
+    "postId": 97,
+    "content": "Odit voluptatum numquam est consequatur quis iure maiores natus. Odio tempora fugiat. Cupiditate quisquam enim.",
+    "authorId": 14,
+    "likes": 68284,
+    "hearts": 67400
+  },
+  {
+    "id": 6,
+    "postId": 10,
+    "content": "Placeat iusto ipsum voluptatum maiores excepturi. Dignissimos adipisci iure assumenda deserunt architecto. Rem rem maiores. Veniam amet fugiat temporibus facilis vero. Sequi minima quos repellendus molestias minima quo nostrum est repellat. Quidem voluptatibus facilis voluptatibus laboriosam non rerum.",
+    "authorId": 15,
+    "likes": 81847,
+    "hearts": 51737
+  },
+  {
+    "id": 7,
+    "postId": 8,
+    "content": "Illum eos laborum modi illo error occaecati impedit. Beatae a molestias neque ipsam amet. Laboriosam incidunt itaque doloribus et accusantium animi itaque. Praesentium debitis quasi dignissimos quia. Earum hic exercitationem error incidunt ab esse. Quo maxime minima ipsa totam assumenda occaecati delectus.",
+    "authorId": 16,
+    "likes": 32979,
+    "hearts": 77887
+  },
+  {
+    "id": 8,
+    "postId": 20,
+    "content": "Quasi excepturi provident itaque aperiam impedit. Enim quaerat quasi pariatur ea distinctio voluptate accusantium esse nisi. Libero accusantium ut fuga magni. Non neque numquam accusantium iste.",
+    "authorId": 17,
+    "likes": 58289,
+    "hearts": 91726
+  },
+  {
+    "id": 9,
+    "postId": 11,
+    "content": "Alias eaque ipsam. Architecto omnis dicta ut temporibus fugiat mollitia. Illo esse dolorum ipsa quo officiis iste non.",
+    "authorId": 18,
+    "likes": 3534,
+    "hearts": 15196
+  },
+  {
+    "id": 10,
+    "postId": 25,
+    "content": "Molestias excepturi inventore placeat eaque est culpa deserunt deleniti sed. Aperiam eligendi id beatae omnis sint eum quibusdam unde id. Alias quibusdam delectus quibusdam facilis earum perferendis.",
+    "authorId": 19,
+    "likes": 92982,
+    "hearts": 49362
+  },
+  {
+    "id": 11,
+    "postId": 51,
+    "content": "Eaque nam doloremque nisi animi neque. Ipsam debitis esse hic commodi ad doloremque. Voluptatibus aperiam ipsam cumque cupiditate fugit. Quaerat voluptates fugiat.",
+    "authorId": 20,
+    "likes": 5368,
+    "hearts": 54767
+  },
+  {
+    "id": 12,
+    "postId": 82,
+    "content": "Numquam consequatur itaque natus aut facere libero consectetur illo. Recusandae ipsa officiis asperiores facere quibusdam odit ab. Consequatur cupiditate delectus quam cupiditate. Eveniet facilis corrupti doloribus tempora reprehenderit inventore. Sed fugit corrupti laborum officiis est dolores ea.",
+    "authorId": 21,
+    "likes": 82861,
+    "hearts": 10789
+  },
+  {
+    "id": 13,
+    "postId": 58,
+    "content": "Numquam suscipit culpa quia quaerat facere pariatur. Natus rem veniam quas. Nisi culpa provident placeat corrupti ducimus cupiditate iste. Nesciunt enim dicta quasi assumenda a. Doloribus corporis at. Numquam suscipit sapiente quisquam.",
+    "authorId": 22,
+    "likes": 26214,
+    "hearts": 59858
+  },
+  {
+    "id": 14,
+    "postId": 80,
+    "content": "Quo soluta dolor mollitia nesciunt optio atque. Pariatur commodi adipisci velit ipsam ipsum laboriosam perferendis. Adipisci quas doloremque voluptates libero itaque.",
+    "authorId": 23,
+    "likes": 88333,
+    "hearts": 7225
+  },
+  {
+    "id": 15,
+    "postId": 6,
+    "content": "Debitis ad fuga. Placeat accusamus perferendis eius rerum exercitationem illum voluptates numquam corporis. Facilis in exercitationem repellat expedita temporibus. Ex repudiandae libero incidunt. Nihil possimus occaecati.",
+    "authorId": 24,
+    "likes": 75460,
+    "hearts": 71274
+  },
+  {
+    "id": 16,
+    "postId": 72,
+    "content": "Fugit ipsam nulla et aut sint eum assumenda eum doloribus. Recusandae repellendus dolorem voluptas beatae inventore illo pariatur culpa. Odit assumenda nam repellat. Ad quibusdam distinctio exercitationem amet quasi.",
+    "authorId": 25,
+    "likes": 14845,
+    "hearts": 95033
+  },
+  {
+    "id": 17,
+    "postId": 10,
+    "content": "Libero nam voluptatum mollitia eius ducimus enim mollitia. Eos eum voluptatem cum. Placeat id ipsa a labore eligendi aliquam.",
+    "authorId": 26,
+    "likes": 42820,
+    "hearts": 84478
+  },
+  {
+    "id": 18,
+    "postId": 73,
+    "content": "Provident asperiores repellendus maiores eveniet cumque modi. Beatae modi perferendis vel velit nobis suscipit accusantium facere ex. Error dolore dolorem. Nisi modi ipsa eligendi minima quis cumque. Necessitatibus nesciunt quia quas repudiandae nam libero sit alias debitis. Ab quos nihil iste culpa aliquid.",
+    "authorId": 27,
+    "likes": 35508,
+    "hearts": 34534
+  },
+  {
+    "id": 19,
+    "postId": 96,
+    "content": "Iure error laboriosam quas dolorem architecto labore veniam quo. Sequi repudiandae rem nemo alias harum. Dolorem nostrum adipisci. Id doloribus quo omnis dolorum. Iure saepe doloremque officiis ea officiis reiciendis aliquid vel. Iusto dolore soluta dicta.",
+    "authorId": 28,
+    "likes": 64968,
+    "hearts": 16761
+  },
+  {
+    "id": 20,
+    "postId": 73,
+    "content": "Totam illum nisi. Adipisci repellendus nihil architecto maxime possimus accusantium reiciendis esse. Est id quo sequi deserunt expedita. Quod pariatur sit.",
+    "authorId": 29,
+    "likes": 7159,
+    "hearts": 87106
+  },
+  {
+    "id": 21,
+    "postId": 53,
+    "content": "Laborum laborum illum quis ex sed deserunt sequi quos. Molestias dolorem accusamus temporibus. Voluptate a atque distinctio illo voluptatem nemo nihil. Assumenda quisquam facere laborum dolorem nihil magnam itaque iure ex.",
+    "authorId": 53,
+    "likes": 26748,
+    "hearts": 4520
+  },
+  {
+    "id": 22,
+    "postId": 11,
+    "content": "Error iusto consequatur iure at nam non recusandae aperiam. Harum quibusdam voluptatem ad repudiandae sunt. Consectetur ipsam vel quia nam. Soluta sapiente dolor ex.",
+    "authorId": 54,
+    "likes": 64751,
+    "hearts": 46961
+  },
+  {
+    "id": 23,
+    "postId": 42,
+    "content": "Sit ut eos debitis ab ab pariatur. Voluptates culpa ratione quasi harum ut nesciunt ex. Expedita porro quo. Sint neque voluptate aut alias quod saepe ea incidunt. Labore error temporibus amet et natus aliquid repellat.",
+    "authorId": 55,
+    "likes": 36258,
+    "hearts": 77477
+  },
+  {
+    "id": 24,
+    "postId": 46,
+    "content": "Labore blanditiis quam ipsa quam porro omnis delectus excepturi quo. Reprehenderit explicabo optio. Minus est suscipit eos non reprehenderit. Veniam ab nam tempora veniam beatae nobis voluptatem. Exercitationem laudantium delectus reprehenderit incidunt maxime reiciendis laborum consequuntur praesentium. Voluptas officia harum hic asperiores.",
+    "authorId": 56,
+    "likes": 91259,
+    "hearts": 27005
+  },
+  {
+    "id": 25,
+    "postId": 28,
+    "content": "Est voluptatibus vel sit tempore quam ea recusandae. Esse beatae non nostrum esse libero iusto in delectus. Perspiciatis quae incidunt cumque delectus. Magni occaecati officiis sit illum pariatur excepturi asperiores.",
+    "authorId": 57,
+    "likes": 70734,
+    "hearts": 31131
+  },
+  {
+    "id": 26,
+    "postId": 80,
+    "content": "Voluptate occaecati dolorem laborum. Nisi modi tempore magnam quasi consectetur fugiat. Error perspiciatis quisquam mollitia molestias.",
+    "authorId": 58,
+    "likes": 31004,
+    "hearts": 24843
+  },
+  {
+    "id": 27,
+    "postId": 88,
+    "content": "Laudantium cum tenetur voluptatem reiciendis omnis vero voluptatem. Officiis iste blanditiis ratione. Esse quasi dignissimos iste reiciendis non inventore quos iure dicta. Quis eligendi libero. Quia corrupti quam aperiam error reiciendis et. Consequatur ad ea quod eum sapiente.",
+    "authorId": 59,
+    "likes": 16106,
+    "hearts": 44979
+  },
+  {
+    "id": 28,
+    "postId": 96,
+    "content": "Magni officia fuga rerum nulla nihil culpa maxime ullam. Rerum suscipit nulla voluptatum corporis sapiente. Assumenda asperiores nulla tenetur facere reiciendis asperiores perferendis corporis voluptatibus. Maiores excepturi harum.",
+    "authorId": 60,
+    "likes": 4138,
+    "hearts": 94433
+  },
+  {
+    "id": 29,
+    "postId": 0,
+    "content": "Eos voluptas rerum maiores nihil magni impedit. Commodi repellat eum voluptatem. Temporibus possimus animi. Sint eaque quidem. Facere quae quo eveniet.",
+    "authorId": 61,
+    "likes": 64420,
+    "hearts": 77633
+  },
+  {
+    "id": 30,
+    "postId": 49,
+    "content": "Corrupti esse reiciendis deleniti sit iusto quisquam aut doloribus. A aliquid tenetur officia ab adipisci possimus voluptas. Amet molestias omnis labore laboriosam eum. Consequuntur repellat incidunt sequi rerum. Consequatur minus distinctio facilis ullam necessitatibus dolorum vero. Soluta eaque fugiat consequatur reiciendis aliquid culpa esse natus repellendus.",
+    "authorId": 62,
+    "likes": 53018,
+    "hearts": 67769
+  },
+  {
+    "id": 31,
+    "postId": 95,
+    "content": "Deleniti beatae voluptates fugit. Fuga facilis at iure sunt sunt repellendus. Quia vero omnis quis. Praesentium tenetur adipisci id quos provident quae. Cupiditate officiis cumque laboriosam fugiat iure rem temporibus ad blanditiis.",
+    "authorId": 63,
+    "likes": 56313,
+    "hearts": 37660
+  },
+  {
+    "id": 32,
+    "postId": 89,
+    "content": "Aperiam eos impedit dolorum modi harum. Provident odit atque. Quos tempora reiciendis. Ea deserunt excepturi sunt nam deserunt. Quos quam tenetur ea nihil eos dicta.",
+    "authorId": 64,
+    "likes": 28411,
+    "hearts": 27019
+  },
+  {
+    "id": 33,
+    "postId": 7,
+    "content": "Quo nostrum sed aspernatur. Praesentium enim commodi ad quibusdam officiis doloremque nesciunt corrupti. Iusto optio dolorem odit ullam accusamus neque ullam labore.",
+    "authorId": 65,
+    "likes": 42059,
+    "hearts": 4613
+  },
+  {
+    "id": 34,
+    "postId": 1,
+    "content": "Molestiae nesciunt nemo hic reprehenderit eius non iusto quaerat quos. Mollitia praesentium doloremque. Culpa illum nam non blanditiis dolorum libero laudantium voluptas fugit. Magnam dicta incidunt eveniet consectetur eligendi exercitationem. Eveniet quasi incidunt consequatur explicabo distinctio voluptas.",
+    "authorId": 66,
+    "likes": 55766,
+    "hearts": 14908
+  },
+  {
+    "id": 35,
+    "postId": 40,
+    "content": "Est asperiores eaque necessitatibus quos. Nesciunt repellat corporis praesentium enim eligendi necessitatibus. Error iusto perspiciatis. Fugiat esse magni sunt mollitia laborum. Dolorem atque accusamus inventore. Voluptatem hic sequi consectetur quisquam sequi minima.",
+    "authorId": 67,
+    "likes": 69988,
+    "hearts": 13652
+  },
+  {
+    "id": 36,
+    "postId": 89,
+    "content": "Vel numquam quaerat quasi voluptatem sint unde impedit. Est voluptatem natus omnis dolores quia ducimus cumque dolorum quod. Omnis reiciendis tempore natus alias facilis ipsa odio enim quidem. Doloremque excepturi iusto. Eaque doloremque qui placeat suscipit vero unde.",
+    "authorId": 68,
+    "likes": 423,
+    "hearts": 32562
+  },
+  {
+    "id": 37,
+    "postId": 56,
+    "content": "Dolorum enim ullam labore enim rem eligendi minima laborum. Non distinctio tenetur maxime inventore odit. Nihil quis quisquam ex nihil. Excepturi excepturi recusandae ipsum voluptate labore. Tenetur iste ipsa fugit asperiores officia odio excepturi repudiandae. Sint repellendus laudantium quaerat fugiat culpa.",
+    "authorId": 69,
+    "likes": 64746,
+    "hearts": 21255
+  },
+  {
+    "id": 38,
+    "postId": 68,
+    "content": "Nobis laudantium ipsa deserunt nemo eaque asperiores culpa necessitatibus. Tempore pariatur quis minima quasi. Nostrum doloremque qui tempore totam inventore. Laboriosam numquam ea architecto officia impedit molestiae doloribus maiores. Eaque maxime dolorem.",
+    "authorId": 70,
+    "likes": 14192,
+    "hearts": 13031
+  },
+  {
+    "id": 39,
+    "postId": 2,
+    "content": "Impedit tenetur perspiciatis unde odit magni in maiores. Doloremque blanditiis laboriosam unde sequi aliquid laudantium magni. Nihil molestiae optio enim dolore perferendis excepturi. Odit perspiciatis reiciendis totam. Laborum dolores aspernatur voluptates natus ratione itaque quae perferendis qui.",
+    "authorId": 71,
+    "likes": 92579,
+    "hearts": 8172
+  },
+  {
+    "id": 40,
+    "postId": 38,
+    "content": "Sapiente autem autem dolorum repellat ratione dicta eum optio. Officiis pariatur quaerat optio quasi quod sunt reiciendis. Molestias assumenda veniam nulla officiis quae adipisci. Voluptatum voluptas et eum sed assumenda. Tempora accusantium animi. Ut voluptate iure vel nihil id facilis voluptates.",
+    "authorId": 72,
+    "likes": 9750,
+    "hearts": 16472
   },
 ];
+
+
 let posts = [
   {
     id: 0,
@@ -313,6 +605,7 @@ let posts = [
     title: "interface",
     tags: ["React", "PostgreSQL", "Go"],
   },
+  
 ];
 let canvases = [
   {
@@ -326,10 +619,19 @@ let canvases = [
     users: [0, 1, 2],
   },
 ];
-
 for (let i = 0; i < posts.length; i++) {
-  posts[i].commentsId = [93, 35, 10, 90, 5];
+  posts[i].commentsId = [i,i+21];
 }
+
+for(let i = 0 ; i < 21;i++){
+  comments[i].postId = i;
+}
+for(let i = 21 ; i < 40;i++){
+  comments[i].postId = i - 21;
+}
+
+
+
 
 class CrudService {
   constructor(data) {
