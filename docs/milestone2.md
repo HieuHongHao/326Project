@@ -6,7 +6,12 @@
         tag: return all the posts with matching tags
         titles: return all the posts with matching titles
  -  api/posts/:id: return the data of post with matching id
+ -  api/posts?sort=dec: sorts the post in descending order
+ -  api/posts/id/comment: get all the comments of a post
  -  api/users: return all users information
+ -  api/users/id: return all information of user
+ -  api/canvas: print all information of every canvas
+ -  api/canvas/id: get all the information of a certain canvas
  
 ## Github API Integration
 We will be using the Github API to get the current top 5 repositories in the world. We will use this data and then display it to our feed page.
