@@ -327,7 +327,7 @@ let canvases = [
 ];
 
 for (let i = 0; i < posts.length; i++) {
-  post.commentsId = [93, 35, 10, 90, 5];
+  posts.commentsId = [93, 35, 10, 90, 5];
 }
 
 class CrudService {
