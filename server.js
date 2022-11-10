@@ -40,6 +40,13 @@ app.get("/api/users", (req, res) => {
     users: users.find(filter),
   });
 });
+app.get("/api/users/:id", (req, res) => {
+  const userid = req.params.id;
+  res.status(200).json({
+    status: "Success",
+    users: users.findById(userid)
+  });
+});
 app.get("/api/posts", (req, res) => {
   const filter = req.query ? req.query : {};
   res.status(200).json({

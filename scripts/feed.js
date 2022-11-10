@@ -87,7 +87,7 @@ export const feed = {
       content.classList.add("pb-4");
       content.innerHTML = data.content;
 
-      likeButton.className = "btn btn-outline-light mx-1"
+      likeButton.className = "btn btn-outline-light mx-1 pb-3"
       likeButton.innerHTML = data.likes;
 
       wrapper.classList.add("px-3");
