@@ -137,17 +137,25 @@ root/
 
 ## Forum page:
 - Can like post with like button
+     - Purposely makes the like button disappear to incentivize people from unliking a post so that each post they like are serious
+<img src="../demos/heart_liking_post_demo.gif"/>
+
 
 ## Dashboard page:
 - Can edit posts (change post names), delete posts, update user password, delete account using *Posts* and *User* table
 - View user information using *User* table
-### User's posts gets loaded from API
+
+### User's posts gets loaded from API (reads *Posts* table)
 <img src="../demos/dashboardBefore.JPG"/>
 
-### User's dashboard after deleting some posts
+### User's dashboard after deleting some posts (deletes *Posts* table)
 <img src="../demos/dashboadAfter.JPG"/>
 
+### User's update password (updates *User* table)
+<img src="../demos/change_password.png"/>
 
+### User deletes account (deletes from *User* table)
+<img src="../demos/delete_account.png"/>
 
 ## Canvas:
 - With our canvas page we used the *User* table to do several things including:
