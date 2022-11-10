@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+const {Octokit} = require("octokit");
+
+const octokit = new Octokit();
+
+
 
 const {
   UserService,
@@ -70,9 +75,24 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
-app.get("/api/github_repos",(req,res) =>{
+app.get("/api/github_repos",async (req,res) =>{
+  const response = await octokit.rest.search.repos({
+    q: "java in:topics"
+  })
+  
+  const repos = response.data.items.slice(0,6);
+  // const posts = repos.map(repo => {
+  //   id: repo.id,
+  //   content: repo.description,
+  //   likes: repo.stargazers_count,
+  //   hearts: repo.watchers_count,
+  //   tags: repo.topics,
+  //   title: repo.full_name
+  // })
+  console.log(repos);
   res.status(200).json({
-    status: "Sucess"
+    status: "Sucess",
+    post: repos
   })
 })
 
@@ -193,3 +213,4 @@ io.on("connection", (socket) => {
 // });
 
 httpServer.listen(process.env.PORT || 9000, () => console.log("Server running on port" + process.env.PORT));
+
