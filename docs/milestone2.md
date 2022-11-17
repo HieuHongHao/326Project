@@ -80,7 +80,7 @@ Search a user: https://cs326project.herokuapp.com/api/posts/1
 | content       | string      |
 | likes         | [int]       |
 
-Search a comment: https://cs326project.herokuapp.com/api/posts/0/Comment
+Search a comment: https://cs326project.herokuapp.com/api/posts/0/comments
 Note that a comment must be related to a post
 <img src="../demos/api/comments_search.png"/>
 
