@@ -16,7 +16,6 @@ const {
 } = require("./Backend/database");
 const { table } = require("console");
 const moongoose = require('mongoose');
-
 const users = new UserService();
 const posts = new PostService();
 const comments = new CommentService();

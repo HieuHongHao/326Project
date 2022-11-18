@@ -8,6 +8,8 @@ function closeModal(tag) {
 
 
 
+
+
 function loginSuccess(acc) {
   const storage = window.localStorage;
   storage.setItem("loggedIn", acc);
@@ -37,6 +39,8 @@ async function login() {
     alert("Username or password is incorrect")
   }
 }
+
+
 
 const loginBtn = document.getElementById("loginSubmit");
 loginBtn.addEventListener("click", login);
