@@ -20,7 +20,8 @@
     "nodemon": "^2.0.20",
     "octokit": "^2.0.10",
     "socket.io": "^4.5.3",
-    "socket.io-client": "^4.5.3"
+    "socket.io-client": "^4.5.3",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"

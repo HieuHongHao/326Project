@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: "./.env"});
 const octokit = new Octokit();
 
+const Post = require("./Backend/model");
 
 
 
@@ -20,6 +21,7 @@ const {
 const { table } = require("console");
 const moongoose = require('mongoose');
 const { Router } = require("express");
+const { Server } = require("http");
 const users = new UserService();
 const posts = new PostService();
 const comments = new CommentService();
