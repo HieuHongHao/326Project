@@ -37,7 +37,7 @@ const projectSchema = new Schema(
 projectSchema.index({createdAt:-1});
 
 projectSchema.virtual("comments",{
-    ref: Comment,
+    ref: "Comment",
     foreignField: "project",
     localField: "_id"
 })
