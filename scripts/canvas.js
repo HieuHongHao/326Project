@@ -52,6 +52,8 @@ export const canvas = {
       isPaint = false;
     });
 
+    
+    
     // and core function - drawing
     stage.on('mousemove touchmove', function(e) {
       if (!isPaint) {

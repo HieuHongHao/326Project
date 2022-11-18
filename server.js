@@ -3,10 +3,10 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const { Octokit } = require("octokit");
+const dotenv = require('dotenv');
+dotenv.config({path: "./.env"});
 
 const octokit = new Octokit();
-
-
 
 const {
   UserService,
@@ -14,6 +14,9 @@ const {
   PostService,
   CanvasService,
 } = require("./Backend/database");
+const { table } = require("console");
+const moongoose = require('mongoose');
+
 const users = new UserService();
 const posts = new PostService();
 const comments = new CommentService();
@@ -28,6 +31,19 @@ app.use(
     credentials: true,
   })
 );
+
+moongoose.connect(process.env.DATABASE_URL,function(err, connection){
+  if(err){
+      console.log(err.message);
+  }
+  else{
+      console.log("Connection established");
+  }
+})
+
+
+
+
 app.use(express.json());
 app.use(morgan("tiny"));
 
@@ -102,11 +118,12 @@ app.get("/api/posts/:id/comments", (req, res) => {
   });
 });
 
+
+
 app.get("/api/github_repos", async (req, res) => {
   const response = await octokit.rest.search.repos({
     q: "java in:topics",
   });
-
   const repos = response.data.items.slice(0, 6);
   const posts = repos.map((repo) => {
     return {
@@ -221,6 +238,10 @@ io.on("connection", (socket) => {
     delete usernames[socket.id];
   });
 });
+
+
+
+
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
 //     sockets[username] = socket;

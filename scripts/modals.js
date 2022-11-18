@@ -6,6 +6,8 @@ function closeModal(tag) {
   modal.hide();
 }
 
+
+
 function loginSuccess(acc) {
   const storage = window.localStorage;
   storage.setItem("loggedIn", acc);
@@ -25,7 +27,6 @@ async function login() {
   // const res = await fetch("../api/users.json");
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
-
   const users = await getUserData();
   const user = users.users.filter(x => x.email === username);
   if (user.length !== 0 && user[0].password === password) {
