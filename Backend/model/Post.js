@@ -16,7 +16,8 @@ const projectSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
-    likeNumbers: {
+
+    likes: {
       type: Number,
       default: 0,
     },
@@ -44,7 +45,11 @@ projectSchema.virtual("commentNumbers").get(function(){
   return this.comments ? this.comments.length : 0 ;
 })
 
-
-
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;
+
+
+
+
+
+
