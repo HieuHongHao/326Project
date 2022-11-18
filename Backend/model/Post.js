@@ -2,12 +2,15 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema(
+
+
+
+const projectSchema = new Schema(
   {
     author: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
-      required: [true, "A post must have an author"],
+      required: [true, "A project must have an author"],
     },
     createdAt: {
       type: Date,
@@ -17,10 +20,9 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
-    
     content: {
       type: String,
-      required: [true, "A post must have a content"],
+      required: [true, "A project must have a content"],
       maxlength: 1000,
     },
     title: String,
@@ -31,18 +33,18 @@ const postSchema = new Schema(
     toObject: { virtuals: true },
   }
 );
-postSchema.index({createdAt:-1});
+projectSchema.index({createdAt:-1});
 
-postSchema.virtual("comments",{
+projectSchema.virtual("comments",{
     ref: Comment,
-    foreignField: "post",
+    foreignField: "project",
     localField: "_id"
 })
-postSchema.virtual("commentNumbers").get(function(){
+projectSchema.virtual("commentNumbers").get(function(){
   return this.comments ? this.comments.length : 0 ;
 })
 
 
 
-const postModel = mongoose.model("Post", postSchema);
-module.exports = postModel;
+const projectModel = mongoose.model("Project", projectSchema);
+module.exports = projectModel;
