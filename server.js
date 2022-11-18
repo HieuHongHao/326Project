@@ -12,16 +12,15 @@ const Post = require("./Backend/model");
 
 
 
+
 const {
   UserService,
   CommentService,
   PostService,
   CanvasService,
 } = require("./Backend/database");
-const { table } = require("console");
+
 const moongoose = require('mongoose');
-const { Router } = require("express");
-const { Server } = require("http");
 const users = new UserService();
 const posts = new PostService();
 const comments = new CommentService();
