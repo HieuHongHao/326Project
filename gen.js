@@ -1,7 +1,7 @@
 const { faker } = require('@faker-js/faker');
 const mongoose = require("mongoose");
 const userModel = require("./Backend/model/User.js")
-const projectModel = require("./Backend/model/Post.js")
+const projectModel = require("./Backend/model/Project.js")
 const commentModel = require("./Backend/model/Comment.js")
 const dotenv = require('dotenv');
 dotenv.config({ path: "./.env" });
