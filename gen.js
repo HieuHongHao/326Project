@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const userModel = require("./Backend/model/User.js")
 const projectModel = require("./Backend/model/Project.js")
 const commentModel = require("./Backend/model/Comment.js")
+const canvasModel = require("./Backend/model/Canvas");
 const dotenv = require('dotenv');
 dotenv.config({ path: "./.env" });
 
@@ -41,6 +42,17 @@ for (let i = 0; i < 100; i++) {
   comments.push(newComment);
 }
 
+
+let canvases = [];
+for (let i = 0; i < 50; i++) {
+  const project = projects[i]._id;
+  const newCanvas = new canvasModel({
+    user: project.authorId,
+    project
+  })
+  canvases.push(newCanvas);
+}
+
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => {
     console.log(err.stack);
@@ -57,7 +69,8 @@ async function deleteData(){
   await Promise.all([
     userModel.deleteMany({}),
     projectModel.deleteMany({}),
-    commentModel.deleteMany({})
+    commentModel.deleteMany({}),
+    canvasModel.deleteMany({})
   ]);
 }
 
@@ -72,7 +85,7 @@ async function deleteData(){
 // });
 
 async function addData() {
-  const data = [].concat(users, projects, comments);
+  const data = [].concat(users, projects, comments,canvases);  
   for (let i = 0; i < data.length; i++) {
     await data[i].save();
   }
