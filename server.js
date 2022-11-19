@@ -111,6 +111,7 @@ app.get('/api/comments/project/:id', async (req, res) => {
   }
 });
 
+// Create user
 app.post('/api/users', async (req, res) => {
   const data = new userModel({
     username: req.body.username,
@@ -127,6 +128,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+// Create project
 app.post('/api/projects', async (req, res) => {
   const data = new projectModel({
     authorID: req.body.authorID,
@@ -143,6 +145,7 @@ app.post('/api/projects', async (req, res) => {
   }
 });
 
+// create comment
 app.post('/api/comments', async (req, res) => {
   const data = new commentModel({
     project: req.body.project,
