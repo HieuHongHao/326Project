@@ -191,9 +191,8 @@ export const feed = {
         default:
           break;
       }
-      const response_json = await result.json();
       postContainer.replaceChildren();
-      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
+      result.forEach(post => postContainer.appendChild(createNewPost(post)));
     });
     
     githubPostBtn.addEventListener("click", async () => {
