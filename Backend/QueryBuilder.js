@@ -26,6 +26,12 @@ class QueryBuilder{
         }
         return this;
     }
+    paginate(){
+        const page = this.queryObject.page * 1 || 1;  
+        const skip = (page - 1) * 10;
+        this.queryChain= this.queryChain.skip(skip).limit(10);
+       return this;
+    }
 }
 
 

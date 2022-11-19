@@ -57,7 +57,7 @@ app.use(express.json());
 app.get("/api/projects", async (req, res) => {
   try {
     let query_builder = new QueryBuilder(req.query,ProjectModel.find());
-    query_builder = query_builder.filter().sort();
+    query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain;
     res.json(data);
   }
