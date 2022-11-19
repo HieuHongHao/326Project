@@ -50,15 +50,25 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
   });
 
 
-userModel.deleteMany({}).then(function() {
-  console.log("Added users")
-});
-projectModel.deleteMany({}).then(function() {
-  console.log("Added projects")
-});
-commentModel.deleteMany({}).then(function() {
-  console.log("Added comments")
-});
+
+
+async function deleteData(){
+  await Promise.all([
+    userModel.deleteMany({}),
+    projectModel.deleteMany({}),
+    commentModel.deleteMany({})
+  ]);
+}
+
+// userModel.deleteMany({}).then(function() {
+//   console.log("Added users")
+// });
+// projectModel.deleteMany({}).then(function() {
+//   console.log("Added projects")
+// });
+// commentModel.deleteMany({}).then(function() {
+//   console.log("Added comments")
+// });
 
 async function addData() {
   const data = [].concat(users, projects, comments);
@@ -67,7 +77,9 @@ async function addData() {
   }
   mongoose.disconnect();
 }
-
+deleteData().then(
+  () => console.log("Delete all data")  
+)
 addData().then(() => {
   console.log("Done");
 }).catch((err) => {
