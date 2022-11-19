@@ -209,7 +209,7 @@ export const feed = {
     })
     
     async function getFeed() {
-      const response_json = await api.fetchData('projects?page=10');
+      const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     }
