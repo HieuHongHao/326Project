@@ -23,15 +23,16 @@ const projectSchema = new Schema({
 });
 
 // projectSchema.index({ createdAt: -1 });
-
-// projectSchema.virtual("comments", {
-//   ref: "Comment",
-//   foreignField: "project",
-//   localField: "_id"
-// })
 // projectSchema.virtual("commentNumbers").get(function() {
 //   return this.comments ? this.comments.length : 0;
 // })
+
+
+projectSchema.virtual("comments", {
+  ref: "Comment",
+  foreignField: "project",
+  localField: "_id"
+})
 
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;

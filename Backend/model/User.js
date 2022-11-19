@@ -26,5 +26,16 @@ const userSchema = new Schema({
   favouriteTechStack: [{ type: String }],
 })
 
+
+userSchema.virtual("posts",{
+  ref: "Project",
+  foreignField: "authorId",
+  localField: "_id"
+})
+userSchema.virtual("comments",{
+  ref: "Comemnts",
+  foreignField: "author",
+  localField: "_id"
+})
 const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;
