@@ -14,6 +14,8 @@ const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
 
+const QueryBuilder = require("./Backend/QueryBuilder");
+
 const mongoose = require('mongoose');
 const userModel = require("./Backend/model/User");
 // const users = new UserService();
@@ -54,7 +56,10 @@ app.use(express.json());
 // Get all projects
 app.get("/api/projects", async (req, res) => {
   try {
-    const data = await ProjectModel.find();
+    
+    let query_builder = new QueryBuilder(req.query,ProjectModel.find());
+    query_builder = query_builder.filter();
+    const data = await query_builder.queryChain;
     res.json(data)
   }
   catch (error) {
