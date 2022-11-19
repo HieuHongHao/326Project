@@ -35,6 +35,12 @@ projectSchema.virtual("comments", {
   localField: "_id",
 });
 
+projectSchema.virtual("likes", {
+  ref: "Like",
+  foreignField: "project",
+  localField: "_id",
+});
+
 
 
 const projectModel = mongoose.model("Project", projectSchema);
