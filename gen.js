@@ -1,10 +1,10 @@
-const { faker } = require('@faker-js/faker');
+const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
-const userModel = require("./Backend/model/User.js")
-const projectModel = require("./Backend/model/Project.js")
-const commentModel = require("./Backend/model/Comment.js")
+const userModel = require("./Backend/model/User.js");
+const projectModel = require("./Backend/model/Project.js");
+const commentModel = require("./Backend/model/Comment.js");
 const canvasModel = require("./Backend/model/Canvas");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
 let users = [];
@@ -15,7 +15,7 @@ for (let i = 0; i < 25; i++) {
     email: faker.internet.email(),
     password: faker.random.alphaNumeric(15),
     avatar: faker.image.people(480, 480, true),
-    favouriteTechStack: tags.sort(() => 0.5 - Math.random()).slice(0, 3)
+    favouriteTechStack: tags.sort(() => 0.5 - Math.random()).slice(0, 3),
   });
   users.push(newUser);
 }
@@ -26,8 +26,11 @@ for (let i = 0; i < 50; i++) {
     authorID: users.sort(() => 0.5 - Math.random())[0]._id,
     title: faker.lorem.sentence(3),
     content: faker.lorem.paragraph(),
-    likes: users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * users.length)).map(x => x._id),
-    tags: tags.sort(() => 0.5 - Math.random()).slice(0, 3)
+    likes: users
+      .sort(() => 0.5 - Math.random())
+      .slice(0, Math.floor(Math.random() * users.length))
+      .map((x) => x._id),
+    tags: tags.sort(() => 0.5 - Math.random()).slice(0, 3),
   });
   projects.push(newProject);
 }
@@ -37,24 +40,27 @@ for (let i = 0; i < 100; i++) {
   const newComment = new commentModel({
     project: projects.sort(() => 0.5 - Math.random())[0]._id,
     author: users.sort(() => 0.5 - Math.random())[0]._id,
-    content: faker.lorem.sentences()
+    content: faker.lorem.sentences(),
   });
   comments.push(newComment);
 }
-
 
 let canvases = [];
 for (let i = 0; i < 50; i++) {
   const project = projects[i]._id;
   const newCanvas = new canvasModel({
     user: project.authorId,
-    project
-  })
+    project,
+  });
   canvases.push(newCanvas);
 }
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .catch(err => {
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((err) => {
     console.log(err.stack);
     process.exit(1);
   })
@@ -62,15 +68,12 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
     console.log("connected to DB");
   });
 
-
-
-
-async function deleteData(){
+async function deleteData() {
   await Promise.all([
     userModel.deleteMany({}),
     projectModel.deleteMany({}),
     commentModel.deleteMany({}),
-    canvasModel.deleteMany({})
+    canvasModel.deleteMany({}),
   ]);
 }
 
@@ -85,21 +88,30 @@ async function deleteData(){
 // });
 
 async function addData() {
-  const data = [].concat(users, projects, comments,canvases);  
+  const data = [].concat(users, projects, comments, canvases);
   for (let i = 0; i < data.length; i++) {
-    await data[i].save();
+    data[i] = data[i].save();
   }
+  await Promise.all(data);
   mongoose.disconnect();
 }
-deleteData().then(
-  () => console.log("Delete all data")  
-)
-addData().then(() => {
-  console.log("Done");
-}).catch((err) => {
-  console.log("Error:", err);
-})
+deleteData()
+  .then(() => {
+    console.log("Deleted data");
+    return addData();
+  })
+  .then(() => {
+    console.log("New data added");
+  })
+  .catch((err) => {
+    console.log("Error:", err);
+  });
 
+// addData().then(() => {
+//   console.log("Done");
+// }).catch((err) => {
+//   console.log("Error:", err);
+// })
 
 // userModel.find({ username: 'Louisa Keebler' }, function(err, docs) {
 //   if (err) {
@@ -109,4 +121,3 @@ addData().then(() => {
 //     console.log("First function call : ", docs);
 //   }
 // });
-
