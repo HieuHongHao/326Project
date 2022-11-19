@@ -16,6 +16,15 @@ class QueryBuilder{
         this.queryChain = this.queryChain.find(JSON.parse(this.filteredQuery));
         return this;
     }
+    sort(){
+        if("sort" in this.queryObject){
+            const sortFields = this.queryObject.sort.split(",").join(" ")
+            this.queryChain = this.queryChain.sort(sortFields);
+        }else{
+            this.queryChain = this.queryChain.sort("-createdAt _id");
+        }
+        return this;
+    }
 }
 
 

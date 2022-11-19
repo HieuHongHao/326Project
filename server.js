@@ -57,7 +57,7 @@ app.use(express.json());
 app.get("/api/projects", async (req, res) => {
   try {
     let query_builder = new QueryBuilder(req.query,ProjectModel.find());
-    query_builder = query_builder.filter();
+    query_builder = query_builder.filter().sort();
     const data = await query_builder.queryChain;
     res.json(data);
   }
@@ -87,6 +87,9 @@ app.get("/api/comments", async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 });
+
+
+
 
 // Get comments by author ID
 app.get('/api/comments/author/:id', async (req, res) => {
@@ -402,6 +405,8 @@ io.on("connection", (socket) => {
 //     delete usernames[socket.id];
 //   });
 // });
+
+
 
 
 
