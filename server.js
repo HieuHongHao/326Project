@@ -53,6 +53,7 @@ database.once('connected', () => {
 
 app.use(express.json());
 
+// --------Projects Resource------------------------------------------------------------------------------------------
 // Get all projects
 app.get("/api/projects", async (req, res) => {
   try {
@@ -77,8 +78,6 @@ app.get('/api/projects/:id', async (req, res) => {
   }
 });
 
-
-
 // Get all Comments from a Project
 app.get('/api/projects/:id/comments', async (req, res) => {
   try {
@@ -92,6 +91,22 @@ app.get('/api/projects/:id/comments', async (req, res) => {
   }
 });
 
+// Create a new project
+app.post('/api/projects', async (req, res) => {
+  const data = new projectModel({
+    authorID: req.body.authorID,
+    title: req.body.title,
+    content: req.body.content,
+    likes: [],
+  })
+  try {
+    const dataToSave = await data.save();
+    res.status(200).json(dataToSave)
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
 // Create new comment for a project
 app.post('/api/projects/:id/comments', async (req, res) => {
   try {
@@ -119,6 +134,8 @@ app.get('/api/comments/author/:id', async (req, res) => {
 });
 
 
+
+// --------Users Resource------------------------------------------------------------------------------------------
 // Get all users
 app.get('/api/users', async (req, res) => {
   try {
@@ -131,7 +148,6 @@ app.get('/api/users', async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 });
-
 // Create user
 app.post('/api/users', async (req, res) => {
   const data = new userModel({
@@ -151,22 +167,8 @@ app.post('/api/users', async (req, res) => {
 
 
 
-// Create project
-app.post('/api/projects', async (req, res) => {
-  const data = new projectModel({
-    authorID: req.body.authorID,
-    title: req.body.title,
-    content: req.body.content,
-    likes: [],
-  })
-  try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave)
-  }
-  catch (error) {
-    res.status(400).json({ message: error.message })
-  }
-});
+
+
 
 app.use(morgan("tiny"));
 
