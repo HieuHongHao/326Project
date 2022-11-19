@@ -13,6 +13,7 @@ const Post = require("./Backend/model");
 const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
+const canvasModel = require("./Backend/model/Canvas");
 
 const QueryBuilder = require("./Backend/QueryBuilder");
 
@@ -166,8 +167,19 @@ app.post('/api/users', async (req, res) => {
 });
 
 
-
-
+// --------Canvas Resource------------------------------------------------------------------------------------------
+// Get all canvas
+app.get("/api/canvas",async(req,res) => {
+  try {
+    let query_builder = new QueryBuilder(req.query,canvasModel.find());
+    query_builder = query_builder.filter().sort().paginate();
+    const canvas = await query_builder.queryChain;
+    res.status(200).json(canvas);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
 
 
 app.use(morgan("tiny"));
