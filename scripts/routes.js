@@ -15,6 +15,7 @@ async function signBtn() {
     await utils.loadModule(`components/nav-login.html`, 'loginDiv');
   } else {
     await utils.loadModule(`components/nav-logout.html`, 'logoutDiv');
+    await utils.loadModule(`components/nav-account.html`, 'nav-acc');
     document.getElementById('logoutBtn').addEventListener("click", async () => {
       await window.localStorage.removeItem('loggedIn');
       window.location.href = "/";
