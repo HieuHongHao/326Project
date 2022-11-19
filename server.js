@@ -15,6 +15,7 @@ const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
 
 const mongoose = require('mongoose');
+const userModel = require("./Backend/model/User");
 // const users = new UserService();
 // const posts = new PostService();
 // const comments = new CommentService();
@@ -70,7 +71,7 @@ app.get('/api/projects/:id', async (req, res) => {
   catch (error) {
     res.status(500).json({ message: error.message })
   }
-})
+});
 
 // Get all Comments 
 app.get("/api/comments", async (req, res) => {
@@ -92,7 +93,7 @@ app.get('/api/comments/author/:id', async (req, res) => {
   catch (error) {
     res.status(500).json({ message: error.message })
   }
-})
+});
 
 // Get comments by project ID
 app.get('/api/comments/project/:id', async (req, res) => {
@@ -103,10 +104,53 @@ app.get('/api/comments/project/:id', async (req, res) => {
   catch (error) {
     res.status(500).json({ message: error.message })
   }
-})
+});
 
+app.post('/api/users', async (req, res) => {
+  const data = new userModel({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    avatar: req.body.avatar,
+  })
+  try {
+    const dataToSave = await data.save();
+    res.status(200).json(dataToSave)
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
 
+app.post('/api/projects', async (req, res) => {
+  const data = new projectModel({
+    authorID: req.body.authorID,
+    title: req.body.title,
+    content: req.body.content,
+    likes: [],
+  })
+  try {
+    const dataToSave = await data.save();
+    res.status(200).json(dataToSave)
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
 
+app.post('/api/comments', async (req, res) => {
+  const data = new commentModel({
+    project: req.body.project,
+    author: req.body.author,
+  })
+  try {
+    const dataToSave = await data.save();
+    res.status(200).json(dataToSave)
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
 
 
 
