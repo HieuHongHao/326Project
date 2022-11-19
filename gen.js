@@ -25,7 +25,8 @@ for (let i = 0; i < 50; i++) {
     authorID: users.sort(() => 0.5 - Math.random())[0]._id,
     title: faker.lorem.sentence(3),
     content: faker.lorem.paragraph(),
-    likes: users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * users.length)).map(x => x._id)
+    likes: users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * users.length)).map(x => x._id),
+    tags: tags.sort(() => 0.5 - Math.random()).slice(0, 3)
   });
   projects.push(newProject);
 }

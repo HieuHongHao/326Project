@@ -17,6 +17,11 @@ const projectSchema = new Schema({
     required: [true, "A project must have content"],
     maxlength: 1000,
   },
+  tags: [
+    {
+      type: String,
+    },
+  ],
 });
 
 // projectSchema.index({ createdAt: -1 });
@@ -24,12 +29,11 @@ const projectSchema = new Schema({
 //   return this.comments ? this.comments.length : 0;
 // })
 
-
 projectSchema.virtual("comments", {
   ref: "Comment",
   foreignField: "project",
-  localField: "_id"
-})
+  localField: "_id",
+});
 
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;
