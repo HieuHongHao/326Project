@@ -10,7 +10,7 @@ const octokit = new Octokit();
 
 const Post = require("./Backend/model");
 
-const ProjectModel = require("./Backend/model/Post");
+const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
 
@@ -97,7 +97,7 @@ app.get('/api/comments/author/:id', async (req, res) => {
 // Get comments by project ID
 app.get('/api/comments/project/:id', async (req, res) => {
   try {
-    const data = await CommentModel.find({ "post": req.params.id });
+    const data = await CommentModel.find({ "project": req.params.id });
     res.json(data)
   }
   catch (error) {
