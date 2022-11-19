@@ -35,7 +35,7 @@ export const feed = {
     };
     let currentTags = [];
     async function postRequest(data) {
-      const response = await fprojectsh(URL + "/projects", {
+      const response = await fetch(URL + "/projects", {
         method: "POST", // *GET, POST, PUT, DELETE, projects.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -197,20 +197,20 @@ export const feed = {
     });
     
     githubPostBtn.addEventListener("click", async () => {
-      const response_json = await api.fprojectshData('github_repos');
+      const response_json = await api.fetchData('github_repos');
       console.log(response_json);
       postContainer.replaceChildren();
       response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
     
     topBttn.addEventListener("click",async () => {
-      const response_json = await api.fprojectshData('projects?sort=desc');
+      const response_json = await api.fetchData('projects?sort=desc');
       postContainer.replaceChildren();
       response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
     
     async function getFeed() {
-      const response_json = await api.fprojectshData('projects');
+      const response_json = await api.fetchData('projects');
       postContainer.replaceChildren();
       response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     }
