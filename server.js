@@ -80,15 +80,17 @@ app.get('/api/projects/:id', async (req, res) => {
 
 
 // Get all Comments from a Project
-// app.get('/api/projects/:id/comments', async (req, res) => {
-//   try {
-//     const data = await ProjectModel.findById(req.params.id).populate("comments");
-//     res.status(200).json(data);
-//   }
-//   catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
+app.get('/api/projects/:id/comments', async (req, res) => {
+  try {
+    const data = await CommentModel.find({
+      project: req.params.id
+    });
+    res.status(200).json(data);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
 
