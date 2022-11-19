@@ -183,10 +183,10 @@ export const feed = {
       let result;
       switch (query[0]) {
         case "tags":
-          result = await api.fetchData(`/projects?tags=${query[1]}`);
+          result = await api.fetchData(`projects?tags=${query[1]}`);
           break;
         case "title":
-          result = await api.fetchData(`/projects?title=${query[1]}`);
+          result = await api.fetchData(`projects?title=${query[1]}`);
           break;
         default:
           break;
