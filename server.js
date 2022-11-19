@@ -190,30 +190,31 @@ app.get("/", (req, res) => {
 
 
 
-
-// app.get("/api/github_repos", async (req, res) => {
-//   const response = await octokit.rest.search.repos({
-//     q: "java in:topics",
-//   });
-//   const repos = response.data.items.slice(0, 6);
-//   const posts = repos.map((repo) => {
-//     return {
-//       id: repo.id,
-//       content: repo.description,
-//       likes: repo.stargazers_count,
-//       hearts: repo.watchers_count,
-//       tags: repo.topics.map(
-//         (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
-//       ),
-//       title: repo.full_name,
-//     };
-//   });
-//   console.log(repos);
-//   res.status(200).json({
-//     status: "Sucess",
-//     posts
-//   });
-// });
+// --------Github repos------------------------------------------------------------------------------------------
+// Get github repos
+app.get("/api/github_repos", async (req, res) => {
+  const response = await octokit.rest.search.repos({
+    q: "java in:topics",
+  });
+  const repos = response.data.items.slice(0, 6);
+  const posts = repos.map((repo) => {
+    return {
+      id: repo.id,
+      content: repo.description,
+      likes: repo.stargazers_count,
+      hearts: repo.watchers_count,
+      tags: repo.topics.map(
+        (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
+      ),
+      title: repo.full_name,
+    };
+  });
+  console.log(repos);
+  res.status(200).json({
+    status: "Sucess",
+    posts
+  });
+});
 
 
 
