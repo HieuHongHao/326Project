@@ -17,9 +17,6 @@ const projectSchema = new Schema({
     required: [true, "A project must have content"],
     maxlength: 1000,
   },
-  likes: {
-    type: [Schema.Types.ObjectId],
-  },
 });
 
 // projectSchema.index({ createdAt: -1 });
