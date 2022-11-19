@@ -183,7 +183,7 @@ export const feed = {
       let result;
       switch (query[0]) {
         case "tag":
-          result = await api.fetchData(URL + `/projects?tag=${query[1]}`);
+          result = await api.fetchData(URL + `/projects?tags=${query[1]}`);
           break;
         case "title":
           result = await api.fetchData(URL + `/projects?title=${query[1]}`);
