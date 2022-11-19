@@ -2,55 +2,36 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
-
-
-
-const projectSchema = new Schema(
-  {
-    author: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: [true, "A project must have an author"],
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
-
-    likes: {
-      type: Number,
-      default: 0,
-    },
-    content: {
-      type: String,
-      required: [true, "A project must have a content"],
-      maxlength: 1000,
-    },
-    title: String,
-    active: Boolean
+const projectSchema = new Schema({
+  authorID: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "A project must have a author"],
   },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
-);
-projectSchema.index({createdAt:-1});
+  title: {
+    type: String,
+    required: [true, "A Project must have a title"],
+  },
+  content: {
+    type: String,
+    required: [true, "A project must have content"],
+    maxlength: 1000,
+  },
+  likes: {
+    type: [Schema.Types.ObjectId],
+  },
+});
 
-projectSchema.virtual("comments",{
-    ref: "Comment",
-    foreignField: "project",
-    localField: "_id"
-})
-projectSchema.virtual("commentNumbers").get(function(){
-  return this.comments ? this.comments.length : 0 ;
-})
+// projectSchema.index({ createdAt: -1 });
+
+// projectSchema.virtual("comments", {
+//   ref: "Comment",
+//   foreignField: "project",
+//   localField: "_id"
+// })
+// projectSchema.virtual("commentNumbers").get(function() {
+//   return this.comments ? this.comments.length : 0;
+// })
 
 const projectModel = mongoose.model("Project", projectSchema);
-
 module.exports = projectModel;
-
-
-
-
-
-
