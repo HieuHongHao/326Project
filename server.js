@@ -176,72 +176,6 @@ app.get("/", (req, res) => {
   res.sendFile("index.html", { root: __dirname });
 });
 
-// app.get("/api/users", (req, res) => {
-//   const filter = req.query ? req.query : {};
-//   res.status(200).json({
-//     status: "Success",
-//     users: users.find(filter),
-//   });
-// });
-
-// app.post("/api/users", (req, res) => {
-//   const info = req.body;
-//   users.insert(info);
-//   res.status(200).json({
-//     status: "Sucess",
-//     user: info
-//   })
-// })
-
-// app.get("/api/users/:id", (req, res) => {
-//   const userid = req.params.id;
-
-//   res.status(200).json({
-//     status: "Success",
-//     users: users.findById(userid)
-//   });
-// });
-
-// app.delete("/api/users/:id", (req, res) => {
-//   const userid = req.params.id;
-//   users.delete(userid);
-//   res.status(200).json({
-//     status: `Deleted user ${userid}`,
-//   });
-// })
-// app.get("/api/posts", (req, res) => {
-//   const filter = req.query ? req.query : {};
-//   res.status(200).json({
-//     status: "Success",
-//     posts: posts.find(filter),
-//   });
-// });
-
-// app.get("/api/canvas", (req, res) => {
-//   const filter = req.query ? req.query : {};
-//   res.status(200).json({
-//     status: "Success",
-//     posts: canvases.find(filter),
-//   });
-// });
-
-
-
-// app.get("/api/canvas/:id", (req, res) => {
-//   const canvasId = req.params.id;
-//   res.status(200).json({
-//     status: "Success",
-//     comments: canvases.findById(canvasId),
-//   });
-// });
-
-// app.get("/api/posts/:id/comments", (req, res) => {
-//   const postId = req.params.id;
-//   res.status(200).json({
-//     status: "Sucess",
-//     comments: posts.getAllComments(postId),
-//   });
-// });
 
 
 
@@ -269,58 +203,6 @@ app.get("/", (req, res) => {
 //   });
 // });
 
-// app.post("/api/posts/:id/comments", (req, res) => {
-//   const postId = req.params.id;
-//   const authorId = req.body.comment.authorId;
-//   const content = req.body.comment.content;
-//   const commentId = comments.counter;
-//   const newComment = comments.insert({
-//     authorId,
-//     content,
-//     postId,
-//     id: commentId,
-//   });
-//   comments.counter += 1;
-//   res.status(200).json({
-//     status: "Success",
-//     post: posts.addComment(postId, commentId),
-//   });
-// });
-
-// app.get("/api/posts/:id", (req, res) => {
-//   const postId = req.params.id;
-//   res.status(200).json({
-//     status: "Success",
-//     comments: posts.findById(postId),
-//   });
-// });
-
-// app.post("/api/posts", (req, res) => {
-//   const newPost = req.body.newPost;
-//   newPost["id"] = posts.counter;
-//   posts.counter += 1;
-//   posts.insert(newPost);
-//   res.status(200).json({
-//     status: "Success",
-//     post: newPost,
-//   });
-// });
-
-// app.put("/api/posts/:id", (req, res) => {
-//   res.status(200).json({
-//     status: "Success",
-//     post: posts.findByIdAndUpdate(req.params.id, req.body.update),
-//   });
-// });
-
-
-
-// app.delete("/api/posts/:id", (req, res) => {
-//   posts.delete(req.params.id)
-//   res.status(200).json({
-//     status: `Deleted post ${req.params.id}`,
-//   });
-// })
 
 
 
