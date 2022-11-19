@@ -118,6 +118,20 @@ app.get('/api/comments/author/:id', async (req, res) => {
   }
 });
 
+
+// Get all users
+app.get('/api/users', async (req, res) => {
+  try {
+    let query_builder = new QueryBuilder(req.query,UserModel.find());
+    query_builder = query_builder.filter().sort().paginate();
+    const users = await query_builder.queryChain;
+    res.status(200).json(users);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
+
 // Create user
 app.post('/api/users', async (req, res) => {
   const data = new userModel({
@@ -135,6 +149,8 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+
+
 // Create project
 app.post('/api/projects', async (req, res) => {
   const data = new projectModel({
@@ -151,40 +167,6 @@ app.post('/api/projects', async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 });
-
-// create comment
-app.post('/api/comments', async (req, res) => {
-  const data = new commentModel({
-    project: req.body.project,
-    author: req.body.author,
-  })
-  try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave)
-  }
-  catch (error) {
-    res.status(400).json({ message: error.message })
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.use(morgan("tiny"));
 
