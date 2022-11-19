@@ -4,6 +4,7 @@ const userModel = require("./Backend/model/User.js");
 const projectModel = require("./Backend/model/Project.js");
 const commentModel = require("./Backend/model/Comment.js");
 const canvasModel = require("./Backend/model/Canvas");
+const likeModel = require("./Backend/model/Like.js");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
@@ -55,6 +56,21 @@ for (let i = 0; i < 50; i++) {
   canvases.push(newCanvas);
 }
 
+let likes = [];
+for (let i = 0; i < 50; i++) {
+  const project = projects[i]._id;
+  const lower_bound = Math.floor(Math.random() * users.length);
+  const upper_bound = Math.floor(Math.random() * users.length);
+  const randomUsers = users.slice(lower_bound,upper_bound)
+  for(let j = 0; j < randomUsers.length ; j++){
+    const like = new likeModel({
+      project,
+      author: randomUsers[j]
+    })
+    likes.push(like);
+  }
+}
+
 mongoose
   .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
@@ -77,18 +93,8 @@ async function deleteData() {
   ]);
 }
 
-// userModel.deleteMany({}).then(function() {
-//   console.log("Added users")
-// });
-// projectModel.deleteMany({}).then(function() {
-//   console.log("Added projects")
-// });
-// commentModel.deleteMany({}).then(function() {
-//   console.log("Added comments")
-// });
-
 async function addData() {
-  const data = [].concat(users, projects, comments, canvases);
+  const data = [].concat(users, projects, comments, canvases,likes);
   for (let i = 0; i < data.length; i++) {
     data[i] = data[i].save();
   }
@@ -107,17 +113,4 @@ deleteData()
     console.log("Error:", err);
   });
 
-// addData().then(() => {
-//   console.log("Done");
-// }).catch((err) => {
-//   console.log("Error:", err);
-// })
 
-// userModel.find({ username: 'Louisa Keebler' }, function(err, docs) {
-//   if (err) {
-//     console.log(err);
-//   }
-//   else {
-//     console.log("First function call : ", docs);
-//   }
-// });
