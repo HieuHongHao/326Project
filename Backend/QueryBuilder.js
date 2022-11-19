@@ -8,7 +8,8 @@ class QueryBuilder{
                    .replace(/\b(gte|lte|gt|lt)\b/g, match => `$${match}`); // queryString for filter
         }
         this.queryObject = queryObject; // query object from request
-        this.filteredQuery = createFilterQuery(this.queryObj);
+        this.filteredQuery = createFilterQuery(this.queryObject);
+        console.log(this.filteredQuery);
         this.queryChain = queryChain;  // to chain query together
     }
 
