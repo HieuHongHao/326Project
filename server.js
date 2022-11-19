@@ -59,7 +59,7 @@ app.get("/api/projects", async (req, res) => {
     let query_builder = new QueryBuilder(req.query,ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain;
-    res.json(data);
+    res.status(200).json(data);
   }
   catch (error) {
     res.status(500).json({ message: error.message })
@@ -70,23 +70,27 @@ app.get("/api/projects", async (req, res) => {
 app.get('/api/projects/:id', async (req, res) => {
   try {
     const data = await ProjectModel.findById(req.params.id);
-    res.json(data)
+    res.status(200).json(data);
   }
   catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 });
 
-// Get all Comments 
-app.get("/api/comments", async (req, res) => {
-  try {
-    const data = await CommentModel.find();
-    res.json(data)
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-});
+
+
+// Get all Comments from a Project
+// app.get('/api/projects/:id/comments', async (req, res) => {
+//   try {
+//     const data = await ProjectModel.findById(req.params.id).populate("comments");
+//     res.status(200).json(data);
+//   }
+//   catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
+
+
 
 
 
