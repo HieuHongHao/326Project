@@ -9,6 +9,13 @@ const commentSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
+  },
+  createdAt:{
+    type: Date,
+    default: Date.now()
+  },
+  content:{
+    type: String
   }
 })
 const commentModel = mongoose.model("Comment", commentSchema);

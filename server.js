@@ -92,26 +92,25 @@ app.get('/api/projects/:id/comments', async (req, res) => {
   }
 });
 
-
-
-
-
+// Create new comment for a project
+app.post('/api/projects/:id/comments', async (req, res) => {
+  try {
+    const commentBody = req.body;
+    const comment = await CommentModel.create({
+      project: req.params.id,
+      ...req.body
+    })
+    res.status(200).json(comment);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Get comments by author ID
 app.get('/api/comments/author/:id', async (req, res) => {
   try {
     const data = await CommentModel.find({ "author": req.params.id });
-    res.json(data)
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-});
-
-// Get comments by project ID
-app.get('/api/comments/project/:id', async (req, res) => {
-  try {
-    const data = await CommentModel.find({ "project": req.params.id });
     res.json(data)
   }
   catch (error) {
