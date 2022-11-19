@@ -197,7 +197,7 @@ app.get("/api/github_repos", async (req, res) => {
     q: "java in:topics",
   });
   const repos = response.data.items.slice(0, 6);
-  const posts = repos.map((repo) => {
+  const projects = repos.map((repo) => {
     return {
       id: repo.id,
       content: repo.description,
@@ -209,10 +209,9 @@ app.get("/api/github_repos", async (req, res) => {
       title: repo.full_name,
     };
   });
-  console.log(repos);
   res.status(200).json({
     status: "Sucess",
-    posts
+    projects
   });
 });
 
