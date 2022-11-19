@@ -33,7 +33,7 @@ for (let i = 0; i < 50; i++) {
 let comments = [];
 for (let i = 0; i < 100; i++) {
   const newComment = new commentModel({
-    post: projects.sort(() => 0.5 - Math.random())[0]._id,
+    project: projects.sort(() => 0.5 - Math.random())[0]._id,
     author: users.sort(() => 0.5 - Math.random())[0]._id
   });
   comments.push(newComment);
