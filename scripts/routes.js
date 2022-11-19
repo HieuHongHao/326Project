@@ -1,4 +1,5 @@
 import { utils } from './utils.js';
+import { register } from './register.js';
 import { feed } from './feed.js';
 import { forum } from './forum.js';
 import { dashboard } from './dashboard.js';
@@ -26,8 +27,18 @@ export const routes = {
     // List of pages
     let route = window.location.search.substring(2);
     if (route !== "") {
-      // Run feed 
-      if (route === 'feed') {
+      // Run register
+      if (route === 'register') {
+        if (!isLoggedIn()) {
+          utils.setTitle("Register");
+          await utils.loadModule(`pages/${route}.html`, 'content');
+          await register.init();
+        } else {
+          await utils.load404();
+        }
+
+        // Run feed 
+      } else if (route === 'feed') {
         signBtn();
         utils.setTitle("Feed");
         await utils.loadModule(`components/searchBar.html`, 'topSearch');
