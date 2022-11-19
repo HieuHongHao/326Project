@@ -1,10 +1,10 @@
 const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
 const userModel = require("./Backend/model/User.js");
+const likeModel = require("./Backend/model/Like.js");
 const projectModel = require("./Backend/model/Project.js");
 const commentModel = require("./Backend/model/Comment.js");
 const canvasModel = require("./Backend/model/Canvas");
-const likeModel = require("./Backend/model/Like.js");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
@@ -90,6 +90,7 @@ async function deleteData() {
     projectModel.deleteMany({}),
     commentModel.deleteMany({}),
     canvasModel.deleteMany({}),
+    likeModel.deleteMany({})
   ]);
 }
 

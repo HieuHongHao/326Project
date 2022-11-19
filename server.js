@@ -14,6 +14,7 @@ const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
 const canvasModel = require("./Backend/model/Canvas");
+const likeModel = require("./Backend/model/Like");
 
 const QueryBuilder = require("./Backend/QueryBuilder");
 

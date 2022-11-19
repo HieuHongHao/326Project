@@ -41,7 +41,9 @@ projectSchema.virtual("likes", {
   localField: "_id",
 });
 
-
-
+projectSchema.pre(/^find/,function(next){
+  this.populate("likes");
+  next();
+})
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;
