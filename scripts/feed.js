@@ -182,7 +182,7 @@ export const feed = {
       const query = searchBar.value.split(":");
       let result;
       switch (query[0]) {
-        case "tag":
+        case "tags":
           result = await api.fetchData(URL + `/projects?tags=${query[1]}`);
           break;
         case "title":
