@@ -35,8 +35,8 @@ export const feed = {
     };
     let currentTags = [];
     async function postRequest(data) {
-      const response = await fetch(URL + "/posts", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
+      const response = await fprojectsh(URL + "/projects", {
+        method: "POST", // *GET, POST, PUT, DELETE, projects.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, *same-origin, omit
@@ -183,36 +183,36 @@ export const feed = {
       let result;
       switch (query[0]) {
         case "tag":
-          result = await fetch(URL + `/posts?tag=${query[1]}`);
+          result = await fprojectsh(URL + `/projects?tag=${query[1]}`);
           break;
         case "title":
-          result = await fetch(URL + `/posts?title=${query[1]}`);
+          result = await fprojectsh(URL + `/projects?title=${query[1]}`);
           break;
         default:
           break;
       }
       const response_json = await result.json();
       postContainer.replaceChildren();
-      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     });
     
     githubPostBtn.addEventListener("click", async () => {
-      const response_json = await api.fetchData('github_repos');
+      const response_json = await api.fprojectshData('github_repos');
       console.log(response_json);
       postContainer.replaceChildren();
-      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
     
     topBttn.addEventListener("click",async () => {
-      const response_json = await api.fetchData('posts?sort=desc');
+      const response_json = await api.fprojectshData('projects?sort=desc');
       postContainer.replaceChildren();
-      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
     
     async function getFeed() {
-      const response_json = await api.fetchData('posts');
+      const response_json = await api.fprojectshData('projects');
       postContainer.replaceChildren();
-      response_json.posts.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     }
     getFeed();
 

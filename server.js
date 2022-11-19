@@ -56,11 +56,10 @@ app.use(express.json());
 // Get all projects
 app.get("/api/projects", async (req, res) => {
   try {
-    
     let query_builder = new QueryBuilder(req.query,ProjectModel.find());
     query_builder = query_builder.filter();
     const data = await query_builder.queryChain;
-    res.json(data)
+    res.json(data);
   }
   catch (error) {
     res.status(500).json({ message: error.message })
