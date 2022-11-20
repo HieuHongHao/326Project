@@ -102,7 +102,7 @@ app.get('/api/projects/:id/comments', async (req, res) => {
 
 // Create a new project
 app.post('/api/projects', async (req, res) => {
-  const data = new projectModel({
+  const data = new ProjectModel({
     authorID: req.body.authorID,
     title: req.body.title,
     content: req.body.content,
