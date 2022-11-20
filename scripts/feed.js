@@ -47,12 +47,12 @@ export const feed = {
       return response_json;
     }
 
-    function createNewPost(data) {
+    async function createNewPost(data) {
       const newPost = document.createElement("div");
       for (const classname of postClass) {
         newPost.classList.add(classname);
       }
-      newPost.appendChild(createUserAvatarAndName());
+      newPost.appendChild(await createUserAvatarAndName(data));
       newPost.appendChild(createBodyContent(data));
       return newPost;
     }
@@ -113,19 +113,22 @@ export const feed = {
       return wrapper;
     }
 
-    function createUserAvatarAndName() {
+    async function createUserAvatarAndName(data) {
+      const userData = await api.fetchData('users/' + data.authorID);
       const user = document.createElement("div");
       const image = document.createElement("img");
       const name = document.createElement("span");
       const innerText = document.createElement("a");
       user.classList.add("px-3", "pt-3");
 
-      image.src = "../public/logo.svg";
+      image.src = userData.avatar;
       image.classList.add("rounded-circle");
+      image.classList.add("border");
+      image.classList.add("cat-border-light");
 
       innerText.classList.add("cat-text-light", "text-decoration-none");
-      innerText.innerHTML = "Username1";
-      name.classList.add("ms-1");
+      innerText.innerHTML = userData.username;
+      name.classList.add("ms-2");
       name.appendChild(innerText);
 
       user.appendChild(image);
@@ -138,7 +141,6 @@ export const feed = {
       const content = document.getElementById("post-text-area").value;
       const title = document.getElementById("post-title").value;
       const userId = window.localStorage.getItem("loggedIn");
-      console.log(currentTags)
       const result = await postRequest({
         authorID: userId,
         title: title,
@@ -209,7 +211,7 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.forEach(async (post) => postContainer.appendChild(await createNewPost(post)));
     }
     getFeed();
 
