@@ -34,8 +34,8 @@ export const feed = {
       Guava: "pn-card-type-blue"
     };
     let currentTags = [];
-    async function postRequest(data) {
-      const response = await fetch(URL + "/projects", {
+    async function postRequest(data,param) {
+      const response = await fetch(URL + "/projects" + param, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -116,8 +116,10 @@ export const feed = {
       likeTxt.innerHTML = data.likeNumber;
       likeBttn.appendChild(likeIcn);
       likeBttn.appendChild(likeTxt);
-      likeBttn.addEventListener("click", () => {
-        likeBttn.innerHTML = parseInt(likeBttn.innerHTML) + 1;
+      likeBttn.addEventListener("click", async() => {
+        const author = window.localStorage.getItem("loggedIn");
+        const likes = await postRequest({author},`/${data._id}/like`);  
+        likeBttn.innerHTML = likes; 
       })
 
       /*Canvas icon*/
@@ -177,7 +179,7 @@ export const feed = {
         title: title,
         content: content,
         tags: currentTags
-      });
+      },"");
       const newPost = createNewPost(result.post);
       postContainer.prepend(newPost);
     });

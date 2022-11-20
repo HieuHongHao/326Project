@@ -57,7 +57,10 @@ app.get("/api/projects", async (req, res) => {
   try {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
-    const data = await query_builder.queryChain.populate("authorID");;
+    const data = await query_builder.queryChain.populate({
+      path:"authorID",
+      select: "-password"
+    });
     res.status(200).json(data);
   }
   catch (error) {
@@ -116,6 +119,20 @@ app.post('/api/projects', async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 });
+
+// Delete project and its comments, likes
+app.get('/api/projects/delete/:id', async (req, res) => {
+  try {
+    const data = await ProjectModel.findByIdAndDelete(req.params.id);
+    await CommentModel.deleteMany({ project: req.params.id })
+    await LikeModel.deleteMany({ project: req.params.id })
+    res.send(`Project ${data.title} has been deleted..`);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
 // Create new comment for a project
 app.post('/api/projects/:id/comments', async (req, res) => {
   try {
@@ -123,6 +140,11 @@ app.post('/api/projects/:id/comments', async (req, res) => {
     const comment = await CommentModel.create({
       project: req.params.id,
       ...commentBody
+    })
+    await ProjectModel.findByIdAndUpdate(req.params.id,{
+      $inc:{
+        commentNumber : 1
+      }
     })
     res.status(200).json(comment);
   }
@@ -150,6 +172,9 @@ app.post('/api/projects/:id/like', async (req, res) => {
     })
     const project = await ProjectModel.findById(req.params.id);
     if(like){
+      project.likeNumber --;
+      await project.save();
+      await LikeModel.findByIdAndDelete(like._id);
       res.status(200).json(project.likeNumber);
     }else{
       project.likeNumber += 1;
@@ -207,6 +232,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+// Delete a user and their projects, comments, likes
 app.get('/api/users/delete/:id', async (req, res) => {
   try {
     const data = await UserModel.findByIdAndDelete(req.params.id);
@@ -234,6 +260,25 @@ app.get("/api/canvas", async (req, res) => {
   }
 })
 
+// app.post("/api/canvas", async (req, res) => {
+//   try {
+//     const newCanvas = await canvasModel.the gaehr
+//     res.status(200).json(newCanvas);
+//   }
+//   catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// })
+
+app.put("/api/canvas/:id", async (req, res) => {
+  try {
+    const newCanvas = await canvasModel.findByIdAndUpdate(req.params.id,req.body);
+    res.status(200).json(newCanvas);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+})
 
 
 app.use(morgan("tiny"));

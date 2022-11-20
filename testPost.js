@@ -25,4 +25,6 @@
 //   method: 'DELETE',
 // }).then(() => element.innerHTML = 'Delete successful');
 
-fetch('http://localhost:9000/api/users/delete/637a430b1f1a1d6ad0b755ce').then(res => res.text()).then(res => console.log(res))
+// fetch('http://localhost:9000/api/users/delete/637a430b1f1a1d6ad0b755ce').then(res => res.text()).then(res => console.log(res))
+
+fetch('http://localhost:9000/api/projects/delete/637a6d1069ab705ab79344f0').then(res => res.text()).then(res => console.log(res))

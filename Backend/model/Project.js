@@ -21,6 +21,10 @@ const projectSchema = new Schema({
     type: Number,
     default: 0
   },
+  commentNumber:{
+    type: Number,
+    default: 0
+  },
   tags: [
     {
       type: String,
@@ -48,6 +52,7 @@ projectSchema.virtual("likes", {
   foreignField: "project",
   localField: "_id",
 });
+
 
 projectSchema.pre(/^find/, function(next) {
   this.populate("likes");
