@@ -6,17 +6,13 @@ function closeModal(tag) {
   modal.hide();
 }
 
-
-
-
-
 function loginSuccess(acc) {
   const storage = window.localStorage;
   storage.setItem("loggedIn", acc);
 }
 
-async function getUserData() {
-  const URL = "https://cs326project.herokuapp.com/api/users";
+async function getUserData(query) {
+  const URL = "https://cs326project.herokuapp.com/api/users" + query;
   let response = await fetch(URL);
   if (response.ok) {
     return await response.json();
@@ -29,10 +25,10 @@ async function login() {
   // const res = await fetch("../api/users.json");
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
-  const users = await getUserData();
-  const user = users.filter(x => x.email === username);
+  const user = await getUserData(`?email=${username}`);
+  console.log(user);
   if (user.length !== 0 && user[0].password === password) {
-    loginSuccess(user[0].id);
+    loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
     window.location.href = "?=dashboard";
   } else {
@@ -40,10 +36,16 @@ async function login() {
   }
 }
 
-
+async function deleteAccount() {
+  const userID = window.localStorage.getItem("loggedIn");
+  fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+}
 
 const loginBtn = document.getElementById("loginSubmit");
 loginBtn.addEventListener("click", login);
+
+const deleteAcc = document.getElementById("deleteAccount");
+deleteAcc.addEventListener("click", deleteAccount);
 
 
 // async function deletePost() {

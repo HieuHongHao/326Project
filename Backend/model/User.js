@@ -14,7 +14,6 @@ const userSchema = new Schema({
     type: String,
     require: [true, "User must have a password"],
     minlength: 6,
-    select: false
   },
   avatar: {
     type: String

@@ -12,7 +12,7 @@ const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
 const canvasModel = require("./Backend/model/Canvas");
-const likeModel = require("./Backend/model/Like");
+const LikeModel = require("./Backend/model/Like");
 
 const QueryBuilder = require("./Backend/QueryBuilder");
 
@@ -58,7 +58,6 @@ app.get("/api/projects", async (req, res) => {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain.populate("authorID");;
-    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
@@ -69,9 +68,7 @@ app.get("/api/projects", async (req, res) => {
 // Get Project by ID
 app.get('/api/projects/:id', async (req, res) => {
   try {
-    console.log(req.params.id);
     const data = await ProjectModel.findById(req.params.id).populate("authorID");
-    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
@@ -143,8 +140,31 @@ app.get('/api/comments/author/:id', async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 });
-
-
+// Create a new like for a project
+app.post('/api/projects/:id/like', async (req, res) => {
+  try {
+    const author = req.body.author;
+    const like = await LikeModel.findOne({
+      project: req.params.id,
+      author
+    })
+    const project = await ProjectModel.findById(req.params.id);
+    if(like){
+      res.status(200).json(project.likeNumber);
+    }else{
+      project.likeNumber += 1;
+      await LikeModel.create({
+        project: req.params.id,
+        author
+      })
+      await project.save();
+      res.status(200).json(project.likeNumber);
+    }
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+});
 
 // --------Users Resource------------------------------------------------------------------------------------------
 // Get all users
@@ -187,6 +207,18 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+app.get('/api/users/delete/:id', async (req, res) => {
+  try {
+    const data = await UserModel.findByIdAndDelete(req.params.id);
+    await ProjectModel.deleteMany({ authorID: req.params.id })
+    await CommentModel.deleteMany({ author: req.params.id })
+    await LikeModel.deleteMany({ author: req.params.id })
+    res.send(`User ${data.username} has been deleted..`);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
 
 // --------Canvas Resource------------------------------------------------------------------------------------------
 // Get all canvas
@@ -201,6 +233,7 @@ app.get("/api/canvas", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 })
+
 
 
 app.use(morgan("tiny"));
@@ -218,7 +251,6 @@ app.get("/api/github_repos", async (req, res) => {
     q: "java in:topics",  // Zhǎo wā
   });
   const repos = response.data.items.slice(0, 6);
-  console.log(repos);
   const projects = repos.map((repo) => {
     return {
       id: repo.id,
@@ -229,7 +261,7 @@ app.get("/api/github_repos", async (req, res) => {
         (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
       ),
       title: repo.full_name,
-      authorID:{
+      authorID: {
         username: repo.owner.login,
         avatar: repo.owner.avatar_url
       },

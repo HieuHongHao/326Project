@@ -10,7 +10,7 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
-
+    
 
 
     const URL = "https://cs326project.herokuapp.com/api";

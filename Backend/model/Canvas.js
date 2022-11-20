@@ -22,5 +22,8 @@ const canvasSchema = new Schema({
     }
 })
 
+
+
+
 const canvasModel = mongoose.model("Canvas",canvasSchema);
 module.exports = canvasModel;
