@@ -53,8 +53,8 @@ for (let i = 0; i < 50; i++) {
 }
 
 let likes = [];
-for (let i = 0; i < 50; i++) {
-  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * users.length));
+for (let i = 0; i < projects.length; i++) {
+  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * (users.length / 2)));
   for (let j = 0; j < randomUsers.length; j++) {
     const like = new likeModel({
       project: projects[i]._id,
