@@ -20,7 +20,7 @@ export const feed = {
       "cat-bg-light",
       "cat-text-light",
       "my-3",
-      "border",
+      // "border",
       "rounded-3",
       "feed-post",
     ];
@@ -52,6 +52,7 @@ export const feed = {
       for (const classname of postClass) {
         newPost.classList.add(classname);
       }
+      newPost.classList.add("feed-posts-container");
       newPost.appendChild(createUserAvatarAndName(data));
       newPost.appendChild(createBodyContent(data));
       return newPost;
@@ -153,8 +154,8 @@ export const feed = {
 
       image.src = userData.avatar;
       image.classList.add("rounded-circle");
-      image.classList.add("border");
-      image.classList.add("cat-border-light");
+      // image.classList.add("border");
+      // image.classList.add("cat-border-light");
 
       innerText.classList.add("cat-text-light", "text-decoration-none");
       innerText.innerHTML = userData.username;

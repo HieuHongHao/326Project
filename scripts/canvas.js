@@ -246,7 +246,7 @@ export const canvas = {
     document.getElementById("open-chat").addEventListener('click', function(){
       document.getElementById("chat").classList.toggle("hide");
       document.getElementById("open-chat").style.display = "hide";
-      
+      autoScroll();
     })
 
     
