@@ -27,11 +27,11 @@ for (let i = 0; i < 50; i++) {
     authorID: users.sort(() => 0.5 - Math.random())[0]._id,
     title: faker.lorem.sentence(3),
     content: faker.lorem.paragraph(),
-    likes: users
-      .sort(() => 0.5 - Math.random())
-      .slice(0, Math.floor(Math.random() * users.length))
-      .map((x) => x._id),
-    tags: tags.sort(() => 0.5 - Math.random()).slice(0, 3),
+    // likes: users
+    //   .sort(() => 0.5 - Math.random())
+    //   .slice(0, Math.floor(Math.random() * users.length))
+    //   .map((x) => x._id),
+    tags: tags.sort(() => 0.5 - Math.random()).slice(0, tags.length),
   });
   projects.push(newProject);
 }
@@ -58,16 +58,13 @@ for (let i = 0; i < 50; i++) {
 
 let likes = [];
 for (let i = 0; i < 50; i++) {
-  const project = projects[i]._id;
-  const lower_bound = Math.floor(Math.random() * users.length);
-  const upper_bound = Math.floor(Math.random() * users.length);
-  const randomUsers = users.slice(lower_bound,upper_bound)
-  for(let j = 0; j < randomUsers.length ; j++){
+  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, users.length);
+  for (let j = 0; j < randomUsers.length; j++) {
     const like = new likeModel({
       project,
       author: randomUsers[j]
     })
-    projects[i].likeNumber ++;
+    projects[i].likeNumber++;
     likes.push(like);
   }
 }
@@ -96,7 +93,7 @@ async function deleteData() {
 }
 
 async function addData() {
-  const data = [].concat(users, projects, comments, canvases,likes);
+  const data = [].concat(users, projects, comments, canvases, likes);
   for (let i = 0; i < data.length; i++) {
     data[i] = data[i].save();
   }
