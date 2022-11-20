@@ -35,28 +35,24 @@ export const feed = {
     };
     let currentTags = [];
     async function postRequest(data) {
-      const response = await fetch(URL + "/projects", {
-        method: "POST", // *GET, POST, PUT, DELETE, projects.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
+      const response = await fetch('http://localhost:9000/api/projects', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-      });
+        body: JSON.stringify(data)
+      })
       const response_json = await response.json();
       return response_json;
     }
 
-    function createNewPost(data) {
+    async function createNewPost(data) {
       const newPost = document.createElement("div");
       for (const classname of postClass) {
         newPost.classList.add(classname);
       }
-      newPost.appendChild(createUserAvatarAndName());
+      newPost.appendChild(await createUserAvatarAndName(data));
       newPost.appendChild(createBodyContent(data));
       return newPost;
     }
@@ -145,19 +141,22 @@ export const feed = {
       return wrapper;
     }
 
-    function createUserAvatarAndName() {
+    async function createUserAvatarAndName(data) {
+      const userData = await api.fetchData('users/' + data.authorID);
       const user = document.createElement("div");
       const image = document.createElement("img");
       const name = document.createElement("span");
       const innerText = document.createElement("a");
       user.classList.add("px-3", "pt-3", "post-user-container");
 
-      image.src = "../public/logo.svg";
+      image.src = userData.avatar;
       image.classList.add("rounded-circle");
+      image.classList.add("border");
+      image.classList.add("cat-border-light");
 
       innerText.classList.add("cat-text-light", "text-decoration-none");
-      innerText.innerHTML = "Username1";
-      name.classList.add("ms-1");
+      innerText.innerHTML = userData.username;
+      name.classList.add("ms-2");
       name.appendChild(innerText);
 
       user.appendChild(image);
@@ -169,12 +168,12 @@ export const feed = {
     newPostBtn.addEventListener("click", async () => {
       const content = document.getElementById("post-text-area").value;
       const title = document.getElementById("post-title").value;
+      const userId = window.localStorage.getItem("loggedIn");
       const result = await postRequest({
-        newPost: {
-          content,
-          title,
-          tags: currentTags,
-        },
+        authorID: userId,
+        title: title,
+        content: content,
+        tags: currentTags
       });
       const newPost = createNewPost(result.post);
       postContainer.prepend(newPost);
@@ -231,7 +230,8 @@ export const feed = {
     })
 
     topBttn.addEventListener("click", async () => {
-      const response_json = await api.fetchData('projects?sort=-likeNumber');
+      // Fix this
+      const response_json = await api.fetchData('projects?sort=title');
       postContainer.replaceChildren();
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
@@ -239,7 +239,7 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.forEach(async (post) => postContainer.appendChild(await createNewPost(post)));
     }
     getFeed();
 

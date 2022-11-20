@@ -106,6 +106,7 @@ app.post('/api/projects', async (req, res) => {
     authorID: req.body.authorID,
     title: req.body.title,
     content: req.body.content,
+    tags: req.body.tags
   })
   try {
     const dataToSave = await data.save();
