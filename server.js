@@ -58,7 +58,6 @@ app.get("/api/projects", async (req, res) => {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain.populate("authorID");;
-    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
@@ -69,9 +68,7 @@ app.get("/api/projects", async (req, res) => {
 // Get Project by ID
 app.get('/api/projects/:id', async (req, res) => {
   try {
-    console.log(req.params.id);
     const data = await ProjectModel.findById(req.params.id).populate("authorID");
-    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
@@ -203,6 +200,7 @@ app.get("/api/canvas", async (req, res) => {
 })
 
 
+
 app.use(morgan("tiny"));
 
 app.get("/", (req, res) => {
@@ -218,7 +216,6 @@ app.get("/api/github_repos", async (req, res) => {
     q: "java in:topics",  // Zhǎo wā
   });
   const repos = response.data.items.slice(0, 6);
-  console.log(repos);
   const projects = repos.map((repo) => {
     return {
       id: repo.id,
