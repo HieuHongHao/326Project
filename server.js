@@ -79,7 +79,7 @@ app.get('/api/projects/:id', async (req, res) => {
 // Get Project by author ID
 app.get('/api/projects/author/:id', async (req, res) => {
   try {
-    const data = await ProjectModel.find({ "authorId": req.params.id });
+    const data = await ProjectModel.find({ "authorID": req.params.id });
     res.status(200).json(data);
   }
   catch (error) {
