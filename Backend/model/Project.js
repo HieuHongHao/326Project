@@ -17,6 +17,10 @@ const projectSchema = new Schema({
     required: [true, "A project must have content"],
     maxlength: 1000,
   },
+  likeNumber: {
+    type: Number,
+    default: 0
+  },
   tags: [
     {
       type: String,
