@@ -167,6 +167,7 @@ app.get('/api/users/:id', async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 });
+
 // Create user
 app.post('/api/users', async (req, res) => {
   const data = new userModel({

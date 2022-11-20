@@ -55,6 +55,8 @@ export const routes = {
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
         await utils.loadModule(`pages/${route}.html`, 'content');
         await forum.init();
+        let route2 = window.location.search.substring(3);
+        console.log(route2);
 
         // Run dashboard 
       } else if (route === 'dashboard') {

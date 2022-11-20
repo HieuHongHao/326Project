@@ -13,74 +13,86 @@
   <p id="write">Hi</p>
   <a id="asd">see my page!</a>
 <i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
-
-  <style>
-    .card{
-      width: 25em;
-      padding: 0.5em;
-      background-color: #494d64;
-    }
-    .post-icons-container{
-      display: grid;
-      column-gap: 50px;
-      text-align: center;
-      grid-template-columns: auto auto auto;
-      color: #c6d0f5;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding-bottom: 0.2em;
-    }
-
-    .post-icons-container i{
-      /* color: #8b98a5; */
-      font-size: 16px;
-      padding: 0.6em;
-      border-radius: 50%;
-      /* background-color: yellow; */
-    }
-
-    .post-icons-container span{
-      font-size: 13px;
-      margin-left: 0.2em;
-    }
-
-    .post-icons-container div:hover{
-      cursor: pointer;
-      transition: all .4s ease;
-        -webkit-transition: all .4s ease;
-    }
-
-    .post-icons-container div:nth-child(1):hover{
-      color: #1d9df0;
-    }
-    .post-icons-container div:nth-child(1):hover > i{
-      background-color: rgba(29, 157, 240, 0.2);
-    }
-    .post-icons-container div:nth-child(2):hover{
-      color: #00ba7c;
-    }
-    .post-icons-container div:nth-child(2):hover > i{
-      background-color: rgba(0, 186, 124, 0.2);
-    }
-    .post-icons-container div:nth-child(3):hover{
-      color: #f91880;
-    }
-    .post-icons-container div:nth-child(3):hover > i{
-      background-color: rgba(249, 24, 128, 0.2);
-    }
-
-
-    /* red #f91880
-    green #00ba7c */
-  </style>
-  <div class="card">
-    <span>Title</span>
-    <br/><br/>
-    <div class="post-icons-container">
-      <div><i class="fa-regular fa-comment"></i><span>15</span></div>
-      <div><i class="fa-regular fa-heart"></i><span>8</span></div>
-      <div><i class="fa-regular fa-pen-to-square"></i><span>Kanvas</span></div>
+  <br/>
+  <br/>
+  <div class="dashboard-card-container">
+    <div class="card-intro">
+      <h1>Self Driving Car</h1>
+      <p>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat...</p>
+      <div class="post-icons-container">
+        <div><i class="fa-regular fa-comment"></i><span>15</span></div>
+        <div><i class="fa-regular fa-heart"></i><span>8</span></div>
+        <div><i class="fa-regular fa-pen-to-square"></i><span>Kanvas</span></div>
+      </div>
+    </div>
+    <div class="leaderboard card-leaderboard">
+      <table>
+        <tr>
+          <th>RANK</th>
+          <th></th>
+          <th>COMMITS</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td><img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg"><span>Maria Anders</span></td>
+          <td>99</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg"><span>Maria Anders</span></td>
+          <td>94</td>
+        </tr>
+      </table>
     </div>
   </div>
+
+  <style>
+    body{
+      background-color: #24273a;
+    }
+    .dashboard-card-container{
+      width: 25em;
+    }
+
+    .card-intro{
+      width: 100%;
+      padding: 0.8em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: rgb(89,127,228);
+background: linear-gradient(315deg, rgba(89,127,228,1) 1%, rgba(151,84,198,1) 100%);
+      color: white;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .card-intro h1{
+      font-size: 25px;
+    }
+
+    .leaderboard{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* background-color: #3d2249;
+      color: white; */
+      background-color: white;
+    }
+
+    .leaderboard img{
+      width: 1.3em;
+      border-radius: 50%;
+    }
+
+    .card-leaderboard{
+      width: 100%;
+      text-align: center;
+      padding: 0.8em;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+
+  </style>
+
+
 </body>
 
 <script>
@@ -96,5 +108,52 @@
     document.getElementById("write").innerHTML = pass;
 
 </script>
+<style>
+  .post-icons-container{
+  display: grid;
+  column-gap: 50px;
+  text-align: center;
+  grid-template-columns: auto auto auto;
+  color: #c6d0f5;
+  padding-bottom: 0.6em;
+}
 
+.post-icons-container i{
+  /* color: #8b98a5; */
+  font-size: 16px;
+  padding: 0.6em;
+  border-radius: 50%;
+  /* background-color: yellow; */
+}
+
+.post-icons-container span{
+  font-size: 13px;
+  margin-left: 0.2em;
+}
+
+.post-icons-container div:hover{
+  cursor: pointer;
+  transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.post-icons-container div:nth-child(1):hover{
+  color: #1d9df0;
+}
+.post-icons-container div:nth-child(1):hover > i{
+  background-color: rgba(29, 157, 240, 0.2);
+}
+.post-icons-container div:nth-child(2):hover{
+  color: #f91880;
+}
+.post-icons-container div:nth-child(2):hover > i{
+  background-color: rgba(249, 24, 128, 0.2);
+}
+.post-icons-container div:nth-child(3):hover{
+  color: #00ba7c;
+}
+.post-icons-container div:nth-child(3):hover > i{
+  background-color: rgba(0, 186, 124, 0.2);
+}
+</style>
 </html>

@@ -1,6 +1,8 @@
 import { api } from './api.js';
 export const forum = {
   init: async () => {
+    /*Get value from certain key;*/
+
     function addComment() {
       console.log("hi")
       const comments = document.getElementById("comments");
