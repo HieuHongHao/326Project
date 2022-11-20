@@ -282,5 +282,13 @@
 }
 
 .post-user-container{
-  /* background-color: yellow; */
+  padding-bottom: 0.5em;
+}
+
+.post-user-container span{
+  font-size: 14px;
+}
+
+.post-user-container img{
+  width: 1.5em;
 }

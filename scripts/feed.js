@@ -102,7 +102,7 @@ export const feed = {
       const commentIcn = document.createElement("i");
       const commentTxt = document.createElement("span");
       commentIcn.className = "fa-regular fa-comment";
-      commentTxt.innerHTML = 15;
+      commentTxt.innerHTML = data.comments.length;
       commentBttn.appendChild(commentIcn);
       commentBttn.appendChild(commentTxt);
 
@@ -132,7 +132,9 @@ export const feed = {
       /*Append everything to wrapper card*/
       wrapper.classList.add("px-3");
       wrapper.appendChild(title);
-      wrapper.appendChild(tags);
+      if(data.tags.length > 0){
+        wrapper.appendChild(tags);
+      }
       wrapper.appendChild(content);
       postContainer.appendChild(commentBttn)
       postContainer.appendChild(likeBttn)
