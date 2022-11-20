@@ -229,15 +229,58 @@
 .list-group-item {
   border-color: var(--cat-text-light) !important;
 }
-.post-like-container{
-  padding: 0.2em;
+
+.post-icons-container{
+  display: grid;
+  column-gap: 50px;
+  text-align: center;
+  grid-template-columns: auto auto auto;
+  color: #c6d0f5;
+  padding-bottom: 0.6em;
+}
+
+.post-icons-container i{
+  /* color: #8b98a5; */
+  font-size: 16px;
+  padding: 0.6em;
+  border-radius: 50%;
+  /* background-color: yellow; */
+}
+
+.post-icons-container span{
+  font-size: 13px;
+  margin-left: 0.2em;
+}
+
+.post-icons-container div:hover{
+  cursor: pointer;
+  transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.post-icons-container div:nth-child(1):hover{
+  color: #1d9df0;
+}
+.post-icons-container div:nth-child(1):hover > i{
+  background-color: rgba(29, 157, 240, 0.2);
+}
+.post-icons-container div:nth-child(2):hover{
+  color: #00ba7c;
+}
+.post-icons-container div:nth-child(2):hover > i{
+  background-color: rgba(0, 186, 124, 0.2);
+}
+.post-icons-container div:nth-child(3):hover{
+  color: #f91880;
+}
+.post-icons-container div:nth-child(3):hover > i{
+  background-color: rgba(249, 24, 128, 0.2);
+}
+
+.tag-container{
   padding-bottom: 1em;
-  margin-top: -1em;
 }
-.post-like-container i{
-  color: red;
-  font-size: 14px;
-}
-.post-like-container span{
-  margin-left: 0.3em;
+
+.post-user-container{
+  /* background-color: yellow; */
 }

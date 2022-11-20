@@ -64,6 +64,7 @@ export const feed = {
     function createTag(tags) {
       const tagWrapper = document.createElement("div");
       tagWrapper.classList.add("mt-3");
+      tagWrapper.classList.add("tag-container");
       for (const tag of tags) {
         const tagElement = document.createElement("div");
         tagElement.innerHTML = tag;
@@ -95,25 +96,52 @@ export const feed = {
       // likeButton.addEventListener("click", () => {
       //   likeButton.innerHTML = parseInt(likeButton.innerHTML) + 1;
       // })
-      const likeButton = document.createElement("div");
-      const heart = document.createElement("i");
-      const likeText = document.createElement("span");
+      
+      /*Post icons container*/
+      const postContainer = document.createElement("div");
+      postContainer.className = "post-icons-container"
 
-      heart.className = "fa-solid fa-heart";
-      likeText.innerHTML = data.likes.length;
-      likeButton.appendChild(heart);
-      likeButton.appendChild(likeText);
-      likeButton.className = "post-like-container"
-      likeButton.addEventListener("click", () => {
-        likeButton.innerHTML = parseInt(likeText.innerHTML) + 1;
+      /*Comment icon*/
+      const commentBttn = document.createElement("div");
+      const commentIcn = document.createElement("i");
+      const commentTxt = document.createElement("span");
+      commentIcn.className = "fa-regular fa-comment";
+      commentTxt.innerHTML = 15;
+      commentBttn.appendChild(commentIcn);
+      commentBttn.appendChild(commentTxt);
+
+      /*Like icon*/
+      const likeBttn = document.createElement("div");
+      const likeIcn = document.createElement("i");
+      const likeTxt = document.createElement("span");
+
+      likeIcn.className = "fa-regular fa-heart";
+      likeTxt.innerHTML = data.likes.length;
+      likeBttn.appendChild(likeIcn);
+      likeBttn.appendChild(likeTxt);
+      likeBttn.addEventListener("click", () => {
+        likeBttn.innerHTML = parseInt(likeBttn.innerHTML) + 1;
       })
 
+      /*Canvas icon*/
+      const canvasBttn = document.createElement("div");
+      const canvasIcn = document.createElement("i");
+      const canvasTxt = document.createElement("span");
 
+      canvasIcn.className = "fa-regular fa-pen-to-square";
+      canvasTxt.innerHTML = "Kanvas";
+      canvasBttn.appendChild(canvasIcn);
+      canvasBttn.appendChild(canvasTxt);
+
+      /*Append everything to wrapper card*/
       wrapper.classList.add("px-3");
-      wrapper.appendChild(tags);
       wrapper.appendChild(title);
+      wrapper.appendChild(tags);
       wrapper.appendChild(content);
-      wrapper.appendChild(likeButton)
+      postContainer.appendChild(commentBttn)
+      postContainer.appendChild(likeBttn)
+      postContainer.appendChild(canvasBttn)
+      wrapper.appendChild(postContainer);
       return wrapper;
     }
 
@@ -122,7 +150,7 @@ export const feed = {
       const image = document.createElement("img");
       const name = document.createElement("span");
       const innerText = document.createElement("a");
-      user.classList.add("px-3", "pt-3");
+      user.classList.add("px-3", "pt-3", "post-user-container");
 
       image.src = "../public/logo.svg";
       image.classList.add("rounded-circle");
