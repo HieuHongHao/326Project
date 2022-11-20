@@ -169,6 +169,9 @@ app.post('/api/projects/:id/like', async (req, res) => {
     })
     const project = await ProjectModel.findById(req.params.id);
     if(like){
+      project.likeNumber --;
+      await project.save();
+      await LikeModel.findByIdAndDelete(like._id);
       res.status(200).json(project.likeNumber);
     }else{
       project.likeNumber += 1;
@@ -254,7 +257,15 @@ app.get("/api/canvas", async (req, res) => {
   }
 })
 
-
+// app.post("/api/canvas", async (req, res) => {
+//   try {
+//     const newCanvas = await canvasModel.the gaehr
+//     res.status(200).json(newCanvas);
+//   }
+//   catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// })
 
 app.put("/api/canvas/:id", async (req, res) => {
   try {
