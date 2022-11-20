@@ -205,7 +205,7 @@ export const feed = {
     topBttn.addEventListener("click",async () => {
       const response_json = await api.fetchData('projects?sort=likeNumber');
       postContainer.replaceChildren();
-      response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
+      response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
     
     async function getFeed() {
