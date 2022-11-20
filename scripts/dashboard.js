@@ -6,8 +6,12 @@ export const dashboard = {
     if (userId !== null) {
       // const res = await fetch("../api/users.json");
       // const users = await res.json();
-      const users = await api.fetchData('users');
-      const user = users.users.filter(x => x.id === parseInt(userId))[0];
+      const user = await api.fetchData('users/' + userId);
+      const projects = await api.fetchData('projects/author/' + userId);
+      const userComments = await api.fetchData('comments/author/' + userId);
+      console.log(userComments)
+      // console.log(user)
+      // console.log(projects[1])
 
       const pfp = document.getElementById("pfp");
       const username = document.getElementById("username");
@@ -17,33 +21,32 @@ export const dashboard = {
       const comments = document.getElementById("comments");
       const created = document.getElementById("created");
       pfp.src = user.avatar;
-      username.innerHTML = user.name;
-      likes.innerHTML += user.likes + " Likes";
-      currPosts.innerHTML += user.posts.length + " Current Projects";
-      totalPosts.innerHTML += user.totalPosts + " Created Projects";
-      comments.innerHTML += user.totalPosts + " Comments";
-      created.innerHTML += user.created;
+      username.innerHTML = user.username;
+      likes.innerHTML += projects.reduce((acc, e) => acc += e.likes.length, 0) + " Likes";
+      totalPosts.innerHTML += projects.length + " Projects";
+      comments.innerHTML += userComments.length + " Comments";
+      created.innerHTML += user.dateCreated;
 
-      const allPosts = await api.fetchData('posts');
-      const postIds = user.posts;
+      // const allPosts = await api.fetchData('posts');
+      // const postIds = user.posts;
 
-      const posts = allPosts.posts.filter(x => postIds.includes(x.id));
+      // const posts = allPosts.posts.filter(x => postIds.includes(x.id));
 
-      for (let i = 0; i < posts.length; i++) {
+      for (let i = 0; i < projects.length; i++) {
         document.getElementById('posts').innerHTML += `
-          <div id="postId-${posts[i].id}" class="col">
+          <div id="postId-${projects[i]._id}" class="col">
             <div class="card shadow">
               <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
               <div class="card-body p-2 border-1 rounded-bottom">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <h5 class="card-title">${posts[i].title}</h6>
-                    <p class="cat-text-light fs-6"><i class="fa-regular fa-heart fa-l pe-1"></i> ${posts[i].likes} Likes</p>
+                    <h5 class="card-title">${projects[i].title}</h6>
+                    <p class="cat-text-light fs-6"><i class="fa-regular fa-heart fa-l pe-1"></i> ${projects[i].likes.length} Likes</p>
                   </div>
                   <div class="d-flex justify-content-between">
                     <div>
                       <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
-                      <a id="delete-${posts[i].id}" class="btn cat-text-danger px-1" data-bs-toggle="" data-bs-target="#deleteProject"><i
+                      <a id="delete-${projects[i]._id}" class="btn cat-text-danger px-1" data-bs-toggle="" data-bs-target="#deleteProject"><i
                           class="fas fa-trash-can fs-4"></i></a>
                     </div>
                   </div>

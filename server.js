@@ -76,6 +76,17 @@ app.get('/api/projects/:id', async (req, res) => {
   }
 });
 
+// Get Project by author ID
+app.get('/api/projects/author/:id', async (req, res) => {
+  try {
+    const data = await ProjectModel.find({ "authorID": req.params.id });
+    res.status(200).json(data);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Get all Comments from a Project
 app.get('/api/projects/:id/comments', async (req, res) => {
   try {
@@ -95,7 +106,6 @@ app.post('/api/projects', async (req, res) => {
     authorID: req.body.authorID,
     title: req.body.title,
     content: req.body.content,
-    likes: [],
   })
   try {
     const dataToSave = await data.save();
@@ -141,6 +151,16 @@ app.get('/api/users', async (req, res) => {
     query_builder = query_builder.filter().sort().paginate();
     const users = await query_builder.queryChain;
     res.status(200).json(users);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+});
+// Get user by id
+app.get('/api/users/:id', async (req, res) => {
+  try {
+    const data = await UserModel.findById(req.params.id);
+    res.status(200).json(data);
   }
   catch (error) {
     res.status(400).json({ message: error.message })
