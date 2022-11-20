@@ -138,6 +138,11 @@ app.post('/api/projects/:id/comments', async (req, res) => {
       project: req.params.id,
       ...commentBody
     })
+    await ProjectModel.findByIdAndUpdate(req.params.id,{
+      $inc:{
+        commentNumber : 1
+      }
+    })
     res.status(200).json(comment);
   }
   catch (error) {
