@@ -35,7 +35,7 @@ export const feed = {
     };
     let currentTags = [];
     async function postRequest(data) {
-      const response = await fetch('http://localhost:9000/api/projects', {
+      const response = await fetch(URL + "/projects", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
