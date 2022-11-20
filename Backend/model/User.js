@@ -24,20 +24,32 @@ const userSchema = new Schema({
     default: Date.now(),
   },
   favouriteTechStack: [{ type: String }],
+}, {
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 })
 
 
-userSchema.virtual("posts",{
+userSchema.virtual("projects", {
   ref: "Project",
-  foreignField: "authorId",
+  foreignField: "user",
   localField: "_id"
 })
-userSchema.virtual("comments",{
-  ref: "Comemnts",
-  foreignField: "author",
+userSchema.virtual("comments", {
+  ref: "Comment",
+  foreignField: "user",
   localField: "_id"
 })
 
+userSchema.pre(/^find/, function(next) {
+  this.populate("projects");
+  next();
+})
+
+userSchema.pre(/^find/, function(next) {
+  this.populate("comments");
+  next();
+})
 
 const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;

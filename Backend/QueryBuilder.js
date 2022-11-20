@@ -1,17 +1,17 @@
-class QueryBuilder{
-    constructor(queryObject,queryChain){
-        let createFilterQuery = function(obj){
-            let temp = {...obj};
-            let excludeFields = ["sort","page","limit","fields"];
-            excludeFields.forEach(el => delete temp[el]);
-            return JSON.stringify(temp)
-                   .replace(/\b(gte|lte|gt|lt)\b/g, match => `$${match}`); // queryString for filter
-        }
-        this.queryObject = queryObject; // query object from request
-        this.filteredQuery = createFilterQuery(this.queryObject);
-        console.log(this.filteredQuery);
-        this.queryChain = queryChain;  // to chain query together
+class QueryBuilder {
+  constructor(queryObject, queryChain) {
+    let createFilterQuery = function(obj) {
+      let temp = { ...obj };
+      let excludeFields = ["sort", "page", "limit", "fields"];
+      excludeFields.forEach(el => delete temp[el]);
+      return JSON.stringify(temp)
+        .replace(/\b(gte|lte|gt|lt)\b/g, match => `$${match}`); // queryString for filter
     }
+    this.queryObject = queryObject; // query object from request
+    this.filteredQuery = createFilterQuery(this.queryObject);
+    console.log(this.filteredQuery);
+    this.queryChain = queryChain;  // to chain query together
+  }
 
     filter(){
         this.queryChain = this.queryChain.find(JSON.parse(this.filteredQuery));
@@ -22,7 +22,7 @@ class QueryBuilder{
             const sortFields = this.queryObject.sort.split(",").join(" ")
             console.log(sortFields);
             this.queryChain = this.queryChain.sort(sortFields);
-        }else{
+        }else{``
             this.queryChain = this.queryChain.sort("-createdAt _id");
         }
         return this;

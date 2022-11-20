@@ -17,16 +17,12 @@ const projectSchema = new Schema({
     required: [true, "A project must have content"],
     maxlength: 1000,
   },
-  likeNumber:{
-    type: Number,
-    default: 0
-  },
   tags: [
     {
       type: String,
     },
   ],
-},{
+}, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
   timestamps:true
@@ -49,9 +45,15 @@ projectSchema.virtual("likes", {
   localField: "_id",
 });
 
-projectSchema.pre(/^find/,function(next){
+projectSchema.pre(/^find/, function(next) {
   this.populate("likes");
   next();
 })
+
+projectSchema.pre(/^find/, function(next) {
+  this.populate("comments");
+  next();
+})
+
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;

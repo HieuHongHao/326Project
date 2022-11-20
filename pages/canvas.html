@@ -14,7 +14,7 @@
     <div>
       <span><i class="fa-solid fa-eraser" id="tool-eraser"></i></span>
     </div>
-    <div>
+    <!-- <div>
       <span><i class="fa-solid fa-fill-drip"></i></span>
     </div>
     <div>
@@ -22,7 +22,7 @@
     </div>
     <div>
       <span><i class="fa-solid fa-rotate-right"></i></span>
-    </div>
+    </div> -->
     <div>
       <span><i class="fa-solid fa-plus" id="tool-increase-size"></i></span>
     </div>
@@ -35,7 +35,13 @@
     </div>
   </div>
 </div>
-<div class="chat-container">
+<div class="chat-container" id="chat">
+  <div class="chat-header-container" id="chat-header">
+    <div class="chat-header-background"></div>
+    <div class="chat-header-icons">
+      <i class="fa-regular fa-x" id="hide-chat"></i>
+    </div>
+  </div>
   <div class="chat-background"></div>
   <div class="chat-texts-container" id="chat-texts">
     <div class="text">
@@ -81,4 +87,7 @@
   <div class="chat-input-container">
     <input placeholder="Aa" type="text" id="text-input" />
   </div>
+</div>
+<div class="chat-open-container" id="open-chat">
+  <i class="fa-solid fa-message"></i>
 </div>

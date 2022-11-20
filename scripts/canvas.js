@@ -39,7 +39,7 @@ export const canvas = {
 
     socket.on('drawing', onDrawingEvent);
 
-    function drawLine(x0, y0, x1, y1, color, size, emit){
+    function drawLine(x0, y0, x1, y1, color, size, tool, emit){
       context.beginPath();
       context.moveTo(x0, y0);
       context.lineTo(x1, y1);
@@ -47,6 +47,7 @@ export const canvas = {
       context.lineWidth = size;
       context.lineCap = "round";
       context.lineJoin = "round";
+      context.globalCompositeOperation = tool;
       context.stroke();
       context.closePath();
   
@@ -60,7 +61,8 @@ export const canvas = {
         x1: x1 / w,
         y1: y1 / h,
         color: color,
-        size: size
+        size: size,
+        gco: tool
       });
     }
   
@@ -73,12 +75,12 @@ export const canvas = {
     function onMouseUp(e){
       if (!drawing) { return; }
       drawing = false;
-      drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.brushColor, current.brushSize, true);
+      drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, true);
     }
   
     function onMouseMove(e){
       if (!drawing) { return; }
-      drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.brushColor, current.brushSize, true);
+      drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, true);
       current.x = e.clientX||e.touches[0].clientX;
       current.y = e.clientY||e.touches[0].clientY;
     }
@@ -99,7 +101,7 @@ export const canvas = {
     function onDrawingEvent(data){
       var w = canvas.width;
       var h = canvas.height;
-      drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color, data.size);
+      drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color, data.size, data.gco);
     }
 
 
@@ -202,24 +204,27 @@ export const canvas = {
     document.getElementById("tool-eraser").addEventListener('click', function() {
       // toolMode = "eraser"
       context.globalCompositeOperation = 'destination-out';
+      current.globalCompositeOperation = 'destination-out';
     })
     document.getElementById("tool-paintbrush").addEventListener('click', function() {
       context.strokeStyle = current.brushColor
       context.globalCompositeOperation = 'source-over'
+      current.globalCompositeOperation = 'source-over';
     })
     document.getElementById("color-picker").addEventListener('click', function() {
       // toolMode = "brush"
       context.strokeStyle = current.brushColor
       context.globalCompositeOperation = 'source-over'
+      current.globalCompositeOperation = 'source-over';
     })
     document.getElementById("tool-increase-size").addEventListener('click', function() {
-      if (current.brushSize < 80) {
-        current.brushSize += 1;
+      if (current.brushSize < 120) {
+        current.brushSize += 5;
       }
     })
     document.getElementById("tool-decrease-size").addEventListener('click', function() {
       if (current.brushSize > 1) {
-        current.brushSize -= 1;
+        current.brushSize -= 5;
       }
       context.lineWidth = current.brushSize;
     })
@@ -231,6 +236,20 @@ export const canvas = {
     $("#color-picker").click(function() {
       $("#color-picker-input").click();
     });
+
+    document.getElementById("hide-chat").addEventListener('click', function(){
+      document.getElementById("chat").classList.toggle("hide");
+      document.getElementById("open-chat").style.display = "block";
+      
+    })
+
+    document.getElementById("open-chat").addEventListener('click', function(){
+      document.getElementById("chat").classList.toggle("hide");
+      document.getElementById("open-chat").style.display = "hide";
+      
+    })
+
+    
 
     function onResize() {
       // canvas.width = drawingContainer.getBoundingClientRect().width;
