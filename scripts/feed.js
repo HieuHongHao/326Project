@@ -20,7 +20,7 @@ export const feed = {
       "cat-bg-light",
       "cat-text-light",
       "my-3",
-      "border",
+      // "border",
       "rounded-3",
       "feed-post",
     ];
@@ -35,7 +35,7 @@ export const feed = {
     };
     let currentTags = [];
     async function postRequest(data) {
-      const response = await fetch('http://localhost:9000/api/projects', {
+      const response = await fetch(URL + "/projects", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -47,12 +47,13 @@ export const feed = {
       return response_json;
     }
 
-    async function createNewPost(data) {
+    function createNewPost(data) {
       const newPost = document.createElement("div");
       for (const classname of postClass) {
         newPost.classList.add(classname);
       }
-      newPost.appendChild(await createUserAvatarAndName(data));
+      newPost.classList.add("feed-posts-container");
+      newPost.appendChild(createUserAvatarAndName(data));
       newPost.appendChild(createBodyContent(data));
       return newPost;
     }
@@ -102,7 +103,7 @@ export const feed = {
       const commentIcn = document.createElement("i");
       const commentTxt = document.createElement("span");
       commentIcn.className = "fa-regular fa-comment";
-      commentTxt.innerHTML = 15;
+      commentTxt.innerHTML = data.comments.length;
       commentBttn.appendChild(commentIcn);
       commentBttn.appendChild(commentTxt);
 
@@ -112,7 +113,7 @@ export const feed = {
       const likeTxt = document.createElement("span");
 
       likeIcn.className = "fa-regular fa-heart";
-      likeTxt.innerHTML = data.likes.length;
+      likeTxt.innerHTML = data.likeNumber;
       likeBttn.appendChild(likeIcn);
       likeBttn.appendChild(likeTxt);
       likeBttn.addEventListener("click", () => {
@@ -132,7 +133,9 @@ export const feed = {
       /*Append everything to wrapper card*/
       wrapper.classList.add("px-3");
       wrapper.appendChild(title);
-      wrapper.appendChild(tags);
+      if(data.tags.length > 0){
+        wrapper.appendChild(tags);
+      }
       wrapper.appendChild(content);
       postContainer.appendChild(commentBttn)
       postContainer.appendChild(likeBttn)
@@ -141,8 +144,8 @@ export const feed = {
       return wrapper;
     }
 
-    async function createUserAvatarAndName(data) {
-      const userData = await api.fetchData('users/' + data.authorID);
+    function createUserAvatarAndName(data) {
+      const userData = data.authorID;
       const user = document.createElement("div");
       const image = document.createElement("img");
       const name = document.createElement("span");
@@ -151,8 +154,8 @@ export const feed = {
 
       image.src = userData.avatar;
       image.classList.add("rounded-circle");
-      image.classList.add("border");
-      image.classList.add("cat-border-light");
+      // image.classList.add("border");
+      // image.classList.add("cat-border-light");
 
       innerText.classList.add("cat-text-light", "text-decoration-none");
       innerText.innerHTML = userData.username;
@@ -231,7 +234,7 @@ export const feed = {
 
     topBttn.addEventListener("click", async () => {
       // Fix this
-      const response_json = await api.fetchData('projects?sort=title');
+      const response_json = await api.fetchData('projects?sort=-likeNumber');
       postContainer.replaceChildren();
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
@@ -239,7 +242,7 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach(async (post) => postContainer.appendChild(await createNewPost(post)));
+      response_json.forEach((post) => postContainer.appendChild(createNewPost(post)));
     }
     getFeed();
 

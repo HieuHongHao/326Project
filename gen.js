@@ -61,6 +61,7 @@ for (let i = 0; i < projects.length; i++) {
       author: randomUsers[j]
     })
     likes.push(like);
+    projects[i].likeNumber ++;
   }
 }
 
