@@ -27,11 +27,7 @@ for (let i = 0; i < 50; i++) {
     authorID: users.sort(() => 0.5 - Math.random())[0]._id,
     title: faker.lorem.sentence(3),
     content: faker.lorem.paragraph(),
-    // likes: users
-    //   .sort(() => 0.5 - Math.random())
-    //   .slice(0, Math.floor(Math.random() * users.length))
-    //   .map((x) => x._id),
-    tags: tags.sort(() => 0.5 - Math.random()).slice(0, tags.length),
+    tags: tags.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * tags.length)),
   });
   projects.push(newProject);
 }
@@ -58,10 +54,10 @@ for (let i = 0; i < 50; i++) {
 
 let likes = [];
 for (let i = 0; i < 50; i++) {
-  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, users.length);
+  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * users.length));
   for (let j = 0; j < randomUsers.length; j++) {
     const like = new likeModel({
-      project,
+      project: projects[i]._id,
       author: randomUsers[j]
     })
     projects[i].likeNumber++;
