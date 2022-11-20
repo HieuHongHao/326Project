@@ -217,6 +217,7 @@ app.get("/api/github_repos", async (req, res) => {
     q: "java in:topics",  // Zhǎo wā
   });
   const repos = response.data.items.slice(0, 6);
+  console.log(repos);
   const projects = repos.map((repo) => {
     return {
       id: repo.id,
@@ -227,6 +228,10 @@ app.get("/api/github_repos", async (req, res) => {
         (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
       ),
       title: repo.full_name,
+      authorID:{
+        username: repo.owner.login,
+        avatar: repo.owner.avatar_url
+      }
     };
   });
   res.status(200).json({

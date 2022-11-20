@@ -228,6 +228,9 @@ export const feed = {
       const response_json = await api.fetchData('github_repos');
       console.log(response_json);
       postContainer.replaceChildren();
+      // const authorID = {
+      //   username: 
+      // }
       response_json.projects.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
 
