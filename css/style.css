@@ -264,10 +264,10 @@
 .post-icons-container div:nth-child(1):hover > i{
   background-color: rgba(29, 157, 240, 0.2);
 }
-.post-icons-container div:nth-child(2):hover{
+.post-icons-container div:nth-child(2):hover, .post-icons-container div:nth-child(4):hover{
   color: #f91880;
 }
-.post-icons-container div:nth-child(2):hover > i{
+.post-icons-container div:nth-child(2):hover > i, .post-icons-container div:nth-child(4):hover > i{
   background-color: rgba(249, 24, 128, 0.2);
 }
 .post-icons-container div:nth-child(3):hover{
@@ -298,4 +298,161 @@
   /* box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75);
 -webkit-box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75);
 -moz-box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75); */
+}
+
+.dashboard-card-wrapper{
+  width: 100%;
+  display: grid;
+  /* grid-template-columns: 30em 30em; */
+  grid-template-columns: auto auto;
+  /* background-color: yellow; */
+}
+
+.dashboard-card-container{
+  /* width: 40em; */
+  /* width: 100%; */
+  /* background-color: blue; */
+  padding: 2em;
+  margin-top: 2em;
+  /* margin-right: 2em; */
+}
+
+.card-intro{
+  width: 100%;
+  padding: 0.8em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(89,127,228);
+background: linear-gradient(315deg, rgba(89,127,228,1) 1%, rgba(151,84,198,1) 100%);
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;      
+  position: relative;
+  overflow: hidden;
+  text-align: right;
+}
+
+.dashboard-card-container .card-intro:hover{
+  cursor: pointer;
+}
+
+.dashboard-card-container .card-intro:hover:after {
+  animation: shine 5s ease-in-out  infinite;
+  animation-fill-mode: forwards;  
+  content: "";
+  position: absolute;
+  top: -110%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(30deg);
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+}
+
+
+@keyframes shine{
+  10% {
+    opacity: 1;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.10s, 0.01s, 0.01s;
+    transition-timing-function: ease;
+  }
+  100% {
+    opacity: 0;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+  }
+}
+
+.card-intro h1{
+  font-size: 25px;
+  text-align: left;
+}
+
+.card-intro p{
+  font-family: "Raleway";
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+.card-intro img{
+  width: 2.2em;
+  border-radius: 50%;
+  text-align: right;
+  /* margin-left: 31.5em; */
+  /* position: absolute; */
+  /* border: 2px solid white; */
+  box-shadow: 0px 7px 5px -7px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 7px 5px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 7px 5px -7px rgba(0,0,0,0.75);
+  object-fit: cover;
+  position: absolute;
+  margin-left: -2.1em;
+}
+
+/* .card-intro img{
+  width: 1.5em;
+  border-radius: 50%;
+  margin-right: 0.5em;
+} */
+
+.leaderboard{
+  font-family: "Roboto" !important;
+  /* background-color: #3d2249;
+  color: white; */
+  background-color: white;
+  color: rgb(48, 48, 48) !important;
+}
+
+.leaderboard th{
+  font-family: "Roboto" !important;
+  font-size: 13px;
+}
+
+.leaderboard td:nth-child(2){
+  text-align: left;
+}
+
+.leaderboard img{
+  width: 1.3em;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.leaderboard span{
+  margin-left: 2em;
+  font-size: 13px;
+}
+
+.card-leaderboard{
+  width: 100%;
+  text-align: center;
+  padding: 0.8em;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.card-leaderboard table{
+  width: 100%;
+}
+
+.dashboard-card-container .post-icons-container{
+  grid-template-columns: auto auto !important;
+  pointer-events: none;
+}
+
+.account-card-container .post-icons-container{
+  grid-template-columns: auto auto auto auto !important;
+  /* pointer-events: none; */
+  /* margin-left: 2em; */
 }
