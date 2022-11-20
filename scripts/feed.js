@@ -203,7 +203,7 @@ export const feed = {
     })
     
     topBttn.addEventListener("click",async () => {
-      const response_json = await api.fetchData('projects?sort=likeNumber');
+      const response_json = await api.fetchData('projects?sort=-likeNumber');
       postContainer.replaceChildren();
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })

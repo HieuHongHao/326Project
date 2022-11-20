@@ -50,6 +50,7 @@ database.once('connected', () => {
 
 app.use(express.json());
 
+
 // --------Projects Resource------------------------------------------------------------------------------------------
 // Get all projects
 app.get("/api/projects", async (req, res) => {

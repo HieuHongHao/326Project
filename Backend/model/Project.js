@@ -17,6 +17,10 @@ const projectSchema = new Schema({
     required: [true, "A project must have content"],
     maxlength: 1000,
   },
+  likeNumber:{
+    type: Number,
+    default: 0
+  },
   tags: [
     {
       type: String,
@@ -43,9 +47,6 @@ projectSchema.virtual("likes", {
   foreignField: "project",
   localField: "_id",
 });
-projectSchema.virtual("likeNumber").get(function() {
-  return this.likes ? this.likes.length : 0 ;
-})
 
 projectSchema.pre(/^find/,function(next){
   this.populate("likes");
