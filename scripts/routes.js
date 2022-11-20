@@ -68,10 +68,10 @@ export const routes = {
         signBtn();
         utils.setTitle("Canvas");
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
+        document.getElementById("footer").style.display = "none";
         await utils.loadModule(`pages/${route}.html`, 'content');
         await canvas.init();
         await chat.init();
-
         // Run 404
       } else {
         await utils.load404();

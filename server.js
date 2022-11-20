@@ -226,16 +226,26 @@ io.on("connection", (socket) => {
     sockets[username].emit("inbox-message", inbox[username]);
     inbox[username] = null;
   }
-  socket.on("send-message", (payload) => {
-    const { receiver, message } = payload;
-    console.log(message);
-    const sender = usernames[socket.id];
-    if (!(receiver in sockets)) {
-      inbox[receiver] = { sender, message };
-    } else {
-      sockets[receiver].emit("response-message", { sender, message });
-    }
-  });
+  // socket.on("send-message", (payload) => {
+  //   const { receiver, message } = payload;
+  //   console.log(message);
+  //   const sender = usernames[socket.id];
+  //   if (!(receiver in sockets)) {
+  //     inbox[receiver] = { sender, message };
+  //   } else {
+  //     sockets[receiver].emit("response-message", { sender, message });
+  //   }
+  // });
+  // socket.on("draw-canvas", (payload) => {
+  //   const { receiver, message } = payload;
+  //   console.log(message);
+  // });
+  // socket.on("chat-message",(payload) => {
+  //   const {sender,message,receiver} = payload;
+  //   console.log(payload);
+  // })
+  socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+  socket.on('chat-message', (data) => socket.broadcast.emit('chat-message', data));
   socket.on("disconnect", () => {
     const username = usernames[socket.id];
     delete sockets[username];

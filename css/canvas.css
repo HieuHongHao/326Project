@@ -1,17 +1,56 @@
-#canvas .drawing-container{
-    width: 75%;
-    height: 100%;
-    float: left;
-    position: absolute;
+#canvas{
+    z-index: 0;
 }
-#canvas .chat-container{
-    width: 25%;
+
+#canvas-container{
     height: 100%;
-    float: right;
+}
+
+#content-container{
+    height: 100%;
+}
+
+.chat-container{
+    width: 20%;
+    /* float: right; */
+    height: 100%;
     right: 0;
+    z-index: 233;
     position: absolute;
-    background-color: #424b59;
+    /* background-color: #424b59; */
     font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.chat-background{
+    width: 100%;
+    height: 100%;
+    /* box-shadow: inset 0 0 2000px rgba(255, 255, 255, 1); */
+    filter: blur(3px);
+    
+    /* background-color: #464646; */
+    /* background: rgb(70,70,70);
+    background: linear-gradient(180deg, rgba(70,70,70,0.020045518207282953) 0%, rgba(64,64,64,0.9) 61%); */
+    /* background: rgb(133,133,133);
+background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%);
+    opacity: 0.8; */
+    background: url("https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    position: absolute;
+    clip: rect(0px, 999999px, 999999px, 0px);
+
+}
+
+.chat-container::before{
+    content: '';
+}
+
+.chat-container:active .chat-background, .chat-container:hover .chat-background{
+    /* background: #424b59;
+    filter: blur(0px); */
 }
 
 .chat-container .chat-texts-container{
@@ -19,7 +58,10 @@
     bottom: 8.5em;
     float: bottom;
     position: absolute;
-    background-color: #424b59;
+    /* background-color: #424b59; */
+    /* opacity: 0.7; */
+    opacity: 1;
+
     overflow: auto;
     overflow-x: hidden;
     right: 0;
@@ -36,6 +78,7 @@
     margin: 0;
     padding: 0;
     text-align: center;
+    /* background-color: #424b59; */
 }
 
 .chat-input-container input[type=text]{
@@ -78,6 +121,7 @@
     margin: 0.5em 0 0.9em 0.7em;
     border-radius: 12px;
     word-wrap: break-word;
+    opacity: 0.9;
 }
 .chat-texts-container .blue-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
     margin-left: 2em;
@@ -129,16 +173,23 @@
     margin-left: 3em;
 }
 
-#canvas-pad{
+#canvas{
     width: 100%;
     background-color: #333333;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
 
 }
 
 .drawing-tools-container{
     position: absolute;
     /* bottom: 0; */
-    top: 2em;
+    top: 6em;
     left: 0em;
 }
 

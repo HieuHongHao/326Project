@@ -10,39 +10,42 @@ export const chat = {
         // const socket = io();
         // const socket = io("128.119.202.240:9000");
 
-        const userChatColor = shuffle(["blue","green","yellow","red","purple"]);
+        const chatColor = ["blue","green","yellow","red","purple"];
+        const userChatColor = {};
 
         const userId = localStorage.getItem("loggedIn");
         const postId = 0;
         // const res1 = await fetch("../api/canvas.json");
         // const canvasDB = await res1.json();
-        const canvasDB = await api.fetchData('canvas');
-        const canvas = canvasDB.posts.filter(x => x.postId === postId)[0];
-        const users = canvas["users"]
+        
         // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
 
         let textInput = document.getElementById("text-input");
-        socket.timeout(1000).emit("login",userId)
+        socket.timeout(1000).emit("login", userId)
         // const users = ["alpha","beta"];
 
         async function addChatElement(message, sender, isIncoming){
+            if(isIncoming && sender === userId){
+                return;
+            }
             const chatElement = document.createElement("div");
             const innerChat = document.createElement("div");
             const chatBox = document.getElementById("chat-texts");
             chatElement.classList.add("text");
             if(isIncoming){
+                //Display user info in chat
                 const usersDB = await api.fetchData('users');
-                const user = usersDB.users.filter(x => x.id === parseInt(sender))[0];
+                const user = usersDB.filter(x => x._id.toString() === sender.toString())[0];
                 const imgElement = document.createElement("img");
-                imgElement.src = user.avatar;
+                imgElement.src = user["avatar"];
                 imgElement.crossOrigin = "anonymous";
                 chatElement.appendChild(imgElement);
                 const nameElement = document.createElement("span");
-                nameElement.innerHTML = user.name;
+                nameElement.innerHTML = user.username;
                 chatElement.appendChild(nameElement);
-                const userColor = userChatColor[users.indexOf(parseInt(userId))]
-                innerChat.classList.add(userColor + "-text");
+                //User chat color
+                innerChat.classList.add(getUserChatColor(sender.toString()) + "-text");
             }
             else{
                 const dummyText = document.createElement("div");
@@ -55,34 +58,37 @@ export const chat = {
             chatBox.appendChild(chatElement);
             autoScroll();
         }
+
+        function getUserChatColor(user){
+            if (!(user in userChatColor)){
+                userChatColor[user] = shuffle(chatColor)[0]
+            }
+            return userChatColor[user];
+        }
+
         textInput.addEventListener("keypress",(event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
                 if(textInput.value === ""){
                     return;
                 }
-                for(let i=0; i<users.length; i++){
-                    if(users[i] !== parseInt(userId)){
-                        const payload = {
-                            message: textInput.value,
-                            receiver: users[i]
-                        }
-                        socket.timeout(5000).emit("send-message",payload);
-                    }
+                const payload = {
+                    sender: userId,
+                    message: textInput.value,
+                    receiver: postId
                 }
-                addChatElement(textInput.value, parseInt(userId), false);
+                
+                socket.emit("chat-message", payload);
+                addChatElement(textInput.value, userId, false);
                 textInput.value = "";
             }
         })
         
-        socket.on("inbox-message",(payload) => {
-            const {sender,message} = payload;
-            addChatElement(message, sender, false);
-        })
-        
-        socket.on("response-message",(payload) => {
-            const {sender,message} = payload;
-            addChatElement(message, sender, true);
+        socket.on("chat-message",(payload) => {
+            const {sender,message,receiver} = payload;
+            if(parseInt(receiver) === postId){
+                addChatElement(message, sender, true);                
+            }
         })
     }
 }
