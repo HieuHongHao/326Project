@@ -119,7 +119,7 @@ export const feed = {
       likeBttn.addEventListener("click", async() => {
         const author = window.localStorage.getItem("loggedIn");
         const likes = await postRequest({author},`/${data._id}/like`);  
-        likeBttn.innerHTML = likes; 
+        likeTxt.innerHTML = likes; 
       })
 
       /*Canvas icon*/
