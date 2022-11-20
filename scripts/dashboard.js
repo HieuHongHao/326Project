@@ -62,7 +62,7 @@ export const dashboard = {
             <h1>${projects[i].title}</h1>
             <p>${projects[i].content.substring(0,100)}${(projects[i].content.length > 15 ? "..." : "")}</p>
             <div class="post-icons-container">
-              <div><i class="fa-solid fa-share-from-square"></i><span>15</span></div>
+              <div><i class="fa-solid fa-share-from-square"></i><span>Visit</span></div>
               <div ><i class="fa-regular fa-heart"></i><span>${projects[i].likes.length} </span></div>
               <div id="edit-${projects[i]._id}"><i class="fa-regular fa-pen-to-square"></i><span>Edit</span></div>
               <div id="delete-${projects[i]._id}"><i class="fas fa-trash-can"></i><span>Delete</span></div>
