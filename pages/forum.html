@@ -79,11 +79,11 @@
     <div class="col-5">
       <div class="d-flex flex-column cat-bg-light cat-text-light border rounded-3 feed-post p-3">
         <div>
-          <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
-          <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">Username1</a></span>
+          <img id="avatar" src="../public/logo.svg" alt="Logo" class="rounded-pill">
+          <span class="ms-2"><a id="username" href="" class="cat-text-light text-decoration-none">Username1</a></span>
         </div>
         <div>
-          <h5 class="fw-bold fs-3">
+          <h5 id='title' class="fw-bold fs-3">
             Enterprise AI Platform - simple, scalable, and extensible models
             for industry uses
           </h5>
@@ -97,23 +97,11 @@
             <div class="badge pn-card-type-red me-2">SAAS</div>
           </div>
           <div class="pt-2">
-            <p class="">
-              Watching the news the other day, it occurred to me that people
-              who have “words to live by” often begin to attack and even kill
-              others. I thought back to my own angry youth, when I could
-              easily use words to justify violent thoughts which might have
-              become violent actions.
-            </p>
-            <p class="">
-              Watching the news the other day, it occurred to me that people
-              who have “words to live by” often begin to attack and even kill
-              others. I thought back to my own angry youth, when I could
-              easily use words to justify violent thoughts which might have
-              become violent actions.
+            <p id="projectContent" class="">
             </p>
           </div>
           <div class="d-flex justify-content-between">
-            <p class="cat-text-light"><i class="fa-regular fa-heart fa-xl pt-3 pe-1"></i> 999 Likes</p>
+            <p id="likes" class="cat-text-light"><i class="fa-regular fa-heart fa-xl pt-3 pe-1"></i></p>
             <button type="button" class="btn btn-primary">
               Whiteboard
             </button>
@@ -121,7 +109,7 @@
         </div>
       </div>
 
-      <div class="d-flex flex-column cat-bg-light cat-text-light mt-3 border rounded-3 feed-post">
+      <div class="d-flex flex-column cat-bg-light cat-text-light my-3 border rounded-3 feed-post">
         <div class="px-3 py-3">
           <div class="fs-5 fw-bold">Comments</div>
           <ul id="comments" class="list-group list-group-flush cat-text-light border-danger">
@@ -131,23 +119,6 @@
                   aria-label="Search Projects" aria-describedby="button-addon2">
                 <button id="commentBtn" class="btn btn-primary" type="button" id="button-addon2"><i
                     class="fas fa-paper-plane"></i></button>
-              </div>
-            </li>
-            <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
-              <div class="align-top">
-                <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
-              </div>
-              <div class="px-1">
-                <div class="d-flex">
-                  <p class="m-0 me-2">Username</p>
-                  <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
-                </div>
-                <p class="fw-light">Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
-                  sint
-                  consectetur
-                  cupidatat. Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint
-                  consectetur
-                  cupidatat.</p>
               </div>
             </li>
           </ul>

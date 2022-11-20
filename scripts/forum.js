@@ -1,27 +1,83 @@
 import { api } from './api.js';
 export const forum = {
   init: async () => {
-    /*Get value from certain key;*/
+    const projectID = window.localStorage.getItem("projectID");
+    const project = await api.fetchData('projects/' + projectID);
 
-    function addComment() {
-      console.log("hi")
-      const comments = document.getElementById("comments");
-      const commentContent = document.getElementById("commentContent").value;
-      comments.innerHTML += `
-      <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
-        <div class="align-top">
-          <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
-        </div>
-        <div class="px-1">
-          <div class="d-flex">
-            <p class="m-0 me-2">Username</p>
-            <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+    const usernameDiv = document.getElementById("username");
+    const avatarDiv = document.getElementById("avatar");
+    const titleDiv = document.getElementById("title");
+    const contentDiv = document.getElementById("projectContent");
+    const likesDiv = document.getElementById("likes");
+    usernameDiv.innerHTML = project.authorID.username;
+    avatarDiv.src = project.authorID.avatar;
+    titleDiv.innerHTML = project.title;
+    contentDiv.innerHTML = project.content;
+    likesDiv.innerHTML += ` ${project.likes.length} likes`
+
+    const commentsDiv = document.getElementById("comments");
+    for (let i = 0; i < project.comments.length; i++) {
+      let commentUser = await api.fetchData('users/' + project.comments[i].author);
+      commentsDiv.innerHTML += `
+        <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
+          <div class="align-top">
+            <img src=${commentUser.avatar} alt="Logo" class="rounded-pill">
           </div>
-          <p class="fw-light">${commentContent}</p>
-        </div>
-      </li>`
+          <div class="px-1">
+            <div class="d-flex">
+              <p class="m-0 me-2">${commentUser.username}</p>
+              <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+            </div>
+            <p class="fw-light">${project.comments[i].content}</p>
+          </div>
+        </li>`
     }
+
     const commentBtn = document.getElementById("commentBtn");
+    async function addComment() {
+      const newComment = document.createElement("li");
+      const newContent = document.getElementById("commentContent").value;
+      newComment.classList.add('list-group-item', 'px-0', 'd-flex', 'cat-bg-light', 'cat-text-light');
+      newComment.innerHTML = `
+          <div class="align-top">
+            <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+          </div>
+          <div class="px-1">
+            <div class="d-flex">
+              <p class="m-0 me-2">some name</p>
+              <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+            </div>
+            <p class="fw-light">${newContent}</p>
+          </div>`
+      commentsDiv.appendChild(newComment);
+
+      const userId = window.localStorage.getItem("loggedIn");
+      const result = await postRequest({
+        authorID: userId,
+        title: title,
+        content: content,
+        tags: currentTags
+      });
+
+    }
     commentBtn.addEventListener("click", addComment);
+
+    // function addComment() {
+    //   const comments = document.getElementById("comments");
+    //   const commentContent = document.getElementById("commentContent").value;
+    //   comments.innerHTML += `
+    //   <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
+    //     <div class="align-top">
+    //       <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+    //     </div>
+    //     <div class="px-1">
+    //       <div class="d-flex">
+    //         <p class="m-0 me-2">Username</p>
+    //         <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+    //       </div>
+    //       <p class="fw-light">${commentContent}</p>
+    //     </div>
+    //   </li>`
+    // }
   }
 }

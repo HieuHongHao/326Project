@@ -49,7 +49,7 @@ export const routes = {
         await utils.loadAnimate(toAnimate);
 
         // Run forum
-      } else if (route === 'forum') {
+      } else if (route === 'forum' && window.localStorage.getItem("projectID") !== null) {
         signBtn();
         utils.setTitle("Forum");
         await utils.loadModule(`components/nav-account.html`, 'nav-acc');
