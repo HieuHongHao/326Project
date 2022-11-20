@@ -6,8 +6,7 @@ export const dashboard = {
     if (userId !== null) {
       // const res = await fetch("../api/users.json");
       // const users = await res.json();
-      const users = await api.fetchData('users');
-      const user = users.users.filter(x => x.id === parseInt(userId))[0];
+      const user = await api.fetchData('users/' + userId);
 
       const pfp = document.getElementById("pfp");
       const username = document.getElementById("username");
@@ -17,7 +16,7 @@ export const dashboard = {
       const comments = document.getElementById("comments");
       const created = document.getElementById("created");
       pfp.src = user.avatar;
-      username.innerHTML = user.name;
+      username.innerHTML = user.username;
       likes.innerHTML += user.likes + " Likes";
       currPosts.innerHTML += user.posts.length + " Current Projects";
       totalPosts.innerHTML += user.totalPosts + " Created Projects";
