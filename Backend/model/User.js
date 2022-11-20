@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
   username: {
@@ -48,6 +49,11 @@ userSchema.pre(/^find/, function(next) {
 userSchema.pre(/^find/, function(next) {
   this.populate("comments");
   next();
+})
+userSchema.pre("save",async function(next){
+  if(!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password,12);
+  next();   
 })
 
 const userModel = mongoose.model("User", userSchema);
