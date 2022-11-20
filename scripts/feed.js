@@ -112,7 +112,7 @@ export const feed = {
       const likeTxt = document.createElement("span");
 
       likeIcn.className = "fa-regular fa-heart";
-      likeTxt.innerHTML = data.likes.length;
+      likeTxt.innerHTML = data.likeNumber;
       likeBttn.appendChild(likeIcn);
       likeBttn.appendChild(likeTxt);
       likeBttn.addEventListener("click", () => {
