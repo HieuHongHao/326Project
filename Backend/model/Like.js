@@ -9,11 +9,7 @@ const likeSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  },
-  createdAt:{
-    type: Date,
-    default: Date.now()
-  },
+  }
 })
 const likeModel = mongoose.model("Like", likeSchema);
 module.exports = likeModel;
