@@ -76,6 +76,17 @@ app.get('/api/projects/:id', async (req, res) => {
   }
 });
 
+// Get Project by author ID
+app.get('/api/projects/author/:id', async (req, res) => {
+  try {
+    const data = await ProjectModel.find({ "authorId": req.params.id });
+    res.status(200).json(data);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Get all Comments from a Project
 app.get('/api/projects/:id/comments', async (req, res) => {
   try {
