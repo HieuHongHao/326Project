@@ -100,7 +100,7 @@ export const feed = {
       const likeText = document.createElement("span");
       
       heart.className = "fa-solid fa-heart";
-      likeText.innerHTML = data.likes;
+      likeText.innerHTML = data.likeNumber;
       likeButton.appendChild(heart);
       likeButton.appendChild(likeText);
       likeButton.className = "post-like-container"
