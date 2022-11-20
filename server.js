@@ -55,7 +55,7 @@ app.use(express.json());
 // Get all projects
 app.get("/api/projects", async (req, res) => {
   try {
-    let query_builder = new QueryBuilder(req.query,ProjectModel.find());
+    let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain;
     res.status(200).json(data);
@@ -80,18 +80,6 @@ app.get('/api/projects/:id', async (req, res) => {
 app.get('/api/projects/:id/comments', async (req, res) => {
   try {
     const data = await CommentModel.find({
-      project: req.params.id
-    });
-    res.status(200).json(data);
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-// Get all likes from a post
-app.get('/api/projects/:id/likes', async (req, res) => {
-  try {
-    const data = await likeModel.find({
       project: req.params.id
     });
     res.status(200).json(data);
@@ -149,7 +137,7 @@ app.get('/api/comments/author/:id', async (req, res) => {
 // Get all users
 app.get('/api/users', async (req, res) => {
   try {
-    let query_builder = new QueryBuilder(req.query,UserModel.find());
+    let query_builder = new QueryBuilder(req.query, UserModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const users = await query_builder.queryChain;
     res.status(200).json(users);
@@ -178,9 +166,9 @@ app.post('/api/users', async (req, res) => {
 
 // --------Canvas Resource------------------------------------------------------------------------------------------
 // Get all canvas
-app.get("/api/canvas",async(req,res) => {
+app.get("/api/canvas", async (req, res) => {
   try {
-    let query_builder = new QueryBuilder(req.query,canvasModel.find());
+    let query_builder = new QueryBuilder(req.query, canvasModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const canvas = await query_builder.queryChain;
     res.status(200).json(canvas);
