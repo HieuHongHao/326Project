@@ -6,10 +6,6 @@ function closeModal(tag) {
   modal.hide();
 }
 
-
-
-
-
 function loginSuccess(acc) {
   const storage = window.localStorage;
   storage.setItem("loggedIn", acc);
@@ -40,10 +36,16 @@ async function login() {
   }
 }
 
-
+async function deleteAccount() {
+  const userID = window.localStorage.getItem("loggedIn");
+  fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+}
 
 const loginBtn = document.getElementById("loginSubmit");
 loginBtn.addEventListener("click", login);
+
+const deleteAcc = document.getElementById("deleteAccount");
+deleteAcc.addEventListener("click", deleteAccount);
 
 
 // async function deletePost() {
