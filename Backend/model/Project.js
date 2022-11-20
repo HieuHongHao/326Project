@@ -29,6 +29,7 @@ const projectSchema = new Schema({
 },{
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
+  timestamps:true
 });
 
 // projectSchema.index({ createdAt: -1 });

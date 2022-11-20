@@ -58,6 +58,7 @@ app.get("/api/projects", async (req, res) => {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
     const data = await query_builder.queryChain;
+    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
@@ -119,7 +120,6 @@ app.post('/api/projects/:id/comments', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 // Get comments by author ID
 app.get('/api/comments/author/:id', async (req, res) => {
   try {
