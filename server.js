@@ -140,8 +140,31 @@ app.get('/api/comments/author/:id', async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 });
-
-
+// Create a new like for a project
+app.post('/api/projects/:id/like', async (req, res) => {
+  try {
+    const author = req.body.author;
+    const like = await LikeModel.findOne({
+      project: req.params.id,
+      author
+    })
+    const project = await ProjectModel.findById(req.params.id);
+    if(like){
+      res.status(200).json(project.likeNumber);
+    }else{
+      project.likeNumber += 1;
+      await LikeModel.create({
+        project: req.params.id,
+        author
+      })
+      await project.save();
+      res.status(200).json(project.likeNumber);
+    }
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+});
 
 // --------Users Resource------------------------------------------------------------------------------------------
 // Get all users
