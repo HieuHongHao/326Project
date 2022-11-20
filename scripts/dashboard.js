@@ -9,7 +9,6 @@ export const dashboard = {
       const user = await api.fetchData('users/' + userId);
       const projects = await api.fetchData('projects/author/' + userId);
       const userComments = await api.fetchData('comments/author/' + userId);
-      console.log(userComments)
       // console.log(user)
       // console.log(projects[1])
 
