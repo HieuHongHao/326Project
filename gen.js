@@ -34,11 +34,13 @@ for (let i = 0; i < 50; i++) {
 
 let comments = [];
 for (let i = 0; i < 100; i++) {
+  const randomProject = projects.sort(() => 0.5 - Math.random())[0];
   const newComment = new commentModel({
-    project: projects.sort(() => 0.5 - Math.random())[0]._id,
+    project: randomProject._id,
     author: users.sort(() => 0.5 - Math.random())[0]._id,
     content: faker.lorem.sentences(),
   });
+  randomProject.commentNumber ++;
   comments.push(newComment);
 }
 

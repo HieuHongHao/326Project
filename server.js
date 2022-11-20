@@ -57,7 +57,7 @@ app.get("/api/projects", async (req, res) => {
   try {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
     query_builder = query_builder.filter().sort().paginate();
-    const data = await query_builder.queryChain.populate("authorID");;
+    const data = await query_builder.queryChain.populate("authorID");
     res.status(200).json(data);
   }
   catch (error) {
