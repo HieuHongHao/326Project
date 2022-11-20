@@ -43,7 +43,7 @@ for (let i = 0; i < 100; i++) {
 }
 
 let canvases = [];
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < project.length; i++) {
   const project = projects[i]._id;
   const newCanvas = new canvasModel({
     user: project.authorId,
