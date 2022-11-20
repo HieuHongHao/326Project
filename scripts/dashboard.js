@@ -31,36 +31,16 @@ export const dashboard = {
 
       // const posts = allPosts.posts.filter(x => postIds.includes(x.id));
 
+      const posts = document.getElementById("posts");
       for (let i = 0; i < projects.length; i++) {
-        // document.getElementById('posts').innerHTML += `
-        //   <div id="postId-${projects[i]._id}" class="col">
-        //     <div class="card shadow">
-        //       <img alt="project image" class="card-img-top" src="../public/project_dummy_image.png">
-        //       <div class="card-body p-2 border-1 rounded-bottom">
-        //         <div class="d-flex justify-content-between">
-        //           <div>
-        //             <h5 class="card-title">${projects[i].title}</h6>
-        //             <p class="cat-text-light fs-6"><i class="fa-regular fa-heart fa-l pe-1"></i> ${projects[i].likes.length} Likes</p>
-        //           </div>
-        //           <div class="d-flex justify-content-between">
-        //             <div>
-        //               <a class="btn cat-text-primary px-1" href="?=canvas"><i class="fas fa-pen fs-4"></i></a>
-        //               <a id="delete-${projects[i]._id}" class="btn cat-text-danger px-1" data-bs-toggle="" data-bs-target="#deleteProject"><i
-        //                   class="fas fa-trash-can fs-4"></i></a>
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // `;
-        
-        document.getElementById("posts").innerHTML += `
-        <div class="account-card-container" id="postId-${projects[i]._id}">
+        const newCard = document.createElement("div");
+        newCard.id = `postId-${projects[i]._id}`
+        newCard.innerHTML += `
+        <div class="account-card-container">
           <div class="card-intro">
             <img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg">
             <h1>${projects[i].title}</h1>
-            <p>${projects[i].content.substring(0,100)}${(projects[i].content.length > 15 ? "..." : "")}</p>
+            <p>${projects[i].content.substring(0, 100)}${(projects[i].content.length > 15 ? "..." : "")}</p>
             <div class="post-icons-container">
               <div><i class="fa-solid fa-share-from-square"></i><span>15</span></div>
               <div ><i class="fa-regular fa-heart"></i><span>${projects[i].likes.length} </span></div>
@@ -89,10 +69,13 @@ export const dashboard = {
           </div>
         </div>
         `;
+        console.log(newCard)
+        posts.appendChild(newCard);
       }
-      for (let i = 0; i < posts.length; i++) {
-        document.getElementById("delete-" + posts[i].id).addEventListener("click", () => {
-          document.getElementById("postId-" + posts[i].id).outerHTML = "";
+      for (let i = 0; i < projects.length; i++) {
+        document.getElementById("delete-" + projects[i]._id).addEventListener("click", async () => {
+          await fetch('http://localhost:9000/api/projects/delete/' + projects[i]._id).then(res => res.text()).then(res => console.log(res))
+          document.getElementById("postId-" + projects[i]._id).outerHTML = "";
         });
       }
 
