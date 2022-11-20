@@ -198,7 +198,7 @@ app.get("/api/github_repos", async (req, res) => {
     return {
       id: repo.id,
       content: repo.description,
-      likes: repo.stargazers_count,
+      likeNumber: repo.stargazers_count,
       hearts: repo.watchers_count,
       tags: repo.topics.map(
         (tag) => tag[0].toUpperCase() + tag.slice(1, tag.length)
