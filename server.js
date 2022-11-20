@@ -8,8 +8,6 @@ const dotenv = require('dotenv');
 dotenv.config({ path: "./.env" });
 const octokit = new Octokit();
 
-const Post = require("./Backend/model");
-
 const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
 const CommentModel = require("./Backend/model/Comment");
@@ -20,10 +18,7 @@ const QueryBuilder = require("./Backend/QueryBuilder");
 
 const mongoose = require('mongoose');
 const userModel = require("./Backend/model/User");
-// const users = new UserService();
-// const posts = new PostService();
-// const comments = new CommentService();
-// const canvases = new CanvasService();
+
 
 app.use(express.static(__dirname));
 
@@ -92,6 +87,18 @@ app.get('/api/projects/:id/comments', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+// Get all likes from a post
+app.get('/api/projects/:id/likes', async (req, res) => {
+  try {
+    const data = await likeModel.find({
+      project: req.params.id
+    });
+    res.status(200).json(data);
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Create a new project
 app.post('/api/projects', async (req, res) => {
@@ -115,7 +122,7 @@ app.post('/api/projects/:id/comments', async (req, res) => {
     const commentBody = req.body;
     const comment = await CommentModel.create({
       project: req.params.id,
-      ...req.body
+      ...commentBody
     })
     res.status(200).json(comment);
   }
@@ -195,7 +202,7 @@ app.get("/", (req, res) => {
 // Get github repos
 app.get("/api/github_repos", async (req, res) => {
   const response = await octokit.rest.search.repos({
-    q: "java in:topics",
+    q: "java in:topics",  // Zhǎo wā
   });
   const repos = response.data.items.slice(0, 6);
   const projects = repos.map((repo) => {

@@ -22,6 +22,9 @@ const projectSchema = new Schema({
       type: String,
     },
   ],
+},{
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
 
 // projectSchema.index({ createdAt: -1 });
@@ -40,6 +43,9 @@ projectSchema.virtual("likes", {
   foreignField: "project",
   localField: "_id",
 });
+projectSchema.virtual("likeNumber").get(function() {
+  return this.likes ? this.likes.length : 0 ;
+})
 
 projectSchema.pre(/^find/,function(next){
   this.populate("likes");
