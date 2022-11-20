@@ -231,7 +231,8 @@ app.get("/api/github_repos", async (req, res) => {
       authorID:{
         username: repo.owner.login,
         avatar: repo.owner.avatar_url
-      }
+      },
+      comments: ["Github"]
     };
   });
   res.status(200).json({
