@@ -15,8 +15,8 @@ function loginSuccess(acc) {
   storage.setItem("loggedIn", acc);
 }
 
-async function getUserData() {
-  const URL = "https://cs326project.herokuapp.com/api/users";
+async function getUserData(query) {
+  const URL = "https://cs326project.herokuapp.com/api/users" + query;
   let response = await fetch(URL);
   if (response.ok) {
     return await response.json();
@@ -29,12 +29,9 @@ async function login() {
   // const res = await fetch("../api/users.json");
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
-  const users = await getUserData();
-  const user = users.filter(x => x.email === username);
-  console.log(user);
-  console.log(user[0].password);
+  const user = await getUserData(`?email=${username}`);
   if (user.length !== 0 && user[0].password === password) {
-    loginSuccess(user[0].id);
+    loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
     window.location.href = "?=dashboard";
   } else {
