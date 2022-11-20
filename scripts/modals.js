@@ -30,6 +30,7 @@ async function login() {
   // const users = await res.json();
   // const user = users.filter(x => x.name === username || x.email === username);
   const user = await getUserData(`?email=${username}`);
+  console.log(user);
   if (user.length !== 0 && user[0].password === password) {
     loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
