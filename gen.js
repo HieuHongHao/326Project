@@ -60,7 +60,6 @@ for (let i = 0; i < projects.length; i++) {
       project: projects[i]._id,
       author: randomUsers[j]
     })
-    projects[i].likeNumber++;
     likes.push(like);
   }
 }

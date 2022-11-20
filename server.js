@@ -106,7 +106,6 @@ app.post('/api/projects', async (req, res) => {
     authorID: req.body.authorID,
     title: req.body.title,
     content: req.body.content,
-    likes: [],
   })
   try {
     const dataToSave = await data.save();
