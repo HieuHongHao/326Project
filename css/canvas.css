@@ -1,5 +1,13 @@
-#canvas{
-    z-index: 0;
+#chat{
+    height: 100%;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+}
+
+#chat.hide{
+    height: 0%;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
 }
 
 #canvas-container{
@@ -11,7 +19,7 @@
 }
 
 .chat-container{
-    width: 20%;
+    /* width: 20%; */
     /* float: right; */
     height: 100%;
     right: 0;
@@ -25,15 +33,18 @@
     width: 100%;
     height: 100%;
     /* box-shadow: inset 0 0 2000px rgba(255, 255, 255, 1); */
-    filter: blur(3px);
+    filter: blur(4px);
     
-    /* background-color: #464646; */
+    background-color: #464646;
     /* background: rgb(70,70,70);
     background: linear-gradient(180deg, rgba(70,70,70,0.020045518207282953) 0%, rgba(64,64,64,0.9) 61%); */
-    /* background: rgb(133,133,133);
-background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%);
-    opacity: 0.8; */
-    background: url("https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") no-repeat center center fixed; 
+    /* background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%); */
+    /* background: rgb(51,51,51);
+background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%); */
+    /* opacity: 0.95; */
+
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('https://i.imgur.com/7bjZxqS.gif') no-repeat center center fixed;
+    /* background: url("https://i.pinimg.com/originals/80/8b/ac/808bac097a1fb99f766efr32c8315bd9f.gif") no-repeat center center fixed;  */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -42,19 +53,37 @@ background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%
     position: absolute;
     clip: rect(0px, 999999px, 999999px, 0px);
 
+
+    /*
+    https://cdna.artstation.com/p/assets/images/images/025/965/386/original/lennart-butz-idea5anim4.gif?1587480606
+
+    https://i.pinimg.com/originals/bd/56/5d/bd565dcc0a556add0b0a0ed6b26d686e.gif
+
+    https://i.pinimg.com/originals/00/43/04/0043044fd8e3c55c584ddaf0c9c134e2.gif
+
+    https://raw.githubusercontent.com/catppuccin/wallpapers/main/misc/waves.png
+    */
+
 }
 
 .chat-container::before{
     content: '';
 }
 
-.chat-container:active .chat-background, .chat-container:hover .chat-background{
-    /* background: #424b59;
-    filter: blur(0px); */
+@media screen and (min-width: 1500px) {
+    .chat-container {
+      width: 20% !important;
+    }
+}
+
+@media screen and (min-width: 575px) and (max-width: 1499px) {
+    .chat-container {
+      width: 18em !important;
+    }
 }
 
 .chat-container .chat-texts-container{
-    max-height: calc(100vh - 8.5em);
+    max-height: calc(100vh - 10.5em);
     bottom: 8.5em;
     float: bottom;
     position: absolute;
@@ -173,6 +202,16 @@ background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%
     margin-left: 3em;
 }
 
+.chat-texts-container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.chat-texts-container::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #d1d1d1;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
 #canvas{
     width: 100%;
     background-color: #333333;
@@ -183,7 +222,6 @@ background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%
     bottom: 0;
     top: 0;
     z-index: -1;
-
 }
 
 .drawing-tools-container{
@@ -240,4 +278,68 @@ background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%
 }
 .active-people-container .purple-user{
     color: #865699;
+}
+
+.chat-header-container{
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    color: rgb(58, 58, 58);
+    /* text-align: right; */
+}
+
+.chat-header-container:hover .chat-header-background{
+    /* background-color: rgb(24, 24, 24); */
+}
+
+.chat-header-background{
+    position: absolute;
+    width: 100%;
+    padding: 1em;
+    opacity: 0.6;
+    z-index: 2;
+    height: 100%;
+    filter: blur(3px);
+    background-color: rgb(24, 24, 24);
+}
+
+.chat-header-icons{
+    z-index: 5;
+    width: 100%;
+    position: relative;
+    text-align: right;
+    margin-left: -0.25em;
+}
+
+.chat-header-icons i{
+    color: white;
+    margin-left: 3em;
+    position: flex;
+    padding: 0.5em;
+}
+
+.chat-header-icons i:hover{
+    cursor: pointer;
+}
+
+.chat-open-container{
+    position: fixed;
+    z-index: 5;
+    bottom: 1em;
+    right: 1em;
+    text-align: right;
+    font-size: 22px;
+    
+}
+
+.chat-open-container i{
+    padding: 0.8em;
+    border-radius: 50%;
+    background-color: #4264a8;
+    color: white;
+}
+
+.chat-open-container i:hover{
+    cursor: pointer;
+    background-color: #38548d;
 }
