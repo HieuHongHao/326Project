@@ -31,6 +31,7 @@ async function login() {
   // const user = users.filter(x => x.name === username || x.email === username);
   const users = await getUserData();
   const user = users.filter(x => x.email === username);
+  console.log(user[0].password);
   if (user.length !== 0 && user[0].password === password) {
     loginSuccess(user[0].id);
     closeModal("modalLoginForm");
