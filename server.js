@@ -56,8 +56,8 @@ app.use(express.json());
 app.get("/api/projects", async (req, res) => {
   try {
     let query_builder = new QueryBuilder(req.query, ProjectModel.find());
-    query_builder = query_builder.filter().sort().paginate();
-    const data = await query_builder.queryChain;
+    query_builder = query_builder.filter().sort().paginate()
+    const data = await query_builder.queryChain.populate("authorID");;
     console.log(data);
     res.status(200).json(data);
   }
@@ -69,7 +69,9 @@ app.get("/api/projects", async (req, res) => {
 // Get Project by ID
 app.get('/api/projects/:id', async (req, res) => {
   try {
-    const data = await ProjectModel.findById(req.params.id);
+    console.log(req.params.id);
+    const data = await ProjectModel.findById(req.params.id).populate("authorID");
+    console.log(data);
     res.status(200).json(data);
   }
   catch (error) {
