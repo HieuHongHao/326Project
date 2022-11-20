@@ -282,11 +282,17 @@ app.get("/api/canvas", async (req, res) => {
 //   }
 // })
 
-app.put("/api/canvas/:id", async (req, res) => {
+app.put("/api/canvas/:id/chatCommits", async (req, res) => {
   try {
+    const field = Object.keys(req.body)[0];
+    const incrementObject = {
+      $inc:{}
+    }
+    incrementObject["$inc"][field] = req.body[field];
     const newCanvas = await canvasModel.findByIdAndUpdate(
       req.params.id,
-      req.body
+      incrementObject,
+      {new:true}
     );
     res.status(200).json(newCanvas);
   } catch (error) {
