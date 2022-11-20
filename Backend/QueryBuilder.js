@@ -13,26 +13,26 @@ class QueryBuilder {
     this.queryChain = queryChain;  // to chain query together
   }
 
-  filter() {
-    this.queryChain = this.queryChain.find(JSON.parse(this.filteredQuery));
-    return this;
-  }
-  sort() {
-    if ("sort" in this.queryObject) {
-      const sortFields = this.queryObject.sort.split(",").join(" ")
-      console.log(sortFields);
-      this.queryChain = this.queryChain.sort(sortFields);
-    } else {
-      this.queryChain = this.queryChain.sort("-createdAt _id");
+    filter(){
+        this.queryChain = this.queryChain.find(JSON.parse(this.filteredQuery));
+        return this;
     }
-    return this;
-  }
-  paginate() {
-    const page = this.queryObject.page * 1 || 1;
-    const skip = (page - 1) * 10;
-    this.queryChain = this.queryChain.skip(skip).limit(10);
-    return this;
-  }
+    sort(){
+        if("sort" in this.queryObject){
+            const sortFields = this.queryObject.sort.split(",").join(" ")
+            console.log(sortFields);
+            this.queryChain = this.queryChain.sort(sortFields);
+        }else{``
+            this.queryChain = this.queryChain.sort("-createdAt _id");
+        }
+        return this;
+    }
+    paginate(){
+        const page = this.queryObject.page * 1 || 1;  
+        const skip = (page - 1) * 10;
+        this.queryChain= this.queryChain.skip(skip).limit(10);
+        return this;
+    }
 }
 
 

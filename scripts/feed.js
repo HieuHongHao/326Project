@@ -47,13 +47,13 @@ export const feed = {
       return response_json;
     }
 
-    async function createNewPost(data) {
+    function createNewPost(data) {
       const newPost = document.createElement("div");
       for (const classname of postClass) {
         newPost.classList.add(classname);
       }
       newPost.classList.add("feed-posts-container");
-      newPost.appendChild(await createUserAvatarAndName(data));
+      newPost.appendChild(createUserAvatarAndName(data));
       newPost.appendChild(createBodyContent(data));
       return newPost;
     }
@@ -113,7 +113,7 @@ export const feed = {
       const likeTxt = document.createElement("span");
 
       likeIcn.className = "fa-regular fa-heart";
-      likeTxt.innerHTML = data.likes.length;
+      likeTxt.innerHTML = data.likeNumber;
       likeBttn.appendChild(likeIcn);
       likeBttn.appendChild(likeTxt);
       likeBttn.addEventListener("click", () => {
@@ -144,8 +144,8 @@ export const feed = {
       return wrapper;
     }
 
-    async function createUserAvatarAndName(data) {
-      const userData = await api.fetchData('users/' + data.authorID);
+    function createUserAvatarAndName(data) {
+      const userData = data.authorID;
       const user = document.createElement("div");
       const image = document.createElement("img");
       const name = document.createElement("span");
@@ -234,7 +234,7 @@ export const feed = {
 
     topBttn.addEventListener("click", async () => {
       // Fix this
-      const response_json = await api.fetchData('projects?sort=title');
+      const response_json = await api.fetchData('projects?sort=likeNumber');
       postContainer.replaceChildren();
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
@@ -242,7 +242,7 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach(async (post) => postContainer.appendChild(await createNewPost(post)));
+      response_json.forEach((post) => postContainer.appendChild(createNewPost(post)));
     }
     getFeed();
 
