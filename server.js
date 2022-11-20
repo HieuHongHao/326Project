@@ -116,6 +116,20 @@ app.post('/api/projects', async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 });
+
+// Delete project and its comments, likes
+app.get('/api/projects/delete/:id', async (req, res) => {
+  try {
+    const data = await ProjectModel.findByIdAndDelete(req.params.id);
+    await CommentModel.deleteMany({ project: req.params.id })
+    await LikeModel.deleteMany({ project: req.params.id })
+    res.send(`Project ${data.title} has been deleted..`);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
 // Create new comment for a project
 app.post('/api/projects/:id/comments', async (req, res) => {
   try {
@@ -207,6 +221,7 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
+// Delete a user and their projects, comments, likes
 app.get('/api/users/delete/:id', async (req, res) => {
   try {
     const data = await UserModel.findByIdAndDelete(req.params.id);
