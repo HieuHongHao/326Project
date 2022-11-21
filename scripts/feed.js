@@ -75,13 +75,21 @@ export const feed = {
 
     function createBodyContent(data) {
       const wrapper = document.createElement("div");
-      const title = document.createElement("p");
+      const title = document.createElement("a");
       const tags = createTag(data.tags);
       const content = document.createElement("div");
-      title.classList.add("fs-4", "fw-bold", "m-0");
+      title.classList.add("fs-4", "fw-bold", "m-0", "cat-text-light", "text-decoration-none");
       title.innerHTML = data.title;
+      title.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=forum';
+      })
       content.classList.add("pb-4");
       content.innerHTML = data.content;
+      content.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=forum';
+      })
       // <i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
       // const likeButton = document.createElement("button");
       // title.classList.add("fs-4", "fw-bold", "m-0");
