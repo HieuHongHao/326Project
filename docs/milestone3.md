@@ -196,6 +196,13 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 ### Add comments
 <img src="../demos/3_add_comment.gif">
 
+### Edit Posts
+#### Before
+<img src="../demos/BeforeChangePost.png">
+
+#### After
+<img src="../demos/AfterChangePost.png">
+
 ## Dashboard
 
 ### Delete posts
@@ -206,6 +213,7 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ### Delete account
 <img src="../demos/3_delete_account.png">
+
 
 ## 2.2 Password Encryption
 
