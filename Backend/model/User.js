@@ -17,7 +17,8 @@ const userSchema = new Schema({
     minlength: 6,
   },
   avatar: {
-    type: String
+    type: String,
+    default: "https://loremflickr.com/cache/resized/65535_52235423932_e5012af91a_b_480_480_nofilter.jpg",
   },
   dateCreated: {
     type: Date,

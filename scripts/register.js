@@ -26,10 +26,12 @@ export const register = {
               username: username,
               email: email,
               password: password,
+              avatar: "https://people.cs.umass.edu/~marius/marius.jpg"
             })
-            // body: '{"username": "Peter Phan", "email": "test@gmail.com", "password": "abc123", "avatar": "https://loremflickr.com/480/480/people?lock=54934","favouriteTechStack": ["PostgreSQL", "Java", "Python"]}'
-          }).then(response => console.log(response.status));
-          document.location = "/?=feed";
+          }).then(response => {
+            console.log(response.status)
+            document.location.href = "/";
+          });
         } else {
           alert("Password is not the same");
         }
