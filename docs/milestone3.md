@@ -106,10 +106,12 @@ content:{
 
 ### Like Schema
 ```
+/*Used to link a user's like to a post/project*/
 project: {
     type: Schema.Types.ObjectId,
     ref: "Project"
   },
+/*Used to link a like from a post to a user*/
 author: {
     type: Schema.Types.ObjectId,
     ref: "User"
@@ -126,10 +128,12 @@ project:{
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Project"
 },
+/*For stats*/
 chatCommits:{
     type:Number,
     default: 0
 },
+/*Also for stats*/
 upTime:{
     type: Date,
     default: Date.now(),
@@ -143,6 +147,24 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ## 2.1 Back-end
 
+### Landing page
+1. Get projects from Project DB
+2. Generate leaderboard based on stats from Canvas DB
+3. Display number of likes and comments for each post
+
+<img src="../demos/3_landing_page.gif">
+
+## Feed
+
+### Sear (in Feed)
+
+#### Create Post (in Feed)
+
+## Project
+
+### 
+
+
 ## 2.2 Password Encryption
 
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
@@ -153,7 +175,13 @@ const correctPass = hashPassword === user[0].password;
 ```
 
 
-
 # Part 3 Deployment
 
+URL: https://cs326project.herokuapp.com/
+
 # Part 4 Division of Labor
+Peter Phan: 
+
+Phat Nguyen (Peter): 
+
+Hieu Nguyen: 
