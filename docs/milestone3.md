@@ -2,9 +2,6 @@
 
 URL: https://cs326project.herokuapp.com/
 
-# Part 0 Setup
-You can see how to setup and use our website through ```setup.md```
-
 # Part 1 Database Implementation
 
 ## Database
@@ -40,6 +37,7 @@ dateCreated: {
 /*Fun facts and stats we'll use to display in the future*/
 favouriteTechStack: [{ type: String }]
 ```
+<img src="../demos/users.png">
 
 ### Project Schema
 ```
@@ -76,6 +74,7 @@ tags: [
     },
 ]
 ```
+<img src="../demos/projects.png">
 
 ### Comment Schema
 ```
@@ -103,6 +102,7 @@ content:{
     type: String
 }
 ```
+<img src="../demos/comments.png">
 
 ### Like Schema
 ```
@@ -117,6 +117,7 @@ author: {
     ref: "User"
 }
 ```
+<img src="../demos/likes.png">
 
 ### Canvas Schema
 ```
@@ -139,6 +140,7 @@ upTime:{
     default: Date.now(),
 }
 ```
+<img src="../demos/canvas.png">
 
 ## Secrets
 Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_URL``` for the URL of the database, and ```process.env.PORT``` for the port. To test locally, we need to set up a ```.env``` file with these values. However, we do not push these secrets to the repo.
