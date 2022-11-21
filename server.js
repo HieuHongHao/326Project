@@ -259,6 +259,16 @@ app.get("/api/users/delete/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+// Update user information
+app.put("/api/users/:id", async (req, res) => {
+  try {
+    const update = req.body;
+    const newUser = await UserModel.findByIdAndUpdate(req.params.id,update,{new:true});
+    res.status(200).json(newUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // --------Canvas Resource------------------------------------------------------------------------------------------
 // Get all canvas
