@@ -208,6 +208,15 @@ app.post("/api/projects/:id/like", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+// Update a project
+app.put("/api/projects/:id", async (req, res) => {
+  try {
+    const newProject = await ProjectModel.findByIdAndUpdate(req.params.id,req.body,{new:true});
+    res.status(200).json(newProject);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // --------Users Resource------------------------------------------------------------------------------------------
 // Get all users
