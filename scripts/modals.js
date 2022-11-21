@@ -58,15 +58,8 @@ async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
   const user = await getUserData(`?email=${username}`);
-<<<<<<< HEAD
   const hashPassword = await sha256(password, 12)
   const correctPass = hashPassword === user[0].password;
-=======
-  const hash = await sha256(password);
-  console.log(hash)
-  const correctPass = await sha256(password) === user[0].password;
->>>>>>> e3decc84b92705da648150ad5d79fd8bb978a6b1
-  console.log(correctPass)
   if (correctPass) {
     loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
@@ -82,11 +75,31 @@ async function deleteAccount() {
   window.location.href = "/";
 }
 
+async function deleteAccount() {
+  const newPass = document.getElementById("newPass").value;
+  const confirmPass = document.getElementById("confirmPass").value;
+  const userID = window.localStorage.getItem("loggedIn");
+  if (newPass === confirmPass) {
+    await fetch("https://cs326project.herokuapp.com/api/users/" + userID + "/update", {
+      method: 'PATCH',
+      body: JSON.stringify({
+        password: newPass
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+  }
+}
+
 const loginBtn = document.getElementById("loginSubmit");
 loginBtn.addEventListener("click", login);
 
 const deleteAcc = document.getElementById("deleteAccount");
 deleteAcc.addEventListener("click", deleteAccount);
+
+const changePass = document.getElementById("changePassBtn");
+deleteAcc.addEventListener("click", changePassword);
 
 
 // async function deletePost() {
