@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-mongoose.connect(process.env.DATABASE_URL, function (err, connection) {
+mongoose.connect(process.env.DATABASE_URL, function(err, connection) {
   if (err) {
     console.log(err.message);
   } else {
@@ -92,12 +92,12 @@ app.get("/api/projects/:id/topContributors", async (req, res) => {
         $sort: { commentCount: -1 },
       }
     ]);
-    await UserModel.populate(userRankings,{
-      path:"_id",
+    await UserModel.populate(userRankings, {
+      path: "_id",
       select: "username"
     })
     res.status(200).json(userRankings.map(ranking => {
-      return {username: ranking._id.username,commentCount: ranking.commentCount}
+      return { username: ranking._id.username, commentCount: ranking.commentCount }
     }));
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -286,13 +286,13 @@ app.put("/api/canvas/:id/chatCommits", async (req, res) => {
   try {
     const field = Object.keys(req.body)[0];
     const incrementObject = {
-      $inc:{}
+      $inc: {}
     }
     incrementObject["$inc"][field] = req.body[field];
     const newCanvas = await canvasModel.findByIdAndUpdate(
       req.params.id,
       incrementObject,
-      {new:true}
+      { new: true }
     );
     res.status(200).json(newCanvas);
   } catch (error) {

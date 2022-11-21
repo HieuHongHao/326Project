@@ -22,12 +22,10 @@ async function getUserData(query) {
 async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
-  // const res = await fetch("../api/users.json");
-  // const users = await res.json();
-  // const user = users.filter(x => x.name === username || x.email === username);
   const user = await getUserData(`?email=${username}`);
-  console.log(user);
-  if (user.length !== 0 && user[0].password === password) {
+  const correctPass = password === user[0].password;
+  console.log(correctPass)
+  if (correctPass) {
     loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
     window.location.href = "?=dashboard";
@@ -38,7 +36,8 @@ async function login() {
 
 async function deleteAccount() {
   const userID = window.localStorage.getItem("loggedIn");
-  fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+  await fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+  window.location.href = "/";
 }
 
 const loginBtn = document.getElementById("loginSubmit");

@@ -69,7 +69,6 @@ export const dashboard = {
           </div>
         </div>
         `;
-        console.log(newCard)
         posts.appendChild(newCard);
       }
       for (let i = 0; i < projects.length; i++) {
