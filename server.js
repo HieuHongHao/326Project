@@ -263,7 +263,9 @@ app.get("/api/users/delete/:id", async (req, res) => {
 app.put("/api/users/:id", async (req, res) => {
   try {
     const update = req.body;
-    const newUser = await UserModel.findByIdAndUpdate(req.params.id,update,{new:true});
+    let newUser = await UserModel.findById(req.params.id);
+    Object.assign(newUser,update);
+    await newUser.save();
     res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
