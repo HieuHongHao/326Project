@@ -208,6 +208,15 @@ app.post("/api/projects/:id/like", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+// Update a project
+app.put("/api/projects/:id", async (req, res) => {
+  try {
+    const newProject = await ProjectModel.findByIdAndUpdate(req.params.id,req.body,{new:true});
+    res.status(200).json(newProject);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // --------Users Resource------------------------------------------------------------------------------------------
 // Get all users
@@ -255,6 +264,18 @@ app.get("/api/users/delete/:id", async (req, res) => {
     await CommentModel.deleteMany({ author: req.params.id });
     await LikeModel.deleteMany({ author: req.params.id });
     res.send(`User ${data.username} has been deleted..`);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+// Update user information
+app.put("/api/users/:id", async (req, res) => {
+  try {
+    const update = req.body;
+    let newUser = await UserModel.findById(req.params.id);
+    Object.assign(newUser,update);
+    await newUser.save();
+    res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
