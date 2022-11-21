@@ -13,7 +13,7 @@ export const register = {
         const repeatPassword = document.getElementById("repeatPassword").value;
         console.log(username)
         console.log(email)
-        console.log(password)
+        console.log(password.toString())
 
         if (password === repeatPassword) {
           await fetch('https://cs326project.herokuapp.com/api/users', {

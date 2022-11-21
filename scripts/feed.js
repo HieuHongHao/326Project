@@ -10,7 +10,7 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
-    
+
 
 
     const URL = "https://cs326project.herokuapp.com/api";
@@ -34,7 +34,7 @@ export const feed = {
       Guava: "pn-card-type-blue"
     };
     let currentTags = [];
-    async function postRequest(data,param) {
+    async function postRequest(data, param) {
       const response = await fetch(URL + "/projects" + param, {
         method: 'POST',
         headers: {
@@ -75,13 +75,21 @@ export const feed = {
 
     function createBodyContent(data) {
       const wrapper = document.createElement("div");
-      const title = document.createElement("p");
+      const title = document.createElement("a");
       const tags = createTag(data.tags);
       const content = document.createElement("div");
-      title.classList.add("fs-4", "fw-bold", "m-0");
+      title.classList.add("fs-4", "fw-bold", "m-0", "cat-text-light", "text-decoration-none");
       title.innerHTML = data.title;
+      title.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=forum';
+      })
       content.classList.add("pb-4");
       content.innerHTML = data.content;
+      content.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=forum';
+      })
       // <i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
       // const likeButton = document.createElement("button");
       // title.classList.add("fs-4", "fw-bold", "m-0");
@@ -93,7 +101,7 @@ export const feed = {
       // likeButton.addEventListener("click", () => {
       //   likeButton.innerHTML = parseInt(likeButton.innerHTML) + 1;
       // })
-      
+
       /*Post icons container*/
       const postContainer = document.createElement("div");
       postContainer.className = "post-icons-container"
@@ -103,6 +111,10 @@ export const feed = {
       const commentIcn = document.createElement("i");
       const commentTxt = document.createElement("span");
       commentIcn.className = "fa-regular fa-comment";
+      commentBttn.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=forum';
+      });
       commentTxt.innerHTML = data.comments.length;
       commentBttn.appendChild(commentIcn);
       commentBttn.appendChild(commentTxt);
@@ -116,10 +128,10 @@ export const feed = {
       likeTxt.innerHTML = data.likeNumber;
       likeBttn.appendChild(likeIcn);
       likeBttn.appendChild(likeTxt);
-      likeBttn.addEventListener("click", async() => {
+      likeBttn.addEventListener("click", async () => {
         const author = window.localStorage.getItem("loggedIn");
-        const likes = await postRequest({author},`/${data._id}/like`);  
-        likeTxt.innerHTML = likes; 
+        const likes = await postRequest({ author }, `/${data._id}/like`);
+        likeTxt.innerHTML = likes;
       })
 
       /*Canvas icon*/
@@ -129,13 +141,17 @@ export const feed = {
 
       canvasIcn.className = "fa-regular fa-pen-to-square";
       canvasTxt.innerHTML = "Kanvas";
+      canvasBttn.addEventListener("click", () => {
+        window.localStorage.setItem('projectID', data._id);
+        window.location.href = '?=canvas';
+      });
       canvasBttn.appendChild(canvasIcn);
       canvasBttn.appendChild(canvasTxt);
 
       /*Append everything to wrapper card*/
       wrapper.classList.add("px-3");
       wrapper.appendChild(title);
-      if(data.tags.length > 0){
+      if (data.tags.length > 0) {
         wrapper.appendChild(tags);
       }
       wrapper.appendChild(content);
@@ -179,7 +195,7 @@ export const feed = {
         title: title,
         content: content,
         tags: currentTags
-      },"");
+      }, "");
       const newPost = createNewPost(result.post);
       postContainer.prepend(newPost);
     });
