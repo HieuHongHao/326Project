@@ -19,11 +19,28 @@ async function getUserData(query) {
   }
 }
 
+async function sha256(message) {
+  // encode as UTF-8
+  const msgBuffer = new TextEncoder().encode(message);
+
+  // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+  // convert ArrayBuffer to Array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  // convert bytes to hex string                  
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
 async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
   const user = await getUserData(`?email=${username}`);
-  const correctPass = password === user[0].password;
+  const hash = await sha256(password);
+  console.log(hash)
+  const correctPass = await sha256(password) === user[0].password;
   console.log(correctPass)
   if (correctPass) {
     loginSuccess(user[0]._id);

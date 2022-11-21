@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
-
+const crypto = require('node:crypto').webcrypto;
 const userSchema = new Schema({
   username: {
     type: String,
@@ -51,11 +50,28 @@ userSchema.pre(/^find/, function(next) {
   this.populate("comments");
   next();
 })
+
 userSchema.pre("save", async function(next) {
   if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 12);
+  this.password = await sha256(this.password);
   next();
 })
+
+async function sha256(message) {
+  // encode as UTF-8
+  const msgBuffer = new TextEncoder().encode(message);
+
+  // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+  // convert ArrayBuffer to Array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  // convert bytes to hex string
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
 
 const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;
