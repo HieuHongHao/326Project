@@ -20,8 +20,7 @@ export const forum = {
     });
 
     async function postRequest(data) {
-      // const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + projectID + "/comments", {
-      const response = await fetch("http://localhost:9000/api/projects/" + projectID + "/comments", {
+      const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + projectID + "/comments", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
