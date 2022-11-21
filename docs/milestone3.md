@@ -221,6 +221,19 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 <img src="../demos/3_canvas_page_demo.gif">
 
 
+## Register and Login
+
+### Register
+
+<img src="../demos/3_register.gif">
+
+<img src="../demos/newUser.png">
+
+### Login
+
+<img src="../demos/3_login.gif">
+
+
 ## 2.2 Password Encryption
 
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
