@@ -446,6 +446,10 @@ background: linear-gradient(315deg, rgba(89,127,228,1) 1%, rgba(151,84,198,1) 10
   width: 100%;
 }
 
+.dashboard-card-container{
+  margin-top: -1.2em;
+}
+
 .dashboard-card-container .post-icons-container{
   grid-template-columns: auto auto !important;
   pointer-events: none;
@@ -455,12 +459,4 @@ background: linear-gradient(315deg, rgba(89,127,228,1) 1%, rgba(151,84,198,1) 10
   grid-template-columns: auto auto auto auto !important;
   /* pointer-events: none; */
   /* margin-left: 2em; */
-}
-
-.post-icons-container .fa-heart{
-  color: #c6d0f5;
-}
-
-.post-icons-container .like > i{
-  color: #f91880 !important;
 }

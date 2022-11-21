@@ -96,6 +96,7 @@ app.get("/api/projects/:id/topContributors", async (req, res) => {
       path: "_id",
       select: "username"
     })
+    
     res.status(200).json(userRankings.map(ranking => {
       return { username: ranking._id.username, commentCount: ranking.commentCount }
     }));

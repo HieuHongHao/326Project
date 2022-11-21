@@ -5,6 +5,7 @@ import { forum } from './forum.js';
 import { dashboard } from './dashboard.js';
 import { canvas } from './canvas.js';
 import { chat } from './chat.js';
+import { index } from './index.js';
 
 function isLoggedIn() {
   return window.localStorage.getItem("loggedIn") !== null;
@@ -81,6 +82,7 @@ export const routes = {
     } else {
       signBtn();
       await utils.loadModule(`pages/index.html`, 'content');
+      await index.init();
     }
   }
 }

@@ -35,6 +35,29 @@ export const dashboard = {
       for (let i = 0; i < projects.length; i++) {
         const newCard = document.createElement("div");
         newCard.id = `postId-${projects[i]._id}`
+        const ranking = await api.fetchData("projects/" + projects[i]._id + "/topContributors");
+        let rankingHTML = "";
+        for(let i=0; i < 5; i++){
+          if(i > ranking.length-1){
+            rankingHTML += `
+              <tr>
+                <td>${i+1}</td>
+                <td><span>--</span></td>
+                <td>--</td>
+              </tr>
+              `
+          }else{  
+            rankingHTML += `
+              <tr>
+                <td>${i+1}</td>
+                <td><img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg"><span>${ranking[i].username}</span></td>
+                <td>${ranking[i].commentCount}</td>
+              </tr>
+              `
+          }
+        }
+
+
         newCard.innerHTML += `
         <div class="account-card-container">
           <div class="card-intro">
@@ -55,16 +78,7 @@ export const dashboard = {
                 <th></th>
                 <th>COMMITS</th>
               </tr>
-              <tr>
-                <td>1</td>
-                <td><img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg"><span>Maria Anders</span></td>
-                <td>99</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><img src="https://loremflickr.com/cache/resized/65535_52010666873_325f72ccc9_c_480_480_nofilter.jpg"><span>Maria Anders</span></td>
-                <td>94</td>
-              </tr>
+              ${rankingHTML}
             </table>
           </div>
         </div>
@@ -73,7 +87,7 @@ export const dashboard = {
       }
       for (let i = 0; i < projects.length; i++) {
         document.getElementById("delete-" + projects[i]._id).addEventListener("click", async () => {
-          await fetch('http://localhost:9000/api/projects/delete/' + projects[i]._id).then(res => res.text()).then(res => console.log(res))
+          await fetch('https://cs326project.herokuapp.com/api/projects/delete/' + projects[i]._id).then(res => res.text()).then(res => console.log(res))
           document.getElementById("postId-" + projects[i]._id).outerHTML = "";
         });
       }
