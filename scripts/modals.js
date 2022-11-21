@@ -1,4 +1,24 @@
 
+
+
+// import bcrypt from "../node_modules/bcrypt"
+// const bcrypt = require('./node_modules/bcrypt')
+
+async function sha256(message) {
+  // encode as UTF-8
+  const msgBuffer = new TextEncoder().encode(message);                    
+
+  // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+  // convert ArrayBuffer to Array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  // convert bytes to hex string                  
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
 // Temp login funcions
 function closeModal(tag) {
   const modalElem = document.getElementById(tag);
@@ -23,7 +43,8 @@ async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
   const user = await getUserData(`?email=${username}`);
-  const correctPass = password === user[0].password;
+  const hashPassword = await sha256(password, 12)
+  const correctPass = hashPassword === user[0].password;
   console.log(correctPass)
   if (correctPass) {
     loginSuccess(user[0]._id);
