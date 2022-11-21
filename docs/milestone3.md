@@ -176,10 +176,18 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ## Project
 
+1. Redirection link to respective canvas page
+2. Add comments under current user (create new documents in db and loads into frontend) 
+
 ### Add comments
 <img src="../demos/3_add_comment.gif">
 
+
 ## Dashboard
+
+1. Create post redirection
+2. Delete User
+3. Change password
 
 ### Delete posts
 <img src="../demos/3_delete_posts.gif">
@@ -189,6 +197,12 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ### Delete account
 <img src="../demos/3_delete_account.png">
+
+## Canvas page
+
+1. Socket.io implementation for syncing drawing and chats
+2. Create chat messages under logged in user
+3. Chat frontend UI 
 
 ## 2.2 Password Encryption
 
@@ -205,8 +219,9 @@ const correctPass = hashPassword === user[0].password;
 URL: https://cs326project.herokuapp.com/
 
 # Part 4 Division of Labor
-Peter Phan: 
+Peter Phan: Seeded database with fake data, wrote endpoints/queries/requests, frontend and backend CRUD for feed, project, and dashboard pages. 
 
-Phat Nguyen (Peter): 
+Phat Nguyen (Peter): Implemented socket.io functionality on canvas page, chat UI, frontend cards for landing and dashboard pages, password hash.
 
-Hieu Nguyen: 
+Hieu Nguyen: Intialized mongoDB, created endpoints and requests for CRUD functions, created query builder helper, implemented frontend and backend CRUD for feed page.
+
