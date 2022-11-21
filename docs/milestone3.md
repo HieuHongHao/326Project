@@ -187,6 +187,9 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 ### Update password
 <img src="../demos/3_update_passwords.png">
 
+### Delete account
+<img src="../demos/3_delete_account.png">
+
 ## 2.2 Password Encryption
 
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
