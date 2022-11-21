@@ -163,23 +163,6 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 4. Display avatar of post owner
 5. Selective searching of projects based on tags
 
-## Project page
-
-1. Redirection link to respective canvas page
-2. Add comments under current user (create new documents in db and loads into frontend) 
-
-## Dashboard page
-
-1. Create post redirection
-2. Delete User
-3. Change password
-
-## Canvas page
-
-1. Socket.io implementation for syncing drawing and chats
-2. Create chat messages under logged in user
-3. Chat frontend UI 
-
 ### Likes (in Feed)
 
 <img src="../demos/3_likes.gif">
@@ -193,10 +176,18 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ## Project
 
+1. Redirection link to respective canvas page
+2. Add comments under current user (create new documents in db and loads into frontend) 
+
 ### Add comments
 <img src="../demos/3_add_comment.gif">
 
+
 ## Dashboard
+
+1. Create post redirection
+2. Delete User
+3. Change password
 
 ### Delete posts
 <img src="../demos/3_delete_posts.gif">
@@ -206,6 +197,12 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 
 ### Delete account
 <img src="../demos/3_delete_account.png">
+
+## Canvas page
+
+1. Socket.io implementation for syncing drawing and chats
+2. Create chat messages under logged in user
+3. Chat frontend UI 
 
 ## 2.2 Password Encryption
 
