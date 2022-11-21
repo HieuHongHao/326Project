@@ -96,7 +96,7 @@ app.get("/api/projects/:id/topContributors", async (req, res) => {
       path: "_id",
       select: "username"
     })
-    
+
     res.status(200).json(userRankings.map(ranking => {
       return { username: ranking._id.username, commentCount: ranking.commentCount }
     }));
@@ -157,10 +157,10 @@ app.get("/api/projects/delete/:id", async (req, res) => {
 // Create new comment for a project
 app.post("/api/projects/:id/comments", async (req, res) => {
   try {
-    const commentBody = req.body;
     const comment = await CommentModel.create({
       project: req.params.id,
-      ...commentBody,
+      author: req.body.author,
+      content: req.body.content,
     });
     await ProjectModel.findByIdAndUpdate(req.params.id, {
       $inc: {
