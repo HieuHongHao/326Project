@@ -9,11 +9,15 @@ export const forum = {
     const titleDiv = document.getElementById("title");
     const contentDiv = document.getElementById("projectContent");
     const likesDiv = document.getElementById("likes");
+    const whiteboardBtn = document.getElementById("whiteboard");
     usernameDiv.innerHTML = project.authorID.username;
     avatarDiv.src = project.authorID.avatar;
     titleDiv.innerHTML = project.title;
     contentDiv.innerHTML = project.content;
     likesDiv.innerHTML += ` ${project.likes.length} likes`
+    whiteboardBtn.addEventListener("click", () => {
+      window.location.href = "?=canvas";
+    });
 
     const commentsDiv = document.getElementById("comments");
     for (let i = 0; i < project.comments.length; i++) {
