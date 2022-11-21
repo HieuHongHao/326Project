@@ -155,15 +155,27 @@ Secrets are stored in Heroku. We access them with the ```process.env.DATABASE_UR
 <img src="../demos/3_landing_page.gif">
 
 ## Feed
+1. Persistence likes; Likes and unlike; Updates like number
+2. Get projects from Project DB
+3. Display number of likes and comments for each post
+4. Display avatar of post owner
+5. Selective searching of projects based on tags
 
-### Sear (in Feed)
+### Likes (in Feed)
 
-#### Create Post (in Feed)
+<img src="../demos/3_likes.gif">
+
+### Search (in Feed )
+
+<img src="../demos/3_search.gif">
+
+### Create Post (in Feed)
+<img src="../demos/3_new_post.gif">
 
 ## Project
 
-### 
-
+### Add comments
+<img src="../demos/3_add_comment.gif">
 
 ## 2.2 Password Encryption
 
