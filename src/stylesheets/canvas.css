@@ -1,0 +1,345 @@
+#chat{
+    height: 100%;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+}
+
+#chat.hide{
+    height: 0%;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+}
+
+#canvas-container{
+    height: 100%;
+}
+
+#content-container{
+    height: 100%;
+}
+
+.chat-container{
+    /* width: 20%; */
+    /* float: right; */
+    height: 100%;
+    right: 0;
+    z-index: 233;
+    position: absolute;
+    /* background-color: #424b59; */
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.chat-background{
+    width: 100%;
+    height: 100%;
+    /* box-shadow: inset 0 0 2000px rgba(255, 255, 255, 1); */
+    filter: blur(4px);
+    
+    background-color: #464646;
+    /* background: rgb(70,70,70);
+    background: linear-gradient(180deg, rgba(70,70,70,0.020045518207282953) 0%, rgba(64,64,64,0.9) 61%); */
+    /* background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%); */
+    /* background: rgb(51,51,51);
+background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%); */
+    /* opacity: 0.95; */
+
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('https://i.imgur.com/7bjZxqS.gif') no-repeat center center fixed;
+    /* background: url("https://i.pinimg.com/originals/80/8b/ac/808bac097a1fb99f766efr32c8315bd9f.gif") no-repeat center center fixed;  */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    position: absolute;
+    clip: rect(0px, 999999px, 999999px, 0px);
+
+
+    /*
+    https://cdna.artstation.com/p/assets/images/images/025/965/386/original/lennart-butz-idea5anim4.gif?1587480606
+
+    https://i.pinimg.com/originals/bd/56/5d/bd565dcc0a556add0b0a0ed6b26d686e.gif
+
+    https://i.pinimg.com/originals/00/43/04/0043044fd8e3c55c584ddaf0c9c134e2.gif
+
+    https://raw.githubusercontent.com/catppuccin/wallpapers/main/misc/waves.png
+    */
+
+}
+
+.chat-container::before{
+    content: '';
+}
+
+@media screen and (min-width: 1500px) {
+    .chat-container {
+      width: 20% !important;
+    }
+}
+
+@media screen and (min-width: 575px) and (max-width: 1499px) {
+    .chat-container {
+      width: 18em !important;
+    }
+}
+
+.chat-container .chat-texts-container{
+    max-height: calc(100vh - 10.5em);
+    bottom: 8.5em;
+    float: bottom;
+    position: absolute;
+    /* background-color: #424b59; */
+    /* opacity: 0.7; */
+    opacity: 1;
+
+    overflow: auto;
+    overflow-x: hidden;
+    right: 0;
+    width: 100%;
+}
+.chat-container .chat-input-container{
+    bottom: 4em;
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    height: 4em;
+    overflow: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* background-color: #424b59; */
+}
+
+.chat-input-container input[type=text]{
+    border-radius: 12px;
+    color: #e8e8e8;
+    background-color: #535e6e;
+    outline: 0;
+    padding: 1em;
+    width: 95%;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+}
+
+.chat-texts-container .text{
+    position: relative;
+    width: 100%;
+}
+
+
+.chat-texts-container .my-text{
+    background-color: #798699;
+    width: 75%;
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+}
+
+.chat-texts-container .text-dummy{
+    width: 23%;
+    /* float: left; */
+    height: 0.1em;
+    float: left;
+}
+
+.chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
+    /* display:block; */
+    max-width: 70%;
+    padding: 0.6em;
+    margin: 0.5em 0 0.9em 0.7em;
+    border-radius: 12px;
+    word-wrap: break-word;
+    opacity: 0.9;
+}
+.chat-texts-container .blue-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
+    margin-left: 2em;
+}
+
+.chat-texts-container .blue-text{
+    background-color: #4e75b5;
+    color: white;
+}
+
+.chat-texts-container .green-text{
+    background-color: #80ab52;
+    color: white;
+}
+
+.chat-texts-container .yellow-text{
+    background-color: #bfa532;
+    color: white;
+}
+
+.chat-texts-container .red-text{
+    background-color: #c25d5d;
+    color: white;
+}
+
+.chat-texts-container .purple-text{
+    background-color: #865699;
+    color: white;
+}
+
+.chat-texts-container .math-text{
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+.text img{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-top: 2.5em;
+    margin-left: 0.2em;
+    position: absolute
+}
+
+.text span{
+    color: #c6d0f5;
+    font-size: 12px;
+    margin-left: 3em;
+}
+
+.chat-texts-container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.chat-texts-container::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #d1d1d1;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+#canvas{
+    width: 100%;
+    background-color: #333333;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.drawing-tools-container{
+    position: absolute;
+    /* bottom: 0; */
+    top: 6em;
+    left: 0em;
+}
+
+.drawing-tools-container input[type=color]{
+    /* display: none; */
+    opacity: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    /* border: 0; */
+}
+
+.drawing-tools-container span{
+    border-radius: 50%;
+    padding: 0.5em;
+    display: inline-block;
+    z-index: 10000;
+    font-size: 20px;
+    color: white;
+}
+
+.drawing-tools-container span:hover{
+    color: rgb(204, 204, 204);
+    cursor: pointer;
+}
+
+.active-people-container{
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 0.4em;
+    position: absolute;
+}
+.active-people-container i{
+    font-size: 25px;
+}
+.active-people-container .red-user{
+    color: #c25d5d;
+}
+.active-people-container .blue-user{
+    color: #4e75b5;
+}
+.active-people-container .yellow-user{
+    color: #bfa532;
+}
+.active-people-container .green-user{
+    color: #80ab52;
+}
+.active-people-container .purple-user{
+    color: #865699;
+}
+
+.chat-header-container{
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    color: rgb(58, 58, 58);
+    /* text-align: right; */
+}
+
+.chat-header-container:hover .chat-header-background{
+    /* background-color: rgb(24, 24, 24); */
+}
+
+.chat-header-background{
+    position: absolute;
+    width: 100%;
+    padding: 1em;
+    opacity: 0.6;
+    z-index: 2;
+    height: 100%;
+    filter: blur(3px);
+    background-color: rgb(24, 24, 24);
+}
+
+.chat-header-icons{
+    z-index: 5;
+    width: 100%;
+    position: relative;
+    text-align: right;
+    margin-left: -0.25em;
+}
+
+.chat-header-icons i{
+    color: white;
+    margin-left: 3em;
+    position: flex;
+    padding: 0.5em;
+}
+
+.chat-header-icons i:hover{
+    cursor: pointer;
+}
+
+.chat-open-container{
+    position: fixed;
+    z-index: 5;
+    bottom: 1em;
+    right: 1em;
+    text-align: right;
+    font-size: 22px;
+    
+}
+
+.chat-open-container i{
+    padding: 0.8em;
+    border-radius: 50%;
+    background-color: #4264a8;
+    color: white;
+}
+
+.chat-open-container i:hover{
+    cursor: pointer;
+    background-color: #38548d;
+}
