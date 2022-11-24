@@ -9,6 +9,7 @@ dotenv.config({ path: "./.env" });
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 
+// Database connection
 mongoose.connect(process.env.DATABASE_URL, function(err, connection) {
   if (err) {
     console.log(err.message);
@@ -16,8 +17,8 @@ mongoose.connect(process.env.DATABASE_URL, function(err, connection) {
     console.log("Connection to database established");
   }
 });
-
 const database = mongoose.connection;
+
 const app = express();
 
 app.use(logger('dev'));

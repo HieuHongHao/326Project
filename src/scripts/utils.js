@@ -25,26 +25,16 @@ export const utils = {
     document.title = title;
   },
 
-  // Return user if they are logged in, otherwise return undefined
-  isLoggedIn: async () => {
-    const token = window.localStorage.getItem("token");
-    let user;
-    await fetch("http://localhost:3000/user/me", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'token': token,
-      },
-      redirect: 'follow'
-    }).then(response => {
-      if (response.status !== 200) {
-        return undefined;
-      } else {
-        return response.json();
-      }
-    }).then(result => {
-      user = result;
-    });
-    return user;
+  // HTML template engine
+  loadTemplate: async (template, params) => {
+    const html = await fetch(template)
+      .then(response => response.text())
+      .then(html => {
+        let names = Object.keys(params);
+        let vals = Object.values(params);
+        return new Function(...names, `return \`${html}\`;`)(...vals);
+      });
+    const parser = new DOMParser();
+    return parser.parseFromString(html, 'text/html');
   }
 };

@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { utils } from './utils.js';
 export const feed = {
   init: async () => {
     const newPostBtn = document.getElementById("post-button");
@@ -10,8 +11,6 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
-
-
 
     const URL = "https://cs326project.herokuapp.com/api";
     const postClass = [
@@ -65,9 +64,7 @@ export const feed = {
       for (const tag of tags) {
         const tagElement = document.createElement("div");
         tagElement.innerHTML = tag;
-        tagElement.classList.add("badge");
-        tagElement.classList.add("me-2");
-        tagElement.classList.add(tagStyles[tag]);
+        tagElement.classList.add("badge", "me-2", tagStyles[tag]);
         tagWrapper.appendChild(tagElement);
       }
       return tagWrapper;
@@ -131,7 +128,8 @@ export const feed = {
       likeBttn.addEventListener("click", async () => {
         const author = window.localStorage.getItem("loggedIn");
         const likes = await postRequest({ author }, `/${data._id}/like`);
-        likeTxt.innerHTML = likes;
+        console.log(likes)
+        // likeTxt.innerHTML = likes;
       })
 
       /*Canvas icon*/
@@ -257,10 +255,53 @@ export const feed = {
       response_json.forEach(post => postContainer.appendChild(createNewPost(post)));
     })
 
+    function toProfile(user) {
+      return () => console.log("TODO: Make profile page");
+    }
+
+    function toProject(project) {
+      return () => window.location.href = "../project?=" + project;
+    }
+
+    function likeBtn(project) {
+      return async () => {
+        const author = project.authorID._id;
+        const likes = await postRequest({ author }, `/${project._id}/like`);
+      }
+    }
+
+    function toCanvas(project) {
+      return () => console.log("TODO: Make link to canvas");
+    }
+
     async function getFeed() {
       const response_json = await api.fetchData('projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach((post) => postContainer.appendChild(createNewPost(post)));
+      response_json.forEach(async (post, idx) => {
+        const html = await utils.loadTemplate('../components/templates/feedPost.html', {
+          avatar: post.authorID.avatar,
+          username: post.authorID.username,
+          userID: `user-${idx}`,
+          title: post.title,
+          titleID: `title-${idx}`,
+          content: post.content,
+          contentID: `content-${idx}`,
+          comments: post.comments.length,
+          commentID: `comment-${idx}`,
+          likes: post.likeNumber,
+          likeID: `like-${idx}`,
+          canvasID: `canvas-${idx}`
+        });
+
+        html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID))
+        html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
+        html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
+        html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))
+        html.getElementById(`like-${idx}`).addEventListener("click", likeBtn(post))
+        html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
+
+        postContainer.appendChild(html.body.firstChild);
+      });
     }
     getFeed();
 

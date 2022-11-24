@@ -61,7 +61,7 @@ const core = {
           break;
         }
       case route.match(/^\/dashboard\?*/)?.input:
-        const userData = await utils.isLoggedIn();
+        const userData = await api.isLoggedIn();
         if (userData !== undefined) {
           signBtn();
           await utils.loadModule('../pages/dashboard.html', 'content');
