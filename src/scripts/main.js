@@ -7,6 +7,7 @@ import { dashboard } from './dashboard.js';
 // import { chat } from './chat.js';
 import { index } from './index.js';
 import { navbar } from './navbar.js';
+import { login } from './login.js';
 
 function isLoggedIn() {
   return window.localStorage.getItem("loggedIn") !== null;
@@ -16,6 +17,7 @@ async function signBtn() {
   if (!isLoggedIn()) {
     await utils.loadModule(`../components/navLogin.html`, 'loginDiv');
     await utils.loadModule('../components/login.html', 'modals');
+    login.init();
   } else {
     await utils.loadModule(`../components/navLogout.html`, 'logoutDiv');
     await utils.loadModule(`../components/navAccount.html`, 'nav-acc');
