@@ -1,0 +1,217 @@
+/*Programmed by Nguyen Tan Phat (Peter Nguyen) 2016- 2017*/
+
+html,head,body{
+    z-index:1;
+    overflow:hidden
+}
+body{
+    font-family:'RaleWay';
+    overflow-y:hidden;
+    overflow-x:hidden
+}
+
+.pn-background-opacity{
+    outline:0;
+    background-color:rgba(0,0,0,0.5);
+    position:fixed;min-width:100%;
+    min-height:10000000em;
+    top:-40px;
+    left:0;
+    border:0;
+    display:block;
+    border-color:transparent;
+    -webkit-animation:fadein 2s;
+    -moz-animation:fadein 2s;
+    -ms-animation:fadein 2s;
+    -o-animation:fadein 2s;
+    animation:fadein 2s
+}
+
+.pn-background{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:-1;
+    filter:blur(4px);
+    -o-filter:blur(4px);
+    -ms-filter:blur(4px);
+    -moz-filter:blur(4px);
+    -webkit-filter:blur(4px);
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+    background-size:cover;-moz-transform:scale(1.05);
+    -webkit-transform:scale(1.05);transform:scale(1.05);
+    background-image:url('https://media.istockphoto.com/photos/star-sky-at-night-space-background-picture-id841403680?b=1&k=20&m=841403680&s=170667a&w=0&h=XjTDHhmVPGUxqYqGEClDlLR4otM9mP7uPl3sbeNtEvA=');
+    transition:all 1s;
+    max-width:100%;
+    max-height:100%;
+    min-width:100%;
+    min-height:100%;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+::-moz-selection {background: rgb(15,173,175);color: white;}
+::selection {background: rgb(15,173,175);color: white;}
+
+.pn-error {
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+    color: lightcoral;
+    top: 9.4em;
+    left: 1.3em;
+    -webkit-animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    -ms-animation: fadein 2s;
+    -o-animation: fadein 2s;
+    animation: fadein 2s;
+}
+
+.pn-action-link {
+    color: dodgerblue;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: right;
+    text-decoration: underline;
+    position: relative;
+    left: 1px;
+}
+
+.pn-loader
+{
+    width: 37em;
+    height: 37em;
+    text-align: center;
+	border-radius: 50%;
+	border: 3px solid #e2e2e2; 
+    border-top: 3px solid #3498db; 
+    animation: spin 2s linear infinite;
+    z-index: 2;
+    bottom: 7em !important;
+}
+
+.pn-404-container
+{
+    width: 35em;
+    height: 35em;
+    text-align: center;
+	border-radius: 50%;
+    z-index: 2;
+    color: white;
+    bottom: 4em !important;
+}
+
+.pn-404-container h1
+{
+    font-family: RaleWay;
+	text-align: center;
+	position: relative;
+	margin: auto;
+	font-size: 72px;
+    z-index: 1;
+    margin-top: 1.5em;
+}
+.pn-404-description
+{
+    font-size: 72px;
+    font-weight: bold;
+}
+.pn-404-message
+{
+    font-size: 12px;
+    margin-top: 2em;
+}
+.pn-center-container
+{
+    top: 0;
+    left:0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+    position: fixed;
+}
+.pn-return-action-link
+{
+    font-size: 11px;
+    color: white;
+    text-decoration: none;
+    margin-top: 2em;
+}
+.pn-return-action-link:hover
+{
+	cursor: pointer;
+}
+.pn-return-action-link:hover .pn-return-to-previous
+{
+	-webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    width: 30px;
+    margin-right: 9px;
+}
+.pn-return-action-link:hover .pn-return-pointer
+{
+	color: #3498db;
+	visibility: visible;
+}
+.pn-return-to-previous
+{
+	border-bottom: 1px solid #3498db;
+	color: #3498db;
+}
+.pn-return-pointer
+{
+	visibility: hidden;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@media (max-width: 759px){
+    .pn-loader{
+        display: none;
+    }
+    .pn-404-container h1
+    {
+        font-size: 32px;
+    }
+    .pn-404-description
+    {
+        font-size: 32px;
+    }
+    .pn-404-container
+    {
+        width: 100%;
+        height: 100%;
+        top: 4em;
+    }
+    .pn-404-message
+    {
+        font-size: 8px;
+    }
+}
+@media(max-height: 729px)
+{
+    .pn-loader{
+        display: none;
+    }
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v11/yQiAaD56cjx1AooMTSghGfY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v11/0dTEPzkLWceF7z0koJaX1A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

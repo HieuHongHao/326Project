@@ -1,0 +1,68 @@
+<div class="container-fluid bg-secondary min-vh-100 kanvaswire-card">
+  <div class="row justify-content-center border-bottom">
+    <div class="col-5 my-3">
+      <nav class="navbar navbar-expand-lg bg-secondary p-0">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse px-3" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active cat-text-light py-0" aria-current="page" href="#">Your Projects</a>
+              <a class="nav-link cat-text-light py-0" href="#">Settings</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row justify-content-center my-4 account-info">
+    <div class="col-2">
+      <div class="d-flex flex-column align-items-end">
+        <div class="d-flex flex-column">
+          <img id="pfp" alt="profile picture" src="../public/logo.svg" class="rounded-pill border border-3">
+          <h5 id="username" class="py-2 cat-text-light">@Username</h5>
+          <div class="d-flex">
+            <p id="likes" class="cat-text-light"><i class="fas cat-text-danger fs-5 fa-heart pe-2"></i> </p>
+          </div>
+          <div class="d-flex">
+            <p id="totalPosts" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-images pe-2"></i> </p>
+          </div>
+          <div class="d-flex">
+            <p id="comments" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-comment pe-2"></i> </p>
+          </div>
+          <div class="d-flex">
+            <p id="created" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-clock pe-2"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-7 me-5">
+      <div id="posts" class="row row-cols-1 row-cols-md-2 g-4">
+      </div>
+
+
+
+      <br>
+      <br>
+      <br>
+
+
+
+      <div id="settings">
+        <div class="d-flex py-2">
+          <a href="../feed" class="btn btn-success shadow">Create Post</a>
+        </div>
+        <div class="d-flex py-2">
+          <a href="#" class="btn btn-warning shadow" data-bs-toggle="modal" data-bs-target="#changePassword">Change
+            Password</a>
+        </div>
+        <div class="d-flex py-2">
+          <a href="#" class="btn btn-danger shadow" data-bs-toggle="modal" data-bs-target="#deleteAccount">Delete
+            account</a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
