@@ -3,12 +3,12 @@ const router = express.Router();
 const dir = { root: __dirname + "/../src" }
 
 // Pages that do not require login
-router.get(['/', '/feed', '/project/*'], function(req, res, next) {
+router.get(['/', '/feed', '/project\?*'], function(req, res, next) {
   res.sendFile('index.html', dir);
 });
 
 // Pages that require login
-router.get(['/dashboard/*', '/canvas/*'], function(req, res, next) {
+router.get(['/dashboard', '/canvas/*'], function(req, res, next) {
   res.sendFile('index.html', dir);
 });
 

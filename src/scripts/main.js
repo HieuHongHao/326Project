@@ -1,4 +1,5 @@
 import { utils } from './utils.js';
+import { api } from './api.js';
 import { register } from './register.js';
 import { feed } from './feed.js';
 import { project } from './project.js';
@@ -10,7 +11,7 @@ import { navbar } from './navbar.js';
 import { login } from './login.js';
 
 function isLoggedIn() {
-  return window.localStorage.getItem("loggedIn") !== null;
+  return window.localStorage.getItem("token") !== null;
 }
 
 async function signBtn() {
@@ -33,7 +34,6 @@ const core = {
     await utils.loadModule('../components/navbar.html', 'navbar');
     await navbar.init();
     await utils.loadModule('../components/footer.html', 'footer');
-    // utils.loadModule('components/modals.html', 'modals');
     let route = window.location.pathname;
     switch (route) {
       case "/":
@@ -52,17 +52,25 @@ const core = {
         await utils.loadModule('../pages/feed.html', 'content');
         feed.init();
         break;
-      case route.match(/^\/project*/)?.input:
-        signBtn();
-        await utils.loadModule('../pages/project.html', 'content');
-        project.init();
-        break;
-      case route.match(/^\/dashboard*/)?.input:
-        signBtn();
-        await utils.loadModule('../pages/dashboard.html', 'content');
-        dashboard.init();
-        break;
-      case route.match(/^\/canvas*/)?.input:
+      case route.match(/^\/project\?*/)?.input:
+        const projectData = await api.fetchData('projects/' + window.location.search.substring(2));
+        if (projectData !== undefined) {
+          signBtn();
+          await utils.loadModule('../pages/project.html', 'content');
+          project.init(projectData);
+          break;
+        }
+      case route.match(/^\/dashboard\?*/)?.input:
+        const userData = await utils.isLoggedIn();
+        if (userData !== undefined) {
+          signBtn();
+          await utils.loadModule('../pages/dashboard.html', 'content');
+          dashboard.init(userData);
+          break;
+        } else {
+          document.location.href = "/";
+        }
+      case route.match(/^\/canvas\?*/)?.input:
         signBtn();
         break;
       default:

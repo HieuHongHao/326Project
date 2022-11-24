@@ -30,7 +30,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 
 app.get('*', function(req, res) {
-  res.sendFile('404.html', dir);
+  res.sendFile('404.html', { root: __dirname + "/src" });
 });
 
 module.exports = app;

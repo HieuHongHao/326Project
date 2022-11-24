@@ -1,9 +1,6 @@
 import { api } from './api.js';
 export const project = {
-  init: async () => {
-    const projectID = window.localStorage.getItem("projectID");
-    const project = await api.fetchData('projects/' + projectID);
-
+  init: async (project) => {
     const usernameDiv = document.getElementById("username");
     const avatarDiv = document.getElementById("avatar");
     const titleDiv = document.getElementById("title");
@@ -16,7 +13,7 @@ export const project = {
     contentDiv.innerHTML = project.content;
     likesDiv.innerHTML += ` ${project.likes.length} likes`
     whiteboardBtn.addEventListener("click", () => {
-      window.location.href = "?=canvas";
+      window.location.href = "../canvas";
     });
 
     async function postRequest(data) {

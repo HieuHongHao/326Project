@@ -82,13 +82,13 @@ export const feed = {
       title.innerHTML = data.title;
       title.addEventListener("click", () => {
         window.localStorage.setItem('projectID', data._id);
-        window.location.href = '?=forum';
+        window.location.href = '../project';
       })
       content.classList.add("pb-4");
       content.innerHTML = data.content;
       content.addEventListener("click", () => {
         window.localStorage.setItem('projectID', data._id);
-        window.location.href = '?=forum';
+        window.location.href = '../project';
       })
       // <i class="fa-solid fa-heart" style="color:red;"></i><span>144 likes</span>
       // const likeButton = document.createElement("button");
@@ -113,7 +113,7 @@ export const feed = {
       commentIcn.className = "fa-regular fa-comment";
       commentBttn.addEventListener("click", () => {
         window.localStorage.setItem('projectID', data._id);
-        window.location.href = '?=forum';
+        window.location.href = '../project?=' + data._id;
       });
       commentTxt.innerHTML = data.comments.length;
       commentBttn.appendChild(commentIcn);
