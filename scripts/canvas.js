@@ -14,7 +14,7 @@ export const canvas = {
 
     const colorPicker = document.getElementById("color-picker-input")
     // const drawingContainer = document.getElementById("canvas")
-
+    
     
 
     /*Canvas stuff*/

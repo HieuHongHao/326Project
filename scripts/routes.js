@@ -75,6 +75,8 @@ export const routes = {
         await utils.loadModule(`pages/${route}.html`, 'content');
         await canvas.init();
         await chat.init();
+        const toAnimate = {"active-users-container":500};
+        await utils.loadAnimate(toAnimate);
         
         // Run 404
       } else {
