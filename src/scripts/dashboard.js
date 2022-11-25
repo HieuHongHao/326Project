@@ -58,7 +58,8 @@ export const dashboard = {
 
       posts.appendChild(newCard.body.firstChild);
       document.getElementById("trash-" + project._id).addEventListener("click", async () => {
-        await fetch('https://cs326project.herokuapp.com/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
+        // await fetch('https://cs326project.herokuapp.com/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
+        await fetch('http://localhost:3000/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
         document.getElementById("project-" + project._id).outerHTML = "";
       });
     });

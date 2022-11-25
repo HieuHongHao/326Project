@@ -13,7 +13,8 @@ export const feed = {
     const topBttn = document.getElementById("top-post-button");
     let numPosts = 0;
 
-    const URL = "https://cs326project.herokuapp.com/api";
+    const URL = "http://localhost:3000/feed/api";
+    // const URL = "https://cs326project.herokuapp.com/api";
     const tagStyles = {
       React: "pn-card-type-blue",
       Java: "pn-card-type-red",

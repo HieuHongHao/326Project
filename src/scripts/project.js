@@ -17,7 +17,8 @@ export const project = {
     document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
     async function postRequest(data) {
-      const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + project._id + "/comments", {
+      const response = await fetch("http://localhost:3000/api/projects/" + project._id + "/comments", {
+        // const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + project._id + "/comments", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
