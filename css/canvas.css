@@ -184,7 +184,7 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
 .chat-texts-container .math-text{
     color: white;
     text-align: center;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .text img{
@@ -196,7 +196,7 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
     position: absolute
 }
 
-.text span{
+.text .text-user-name{
     color: #c6d0f5;
     font-size: 12px;
     margin-left: 3em;

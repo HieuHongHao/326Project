@@ -1,4 +1,8 @@
 import { autoScroll } from './chat.js';
+// import '../scripts/MathJax-master/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML';
+// import "../node_modules/mathjax/es5/tex-chtml.js"
+
+
 
 export const canvas = {
   init: async () => {
@@ -109,6 +113,7 @@ export const canvas = {
     /*Resizing the canvas*/
     window.addEventListener('resize', onResize, false);
     onResize();
+    renderMathInElement(document.body);
 
     // // first we need Konva core things: stage and layer
     // const stage = new Konva.Stage({

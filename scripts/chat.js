@@ -33,29 +33,42 @@ export const chat = {
             const innerChat = document.createElement("div");
             const chatBox = document.getElementById("chat-texts");
             chatElement.classList.add("text");
-            if(isIncoming){
-                //Display user info in chat
-                const usersDB = await api.fetchData('users');
-                const user = usersDB.filter(x => x._id.toString() === sender.toString())[0];
-                const imgElement = document.createElement("img");
-                imgElement.src = user["avatar"];
-                imgElement.crossOrigin = "anonymous";
-                chatElement.appendChild(imgElement);
-                const nameElement = document.createElement("span");
-                nameElement.innerHTML = user.username;
-                chatElement.appendChild(nameElement);
-                //User chat color
-                innerChat.classList.add(getUserChatColor(sender.toString()) + "-text");
+
+            if(checkOnlyContainsMath(message)){
+                innerChat.classList.add("math-text")
             }
             else{
-                const dummyText = document.createElement("div");
-                dummyText.classList.add("text-dummy")
-                chatElement.append(dummyText);
-                innerChat.classList.add("my-text");
+                console.log("hid");
+                // /([^\$\\])\$([^\$]+)\$/gm ==> regex for $ ... $
+                // https://tex.stackexchange.com/questions/635501/regular-expression-in-texstudio
+                message = (" " + message).replace(/([^\$\\])\$([^\$]+)\$/gm, '$1\\($2\\)').replace(/\r/g, '').slice(1);
+
+                if(isIncoming){
+                    //Display user info in chat
+                    const usersDB = await api.fetchData('users');
+                    const user = usersDB.filter(x => x._id.toString() === sender.toString())[0];
+                    const imgElement = document.createElement("img");
+                    imgElement.src = user["avatar"];
+                    imgElement.crossOrigin = "anonymous";
+                    chatElement.appendChild(imgElement);
+                    const nameElement = document.createElement("span");
+                    nameElement.innerHTML = user.username;
+                    nameElement.classList.add("text-user-name");
+                    chatElement.appendChild(nameElement);
+                    //User chat color
+                    innerChat.classList.add(getUserChatColor(sender.toString()) + "-text");
+                }
+                else{
+                    const dummyText = document.createElement("div");
+                    dummyText.classList.add("text-dummy")
+                    chatElement.append(dummyText);
+                    innerChat.classList.add("my-text");
+                }
             }
             innerChat.innerHTML = message;
             chatElement.appendChild(innerChat);
             chatBox.appendChild(chatElement);
+            renderMathInElement(document.body);
             autoScroll();
         }
 
@@ -64,6 +77,12 @@ export const chat = {
                 userChatColor[user] = shuffle(chatColor)[0]
             }
             return userChatColor[user];
+        }
+
+        function checkOnlyContainsMath(message){
+            const regexp1 = new RegExp(/\$\$(.*?)\$\$/g); // regexp for $$ .. $$
+            const regexp2 = new RegExp(/\\\[(.*?)\\\]/g); // regex for \[ \]
+            return regexp1.test(message) || regexp2.test(message);
         }
 
         textInput.addEventListener("keypress",(event) => {
