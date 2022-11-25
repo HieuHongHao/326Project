@@ -17,7 +17,7 @@ export const project = {
     document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
     async function postRequest(data) {
-      const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + projectID + "/comments", {
+      const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + project._id + "/comments", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -30,65 +30,33 @@ export const project = {
     }
 
     const commentsDiv = document.getElementById("comments");
-    for (let i = 0; i < project.comments.length; i++) {
-      let commentUser = await api.fetchData('users/' + project.comments[i].author);
-      commentsDiv.innerHTML += `
-        <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
-          <div class="align-top">
-            <img src=${commentUser.avatar} alt="Logo" class="rounded-pill">
-          </div>
-          <div class="px-1">
-            <div class="d-flex">
-              <p class="m-0 me-2">${commentUser.username}</p>
-              <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
-            </div>
-            <p class="fw-light">${project.comments[i].content}</p>
-          </div>
-        </li>`
-    }
+    project.comments.forEach(async (comment, idx) => {
+      let commenter = await api.fetchData('users/' + comment.author);
+      const commentHTML = await utils.loadTemplate("../components/templates/comment.html", {
+        avatar: commenter.avatar,
+        username: commenter.username,
+        content: comment.content,
+      });
+      commentsDiv.appendChild(commentHTML.body.firstChild);
+    });
 
     const commentBtn = document.getElementById("commentBtn");
     async function addComment() {
-      const userId = window.localStorage.getItem("loggedIn");
-      const user = await api.fetchData("users/" + userId);
-      const newComment = document.createElement("li");
-      const newContent = document.getElementById("commentContent").value;
-      newComment.classList.add('list-group-item', 'px-0', 'd-flex', 'cat-bg-light', 'cat-text-light');
-      newComment.innerHTML = `
-          <div class="align-top">
-            <img src=${user.avatar} alt="Logo" class="rounded-pill">
-          </div>
-          <div class="px-1">
-            <div class="d-flex">
-              <p class="m-0 me-2">${user.username}</p>
-              <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
-            </div>
-            <p class="fw-light">${newContent}</p>
-          </div>`
-      commentsDiv.appendChild(newComment);
-      const result = await postRequest({
-        author: userId,
+      const user = await api.isLoggedIn();
+      const newContent = await document.getElementById("commentContent").value;
+      const commentHTML = await utils.loadTemplate("../components/templates/comment.html", {
+        avatar: user.avatar,
+        username: user.username,
+        content: newContent,
+      });
+      commentsDiv.prepend(commentHTML.body.firstChild);
+
+      console.log(user._id)
+      await postRequest({
+        author: user._id,
         content: newContent,
       });
     }
     commentBtn.addEventListener("click", addComment);
-
-    function addComment() {
-      const comments = document.getElementById("comments");
-      const commentContent = document.getElementById("commentContent").value;
-      comments.innerHTML += `
-      <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
-        <div class="align-top">
-          <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
-        </div>
-        <div class="px-1">
-          <div class="d-flex">
-            <p class="m-0 me-2">Username</p>
-            <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
-          </div>
-          <p class="fw-light">${commentContent}</p>
-        </div>
-      </li>`
-    }
   }
 }

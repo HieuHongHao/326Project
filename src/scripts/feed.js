@@ -98,8 +98,6 @@ export const feed = {
       html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
 
-      // const tags = createTag(post.tags);
-      // console.log(tags)
       return html.body.firstChild;
     }
 

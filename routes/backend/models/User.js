@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 const Project = require("./Project.js");
 const Comment = require("./Comment.js");
@@ -53,11 +54,12 @@ userSchema.pre(/^find/, function(next) {
   next();
 })
 
-// userSchema.pre("save", async function(next) {
-//   if (!this.isModified("password")) return next();
-//   this.password = await sha256(this.password);
-//   next();
-// })
+userSchema.pre("save", async function(next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+})
 
 // async function sha256(message) {
 //   // encode as UTF-8

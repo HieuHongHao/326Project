@@ -1,56 +1,27 @@
 import { api } from './api.js';
+import { utils } from './utils.js';
 export const index = {
   init: async () => {
     const posts = document.getElementById("top-projects");
-    const projects = await api.fetchData('projects');
+    const projects = await api.fetchData('projects?sort=-likeNumber');
     for (let i = 0; i < 4; i++) {
-      const newCard = document.createElement("div");
-      newCard.id = `postId-${projects[i]._id}`
       const ranking = await api.fetchData("projects/" + projects[i]._id + "/topContributors");
-      let rankingHTML = "";
-      for (let j = 0; j < 3; j++) {
-        if (j > ranking.length - 1) {
-          rankingHTML += `
-                    <tr>
-                        <td>${j + 1}</td>
-                        <td><span>--</span></td>
-                        <td>--</td>
-                    </tr>
-                    `
-        } else {
-          rankingHTML += `
-                    <tr>
-                        <td>${j + 1}</td>
-                        <td><img src="https://people.cs.umass.edu/~marius/marius.jpg"><span>${ranking[j].username}</span></td>
-                        <td>${ranking[j].commentCount}</td>
-                    </tr>
-                    `
-        }
-      }
-      newCard.innerHTML += `
-                <div class="dashboard-card-container">
-                <div class="card-intro">
-                    <img src="https://people.cs.umass.edu/~marius/marius.jpg">
-                    <h1>${projects[i].title}</h1>
-                    <p>${projects[i].content.substring(0, 100)}${(projects[i].content.length > 15 ? "..." : "")}</p>
-                    <div class="post-icons-container">
-                    <div><i class="fa-regular fa-comment"></i><span>${projects[i].comments.length}</span></div>
-                    <div><i class="fa-regular fa-heart"></i><span>${projects[i].likes.length}</span></div>
-                    </div>
-                </div>
-                <div class="leaderboard card-leaderboard">
-                    <table>
-                    <tr>
-                        <th>RANK</th>
-                        <th></th>
-                        <th>COMMITS</th>
-                    </tr>
-                    ${rankingHTML}
-                    </table>
-                </div>
-                </div>
-                `;
-      posts.appendChild(newCard);
+      const newCard = await utils.loadTemplate('../components/templates/introCard.html', {
+        title: projects[i].title,
+        content: projects[i].content.substring(0, 100) + ((projects[i].content.length > 100) ? "..." : ""),
+        comments: projects[i].comments.length,
+        likes: projects[i].likeNumber,
+        rank1User: (ranking[0]) ? ranking[0].username : '-',
+        rank1Avatar: (ranking[0]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank1Score: (ranking[0]) ? ranking[0].commentCount : '-',
+        rank2User: (ranking[1]) ? ranking[1].username : '-',
+        rank2Avatar: (ranking[1]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank2Score: (ranking[1]) ? ranking[1].commentCount : '-',
+        rank3User: (ranking[2]) ? ranking[2].username : '-',
+        rank3Avatar: (ranking[2]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank3Score: (ranking[2]) ? ranking[2].commentCount : '-',
+      });
+      posts.appendChild(newCard.body.firstChild);
     }
   }
 };

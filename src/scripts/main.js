@@ -23,7 +23,7 @@ async function signBtn() {
     await utils.loadModule(`../components/navLogout.html`, 'logoutDiv');
     await utils.loadModule(`../components/navAccount.html`, 'nav-acc');
     document.getElementById('logoutBtn').addEventListener("click", async () => {
-      window.localStorage.removeItem('loggedIn');
+      window.localStorage.removeItem('token');
       window.location.href = "/";
     });
   }
