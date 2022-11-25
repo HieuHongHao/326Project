@@ -5,8 +5,8 @@ export const login = {
     loginBtn.addEventListener("click", async () => {
       const loginEmail = document.getElementById("loginEmail").value;
       const loginPass = document.getElementById("loginPass").value;
-      await fetch("http://localhost:3000/user/login", {
-        // await fetch("https://cs326project.herokuapp.com/user/login", {
+      // await fetch("http://localhost:3000/user/login", {
+      await fetch("https://cs326project.herokuapp.com/user/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
