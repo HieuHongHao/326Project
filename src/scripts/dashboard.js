@@ -2,8 +2,8 @@ import { api } from './api.js';
 import { utils } from './utils.js';
 export const dashboard = {
   init: async (user) => {
-    const projects = await api.fetchData('projects/author/' + user._id);
-    const userComments = await api.fetchData('comments/author/' + user._id);
+    const projects = await api.fetchGET('api/projects/author/' + user._id);
+    const userComments = await api.fetchGET('api/comments/author/' + user._id);
 
     const pfp = document.getElementById("pfp");
     const username = document.getElementById("username");
@@ -20,7 +20,7 @@ export const dashboard = {
 
     const posts = document.getElementById("posts");
     await projects.forEach(async (project, idx) => {
-      const ranking = await api.fetchData("projects/" + project._id + "/topContributors");
+      const ranking = await api.fetchGET("api/projects/" + project._id + "/topContributors");
       const newCard = await utils.loadTemplate('../components/templates/dashboardCard.html', {
         projectID: `project-${project._id}`,
         title: project.title,
@@ -59,7 +59,8 @@ export const dashboard = {
       posts.appendChild(newCard.body.firstChild);
       document.getElementById("trash-" + project._id).addEventListener("click", async () => {
         // await fetch('https://cs326project.herokuapp.com/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
-        await fetch('http://localhost:3000/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
+        // await fetch('http://localhost:3000/api/projects/delete/' + project._id).then(res => res.text()).then(res => console.log(res))
+        await api.fetchGET(`api/projects/delete/${project._id}`);
         document.getElementById("project-" + project._id).outerHTML = "";
       });
     });

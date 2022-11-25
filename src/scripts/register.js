@@ -18,23 +18,12 @@ export const register = {
         }
 
         if (password === repeatPassword) {
-          await fetch('http://localhost:3000/user/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              username: username,
-              email: email,
-              password: password,
-              avatar: "https://people.cs.umass.edu/~marius/marius.jpg"
-            }),
-            redirect: 'follow',
-          }).then(response => {
-            return (response.status === 400) ? alert("Invalid email or password") : response.text();
-          }).then(result => {
-            console.log(result);
-          });
+          await api.fetchPOST("user/signup", {
+            username: username,
+            email: email,
+            password: password,
+            avatar: "https://people.cs.umass.edu/~marius/marius.jpg"
+          })
         } else {
           alert("Password is not the same");
         }

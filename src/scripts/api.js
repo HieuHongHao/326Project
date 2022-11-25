@@ -1,11 +1,22 @@
+const URL = "http://localhost:3000/";
+// const URL = "https://cs326project.herokuapp.com/";
 export const api = {
-  fetchData: async (data) => {
-    const URL = "http://localhost:3000/api/";
-    // const URL = "https://cs326project.herokuapp.com/api/";
-    let response = await fetch(URL + data);
+  fetchGET: async (url) => {
+    let response = await fetch(URL + url);
     if (response.ok) {
       return await response.json();
     }
+  },
+
+  fetchPOST: async (url, body) => {
+    const response = await fetch(URL + url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+    return await response.json();
   },
 
   // Return user if they are logged in, otherwise return undefined

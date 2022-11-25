@@ -2,6 +2,7 @@ import { api } from './api.js';
 import { utils } from './utils.js';
 export const feed = {
   init: async () => {
+    const userId = await api.isLoggedIn();
     const newPostBtn = document.getElementById("post-button");
     const postContainer = document.getElementById("feed");
     const addTag = document.getElementById("add-tags");
@@ -13,8 +14,6 @@ export const feed = {
     const topBttn = document.getElementById("top-post-button");
     let numPosts = 0;
 
-    const URL = "http://localhost:3000/feed/api";
-    // const URL = "https://cs326project.herokuapp.com/api";
     const tagStyles = {
       React: "pn-card-type-blue",
       Java: "pn-card-type-red",
@@ -26,18 +25,6 @@ export const feed = {
     };
 
     let currentTags = [];
-    async function postRequest(data, param) {
-      const response = await fetch(URL + "/projects" + param, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      const response_json = await response.json();
-      return response_json;
-    }
 
     function toProfile(user) {
       return () => console.log("TODO: Make profile page");
@@ -50,8 +37,7 @@ export const feed = {
     function likeBtn(like, project) {
       return async () => {
         const author = project.authorID._id;
-        console.log(author)
-        const likes = await postRequest({ author }, `/${project._id}/like`);
+        const likes = await api.fetchPOST(`api/projects/${project._id}/like`, { author });
         like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
       }
     }
@@ -76,14 +62,14 @@ export const feed = {
 
     async function createNewPost(post, idx) {
       const html = await utils.loadTemplate('../components/templates/feedPost.html', {
-        avatar: post.authorID.avatar,
-        username: post.authorID.username,
+        avatar: userId.avatar,
+        username: userId.username,
         userID: `user-${idx}`,
         title: post.title,
         titleID: `title-${idx}`,
         content: post.content,
         contentID: `content-${idx}`,
-        comments: post.comments.length,
+        comments: post.commentNumber,
         commentID: `comment-${idx}`,
         likes: post.likeNumber,
         likeID: `like-${idx}`,
@@ -105,14 +91,13 @@ export const feed = {
     newPostBtn.addEventListener("click", async () => {
       const content = document.getElementById("post-text-area").value;
       const title = document.getElementById("post-title").value;
-      const userId = window.localStorage.getItem("loggedIn");
-      const result = await postRequest({
-        authorID: userId,
+      const result = await api.fetchPOST('api/projects/', {
+        authorID: userId._id,
         title: title,
         content: content,
         tags: currentTags
-      }, "");
-      const newPost = await createNewPost(result.post, numPosts + 1);
+      });
+      const newPost = await createNewPost(result, numPosts + 1);
       numPosts += 1;
       postContainer.prepend(newPost);
     });
@@ -148,10 +133,10 @@ export const feed = {
       let result;
       switch (query[0]) {
         case "tags":
-          result = await api.fetchData(`projects?tags=${query[1]}`);
+          result = await api.fetchGET(`api/projects?tags=${query[1]}`);
           break;
         case "title":
-          result = await api.fetchData(`projects?title=${query[1]}`);
+          result = await api.fetchGET(`api/projects?title=${query[1]}`);
           break;
         default:
           break;
@@ -162,22 +147,20 @@ export const feed = {
     });
 
     githubPostBtn.addEventListener("click", async () => {
-      const response_json = await api.fetchData('github_repos');
-      console.log(response_json);
+      const response_json = await api.fetchGET('api/github_repos');
       postContainer.replaceChildren();
       response_json.projects.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.projects.length;
     })
 
     topBttn.addEventListener("click", async () => {
-      // Fix this
-      const response_json = await api.fetchData('projects?sort=-likeNumber');
+      const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
       postContainer.replaceChildren();
       response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
     })
 
     async function getFeed() {
-      const response_json = await api.fetchData('projects?page=1');
+      const response_json = await api.fetchGET('api/projects?page=1');
       postContainer.replaceChildren();
       response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;

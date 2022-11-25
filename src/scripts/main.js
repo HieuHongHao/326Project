@@ -53,7 +53,7 @@ const core = {
         feed.init();
         break;
       case route.match(/^\/project\?*/)?.input:
-        const projectData = await api.fetchData('projects/' + window.location.search.substring(2));
+        const projectData = await api.fetchGET('api/projects/' + window.location.search.substring(2));
         if (projectData !== undefined) {
           signBtn();
           await utils.loadModule('../pages/project.html', 'content');

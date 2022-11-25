@@ -3,9 +3,9 @@ import { utils } from './utils.js';
 export const index = {
   init: async () => {
     const posts = document.getElementById("top-projects");
-    const projects = await api.fetchData('projects?sort=-likeNumber');
+    const projects = await api.fetchGET('api/projects?sort=-likeNumber');
     for (let i = 0; i < 4; i++) {
-      const ranking = await api.fetchData("projects/" + projects[i]._id + "/topContributors");
+      const ranking = await api.fetchGET("api/projects/" + projects[i]._id + "/topContributors");
       const newCard = await utils.loadTemplate('../components/templates/introCard.html', {
         title: projects[i].title,
         content: projects[i].content.substring(0, 100) + ((projects[i].content.length > 100) ? "..." : ""),
