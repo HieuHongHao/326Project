@@ -23,7 +23,7 @@ export const api = {
   isLoggedIn: async () => {
     const token = window.localStorage.getItem("token");
     let user;
-    await fetch("http://localhost:3000/user/me", {
+    await fetch(URL + "user/me", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

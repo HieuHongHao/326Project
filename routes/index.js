@@ -8,7 +8,7 @@ router.get(['/', '/feed', '/project\?*'], function(req, res, next) {
 });
 
 // Pages that require login
-router.get(['/dashboard', '/canvas/*'], function(req, res, next) {
+router.get(['/dashboard', '/canvas\?*'], function(req, res, next) {
   res.sendFile('index.html', dir);
 });
 

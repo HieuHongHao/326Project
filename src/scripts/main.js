@@ -4,8 +4,8 @@ import { register } from './register.js';
 import { feed } from './feed.js';
 import { project } from './project.js';
 import { dashboard } from './dashboard.js';
-// import { canvas } from './canvas.js';
-// import { chat } from './chat.js';
+import { canvas } from './canvas.js';
+import { chat } from './chat.js';
 import { index } from './index.js';
 import { navbar } from './navbar.js';
 import { login } from './login.js';
@@ -35,19 +35,17 @@ const core = {
     await navbar.init();
     await utils.loadModule('../components/footer.html', 'footer');
     let route = window.location.pathname;
+    signBtn();
     switch (route) {
       case "/":
-        signBtn();
         await utils.loadModule('../pages/index.html', 'content');
         index.init();
         break;
       case "/register":
-        signBtn();
         await utils.loadModule('../pages/register.html', 'content');
         register.init();
         break;
       case "/feed":
-        signBtn();
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
         feed.init();
@@ -55,7 +53,6 @@ const core = {
       case route.match(/^\/project\?*/)?.input:
         const projectData = await api.fetchGET('api/projects/' + window.location.search.substring(2));
         if (projectData !== undefined) {
-          signBtn();
           await utils.loadModule('../pages/project.html', 'content');
           project.init(projectData);
           break;
@@ -63,7 +60,6 @@ const core = {
       case route.match(/^\/dashboard\?*/)?.input:
         const userData = await api.isLoggedIn();
         if (userData !== undefined) {
-          signBtn();
           await utils.loadModule('../pages/dashboard.html', 'content');
           dashboard.init(userData);
           break;
@@ -71,7 +67,11 @@ const core = {
           document.location.href = "/";
         }
       case route.match(/^\/canvas\?*/)?.input:
-        signBtn();
+        utils.setTitle("Canvas");
+        document.getElementById("footer").style.display = "none";
+        await utils.loadModule(`pages/canvas.html`, 'content');
+        await canvas.init();
+        await chat.init();
         break;
       default:
         await utils.load404();

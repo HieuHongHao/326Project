@@ -62,8 +62,8 @@ export const feed = {
 
     async function createNewPost(post, idx) {
       const html = await utils.loadTemplate('../components/templates/feedPost.html', {
-        avatar: userId.avatar,
-        username: userId.username,
+        avatar: post.authorID.avatar,
+        username: post.authorID.username,
         userID: `user-${idx}`,
         title: post.title,
         titleID: `title-${idx}`,
@@ -88,19 +88,22 @@ export const feed = {
       return html.body.firstChild;
     }
 
-    newPostBtn.addEventListener("click", async () => {
-      const content = document.getElementById("post-text-area").value;
-      const title = document.getElementById("post-title").value;
-      const result = await api.fetchPOST('api/projects/', {
-        authorID: userId._id,
-        title: title,
-        content: content,
-        tags: currentTags
+    if (userId != undefined) {
+      newPostBtn.addEventListener("click", async () => {
+        const content = document.getElementById("post-text-area").value;
+        const title = document.getElementById("post-title").value;
+        const result = await api.fetchPOST('api/projects/', {
+          authorID: userId._id,
+          title: title,
+          content: content,
+          tags: currentTags
+        });
+        const newPost = await createNewPost(result, numPosts + 1);
+        numPosts += 1;
+        postContainer.prepend(newPost);
       });
-      const newPost = await createNewPost(result, numPosts + 1);
-      numPosts += 1;
-      postContainer.prepend(newPost);
-    });
+
+    }
 
     addTag.addEventListener("click", () => {
       const tag = enterTag.value;

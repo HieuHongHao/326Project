@@ -11,7 +11,7 @@ export const project = {
     });
     const whiteboardBtn = projectHTML.getElementById("whiteboard");
     whiteboardBtn.addEventListener("click", () => {
-      window.location.href = "../canvas";
+      window.location.href = "../canvas?=" + project._id;
     });
     document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 

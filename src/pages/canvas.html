@@ -1,0 +1,93 @@
+<div class="active-people-container">
+  <i class="fa-solid fa-circle-user red-user"></i>
+  <i class="fa-solid fa-circle-user blue-user"></i>
+  <i class="fa-solid fa-circle-user green-user"></i>
+  <i class="fa-solid fa-circle-user yellow-user"></i>
+  <i class="fa-solid fa-circle-user purple-user"></i>
+</div>
+<div id="canvas-container">
+  <canvas id="canvas"></canvas>
+  <div class="drawing-tools-container">
+    <div>
+      <span><i class="fa-solid fa-paintbrush" id="tool-paintbrush"></i></span>
+    </div>
+    <div>
+      <span><i class="fa-solid fa-eraser" id="tool-eraser"></i></span>
+    </div>
+    <!-- <div>
+      <span><i class="fa-solid fa-fill-drip"></i></span>
+    </div>
+    <div>
+      <span><i class="fa-solid fa-rotate-left"></i></span>
+    </div>
+    <div>
+      <span><i class="fa-solid fa-rotate-right"></i></span>
+    </div> -->
+    <div>
+      <span><i class="fa-solid fa-plus" id="tool-increase-size"></i></span>
+    </div>
+    <div>
+      <span><i class="fa-solid fa-minus" id="tool-decrease-size"></i></span>
+    </div>
+    <div>
+      <input type="color" id="color-picker-input" value="#ffffff" />
+      <span id="color-picker"><i class="fa-solid fa-palette"></i></span>
+    </div>
+  </div>
+</div>
+<div class="chat-container" id="chat">
+  <div class="chat-header-container" id="chat-header">
+    <div class="chat-header-background"></div>
+    <div class="chat-header-icons">
+      <i class="fa-regular fa-x" id="hide-chat"></i>
+    </div>
+  </div>
+  <div class="chat-background"></div>
+  <div class="chat-texts-container" id="chat-texts">
+    <div class="text">
+      <div class="green-text">Veni vidi vici</div>
+    </div>
+    <div class="text">
+      <div class="text-dummy"></div>
+      <div class="my-text">
+        Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
+        sagittis ipsum. Praesent mauris.
+      </div>
+    </div>
+    <div class="text">
+      <div class="yellow-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        nec odio. Praesent libero. Sed cursus ante dapibus diam.
+      </div>
+    </div>
+    <div class="text">
+      <div class="text-dummy"></div>
+      <div class="my-text">
+        Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
+        sagittis ipsum. Praesent mauris.
+      </div>
+    </div>
+    <div class="text">
+      <div class="blue-text">Fusce nec tellus</div>
+    </div>
+    <div class="text">
+      <div class="red-text">Curabitur</div>
+    </div>
+    <!-- <div class="text">
+      <div class="math-text">
+        $\gamma=\lim_{n\to\infty}\left(\sum_{k=1}^n\frac1k-ln(n)\right) $
+      </div>
+    </div> -->
+    <div class="text">
+      <img src="https://loremflickr.com/480/480/abstract?lock=33125" crossorigin="anonymous" />
+      <span>Trinity Fisher</span>
+      <div class="purple-text">Veni vidi vici</div>
+    </div>
+  </div>
+  <div class="chat-input-container">
+    <input placeholder="Aa" type="text" id="text-input" />
+  </div>
+</div>
+<div class="chat-open-container" id="open-chat">
+  <i class="fa-solid fa-message"></i>
+</div>
