@@ -385,8 +385,8 @@ io.on("connection", (socket) => {
     }
     console.log(userAvatar);
   });
-  socket.on("getOnlineUsers",() => {
-    socket.broadcast.emit("receiveOnlineUsers",Object.values(userAvatar));
+  socket.on("getOnlineUsersAvatar",() => {
+    socket.broadcast.emit("receiveOnlineUsersAvatar",Object.values(userAvatar));
   })
   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
     const username = usernames[socket.id];

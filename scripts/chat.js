@@ -25,7 +25,9 @@ export const chat = {
         let textInput = document.getElementById("text-input");
         socket.timeout(1000).emit("login", userId)
         // const users = ["alpha","beta"];
-        
+        socket.on("receiveOnlineUsersAvatar",(users) => {
+
+        })
         async function addChatElement(message, sender, isIncoming){
             if(isIncoming && sender === userId){
                 return;
