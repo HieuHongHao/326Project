@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://loremflickr.com/cache/resized/65535_52235423932_e5012af91a_b_480_480_nofilter.jpg",
+    default: "https://people.cs.umass.edu/~marius/marius.jpg",
   },
   dateCreated: {
     type: Date,
@@ -31,7 +31,6 @@ const userSchema = new Schema({
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
 })
-
 
 userSchema.virtual("projects", {
   ref: "Project",
@@ -60,22 +59,6 @@ userSchema.pre("save", async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 })
-
-// async function sha256(message) {
-//   // encode as UTF-8
-//   const msgBuffer = new TextEncoder().encode(message);
-
-//   // hash the message
-//   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-
-//   // convert ArrayBuffer to Array
-//   const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-//   // convert bytes to hex string
-//   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-//   return hashHex;
-// }
-
 
 const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;
