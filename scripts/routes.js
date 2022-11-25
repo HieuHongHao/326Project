@@ -75,6 +75,7 @@ export const routes = {
         await utils.loadModule(`pages/${route}.html`, 'content');
         await canvas.init();
         await chat.init();
+        
         // Run 404
       } else {
         await utils.load404();

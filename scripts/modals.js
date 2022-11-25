@@ -4,6 +4,8 @@
 // import bcrypt from "../node_modules/bcrypt"
 // const bcrypt = require('./node_modules/bcrypt')
 
+const URL= "http://localhost:9000";
+
 async function sha256(message) {
   // encode as UTF-8
   const msgBuffer = new TextEncoder().encode(message);                    
@@ -32,8 +34,8 @@ function loginSuccess(acc) {
 }
 
 async function getUserData(query) {
-  const URL = "https://cs326project.herokuapp.com/api/users" + query;
-  let response = await fetch(URL);
+  // const URL = "https://cs326project.herokuapp.com/api/users" + query;
+  let response = await fetch(URL + "/api/users" +  query);
   if (response.ok) {
     return await response.json();
   }
@@ -58,8 +60,10 @@ async function login() {
   const username = document.getElementById("loginName").value;
   const password = document.getElementById("loginPass").value;
   const user = await getUserData(`?email=${username}`);
-  const hashPassword = await sha256(password, 12)
+  // const hashPassword = await sha256(password, 12)
+  const hashPassword = password;
   const correctPass = hashPassword === user[0].password;
+  console.log(correctPass,hashPassword);
   if (correctPass) {
     loginSuccess(user[0]._id);
     closeModal("modalLoginForm");
@@ -69,9 +73,11 @@ async function login() {
   }
 }
 
+
 async function deleteAccount() {
   const userID = window.localStorage.getItem("loggedIn");
-  await fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+  // await fetch("https://cs326project.herokuapp.com/api/users/delete/" + userID).then(res => res.text()).then(res => console.log(res));
+  await fetch(URL + "/api/users/delete" + userID).then(res => res.text()).then(res => console.log(res));
   window.location.href = "/";
 }
 
@@ -80,7 +86,16 @@ async function deleteAccount() {
   const confirmPass = document.getElementById("confirmPass").value;
   const userID = window.localStorage.getItem("loggedIn");
   if (newPass === confirmPass) {
-    await fetch("https://cs326project.herokuapp.com/api/users/" + userID + "/update", {
+    // await fetch("https://cs326project.herokuapp.com/api/users/" + userID + "/update", {
+    //   method: 'PATCH',
+    //   body: JSON.stringify({
+    //     password: newPass
+    //   }),
+    //   headers: {
+    //     'Content-type': 'application/json; charset=UTF-8',
+    //   },
+    // })
+    await fetch(URL + "/api/users" + userID + "/update", {
       method: 'PATCH',
       body: JSON.stringify({
         password: newPass

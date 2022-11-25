@@ -248,6 +248,9 @@ app.post("/api/users", async (req, res) => {
     password: req.body.password,
     avatar: req.body.avatar,
   });
+  
+  
+  
   try {
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
@@ -280,6 +283,8 @@ app.put("/api/users/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+
 
 // --------Canvas Resource------------------------------------------------------------------------------------------
 // Get all canvas
@@ -369,16 +374,27 @@ const io = (module.exports.io = require("socket.io")(httpServer, options));
 const sockets = {};
 const usernames = {};
 const inbox = {};
+const userAvatar = {};
 io.on("connection", (socket) => {
-  socket.on("login", (username) => {
+  socket.on("login", async (username) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
+    const user = await userModel.findById(username).select("avatar");
+    if(user){
+      userAvatar[username] = user.avatar;
+    }
+    console.log(userAvatar);
   });
+  socket.on("getOnlineUsers",() => {
+    socket.broadcast.emit("receiveOnlineUsers",Object.values(userAvatar));
+  })
   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
     const username = usernames[socket.id];
     sockets[username].emit("inbox-message", inbox[username]);
     inbox[username] = null;
   }
+
+  
   // socket.on("send-message", (payload) => {
   //   const { receiver, message } = payload;
   //   console.log(message);
@@ -401,13 +417,14 @@ io.on("connection", (socket) => {
   socket.on("chat-message", (data) =>
     socket.broadcast.emit("chat-message", data)
   );
+  
   socket.on("disconnect", () => {
     const username = usernames[socket.id];
     delete sockets[username];
     delete usernames[socket.id];
   });
 });
-
+  
 // io.on("connection", (socket) => {
 //   socket.on("login", (username) => {
 //     sockets[username] = socket;
@@ -439,6 +456,8 @@ io.on("connection", (socket) => {
 httpServer.listen(process.env.PORT || 9000, () =>
   console.log("Server running on port " + (process.env.PORT || 9000))
 );
+
+
 
 // httpServer.listen(9000, () =>
 //   console.log("Server running on port" + process.env.PORT)

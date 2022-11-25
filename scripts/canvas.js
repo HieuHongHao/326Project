@@ -7,6 +7,7 @@ export const canvas = {
     autoScroll(); // autoscroll chat to be at bottom
 
     const socket = io("/");
+    
 
     const canvasID = 1 //get canvas ID
     const userId = localStorage.getItem("loggedIn");
@@ -14,7 +15,7 @@ export const canvas = {
     const colorPicker = document.getElementById("color-picker-input")
     // const drawingContainer = document.getElementById("canvas")
 
-
+    
     
     /*Canvas stuff*/
     const canvas = document.getElementById("canvas")
@@ -257,6 +258,5 @@ export const canvas = {
       canvas.height = window.innerHeight;
       // canvas.height = drawingContainer.getBoundingClientRect().height;
     }
-
   }
 }
