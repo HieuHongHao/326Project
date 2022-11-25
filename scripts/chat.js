@@ -2,10 +2,10 @@ import { api } from './api.js';
 
 export const chat = {
     init: async () => {
-        // const socket = io("http://localhost:9000");
+        const socket = io("http://localhost:9000");
         // const PORT = process.env.PORT;
         // const socket = io("https://cs326project.herokuapp.com:9000");
-        const socket = io("/");
+        // const socket = io("/");
         // const socket = io("https://cs326project.herokuapp.com:" + request.socket.localPort);
         // const socket = io();
         // const socket = io("128.119.202.240:9000");
@@ -21,14 +21,13 @@ export const chat = {
         
         // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
         
-
+        
         let textInput = document.getElementById("text-input");
-        socket.timeout(1000).emit("login", userId)
-        // const users = ["alpha","beta"];
-        socket.emit("getOnlineUsersAvatar");
+        socket.emit("login", userId);
         socket.on("receiveOnlineUsersAvatar",(users) => {
             console.log(users);
         })
+        // const users = ["alpha","beta"];
         async function addChatElement(message, sender, isIncoming){
             if(isIncoming && sender === userId){
                 return;
