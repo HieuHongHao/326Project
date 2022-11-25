@@ -25,7 +25,14 @@ export const chat = {
         let textInput = document.getElementById("text-input");
         socket.emit("login", userId);
         socket.on("receiveOnlineUsersAvatar",(users) => {
-            console.log(users);
+            for(const userAvatar of users){
+                const image = document.createElement("img");
+                image.src = userAvatar;
+                image.classList.add("rounded-circle");
+                image.width = 40;
+                image.height = 40;
+                document.getElementById("active-users-container").appendChild(image);
+            }
         })
         // const users = ["alpha","beta"];
         async function addChatElement(message, sender, isIncoming){
