@@ -38,7 +38,11 @@ export const chat = {
         document.getElementById("active-users-container").appendChild(image);
      }
     });
-    
+    socket.on("receiveNewUserAlert",(newuser) => {
+        const alert = document.getElementById('new-user-alert');
+        const boostrapToast = new bootstrap.Toast(alert);
+        boostrapToast.show();
+    })
     // const users = ["alpha","beta"];
     async function addChatElement(message, sender, isIncoming) {
       if (isIncoming && sender === userId) {
