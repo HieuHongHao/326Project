@@ -2,13 +2,13 @@ import { api } from './api.js';
 export const index = {
   init: async () => {
     const posts = document.getElementById("top-projects");
-    const projects = await api.fetchData('projects').then((x) => x);
-    for (let i = 0; i < Math.min(4, projects.length); i++) {
+    const projects = await api.fetchData('projects');
+    for (let i = 0; i < 4; i++) {
       const newCard = document.createElement("div");
       newCard.id = `postId-${projects[i]._id}`
       const ranking = await api.fetchData("projects/" + projects[i]._id + "/topContributors");
       let rankingHTML = "";
-      for (let j = 0; j < 5; j++) {
+      for (let j = 0; j < 3; j++) {
         if (j > ranking.length - 1) {
           rankingHTML += `
                     <tr>

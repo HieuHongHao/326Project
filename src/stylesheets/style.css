@@ -325,7 +325,7 @@ a.hover {
   padding: 0.8em;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: rgb(89,127,228);
-background: linear-gradient(315deg, rgba(89,127,228,1) 1%, rgba(151,84,198,1) 100%);
+  background: linear-gradient(315deg, rgba(103, 149, 241, 1) 1%, rgba(151, 84, 198, 1) 85%);
   color: white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;      

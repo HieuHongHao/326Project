@@ -1,20 +1,20 @@
 import { api } from './api.js';
+import { utils } from './utils.js';
 export const project = {
   init: async (project) => {
-    const usernameDiv = document.getElementById("username");
-    const avatarDiv = document.getElementById("avatar");
-    const titleDiv = document.getElementById("title");
-    const contentDiv = document.getElementById("projectContent");
-    const likesDiv = document.getElementById("likes");
-    const whiteboardBtn = document.getElementById("whiteboard");
-    usernameDiv.innerHTML = project.authorID.username;
-    avatarDiv.src = project.authorID.avatar;
-    titleDiv.innerHTML = project.title;
-    contentDiv.innerHTML = project.content;
-    likesDiv.innerHTML += ` ${project.likes.length} likes`
+    const projectHTML = await utils.loadTemplate("../components/templates/projectPost.html", {
+      avatar: project.authorID.avatar,
+      username: project.authorID.username,
+      title: project.title,
+      content: project.content,
+      likes: project.likes.length,
+    });
+    const whiteboardBtn = projectHTML.getElementById("whiteboard");
     whiteboardBtn.addEventListener("click", () => {
       window.location.href = "../canvas";
     });
+
+    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
     async function postRequest(data) {
       const response = await fetch("https://cs326project.herokuapp.com/api/projects/" + projectID + "/comments", {
@@ -73,22 +73,22 @@ export const project = {
     }
     commentBtn.addEventListener("click", addComment);
 
-    // function addComment() {
-    //   const comments = document.getElementById("comments");
-    //   const commentContent = document.getElementById("commentContent").value;
-    //   comments.innerHTML += `
-    //   <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
-    //     <div class="align-top">
-    //       <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
-    //     </div>
-    //     <div class="px-1">
-    //       <div class="d-flex">
-    //         <p class="m-0 me-2">Username</p>
-    //         <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
-    //       </div>
-    //       <p class="fw-light">${commentContent}</p>
-    //     </div>
-    //   </li>`
-    // }
+    function addComment() {
+      const comments = document.getElementById("comments");
+      const commentContent = document.getElementById("commentContent").value;
+      comments.innerHTML += `
+      <li class="list-group-item px-0 d-flex cat-bg-light cat-text-light">
+        <div class="align-top">
+          <img src="../public/logo.svg" alt="Logo" class="rounded-pill">
+        </div>
+        <div class="px-1">
+          <div class="d-flex">
+            <p class="m-0 me-2">Username</p>
+            <p class="fs-6 fw-lighter m-0">- 1 minute ago</p>
+          </div>
+          <p class="fw-light">${commentContent}</p>
+        </div>
+      </li>`
+    }
   }
 }
