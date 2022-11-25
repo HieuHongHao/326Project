@@ -14,7 +14,7 @@ export const feed = {
 
 
     // const URL = "https://cs326project.herokuapp.com/api";
-    const URL = "http://localhost:9000";
+    const URL = "http://localhost:9000/api";
     const postClass = [
       "d-flex",
       "flex-column",

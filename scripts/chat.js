@@ -19,13 +19,7 @@ export const chat = {
     // const canvasDB = await res1.json();
 
     // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
-    const user_icon_classses = [
-      "red-user",
-      "blue-user",
-      "green-user",
-      "yellow-user",
-      "purple-user",
-    ];
+    
     
     let textInput = document.getElementById("text-input");
     socket.emit("login", userId);
@@ -37,15 +31,9 @@ export const chat = {
         image.width = 40;
         image.height = 40;
         document.getElementById("active-users-container").appendChild(image);
-      }
+     }
     });
-    for(const icon of user_icon_classses){
-        const child = document.createElement("i");
-        child.classList.add("fa-solid");
-        child.classList.add("fa-circle-user");
-        child.classList.add(icon);
-        document.getElementById("active-users-container").appendChild(child);
-    }
+    
     // const users = ["alpha","beta"];
     async function addChatElement(message, sender, isIncoming) {
       if (isIncoming && sender === userId) {

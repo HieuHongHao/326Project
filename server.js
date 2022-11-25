@@ -5,8 +5,10 @@ const morgan = require("morgan");
 const { Octokit } = require("octokit");
 const dotenv = require("dotenv");
 
+
 dotenv.config({ path: "./.env" });
 const octokit = new Octokit();
+
 
 const ProjectModel = require("./Backend/model/Project");
 const UserModel = require("./Backend/model/User");
@@ -15,6 +17,13 @@ const canvasModel = require("./Backend/model/Canvas");
 const LikeModel = require("./Backend/model/Like");
 
 const QueryBuilder = require("./Backend/QueryBuilder");
+
+
+
+
+
+
+
 
 const mongoose = require("mongoose");
 const userModel = require("./Backend/model/User");
@@ -420,6 +429,7 @@ io.on("connection", (socket) => {
     const username = usernames[socket.id];
     delete sockets[username];
     delete usernames[socket.id];
+    delete userAvatar[username];
   });
 });
   
