@@ -12,10 +12,10 @@ export const canvas = {
 
     const socket = io("/");
     // const socket = io("http://localhost:9000");
-
+    
     
     const canvasID = 1 //get canvas ID
-    const userId = localStorage.getItem("loggedIn");
+    // const userId = localStorage.getItem("loggedIn");
 
     const colorPicker = document.getElementById("color-picker-input")
     // const drawingContainer = document.getElementById("canvas")

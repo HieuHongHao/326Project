@@ -94,6 +94,7 @@ router.post(
       let user = await User.findOne({
         email
       });
+      console.log(user.id);
       if (!user)
         return res.status(400).json({
           message: "User Not Exist"
@@ -110,7 +111,7 @@ router.post(
           id: user.id
         }
       };
-
+      
       jwt.sign(
         payload,
         "randomString",

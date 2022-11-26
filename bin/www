@@ -7,6 +7,7 @@ u* Module dependencies.
 const app = require('../server'); 
 const debug = require('debug')('refractor:server');
 const http = require('http');
+const userModel = require('../routes/backend/models/User');
 
 /**
  * Get port from environment and store in Express.
