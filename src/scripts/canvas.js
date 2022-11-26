@@ -11,7 +11,7 @@ export const canvas = {
     autoScroll(); // autoscroll chat to be at bottom
 
     const socket = io("/");
-    // const socket = io("http://localhost:3000");
+    // const socket = io("http://localhost:9000");
 
     
     const canvasID = 1 //get canvas ID
