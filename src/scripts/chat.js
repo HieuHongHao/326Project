@@ -15,9 +15,10 @@ export const chat = {
     const chatColor = ["blue", "green", "yellow", "red", "purple"];
     const userChatColor = {};
     
-
+    
     // const userId = localStorage.getItem("loggedIn");
-    const userId = await api.isLoggedIn();
+    const user = await api.isLoggedIn();
+    const userId = user.id;
     const postId = 0;
     // const res1 = await fetch("../api/canvas.json");
     // const canvasDB = await res1.json();
@@ -29,19 +30,17 @@ export const chat = {
         
     socket.emit("login", userId);
     socket.on("receiveOnlineUsersAvatar", (users) => {
-      for (const [user,avatar] of Object.entries(users)) {
-        if(document.getElementById(user)){
-            continue;
+        document.getElementById("active-users-container").replaceChildren();
+        for (const [user,avatar] of Object.entries(users)) {
+            const image = document.createElement("img");
+            image.src = avatar;
+            image.classList.add("rounded-circle");
+            image.classList.add("ml-3");
+            image.width = 40;
+            image.height = 40;
+            image.id = user;
+            document.getElementById("active-users-container").appendChild(image);
         }
-        const image = document.createElement("img");
-        image.src = avatar;
-        image.classList.add("rounded-circle");
-        image.classList.add("ml-3");
-        image.width = 40;
-        image.height = 40;
-        image.id = user;
-        document.getElementById("active-users-container").appendChild(image);
-     }
     });
     socket.on("receiveNewUserAlert",(newUserName,newUserAvatar) => {
         const toast_avatar = document.getElementById("toast-user-avatar");

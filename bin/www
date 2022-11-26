@@ -48,6 +48,7 @@ io.on("connection", (socket) => {
     if(user){
       userAvatar[username] = user.avatar;
     }
+    console.log(userAvatar);
     io.emit("receiveOnlineUsersAvatar",userAvatar);
     io.emit("receiveNewUserAlert",user.username,userAvatar[username]);
   });
