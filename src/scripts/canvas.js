@@ -11,16 +11,17 @@ export const canvas = {
     autoScroll(); // autoscroll chat to be at bottom
 
     const socket = io("/");
+    // const socket = io("http://localhost:3000");
 
+    
     const canvasID = 1 //get canvas ID
     const userId = localStorage.getItem("loggedIn");
 
     const colorPicker = document.getElementById("color-picker-input")
     // const drawingContainer = document.getElementById("canvas")
-
-
-
-    /*Canvas stuff*/
+    
+    
+   /*Canvas stuff*/
     const canvas = document.getElementById("canvas")
     const context = canvas.getContext('2d');
 
@@ -262,6 +263,5 @@ export const canvas = {
       canvas.height = window.innerHeight;
       // canvas.height = drawingContainer.getBoundingClientRect().height;
     }
-
   }
 }

@@ -1,9 +1,24 @@
-<div class="active-people-container">
-  <i class="fa-solid fa-circle-user red-user"></i>
+<div class="active-people-container" id="active-users-container">
+  <!-- <i class="fa-solid fa-circle-user red-user"></i>
   <i class="fa-solid fa-circle-user blue-user"></i>
   <i class="fa-solid fa-circle-user green-user"></i>
   <i class="fa-solid fa-circle-user yellow-user"></i>
-  <i class="fa-solid fa-circle-user purple-user"></i>
+  <i class="fa-solid fa-circle-user purple-user"></i> -->
+</div>
+
+
+<div class="toast-container position-fixed top-0 start-10 p-3">
+  <div id="new-user-alert" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="https://loremflickr.com/480/480/people?lock=91939" class="rounded me-2" width="40" height="40">
+      <strong class="me-auto">Joe MaMa</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is Joe Mama.
+    </div>
+  </div>
 </div>
 <div id="canvas-container">
   <canvas id="canvas"></canvas>
