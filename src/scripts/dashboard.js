@@ -58,7 +58,7 @@ export const dashboard = {
 
       posts.appendChild(newCard.body.firstChild);
       document.getElementById("trash-" + project._id).addEventListener("click", async () => {
-        await api.fetchGET(`api/projects/delete/${project._id}`);
+        await api.fetchPOST(`api/projects/delete/${project._id}`, {});
         document.getElementById("project-" + project._id).outerHTML = "";
       });
     });
