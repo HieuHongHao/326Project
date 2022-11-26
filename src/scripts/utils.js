@@ -1,4 +1,4 @@
-import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
+// import autoAnimate from "../node_modules/@formkit/auto-animate/index.mjs";
 
 export const utils = {
   // Load module
@@ -37,11 +37,11 @@ export const utils = {
     const parser = new DOMParser();
     return parser.parseFromString(html, 'text/html');
   },
-  loadAnimate: async (toAnimate) => {
-    for (const key in toAnimate) {
-      autoAnimate(document.getElementById(key), {
-        duration: toAnimate[key],
-      });
-    }
-  },
+  // loadAnimate: async (toAnimate) => {
+  //   for (const key in toAnimate) {
+  //     autoAnimate(document.getElementById(key), {
+  //       duration: toAnimate[key],
+  //     });
+  //   }
+  // },
 };
