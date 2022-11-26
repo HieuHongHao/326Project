@@ -4,7 +4,8 @@
 u* Module dependencies.
  */
 
-const app = require('../server'); const debug = require('debug')('refractor:server');
+const app = require('../server'); 
+const debug = require('debug')('refractor:server');
 const http = require('http');
 
 /**
@@ -23,6 +24,38 @@ const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+
+const options = {
+  cors: {
+    origin: "*",
+    method: ["GET", "PUT", "POST"],
+  },
+};
+const io = (module.exports.io = require("socket.io")(server, options));
+const sockets = {};
+const usernames = {};
+const inbox = {};
+io.on("connection", (socket) => {
+  socket.on("login", (username) => {
+    sockets[username] = socket;
+    usernames[socket.id] = username;
+  });
+  if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
+    const username = usernames[socket.id];
+    sockets[username].emit("inbox-message", inbox[username]);
+    inbox[username] = null;
+  }
+  socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
+  socket.on("chat-message", (data) =>
+    socket.broadcast.emit("chat-message", data)
+  );
+  socket.on("disconnect", () => {
+    const username = usernames[socket.id];
+    delete sockets[username];
+    delete usernames[socket.id];
+  });
+});
 
 server.listen(port);
 server.on('error', onError);
