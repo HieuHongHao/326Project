@@ -1,0 +1,17 @@
+<div class="d-flex cat-bg-light cat-text-light pt-3 my-3 rounded-3 feed-post feed-posts-container shadow">
+  <div class="ps-3 pb-0 post-user-container"><img src=${avatar} class="rounded-circle">
+  </div>
+  <div class="px-3">
+    <div class="py-1"><a id=${userID} class="cat-text-light text-decoration-none">${username}</a></div>
+    <a id=${titleID} class="fs-4 fw-bold m-0 cat-text-light text-decoration-none">${title}</a>
+    <div class="tags pb-2">
+      <!-- <div class="badge me-2 pn-card-type-red">Java</div> -->
+    </div>
+    <div id=${contentID} class="pb-2 pe-5">${content}</div>
+    <div class="d-flex pb-2 post-icons-container">
+      <div id=${commentID} class="pe-5"><i class="fa-regular fa-comment"></i><span>${comments}</span></div>
+      <div id=${canvasID} class="pe-5"><i class="fa-regular fa-pen-to-square"></i><span>Kanvas</span></div>
+      <div id=${likeID} class="pe-5"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>
+    </div>
+  </div>
+</div>

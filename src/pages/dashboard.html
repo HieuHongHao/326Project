@@ -1,0 +1,43 @@
+<div class="container-fluid bg-secondary vh-83">
+  <div class="row justify-content-center p-5 w-75 mx-auto">
+    <div class="col-3 ps-5 pe-3">
+      <div class="d-flex flex-column account-info">
+        <img id="pfp" alt="profile picture" src="../public/logo.svg" class="rounded-pill border border-3">
+        <h5 id="username" class="pb-2 pt-4 cat-text-light">@Username</h5>
+        <div class="d-flex">
+          <p id="likes" class="cat-text-light"><i class="fas cat-text-danger fs-5 fa-heart pe-2"></i> </p>
+        </div>
+        <div class="d-flex">
+          <p id="totalPosts" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-images pe-2"></i> </p>
+        </div>
+        <div class="d-flex">
+          <p id="comments" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-comment pe-2"></i> </p>
+        </div>
+        <div class="d-flex">
+          <p id="created" class="cat-text-light"><i class="fas cat-text-light fs-5 fa-clock pe-2"></i>
+          </p>
+        </div>
+
+        <div id="settings pt-4">
+          <div class="d-flex py-2">
+            <a href="../feed" class="btn btn-success shadow">Create Post</a>
+          </div>
+          <div class="d-flex py-2">
+            <a href="#" class="btn btn-warning shadow" data-bs-toggle="modal" data-bs-target="#changePassword">Change
+              Password</a>
+          </div>
+          <div class="d-flex pt-2">
+            <a href="#" class="btn btn-danger shadow" data-bs-toggle="modal" data-bs-target="#deleteAccount">Delete
+              account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 pe-5 ps-3">
+      <div id="posts" class="row row-cols-1 row-cols-md-2 g-4">
+      </div>
+
+
+    </div>
+  </div>
+</div>

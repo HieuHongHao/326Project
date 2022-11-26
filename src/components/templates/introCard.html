@@ -1,0 +1,43 @@
+<div>
+  <div class="dashboard-card-container">
+    <div class="card-intro">
+      <img src="https://people.cs.umass.edu/~marius/marius.jpg">
+      <h1>${title}</h1>
+      <p>${content}</p>
+      <div class="d-flex justify-content-around post-icons-container">
+        <div><i class="fa-solid fa-comment"></i><span>${comments}</span></div>
+        <div><i class="fa-solid fa-heart"></i><span>${likes}</span></div>
+      </div>
+    </div>
+    <div class="leaderboard card-leaderboard">
+      <table>
+        <tbody>
+          <tr>
+            <th>RANK</th>
+            <th></th>
+            <th>COMMITS</th>
+          </tr>
+
+          <tr>
+            <td>1</td>
+            <td><img src=${rank1Avatar}><span>${rank1User}</span></td>
+            <td>${rank1Score}</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+            <td><img src=${rank2Avatar}><span>${rank2User}</span></td>
+            <td>${rank2Score}</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+            <td><img src=${rank3Avatar}><span>${rank3User}</span></td>
+            <td>${rank3Score}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

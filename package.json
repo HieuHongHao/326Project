@@ -1,38 +1,27 @@
 {
-  "name": "326projecttemp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "scripts/main.js",
+  "name": "refractor",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@formkit/auto-animate": "^1.0.0-beta.3",
-    "bcrypt": "^5.1.0",
+    "@formkit/auto-animate": "^1.0.0-beta.5",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mathjax": "^3.2.2",
-    "mongoose": "^6.7.2",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.20",
+    "express": "~4.16.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.3",
+    "morgan": "~1.9.1",
     "octokit": "^2.0.10",
-    "socket.io": "^4.5.3",
-    "socket.io-client": "^4.5.3",
-    "validator": "^13.7.0"
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "posts.json",
-      "comments.json",
-      "canvas.json",
-      "users.json"
-    ]
+    "@faker-js/faker": "^7.6.0",
+    "nodemon": "^2.0.20"
   }
 }

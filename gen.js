@@ -1,23 +1,25 @@
 const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
-const userModel = require("./Backend/model/User.js");
-const likeModel = require("./Backend/model/Like.js");
-const projectModel = require("./Backend/model/Project.js");
-const commentModel = require("./Backend/model/Comment.js");
-const canvasModel = require("./Backend/model/Canvas");
+const userModel = require("./routes/backend/models/User.js");
+const likeModel = require("./routes/backend/models/Like.js");
+const projectModel = require("./routes/backend/models/Project.js");
+const commentModel = require("./routes/backend/models/Comment.js");
+const canvasModel = require("./routes/backend/models/Canvas.js");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
 let users = [];
 let tags = ["React", "Python", "Java", "PostgreSQL", "Go"];
 for (let i = 0; i < 25; i++) {
+  const password = faker.random.alphaNumeric(15);
   const newUser = new userModel({
     username: faker.name.firstName() + " " + faker.name.lastName(),
     email: faker.internet.email(),
-    password: faker.random.alphaNumeric(15),
+    password: password,
     avatar: faker.image.people(480, 480, true),
     favouriteTechStack: tags.sort(() => 0.5 - Math.random()).slice(0, 3),
   });
+  console.log(newUser.email, password);
   users.push(newUser);
 }
 
@@ -40,7 +42,7 @@ for (let i = 0; i < 100; i++) {
     author: users.sort(() => 0.5 - Math.random())[0]._id,
     content: faker.lorem.sentences(),
   });
-  randomProject.commentNumber ++;
+  randomProject.commentNumber++;
   comments.push(newComment);
 }
 
@@ -56,14 +58,14 @@ for (let i = 0; i < projects.length; i++) {
 
 let likes = [];
 for (let i = 0; i < projects.length; i++) {
-  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * (users.length / 2)));
+  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * (users.length * 0.75)));
   for (let j = 0; j < randomUsers.length; j++) {
     const like = new likeModel({
       project: projects[i]._id,
       author: randomUsers[j]
     })
     likes.push(like);
-    projects[i].likeNumber ++;
+    projects[i].likeNumber++;
   }
 }
 
