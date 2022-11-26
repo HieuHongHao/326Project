@@ -61,6 +61,9 @@ const core = {
         const userData = await api.isLoggedIn();
         if (userData !== undefined) {
           await utils.loadModule('../pages/dashboard.html', 'content');
+          await utils.loadModule('../components/changePassword.html', 'modals');
+          await utils.loadModule('../components/deleteAccount.html', 'modals');
+          await utils.loadModule('../components/deleteProject.html', 'modals');
           dashboard.init(userData);
           break;
         } else {
