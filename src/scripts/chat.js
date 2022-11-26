@@ -18,7 +18,6 @@ export const chat = {
 
     // const userId = localStorage.getItem("loggedIn");
     const userId = await api.isLoggedIn();
-    console.log(userId);
     const postId = 0;
     // const res1 = await fetch("../api/canvas.json");
     // const canvasDB = await res1.json();
@@ -27,7 +26,7 @@ export const chat = {
     
     
     let textInput = document.getElementById("text-input");
-    
+        
     socket.emit("login", userId);
     socket.on("receiveOnlineUsersAvatar", (users) => {
       for (const [user,avatar] of Object.entries(users)) {
@@ -44,7 +43,13 @@ export const chat = {
         document.getElementById("active-users-container").appendChild(image);
      }
     });
-    socket.on("receiveNewUserAlert",(newuser) => {
+    socket.on("receiveNewUserAlert",(newUserName,newUserAvatar) => {
+        const toast_avatar = document.getElementById("toast-user-avatar");
+        const toast_user_name = document.getElementById("toast-user-name");
+        const toast_message = document.getElementById("toast-message");
+        toast_avatar.src = newUserAvatar;
+        toast_user_name.innerHTML = newUserName;
+        toast_message.innerHTML = `Watch out for the massive balls of ${newUserName} !`
         const alert = document.getElementById('new-user-alert');
         const boostrapToast = new bootstrap.Toast(alert);
         boostrapToast.show();

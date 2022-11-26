@@ -44,12 +44,12 @@ io.on("connection", (socket) => {
   socket.on("login", async (username) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
-    const user = await userModel.findById(username).select("avatar");
+    const user = await userModel.findById(username).select("avatar username");
     if(user){
       userAvatar[username] = user.avatar;
     }
     io.emit("receiveOnlineUsersAvatar",userAvatar);
-    io.emit("receiveNewUserAlert",username);
+    io.emit("receiveNewUserAlert",user.username,userAvatar[username]);
   });
   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
     const username = usernames[socket.id];
