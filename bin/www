@@ -38,10 +38,17 @@ const io = (module.exports.io = require("socket.io")(server, options));
 const sockets = {};
 const usernames = {};
 const inbox = {};
+const userAvatar = {};
 io.on("connection", (socket) => {
-  socket.on("login", (username) => {
+  socket.on("login", async (username) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
+    const user = await userModel.findById(username).select("avatar");
+    if(user){
+      userAvatar[username] = user.avatar;
+    }
+    io.emit("receiveOnlineUsersAvatar",userAvatar);
+    io.emit("receiveNewUserAlert",username);
   });
   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
     const username = usernames[socket.id];
@@ -52,10 +59,12 @@ io.on("connection", (socket) => {
   socket.on("chat-message", (data) =>
     socket.broadcast.emit("chat-message", data)
   );
+  
   socket.on("disconnect", () => {
     const username = usernames[socket.id];
     delete sockets[username];
     delete usernames[socket.id];
+    delete userAvatar[username];
   });
 });
 
