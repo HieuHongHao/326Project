@@ -7,6 +7,7 @@ export const chat = {
     // const socket = io("https://cs326project.herokuapp.com:9000");
     const socket = io("/");
     
+    
     // const socket = io("https://cs326project.herokuapp.com:" + request.socket.localPort);
     // const socket = io();
     // const socket = io("128.119.202.240:9000");
