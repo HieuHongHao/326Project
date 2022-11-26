@@ -1,5 +1,5 @@
-// const URL = "http://localhost:3000/";
-const URL = "https://cs326project.herokuapp.com/";
+const URL = "http://localhost:3000/";
+// const URL = "https://cs326project.herokuapp.com/";
 export const api = {
   fetchGET: async (url) => {
     let response = await fetch(URL + url);
