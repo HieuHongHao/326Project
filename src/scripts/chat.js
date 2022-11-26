@@ -2,10 +2,10 @@ import {api} from "./api.js";
 
 export const chat = {
   init: async () => {
-    // const socket = io("http://localhost:9000");
+    const socket = io("http://localhost:9000");
     // const PORT = process.env.PORT;
     // const socket = io("https://cs326project.herokuapp.com:9000");
-    const socket = io("/");
+    // const socket = io("/");
     
     
     // const socket = io("https://cs326project.herokuapp.com:" + request.socket.localPort);
@@ -52,6 +52,10 @@ export const chat = {
         const alert = document.getElementById('new-user-alert');
         const boostrapToast = new bootstrap.Toast(alert);
         boostrapToast.show();
+    })
+    socket.on("deleteLeftUser",(username) => {
+        const leftUserAvatar = document.getElementById(username);
+        document.getElementById("active-users-container").removeChild(leftUserAvatar);
     })
     // const users = ["alpha","beta"];
     async function addChatElement(message, sender, isIncoming) {

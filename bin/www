@@ -67,6 +67,7 @@ io.on("connection", (socket) => {
     delete sockets[username];
     delete usernames[socket.id];
     delete userAvatar[username];
+    io.emit("deleteLeftUser",username);
   });
 });
 
