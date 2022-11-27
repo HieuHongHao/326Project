@@ -205,7 +205,8 @@ a.hover {
   /* text-align: start; */
   /* grid-template-columns: auto auto auto; */
   color: #c6d0f5;
-  /* padding-bottom: 0.6em; */
+  padding-bottom: 1.2em !important;
+  /* padding-bottom: 0.5rem !important; */
 }
 
 .post-icons-container i{

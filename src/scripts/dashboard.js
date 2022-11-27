@@ -16,7 +16,8 @@ export const dashboard = {
     likes.innerHTML += projects.reduce((acc, e) => acc += e.likes.length, 0) + " Likes";
     totalPosts.innerHTML += projects.length + " Projects";
     comments.innerHTML += userComments.length + " Comments";
-    created.innerHTML += user.dateCreated.toString().substring(0, 10);
+    const createDate = new Date(user.dateCreated.toString().substring(0, 10));
+    created.innerHTML += createDate.toDateString();
 
     const posts = document.getElementById("posts");
     await projects.forEach(async (project, idx) => {

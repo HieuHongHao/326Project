@@ -13,8 +13,7 @@ export const canvas = {
     const socket = io("/");
     // const socket = io("http://localhost:9000");
     
-    
-    const canvasID = 1 //get canvas ID
+    const canvasID = new URLSearchParams(window.location.search).get('') //get canvas ID
     // const userId = localStorage.getItem("loggedIn");
 
     const colorPicker = document.getElementById("color-picker-input")
@@ -44,7 +43,10 @@ export const canvas = {
 
     socket.on('drawing', onDrawingEvent);
 
-    function drawLine(x0, y0, x1, y1, color, size, tool, emit) {
+    function drawLine(x0, y0, x1, y1, color, size, tool, room, emit) {
+      if(room !== canvasID){
+        return;
+      }
       context.beginPath();
       context.moveTo(x0, y0);
       context.lineTo(x1, y1);
@@ -67,7 +69,8 @@ export const canvas = {
         y1: y1 / h,
         color: color,
         size: size,
-        gco: tool
+        gco: tool,
+        roomId: canvasID
       });
     }
 
@@ -80,12 +83,12 @@ export const canvas = {
     function onMouseUp(e) {
       if (!drawing) { return; }
       drawing = false;
-      drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, true);
+      drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, canvasID, true);
     }
 
     function onMouseMove(e) {
       if (!drawing) { return; }
-      drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, true);
+      drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.brushColor, current.brushSize, current.globalCompositeOperation, canvasID, true);
       current.x = e.clientX || e.touches[0].clientX;
       current.y = e.clientY || e.touches[0].clientY;
     }
@@ -106,100 +109,13 @@ export const canvas = {
     function onDrawingEvent(data) {
       var w = canvas.width;
       var h = canvas.height;
-      drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color, data.size, data.gco);
+      drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color, data.size, data.gco, data.roomId);
     }
-
-
 
     /*Resizing the canvas*/
     window.addEventListener('resize', onResize, false);
     onResize();
     renderMathInElement(document.body);
-
-    // // first we need Konva core things: stage and layer
-    // const stage = new Konva.Stage({
-    //   container: 'canvas-pad',
-    //   width: width,
-    //   height: height,
-    // });
-
-    // const layer = new Konva.Layer();
-    // stage.add(layer);
-
-
-    // stage.on('mousedown touchstart', function(e) {
-    //   isCanvasActive = true;
-    //   const pos = stage.getPointerPosition();
-    //   const jsonLine = {
-    //     stroke: brushColor,
-    //     strokeWidth: Math.min(25, brushSize),
-    //     globalCompositeOperation:
-    //       toolMode === 'brush' ? 'source-over' : 'destination-out',
-    //     // round cap for smoother lines
-    //     lineCap: 'round',
-    //     lineJoin: 'round',
-    //     // add point twice, so we have some drawings even on a simple click
-    //     points: [pos.x, pos.y],
-    //   };
-    //   lastLine = new Konva.Line(jsonLine);
-    //   layer.add(lastLine);
-    // });
-
-    // stage.on('mouseup touchend', function() {
-    //   isCanvasActive = false;
-    // });
-
-
-    // function throttle(callback, jsonMsg, delay){
-    //   const time = new Date().getTime();
-    //   if ((time - previousCall) >= delay) {
-    //     previousCall = time;
-    //     callback(jsonMsg);
-    //   }
-    // }
-
-    // function exportDrawing(json){
-    //   // const jsonLine = {
-    //   //   stroke: brushColor,
-    //   //   strokeWidth: Math.min(25, brushSize),
-    //   //   globalCompositeOperation:
-    //   //     toolMode === 'brush' ? 'source-over' : 'destination-out',
-    //   //   // round cap for smoother lines
-    //   //   lineCap: 'round',
-    //   //   lineJoin: 'round',
-    //   //   // add point twice, so we have some drawings even on a simple click
-    //   //   points: lastLine.points(),
-    //   // }
-    //   // socket.timeout(5000).emit("draw-canvas",{receiver: 3, message: 4});r
-    //   socket.timeout(5000).emit("draw-canvas", json);
-    // }
-
-    // function importDrawing(jsonMsg){
-    //   const currBrushColor = brushColor
-    //   j
-    // }
-
-
-    // // and core function - drawing
-    // stage.on('mousemove touchmove', function(e) {
-    //   if (!isCanvasActive) {
-    //     return;
-    //   }
-    //   // prevent scrolling on touch devices
-    //   e.evt.preventDefault();
-
-    //   const pos = stage.getPointerPosition();
-    //   var newPoints = lastLine.points().concat([pos.x, pos.y]);
-    //   queue.push([pos.x, pos.y, brushColor])
-    //   lastLine.points(newPoints);
-    //   // console.log(lastLine);
-    //   const jsonMsg = {senderId: userId, canvasId: canvasID, x: pos.x/width, y: pos.y/height, color: brushColor, size: brushSize}
-    //   throttle(exportDrawing, jsonMsg, 100);
-    // });
-
-
-
-
 
     colorPicker.addEventListener('change', function() {
       current.brushColor = colorPicker.value
