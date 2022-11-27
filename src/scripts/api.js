@@ -1,7 +1,7 @@
 const ENV = "local";
 
-export function getURL(){
-  if(ENV === "local"){
+export function getURL() {
+  if (ENV === "local") {
     return "http://localhost:9000/";
   }
   return "https://cs326project.herokuapp.com/";
@@ -42,6 +42,7 @@ export const api = {
       redirect: 'follow'
     }).then(response => {
       if (response.status !== 200) {
+        window.localStorage.removeItem("token");
         return undefined;
       } else {
         return response.json();
