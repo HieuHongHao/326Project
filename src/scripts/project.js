@@ -2,16 +2,13 @@ import { api } from './api.js';
 import { utils } from './utils.js';
 export const project = {
   init: async (project) => {
+    const user = await api.isLoggedIn();
     const projectHTML = await utils.loadTemplate("../components/templates/projectPost.html", {
       avatar: project.authorID.avatar,
       username: project.authorID.username,
       title: project.title,
       content: project.content,
       likes: project.likes.length,
-    });
-    const whiteboardBtn = projectHTML.getElementById("whiteboard");
-    whiteboardBtn.addEventListener("click", () => {
-      window.location.href = "../canvas?=" + project._id;
     });
     document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
@@ -26,9 +23,7 @@ export const project = {
       commentsDiv.appendChild(commentHTML.body.firstChild);
     });
 
-    const commentBtn = document.getElementById("commentBtn");
     async function addComment() {
-      const user = await api.isLoggedIn();
       const newContent = await document.getElementById("commentContent").value;
       const commentHTML = await utils.loadTemplate("../components/templates/comment.html", {
         avatar: user.avatar,
@@ -42,6 +37,16 @@ export const project = {
         content: newContent,
       });
     }
-    commentBtn.addEventListener("click", addComment);
+    const commentBtn = document.getElementById("commentBtn");
+    if (user !== undefined) {
+      commentBtn.addEventListener("click", addComment);
+      const whiteboardBtn = projectHTML.getElementById("whiteboard");
+      whiteboardBtn.addEventListener("click", () => {
+        window.location.href = "../canvas?=" + project._id;
+      });
+    } else {
+      document.getElementById("commentInput").outerHTML = "";
+      document.getElementById("whiteboardContainer").outerHTML = "";
+    }
   }
 }
