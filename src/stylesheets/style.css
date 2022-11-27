@@ -421,3 +421,22 @@ a.hover {
   /* pointer-events: none; */
   /* margin-left: 2em; */
 }
+
+.loader {
+  border: 0.3em solid #f3f3f3; /* Light grey */
+  border-top: 0.3em solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 2.6em;
+  height: 2.6em;
+  animation: spin 2s linear infinite;
+}
+
+.container .loader{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

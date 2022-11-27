@@ -15,24 +15,130 @@
 \[2^{3x}=8\]
 
 <span>$$2+\frac{1}{x}$$</span>
+
+<div id="loader-content">
+  <center><div class="loader" id="loader"></div></center>
+</div>
+
+<br/><br/>
+<button id="button">hi</button>
+<button id="button2">remove</button>
+
+
+<br/><br/>
+<center>
+  <div class="background">  
+    <div class="infinity left"></div>
+    <div class="infinity right"></div>
+  </div>
+</center>
+
+<style>
+.background {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  box-shadow: 0 0px 35px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  background: #eee;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.infinity {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 90px 90px 90px 0;
+  background: linear-gradient(60deg, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #1098ad,#5073b8,#a166ab, #ef4e7b,#f37055 );
+  transform: rotate(45deg);
+  background-size: 300% 300%;
+  animation: gradient 5s ease infinite;
+  position: relative;
+}
+
+.infinity::before{
+  content: "";
+    width: 0.7em;
+    height: 0.7em;
+    background: #eee;
+    border-radius: 90px 90px 90px 0;
+    display: block;
+    position: relative;
+    top: 0.14em;
+    left: -0.05em;
+    z-index: -1;
+}
+
+.left{
+    transform: rotate(225deg);
+    left: -0.1em;
+}
+
+.right{
+    right: -0.1em;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>
+
+<script>
+  document.getElementById("loader-content").addEventListener("DOMSubtreeModified", function(){
+    const children = document.getElementById("loader-content").children;
+    if(children.length === 1){
+      document.getElementById("loader").style.display = "block";
+    }
+    else if(children.length > 1){
+      console.log("hi");
+      document.getElementById("loader").style.display = "none";
+    }
+  })
+  document.getElementById("button").addEventListener("click", function(){
+    document.getElementById("loader-content").innerHTML += "<p>hi</p>"
+  })
+  document.getElementById("button2").addEventListener("click", function(){
+      document.getElementById("loader-content").innerHTML = '<center><div class="loader" id="loader"></div></center>';
+  })
+  // $('loader-content').on('DOMSubtreeModified', function(){
+  //   const children = document.getElementById("loader-content").children;
+  //   if(children.length === 1){
+  //     document.getElementById("loader").style.display = "block";
+  //   }
+  //   else{
+  //     document.getElementById("loader").style.display = "none";
+  //   }
+  // });
+</script>
+
+<style>
+  body{
+    background-color: #24273a;
+  }
+  .loader {
+    border: 0.3em solid #f3f3f3; /* Light grey */
+    border-top: 0.3em solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
 </body>
 </html>
-
-<!-- <html>
-  <head>
-    See http://docs.mathjax.org/en/latest/web/start.html#using-mathjax-from-a-content-delivery-network-cdn
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-  </head>
-<body>
-<p>
-  From the <a href="https://www.w3.org/Math/MJ/Overview.html">overview docs</a>, in MathML: Let's consider <math><mi>a</mi><mo>≠</mo><mn>0</mn></math>.
-</p>
-<p>
-  With <a href="http://docs.mathjax.org/en/latest/basic/mathematics.html">\(\LaTeX\) input</a>:
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-</p>
-</body>
-</html> -->
