@@ -165,7 +165,11 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchGET('api/projects?page=1');
       postContainer.replaceChildren();
-      response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
+      for(let i = 0; i < response_json.length ; i++){
+        const newPost = await createNewPost(response_json[i],i);
+        postContainer.appendChild(newPost);
+      }
+      // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
     }
     

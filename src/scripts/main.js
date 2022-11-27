@@ -50,7 +50,7 @@ const core = {
       case "/feed":
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
-        const toAnimate = { "feed": 1000, "post-tags": 250 };
+        const toAnimate = { "feed": 500, "post-tags": 250 };
         await feed.init();
         await utils.loadAnimate(toAnimate);
         break;

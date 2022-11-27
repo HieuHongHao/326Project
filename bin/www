@@ -64,7 +64,7 @@ io.on("connection", (socket) => {
     if(user){
       roomsData[canvasID].users.push(user);
     }
-    // subscribe a socket to a room, so we dont need to pass canvasID other events
+    // subscribe a socket to a room, so we dont need to pass canvasID to other events
     socket.join(canvasID);
     // broadcase necessary events to all other sockets when a new user join the room
     io.in(canvasID).emit("receiveOnlineUsersAvatar",roomsData[canvasID]["users"]);
