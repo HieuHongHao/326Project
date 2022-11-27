@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
     if(user){
       userAvatar[username] = user.avatar;
     }
-    console.log(userAvatar);
+    console.log(username,userAvatar);
     io.emit("receiveOnlineUsersAvatar",userAvatar);
     io.emit("receiveNewUserAlert",user.username,userAvatar[username]);
   });
@@ -61,12 +61,12 @@ io.on("connection", (socket) => {
   socket.on("chat-message", (data) =>
     socket.broadcast.emit("chat-message", data)
   );
-  
   socket.on("disconnect", () => {
     const username = usernames[socket.id];
     delete sockets[username];
     delete usernames[socket.id];
     delete userAvatar[username];
+    console.log(username);
     io.emit("deleteLeftUser",username);
   });
 });

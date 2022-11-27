@@ -2,12 +2,12 @@ import {api} from "./api.js";
 
 export const chat = {
   init: async () => {
-    // const socket = io("http://localhost:9000");
+    const socket = io("http://localhost:9000");
     
     
     // const PORT = process.env.PORT;
     // const socket = io("https://cs326project.herokuapp.com:9000");
-    const socket = io("/");
+    // const socket = io("/");
     
     
     // const socket = io("https://cs326project.herokuapp.com:" + request.socket.localPort);
@@ -50,14 +50,17 @@ export const chat = {
         const toast_message = document.getElementById("toast-message");
         toast_avatar.src = newUserAvatar;
         toast_user_name.innerHTML = newUserName;
-        toast_message.innerHTML = `Watch out for the massive balls of ${newUserName} !`
+        toast_message.innerHTML = `Watch out for the massive balls of ${newUserName} !`;
         const alert = document.getElementById('new-user-alert');
         const boostrapToast = new bootstrap.Toast(alert);
         boostrapToast.show();
     })
+    let render = 1;
     socket.on("deleteLeftUser",(username) => {
         const leftUserAvatar = document.getElementById(username);
-        document.getElementById("active-users-container").removeChild(leftUserAvatar);
+        if(leftUserAvatar){
+          document.getElementById("active-users-container").removeChild(leftUserAvatar);
+        }
     })
     // const users = ["alpha","beta"];
     async function addChatElement(message, sender, isIncoming) {
@@ -76,6 +79,7 @@ export const chat = {
         console.log("hid");
         // /([^\$\\])\$([^\$]+)\$/gm ==> regex for $ ... $
         // https://tex.stackexchange.com/questions/635501/regular-expression-in-texstudio
+        console.log(message)
         message = (" " + message).replace(/([^\$\\])\$([^\$]+)\$/gm, '$1\\($2\\)').replace(/\r/g, '').slice(1);
 
         if(isIncoming){
