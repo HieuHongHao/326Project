@@ -275,7 +275,12 @@ a.hover {
   /* background-color: blue; */
   padding: 2em;
   margin-top: 2em;
-  /* margin-right: 2em; */
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .card-intro{
