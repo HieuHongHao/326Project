@@ -2,44 +2,35 @@ import {api} from "./api.js";
 
 export const chat = {
   init: async () => {
-    
-    
-    
-    // const PORT = process.env.PORT;
-    // const socket = io("https://cs326project.herokuapp.com:9000");
     const socket = io("/");
 
     const chatColor = ["blue", "green", "yellow", "red", "purple"]; //Availalbe colors
     const userChatColor = {}; // Dictionary that maps user to a color randomly selected from chatColor
     
-    
-    // const userId = localStorage.getItem("loggedIn");
     const user = await api.isLoggedIn();
     const userId = user.id;
-    const postId = 0;
-    // const res1 = await fetch("../api/canvas.json");
-    // const canvasDB = await res1.json();
-
-    // const users = await canvasDB.filter(x=>x.postId === postId)[0]["users"]
+    const canvasId = new URLSearchParams(window.location.search).get('');
     
-    
-    let textInput = document.getElementById("text-input");
+    const textInput = document.getElementById("text-input");
         
-    socket.emit("login", userId);
-    socket.on("receiveOnlineUsersAvatar", (users) => {
-        document.getElementById("active-users-container").replaceChildren();
-        for (const [user,avatar] of Object.entries(users)) {
-            const image = document.createElement("img");
-            image.src = avatar;
-            image.classList.add("rounded-circle");
-            image.classList.add("ml-3");
-            image.width = 40;
-            image.height = 40;
-            image.id = user;
-            document.getElementById("active-users-container").appendChild(image);
+    socket.emit("login", userId, canvasId);
+    socket.on("receiveOnlineUsersAvatar", (users, roomId) => {
+        if(roomId === canvasId){
+          document.getElementById("active-users-container").replaceChildren();
+          for (const [user,avatar] of Object.entries(users)) {
+              const image = document.createElement("img");
+              image.src = avatar;
+              image.classList.add("rounded-circle");
+              image.classList.add("ml-3");
+              image.width = 40;
+              image.height = 40;
+              image.id = user;
+              document.getElementById("active-users-container").appendChild(image);
+          }
         }
     });
-    socket.on("receiveNewUserAlert",(newUserName,newUserAvatar) => {
+    socket.on("receiveNewUserAlert",(newUserName,newUserAvatar, roomId) => {
+      if(roomId === canvasId){
         const toast_avatar = document.getElementById("toast-user-avatar");
         const toast_user_name = document.getElementById("toast-user-name");
         const toast_message = document.getElementById("toast-message");
@@ -49,9 +40,9 @@ export const chat = {
         const alert = document.getElementById('new-user-alert');
         const boostrapToast = new bootstrap.Toast(alert);
         boostrapToast.show();
+      }
     })
-    let render = 1;
-    socket.on("deleteLeftUser",(username) => {
+    socket.on("deleteLeftUser",(username, roomId) => {
         const leftUserAvatar = document.getElementById(username);
         if(leftUserAvatar){
           document.getElementById("active-users-container").removeChild(leftUserAvatar);
@@ -126,7 +117,7 @@ export const chat = {
         const payload = {
           sender: userId,
           message: textInput.value,
-          receiver: postId,
+          receiver: canvasId,
         };
 
         socket.emit("chat-message", payload);
@@ -138,7 +129,7 @@ export const chat = {
     /*Receive message from socket*/
     socket.on("chat-message", (payload) => {
       const { sender, message, receiver } = payload;
-      if (parseInt(receiver) === postId) { //If it's in the right canvas room
+      if (receiver.toString() === canvasId.toString()) { //If it's in the right canvas room
         addChatElement(message, sender, true);
       }
     });
@@ -153,12 +144,10 @@ export function autoScroll() {
 
 function shuffle(array) {
   let m = array.length;
-
   // While there remain elements to shuffle...
   while (m) {
     // Pick a remaining element...
     const i = Math.floor(Math.random() * m--);
-
     // And swap it with the current element.
     const t = array[m];
     array[m] = array[i];
