@@ -3,6 +3,8 @@ import {api} from "./api.js";
 export const chat = {
   init: async () => {
     const socket = io("http://localhost:9000");
+    
+    
     // const PORT = process.env.PORT;
     // const socket = io("https://cs326project.herokuapp.com:9000");
     // const socket = io("/");
