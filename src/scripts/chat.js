@@ -8,14 +8,9 @@ export const chat = {
     // const PORT = process.env.PORT;
     // const socket = io("https://cs326project.herokuapp.com:9000");
     const socket = io("/");
-    
-    
-    // const socket = io("https://cs326project.herokuapp.com:" + request.socket.localPort);
-    // const socket = io();
-    // const socket = io("128.119.202.240:9000");
 
-    const chatColor = ["blue", "green", "yellow", "red", "purple"];
-    const userChatColor = {};
+    const chatColor = ["blue", "green", "yellow", "red", "purple"]; //Availalbe colors
+    const userChatColor = {}; // Dictionary that maps user to a color randomly selected from chatColor
     
     
     // const userId = localStorage.getItem("loggedIn");
@@ -50,7 +45,7 @@ export const chat = {
         const toast_message = document.getElementById("toast-message");
         toast_avatar.src = newUserAvatar;
         toast_user_name.innerHTML = newUserName;
-        toast_message.innerHTML = `Watch out for the massive balls of ${newUserName} !`
+        toast_message.innerHTML = `${newUserName} just joined`
         const alert = document.getElementById('new-user-alert');
         const boostrapToast = new bootstrap.Toast(alert);
         boostrapToast.show();
@@ -59,73 +54,72 @@ export const chat = {
         const leftUserAvatar = document.getElementById(username);
         document.getElementById("active-users-container").removeChild(leftUserAvatar);
     })
-    // const users = ["alpha","beta"];
     async function addChatElement(message, sender, isIncoming) {
       if(isIncoming && sender === userId){
         return;
-    }
-    const chatElement = document.createElement("div");
-    const innerChat = document.createElement("div");
-    const chatBox = document.getElementById("chat-texts");
-    chatElement.classList.add("text");
+      }
+      const chatElement = document.createElement("div");
+      const innerChat = document.createElement("div");
+      const chatBox = document.getElementById("chat-texts");
+      chatElement.classList.add("text");
 
-    if(checkOnlyContainsMath(message)){
-        innerChat.classList.add("math-text")
+      if(checkOnlyContainsMath(message)){
+          innerChat.classList.add("math-text")
+      }
+      else{
+          // regex for $ ... $
+          // https://tex.stackexchange.com/questions/635501/regular-expression-in-texstudio
+          message = (" " + message).replace(/([^\$\\])\$([^\$]+)\$/gm, '$1\\($2\\)').replace(/\r/g, '').slice(1);
+          if(isIncoming){
+              //Display user info in chat
+              const senderProfile = await api.fetchGET('api/users/' + sender.toString());
+              const imgElement = document.createElement("img");
+              imgElement.src = senderProfile.avatar;
+              imgElement.crossOrigin = "anonymous";
+              chatElement.appendChild(imgElement);
+              const nameElement = document.createElement("span");
+              nameElement.innerHTML = senderProfile.username;
+              nameElement.classList.add("text-user-name");
+              chatElement.appendChild(nameElement);
+              //User chat color
+              innerChat.classList.add(getUserChatColor(sender.toString()) + "-text");
+          }
+          else{
+              const dummyText = document.createElement("div");
+              dummyText.classList.add("text-dummy")
+              chatElement.append(dummyText);
+              innerChat.classList.add("my-text");
+          }
+      }
+      innerChat.innerHTML = message;
+      chatElement.appendChild(innerChat);
+      chatBox.appendChild(chatElement);
+      renderMathInElement(document.body);
+      autoScroll();
     }
-    else{
-        console.log("hid");
-        // /([^\$\\])\$([^\$]+)\$/gm ==> regex for $ ... $
-        // https://tex.stackexchange.com/questions/635501/regular-expression-in-texstudio
-        message = (" " + message).replace(/([^\$\\])\$([^\$]+)\$/gm, '$1\\($2\\)').replace(/\r/g, '').slice(1);
 
-        if(isIncoming){
-            //Display user info in chat
-            const usersDB = await api.fetchGET('users');
-            const user = usersDB.filter(x => x.email.toString() === sender.toString())[0];
-            const imgElement = document.createElement("img");
-            imgElement.src = user["avatar"];
-            imgElement.crossOrigin = "anonymous";
-            chatElement.appendChild(imgElement);
-            const nameElement = document.createElement("span");
-            nameElement.innerHTML = user.username;
-            nameElement.classList.add("text-user-name");
-            chatElement.appendChild(nameElement);
-            //User chat color
-            innerChat.classList.add(getUserChatColor(sender.toString()) + "-text");
-        }
-        else{
-            const dummyText = document.createElement("div");
-            dummyText.classList.add("text-dummy")
-            chatElement.append(dummyText);
-            innerChat.classList.add("my-text");
-        }
+    function checkOnlyContainsMath(message){
+      const regexp1 = new RegExp(/\$\$(.*?)\$\$/g); // regex for $$ .. $$
+      const regexp2 = new RegExp(/\\\[(.*?)\\\]/g); // regex for \[ \]
+      return regexp1.test(message) || regexp2.test(message);
     }
-    innerChat.innerHTML = message;
-    chatElement.appendChild(innerChat);
-    chatBox.appendChild(chatElement);
-    renderMathInElement(document.body);
-    autoScroll();
-}
-  function checkOnlyContainsMath(message){
-    const regexp1 = new RegExp(/\$\$(.*?)\$\$/g); // regexp for $$ .. $$
-    const regexp2 = new RegExp(/\\\[(.*?)\\\]/g); // regex for \[ \]
-    return regexp1.test(message) || regexp2.test(message);
-  }
-    
+      
 
-  function getUserChatColor(user) {
+    function getUserChatColor(user) {
       if (!(user in userChatColor)) {
         userChatColor[user] = shuffle(chatColor)[0];
       }
       return userChatColor[user];
     }
 
+    /*Send message when press enter in chat*/
     textInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
         if (textInput.value === "") {
           return;
         }
+
         const payload = {
           sender: userId,
           message: textInput.value,
@@ -138,9 +132,10 @@ export const chat = {
       }
     });
 
+    /*Receive message from socket*/
     socket.on("chat-message", (payload) => {
       const { sender, message, receiver } = payload;
-      if (parseInt(receiver) === postId) {
+      if (parseInt(receiver) === postId) { //If it's in the right canvas room
         addChatElement(message, sender, true);
       }
     });

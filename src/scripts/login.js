@@ -1,3 +1,5 @@
+import { getURL } from './api.js';
+
 export const login = {
   init: async (data) => {
     const loginBtn = document.getElementById("loginSubmit");
@@ -6,7 +8,8 @@ export const login = {
       const loginEmail = document.getElementById("loginEmail").value;
       const loginPass = document.getElementById("loginPass").value;
       // await fetch("http://localhost:9000/user/login", {
-        await fetch("https://cs326project.herokuapp.com/user/login", {
+        // await fetch("https://cs326project.herokuapp.com/user/login", {
+      await fetch(getURL() + "user/login",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

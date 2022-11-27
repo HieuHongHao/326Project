@@ -1,6 +1,15 @@
-// const URL = "http://localhost:9000/";
+const ENV = "local";
 
-const URL = "https://cs326project.herokuapp.com/";
+export function getURL(){
+  if(ENV === "local"){
+    return "http://localhost:9000/";
+  }
+  return "https://cs326project.herokuapp.com/";
+}
+
+const URL = getURL();
+
+// const URL = "https://cs326project.herokuapp.com/";
 export const api = {
   fetchGET: async (url) => {
     let response = await fetch(URL + url);
