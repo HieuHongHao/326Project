@@ -168,6 +168,7 @@ export const feed = {
       response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
     }
+    
     getFeed();
 
   }

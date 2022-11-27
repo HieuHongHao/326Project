@@ -13,7 +13,6 @@ const QueryBuilder = require("./backend/QueryBuilder");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
-
 // =============================
 //       PROJECT RESOURCES
 // =============================

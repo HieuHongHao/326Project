@@ -3,6 +3,19 @@ import { utils } from './utils.js';
 export const index = {
   init: async () => {
     const posts = document.getElementById("top-projects");
+
+
+    document.getElementById("top-projects").addEventListener("DOMSubtreeModified", function(){
+      const children = posts.children;
+      if(children.length === 0){
+        document.getElementById("loader").style.display = "block";
+      }
+      else if(children.length > 0){
+        console.log("hi");
+        document.getElementById("loader").style.display = "none";
+      }
+    })
+
     const projects = await api.fetchGET('api/projects?sort=-likeNumber');
     for (let i = 0; i < 4; i++) {
       const ranking = await api.fetchGET("api/projects/" + projects[i]._id + "/topContributors");
