@@ -80,7 +80,7 @@ export const chat = {
 
         if(isIncoming){
             //Display user info in chat
-            const usersDB = await api.fetchData('users');
+            const usersDB = await api.fetchGET('users');
             const user = usersDB.filter(x => x.email.toString() === sender.toString())[0];
             const imgElement = document.createElement("img");
             imgElement.src = user["avatar"];
