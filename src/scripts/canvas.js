@@ -5,13 +5,14 @@ import { autoScroll } from './chat.js';
 
 
 export const canvas = {
-  init: async () => {
+  init: async (socket) => {
     /*Chat is initiated by being at the bottom*/
     document.body.style = "overflow-y: hidden";
     autoScroll(); // autoscroll chat to be at bottom
-
+    
     // const socket = io("/");
-    const socket = io("http://localhost:9000");
+    
+    
     
     const canvasID = new URLSearchParams(window.location.search).get('') //get canvas ID
     // const userId = localStorage.getItem("loggedIn");

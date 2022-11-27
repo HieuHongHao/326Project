@@ -38,36 +38,55 @@ const options = {
 const io = (module.exports.io = require("socket.io")(server, options));
 const sockets = {};
 const usernames = {};
-const inbox = {};
 const userAvatars = {};
+
+// Dictionary mapping from socket id to canvasID
+const sockets_to_rooms = {};
+
+// This will store the data of each canvas, with the key being canvasID
+// The data stored in each canvas is drawing and list of online users
+const roomsData = {};
+
 io.on("connection", (socket) => {
   socket.on("login", async (username, canvasID) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
-    const user = await userModel.findById(username).select("avatar username");
-    if(user){
-      userAvatars[username] = user.avatar;
+    sockets_to_rooms[socket.id] = canvasID;
+    // If canvasId doesnt exist in dictionary, initialzie with empty drawing and list of current users
+    if(!(canvasID in roomsData)){
+      roomsData[canvasID] = {
+        drawing: null,
+        users: []
+      }
     }
-    console.log(username,userAvatars);
-    io.emit("receiveOnlineUsersAvatar",userAvatars, canvasID);
-    io.emit("receiveNewUserAlert",user.username,userAvatars[username], canvasID);
+    const user = await userModel.findById(username).select("avatar username");
+    console.log(sockets_to_rooms,roomsData);
+    if(user){
+      roomsData[canvasID].users.push(user);
+    }
+    // subscribe a socket to a room, so we dont need to pass canvasID other events
+    socket.join(canvasID);
+    // broadcase necessary events to all other sockets when a new user join the room
+    io.in(canvasID).emit("receiveOnlineUsersAvatar",roomsData[canvasID]["users"]);
+    io.in(canvasID).emit("receiveNewUserAlert",user);
   });
-  if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
-    const username = usernames[socket.id];
-    sockets[username].emit("inbox-message", inbox[username]);
-    inbox[username] = null;
-  }
   socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
   socket.on("chat-message", (data) =>
     socket.broadcast.emit("chat-message", data)
   );
   socket.on("disconnect", () => {
+    console.log(socket.id);
     const username = usernames[socket.id];
-    delete sockets[username];
-    delete usernames[socket.id];
-    delete userAvatars[username];
-    console.log(username);
-    io.emit("deleteLeftUser",username);
+    const canvasID = sockets_to_rooms[socket.id];
+    if(canvasID && username){
+      roomsData[canvasID]["users"] =  roomsData[canvasID]["users"].filter(user => user.id != username);
+      delete sockets[username];
+      delete usernames[socket.id];
+      delete userAvatars[username];
+      delete sockets_to_rooms[socket.id];
+      socket.leave(canvasID);
+      io.in(canvasID).emit("deleteLeftUser",username);
+    }
   });
 });
 

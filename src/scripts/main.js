@@ -9,6 +9,8 @@ import { chat } from './chat.js';
 import { index } from './index.js';
 import { navbar } from './navbar.js';
 import { login } from './login.js';
+import {socket} from './socketInstance.js';
+
 
 function isLoggedIn() {
   return window.localStorage.getItem("token") !== null;
@@ -75,8 +77,8 @@ const core = {
         utils.setTitle("Canvas");
         document.getElementById("footer").style.display = "none";
         await utils.loadModule(`pages/canvas.html`, 'content');
-        await canvas.init();
-        await chat.init();
+        await canvas.init(socket);
+        await chat.init(socket);
         break;
       default:
         await utils.load404();
