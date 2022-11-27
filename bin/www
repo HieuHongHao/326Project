@@ -39,18 +39,18 @@ const io = (module.exports.io = require("socket.io")(server, options));
 const sockets = {};
 const usernames = {};
 const inbox = {};
-const userAvatar = {};
+const userAvatars = {};
 io.on("connection", (socket) => {
-  socket.on("login", async (username) => {
+  socket.on("login", async (username, canvasID) => {
     sockets[username] = socket;
     usernames[socket.id] = username;
     const user = await userModel.findById(username).select("avatar username");
     if(user){
-      userAvatar[username] = user.avatar;
+      userAvatars[username] = user.avatar;
     }
-    console.log(username,userAvatar);
-    io.emit("receiveOnlineUsersAvatar",userAvatar);
-    io.emit("receiveNewUserAlert",user.username,userAvatar[username]);
+    console.log(username,userAvatars);
+    io.emit("receiveOnlineUsersAvatar",userAvatars, canvasID);
+    io.emit("receiveNewUserAlert",user.username,userAvatars[username], canvasID);
   });
   if (usernames[socket.id] in inbox && inbox[usernames[socket.id]]) {
     const username = usernames[socket.id];
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
     const username = usernames[socket.id];
     delete sockets[username];
     delete usernames[socket.id];
-    delete userAvatar[username];
+    delete userAvatars[username];
     console.log(username);
     io.emit("deleteLeftUser",username);
   });
