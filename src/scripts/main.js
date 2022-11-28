@@ -50,9 +50,9 @@ const core = {
       case "/feed":
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
-        const toAnimate = { "feed": 500, "post-tags": 250 };
-        await feed.init();
+        const toAnimate = { "post-tags": 250 };
         await utils.loadAnimate(toAnimate);
+        await feed.init();
         break;
       case route.match(/^\/project\?*/)?.input:
         const projectData = await api.fetchGET('api/projects/' + window.location.search.substring(2));
@@ -77,6 +77,9 @@ const core = {
         utils.setTitle("Canvas");
         document.getElementById("footer").style.display = "none";
         await utils.loadModule(`pages/canvas.html`, 'content');
+        await utils.loadAnimate({
+          "active-users-container": 250
+        })
         await canvas.init(socket);
         await chat.init(socket);
         break;

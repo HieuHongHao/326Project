@@ -75,7 +75,6 @@ export const feed = {
         likeID: `like-${idx}`,
         canvasID: `canvas-${idx}`
       });
-
       html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID))
       html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
       html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
