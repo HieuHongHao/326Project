@@ -39,8 +39,8 @@ export const dashboard = {
         rank3Avatar: (ranking[2]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
         rank3Score: (ranking[2]) ? ranking[2].commentCount : '-',
       });
-
-
+      
+      
       function toProject() {
         return () => window.location.href = "../project?=" + project._id;
       }

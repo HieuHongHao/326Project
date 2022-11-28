@@ -9,7 +9,7 @@ import { chat } from './chat.js';
 import { index } from './index.js';
 import { navbar } from './navbar.js';
 import { login } from './login.js';
-import {socket} from './socketInstance.js';
+import { socket } from './socketInstance.js';
 
 
 async function signBtn() {
@@ -64,6 +64,7 @@ const core = {
           await utils.loadModule('../components/changePassword.html', 'modals');
           await utils.loadModule('../components/deleteAccount.html', 'modals');
           await utils.loadModule('../components/deleteProject.html', 'modals');
+          await utils.loadAnimate({"posts":250});
           dashboard.init(userData);
           break;
         } else {
