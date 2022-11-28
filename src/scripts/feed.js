@@ -177,14 +177,19 @@ export const feed = {
     })
 
     async function getFeed() {
+      console.time("fetching post");
       const response_json = await api.fetchGET('api/projects?page=1');
+      console.timeEnd("fetching post");
+      console.time("Build DOM");
       postContainer.replaceChildren();
-      for (let i = 0; i < response_json.length; i++) {
-        const newPost = await createNewPost(response_json[i], i);
-        postContainer.appendChild(newPost);
+      const posts = await Promise.all(response_json.map((post,idx) => createNewPost(post,idx)));
+      for(const post of posts){
+        postContainer.appendChild(post);
       }
+      console.timeEnd("Build DOM");
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
+      
     }
 
     getFeed();

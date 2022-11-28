@@ -120,6 +120,7 @@ router.post("/projects/:id/like", async (req, res) => {
 
 // Ranking users based on number of comments in a project
 router.get("/projects/:id/topContributors", async (req, res) => {
+  
   try {
     const userRankings = await CommentModel.aggregate([
       {
@@ -139,7 +140,6 @@ router.get("/projects/:id/topContributors", async (req, res) => {
       path: "_id",
       select: "username"
     })
-
     res.status(200).json(userRankings.map(ranking => {
       return { username: ranking._id.username, commentCount: ranking.commentCount }
     }));

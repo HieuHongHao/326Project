@@ -33,6 +33,8 @@ app.use('/user', userRouter);
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 
+
+
 app.get('*', function(req, res) {
   res.sendFile('404.html', { root: __dirname + "/src" });
 });

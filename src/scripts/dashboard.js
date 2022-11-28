@@ -20,6 +20,7 @@ export const dashboard = {
     created.innerHTML += createDate.toDateString();
 
     const posts = document.getElementById("posts");
+    
     await projects.forEach(async (project, idx) => {
       const ranking = await api.fetchGET("api/projects/" + project._id + "/topContributors");
       const newCard = await utils.loadTemplate('../components/templates/dashboardCard.html', {

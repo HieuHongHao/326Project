@@ -47,6 +47,7 @@ const sockets_to_rooms = {};
 const roomsData = {};
 
 io.on("connection", (socket) => {
+  
   socket.on("login", async (username, canvasID) => {
     usernames[socket.id] = username;
     sockets_to_rooms[socket.id] = canvasID;
