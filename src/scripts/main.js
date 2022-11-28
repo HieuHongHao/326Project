@@ -12,12 +12,8 @@ import { login } from './login.js';
 import {socket} from './socketInstance.js';
 
 
-function isLoggedIn() {
-  return window.localStorage.getItem("token") !== null;
-}
-
 async function signBtn() {
-  if (!isLoggedIn()) {
+  if (await api.isLoggedIn() === undefined) {
     await utils.loadModule(`../components/navLogin.html`, 'loginDiv');
     await utils.loadModule('../components/login.html', 'modals');
     login.init();
