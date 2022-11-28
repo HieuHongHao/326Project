@@ -81,8 +81,12 @@ export const feed = {
       html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))
       const like = html.getElementById(`like-${idx}`);
       like.addEventListener("click", likeBtn(like, post))
-      html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
+      if (userId !== undefined) {
+        html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
+      } else {
+        html.getElementById(`canvas-${idx}`).outerHTML = "";
+      }
 
       return html.body.firstChild;
     }
@@ -165,8 +169,8 @@ export const feed = {
     async function getFeed() {
       const response_json = await api.fetchGET('api/projects?page=1');
       postContainer.replaceChildren();
-      for(let i = 0; i < response_json.length ; i++){
-        const newPost = await createNewPost(response_json[i],i);
+      for (let i = 0; i < response_json.length; i++) {
+        const newPost = await createNewPost(response_json[i], i);
         postContainer.appendChild(newPost);
       }
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
