@@ -14,6 +14,13 @@ export const feed = {
     const topBttn = document.getElementById("top-post-button");
     let numPosts = 0;
 
+    const postTemplate = await fetch('../components/templates/feedPost.html')
+      .then(response => response.text())
+      .then(html => {
+        let names = ["avatar", "username", "userID", "title", "titleID", "content", "contentID", "comments", "commentID", "likes", "likeID", "canvasID"];
+        return new Function(...names, `return \`${html}\`;`);
+      });
+
     const tagStyles = {
       React: "pn-card-type-blue",
       Java: "pn-card-type-red",
@@ -61,7 +68,7 @@ export const feed = {
     }
 
     async function createNewPost(post, idx) {
-      const html = await utils.loadTemplate('../components/templates/feedPost.html', {
+      let vals = Object.values({
         avatar: post.authorID.avatar,
         username: post.authorID.username,
         userID: `user-${idx}`,
@@ -75,6 +82,9 @@ export const feed = {
         likeID: `like-${idx}`,
         canvasID: `canvas-${idx}`
       });
+      const template = postTemplate(...vals);
+      const parser = new DOMParser();
+      const html = parser.parseFromString(template, 'text/html');
       html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID))
       html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
       html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
