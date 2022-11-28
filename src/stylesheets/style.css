@@ -256,6 +256,7 @@ a.hover {
 
 .feed-posts-container{
   border: 0 !important;
+  -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
   /* box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75);
 -webkit-box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75);
 -moz-box-shadow: 0px 10px 5px -6px rgba(255,255,255,0.75); */
