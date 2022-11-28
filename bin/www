@@ -36,9 +36,8 @@ const options = {
   },
 };
 const io = (module.exports.io = require("socket.io")(server, options));
-const sockets = {};
+
 const usernames = {};
-const userAvatars = {};
 
 // Dictionary mapping from socket id to canvasID
 const sockets_to_rooms = {};
@@ -49,7 +48,6 @@ const roomsData = {};
 
 io.on("connection", (socket) => {
   socket.on("login", async (username, canvasID) => {
-    sockets[username] = socket;
     usernames[socket.id] = username;
     sockets_to_rooms[socket.id] = canvasID;
     // If canvasId doesnt exist in dictionary, initialzie with empty drawing and list of current users
@@ -71,8 +69,12 @@ io.on("connection", (socket) => {
     io.in(canvasID).emit("receiveNewUserAlert",user);
   });
   socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
-  socket.on("chat-message", (data) =>
-    socket.broadcast.emit("chat-message", data)
+  socket.on("chat-message", (data) =>{
+    const room = sockets_to_rooms[socket.id];
+    socket.to(room).emit("chat-message", data);
+    
+    // socket.broadcast.emit("chat-message", data)
+    }
   );
   socket.on("disconnect", () => {
     console.log(socket.id);
@@ -80,10 +82,9 @@ io.on("connection", (socket) => {
     const canvasID = sockets_to_rooms[socket.id];
     if(canvasID && username){
       roomsData[canvasID]["users"] =  roomsData[canvasID]["users"].filter(user => user.id != username);
-      delete sockets[username];
       delete usernames[socket.id];
-      delete userAvatars[username];
       delete sockets_to_rooms[socket.id];
+      // Unsubscribe socket from a room
       socket.leave(canvasID);
       io.in(canvasID).emit("deleteLeftUser",username);
     }
