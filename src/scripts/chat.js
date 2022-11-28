@@ -16,8 +16,11 @@ export const chat = {
 
     socket.emit("login", userId, canvasId);
     socket.on("receiveOnlineUsersAvatar", (users) => {
-      document.getElementById("active-users-container").replaceChildren();
+      // document.getElementById("active-users-container").replaceChildren();
       for (const user of users) {
+        if(document.getElementById(user.id)){
+          continue;
+        }
         const image = document.createElement("img");
         image.src = user.avatar;
         image.classList.add("rounded-circle");
