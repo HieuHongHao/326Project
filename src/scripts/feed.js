@@ -182,14 +182,14 @@ export const feed = {
       console.timeEnd("fetching post");
       console.time("Build DOM");
       postContainer.replaceChildren();
-      const posts = await Promise.all(response_json.map((post,idx) => createNewPost(post,idx)));
-      for(const post of posts){
+      const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
+      for (const post of posts) {
         postContainer.appendChild(post);
       }
       console.timeEnd("Build DOM");
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
-      
+
     }
 
     getFeed();

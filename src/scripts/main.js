@@ -46,7 +46,7 @@ const core = {
       case "/feed":
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
-        const toAnimate = { "post-tags": 250,"feed":250};
+        const toAnimate = { "post-tags": 250, "feed": 250 };
         await utils.loadAnimate(toAnimate);
         await feed.init();
         break;
@@ -64,7 +64,7 @@ const core = {
           await utils.loadModule('../components/changePassword.html', 'modals');
           await utils.loadModule('../components/deleteAccount.html', 'modals');
           await utils.loadModule('../components/deleteProject.html', 'modals');
-          await utils.loadAnimate({"posts":250});
+          await utils.loadAnimate({ "posts": 250 });
           dashboard.init(userData);
           break;
         } else {
