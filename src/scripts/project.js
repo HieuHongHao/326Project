@@ -10,6 +10,29 @@ export const project = {
       content: project.content,
       likes: project.likes.length,
     });
+    const tagStyles = {
+      React: "pn-card-type-blue",
+      Java: "pn-card-type-red",
+      Python: "pn-card-type-yellow",
+      Go: "pn-card-type-light-sea-green",
+      PostgreSQL: "pn-card-type-blue",
+      Android: "pn-card-type-blue",
+      Guava: "pn-card-type-blue"
+    };
+    function createTag(tags) {
+      const tagWrapper = document.createElement("div");
+      tagWrapper.classList.add("tag-container");
+      for (const tag of tags) {
+        const tagElement = document.createElement("div");
+        tagElement.innerHTML = tag;
+        tagElement.classList.add("badge");
+        tagElement.classList.add("me-2");
+        tagElement.classList.add(tagStyles[tag]);
+        tagWrapper.appendChild(tagElement);
+      }
+      return tagWrapper;
+    }
+    projectHTML.getElementsByClassName('tags')[0].appendChild(createTag(project.tags));
     document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
     const commentsDiv = document.getElementById("comments");
