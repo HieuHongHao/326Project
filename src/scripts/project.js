@@ -33,7 +33,6 @@ export const project = {
       return tagWrapper;
     }
     projectHTML.getElementsByClassName('tags')[0].appendChild(createTag(project.tags));
-    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
 
     const commentsDiv = document.getElementById("comments");
     project.comments.forEach(async (comment, idx) => {
@@ -53,6 +52,7 @@ export const project = {
         avatar: user.avatar,
         username: user.username,
         content: newContent,
+        date: new Date().toJSON().slice(0, 10).replace(/-/g, '-')
       });
       commentsDiv.prepend(commentHTML.body.firstChild);
 
@@ -72,5 +72,6 @@ export const project = {
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
+    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
   }
 }
