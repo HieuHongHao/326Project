@@ -43,13 +43,16 @@ const sockets_to_rooms = {};
 // This will store the data of each canvas, with the key being canvasID
 // The data stored in each canvas is drawing and list of online users
 const roomsData = {};
+
 const users_start_time = {};
+const users_chat_commits = {};
 
 io.on("connection", (socket) => {
   socket.on("login", async (username, canvasID) => {
     usernames[socket.id] = username;
     sockets_to_rooms[socket.id] = canvasID;
     users_start_time[username] = Date.now();
+    users_chat_commits[username] = 0;
     // If canvasId doesnt exist in dictionary, initialzie with empty drawing and list of current users
     if (!(canvasID in roomsData)) {
       roomsData[canvasID] = {
@@ -74,8 +77,9 @@ io.on("connection", (socket) => {
   socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
   socket.on("chat-message", (data) => {
     const room = sockets_to_rooms[socket.id];
+    const user = usernames[socket.id];
     socket.to(room).emit("chat-message", data);
-
+    users_chat_commits[user] += 1;
     // socket.broadcast.emit("chat-message", data)
   });
   socket.on("disconnect", async () => {
@@ -91,12 +95,15 @@ io.on("connection", (socket) => {
         project: canvasID
       })
       canvas.upTime = moment(canvas.upTime).add(elapsed_time_in_ms,"ms");
+      canvas.chatCommits = users_chat_commits[username];
       await canvas.save();
       roomsData[canvasID]["users"] = roomsData[canvasID]["users"].filter(
         (user) => user.id != username
       );
       delete usernames[socket.id];
       delete sockets_to_rooms[socket.id];
+      delete users_start_time[username];
+      delete users_chat_commits[username];
       // Unsubscribe socket from a room
       socket.leave(canvasID);
       io.in(canvasID).emit("deleteLeftUser", username);
