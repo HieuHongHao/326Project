@@ -141,7 +141,7 @@ router.get("/projects/:id/topContributors", async (req, res) => {
     ]);
     await UserModel.populate(userRankings, {
       path: "_id",
-      select: "username"
+      select: "username avatar"
     })
     res.status(200).json(userRankings.map(ranking => {
       return { username: ranking._id.username, commentCount: ranking.commentCount }

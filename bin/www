@@ -95,7 +95,7 @@ io.on("connection", (socket) => {
         project: canvasID
       })
       canvas.upTime = moment(canvas.upTime).add(elapsed_time_in_ms,"ms");
-      canvas.chatCommits = users_chat_commits[username];
+      canvas.chatCommits += users_chat_commits[username];
       await canvas.save();
       roomsData[canvasID]["users"] = roomsData[canvasID]["users"].filter(
         (user) => user.id != username
