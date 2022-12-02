@@ -111,7 +111,7 @@ router.post(
           id: user.id
         }
       };
-      
+
       jwt.sign(
         payload,
         "randomString",
@@ -134,7 +134,7 @@ router.post(
   }
 );
 
-const auth = function(req, res, next) {
+const auth = function(error, req, res, next) {
   const token = req.header("token");
   if (!token) return res.status(401).json({ message: "Auth Error" });
 
