@@ -61,6 +61,7 @@ export const project = {
         content: newContent,
       });
     }
+    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
     const commentBtn = document.getElementById("commentBtn");
     if (user !== undefined) {
       commentBtn.addEventListener("click", addComment);
@@ -72,6 +73,5 @@ export const project = {
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
-    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
   }
 }
