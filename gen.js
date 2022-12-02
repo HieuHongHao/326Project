@@ -10,6 +10,9 @@ dotenv.config({ path: "./.env" });
 
 let users = [];
 let tags = ["React", "Python", "Java", "PostgreSQL", "Go"];
+
+
+
 for (let i = 0; i < 25; i++) {
   const password = faker.random.alphaNumeric(15);
   const newUser = new userModel({

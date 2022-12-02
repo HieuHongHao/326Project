@@ -4,19 +4,18 @@
 u* Module dependencies.
  */
 
-const app = require('../server'); 
-const debug = require('debug')('refractor:server');
-const http = require('http');
-const userModel = require('../routes/backend/models/User');
-
+const app = require("../server");
+const debug = require("debug")("refractor:server");
+const http = require("http");
+const userModel = require("../routes/backend/models/User");
+const canvasModel = require("../routes/backend/models/Canvas");
+const moment = require("moment");
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '9000');
-app.set('port', port);
-
-
+const port = normalizePort(process.env.PORT || "9000");
+app.set("port", port);
 
 /**
  * Create HTTP server.
@@ -27,7 +26,6 @@ const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 
 const options = {
   cors: {
@@ -45,56 +43,70 @@ const sockets_to_rooms = {};
 // This will store the data of each canvas, with the key being canvasID
 // The data stored in each canvas is drawing and list of online users
 const roomsData = {};
+const users_start_time = {};
 
 io.on("connection", (socket) => {
-  
   socket.on("login", async (username, canvasID) => {
     usernames[socket.id] = username;
     sockets_to_rooms[socket.id] = canvasID;
+    users_start_time[username] = Date.now();
     // If canvasId doesnt exist in dictionary, initialzie with empty drawing and list of current users
-    if(!(canvasID in roomsData)){
+    if (!(canvasID in roomsData)) {
       roomsData[canvasID] = {
         drawing: null,
-        users: []
-      }
+        users: [],
+      };
     }
     const user = await userModel.findById(username).select("avatar username");
-    console.log(sockets_to_rooms,roomsData);
-    if(user){
+    // console.log(sockets_to_rooms, roomsData);
+    if (user) {
       roomsData[canvasID].users.push(user);
     }
     // subscribe a socket to a room, so we dont need to pass canvasID to other events
     socket.join(canvasID);
     // broadcase necessary events to all other sockets when a new user join the room
-    io.in(canvasID).emit("receiveOnlineUsersAvatar",roomsData[canvasID]["users"]);
-    io.in(canvasID).emit("receiveNewUserAlert",user);
+    io.in(canvasID).emit(
+      "receiveOnlineUsersAvatar",
+      roomsData[canvasID]["users"]
+    );
+    io.in(canvasID).emit("receiveNewUserAlert", user);
   });
   socket.on("drawing", (data) => socket.broadcast.emit("drawing", data));
-  socket.on("chat-message", (data) =>{
+  socket.on("chat-message", (data) => {
     const room = sockets_to_rooms[socket.id];
     socket.to(room).emit("chat-message", data);
-    
+
     // socket.broadcast.emit("chat-message", data)
-    }
-  );
-  socket.on("disconnect", () => {
-    console.log(socket.id);
+  });
+  socket.on("disconnect", async () => {
+    // console.log(socket.id);
     const username = usernames[socket.id];
     const canvasID = sockets_to_rooms[socket.id];
-    if(canvasID && username){
-      roomsData[canvasID]["users"] =  roomsData[canvasID]["users"].filter(user => user.id != username);
+    if (canvasID && username) {
+      const elapsed_time_in_ms = Math.floor(
+        (Date.now() - users_start_time[username])
+      );
+      const canvas = await canvasModel.findOne({
+        user: username,
+        project: canvasID
+      })
+      canvas.upTime = moment(canvas.upTime).add(elapsed_time_in_ms,"ms");
+      await canvas.save();
+      roomsData[canvasID]["users"] = roomsData[canvasID]["users"].filter(
+        (user) => user.id != username
+      );
       delete usernames[socket.id];
       delete sockets_to_rooms[socket.id];
       // Unsubscribe socket from a room
       socket.leave(canvasID);
-      io.in(canvasID).emit("deleteLeftUser",username);
+      io.in(canvasID).emit("deleteLeftUser", username);
     }
   });
 });
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -121,22 +133,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
       process.exit(1);
       break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
       process.exit(1);
       break;
     default:
@@ -150,8 +160,6 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
 }

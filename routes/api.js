@@ -42,6 +42,9 @@ router.get("/projects/:id", async (req, res) => {
   }
 });
 
+
+
+
 // Get Project by author ID
 router.get("/projects/author/:id", async (req, res) => {
   try {
@@ -253,6 +256,7 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 
+
 // Create user
 router.post("/users", async (req, res) => {
   const data = new userModel({
@@ -322,6 +326,17 @@ router.put("/canvas/:id/chatCommits", async (req, res) => {
       incrementObject,
       { new: true }
     );
+    res.status(200).json(newCanvas);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+
+// create canvas
+router.post("/canvas/", async (req, res) => {
+  try {
+    const newCanvas = await CanvasModel.create(req.body);
     res.status(200).json(newCanvas);
   } catch (error) {
     res.status(400).json({ message: error.message });

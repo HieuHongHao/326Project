@@ -4,16 +4,15 @@ export const chat = {
   init: async (socket) => {
     // const socket = io("/");
     
-
+    
     const chatColor = ["blue", "green", "yellow", "red", "purple"]; //Availalbe colors
     const userChatColor = {}; // Dictionary that maps user to a color randomly selected from chatColor
-
     const user = await api.isLoggedIn();
     const userId = user.id;
     const canvasId = new URLSearchParams(window.location.search).get("");
 
     const textInput = document.getElementById("text-input");
-
+    
     socket.emit("login", userId, canvasId);
     socket.on("receiveOnlineUsersAvatar", (users) => {
       // document.getElementById("active-users-container").replaceChildren();
@@ -159,6 +158,7 @@ function shuffle(array) {
     const t = array[m];
     array[m] = array[i];
     array[i] = t;
+    
   }
 
   return array;

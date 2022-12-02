@@ -30,8 +30,12 @@ class QueryBuilder {
   }
   paginate() {
     const page = this.queryObject.page * 1 || 1;
+    let limit = 10;
+    if("limit" in this.queryObject){
+      limit = this.queryObject.limit;
+    }
     const skip = (page - 1) * 10;
-    this.queryChain = this.queryChain.skip(skip).limit(10);
+    this.queryChain = this.queryChain.skip(skip).limit(limit);
     return this;
   }
 }

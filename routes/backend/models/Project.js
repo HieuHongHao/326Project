@@ -57,10 +57,12 @@ projectSchema.virtual("likes", {
   localField: "_id",
 });
 
+
 projectSchema.pre(/^find/, function(next) {
   this.populate("likes");
   this.populate("comments");
   next();
 });
+
 const projectModel = mongoose.model("Project", projectSchema);
 module.exports = projectModel;

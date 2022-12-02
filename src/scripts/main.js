@@ -33,6 +33,7 @@ const core = {
     await navbar.init();
     await utils.loadModule('../components/footer.html', 'footer');
     let route = window.location.pathname;
+    
     signBtn();
     switch (route) {
       case "/":
@@ -46,7 +47,7 @@ const core = {
       case "/feed":
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
-        const toAnimate = { "post-tags": 250, "feed": 250 };
+        const toAnimate = { "post-tags": 250,"feed":1000};
         await utils.loadAnimate(toAnimate);
         await feed.init();
         break;

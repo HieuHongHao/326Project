@@ -13,7 +13,7 @@ export const feed = {
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
     let numPosts = 0;
-
+    
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
       .then(html => {
@@ -41,6 +41,7 @@ export const feed = {
       return () => window.location.href = "../project?=" + project;
     }
 
+    // Fix this
     function likeBtn(like, project) {
       return async () => {
         const author = project.authorID._id;

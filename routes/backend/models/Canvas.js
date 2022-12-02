@@ -18,10 +18,9 @@ const canvasSchema = new Schema({
     },
     upTime:{
         type: Date,
-        default: Date.now(),
+        default: new Date(null),
     }
 })
-
 
 
 

@@ -17,7 +17,7 @@ export const api = {
       return await response.json();
     }
   },
-
+  
   fetchPOST: async (url, body) => {
     const response = await fetch(URL + url, {
       method: 'POST',
@@ -28,7 +28,7 @@ export const api = {
     })
     return await response.json();
   },
-
+  
   // Return user if they are logged in, otherwise return undefined
   isLoggedIn: async () => {
     const token = window.localStorage.getItem("token");

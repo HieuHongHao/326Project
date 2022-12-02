@@ -15,6 +15,8 @@ export const canvas = {
     
     
     const canvasID = new URLSearchParams(window.location.search).get('') //get canvas ID
+    
+    
     // const userId = localStorage.getItem("loggedIn");
 
     const colorPicker = document.getElementById("color-picker-input")
