@@ -42,6 +42,7 @@ export const project = {
         avatar: commenter.avatar,
         username: commenter.username,
         content: comment.content,
+        date: comment.createdAt.substring(0, 10)
       });
       commentsDiv.appendChild(commentHTML.body.firstChild);
     });
