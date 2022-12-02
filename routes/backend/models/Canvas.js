@@ -19,10 +19,18 @@ const canvasSchema = new Schema({
     upTime:{
         type: Date,
         default: new Date(null),
+    },
+    duration:{
+        type:Number,
+        default: 0
     }
 })
 
-
+canvasSchema.pre("save", function(next){
+    if(!this.isModified("upTime")){ return next();}
+    this.duration = this.upTime - new Date(null);
+    next();
+})
 
 const canvasModel = mongoose.model("Canvas",canvasSchema);
 module.exports = canvasModel;
