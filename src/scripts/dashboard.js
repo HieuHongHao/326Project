@@ -20,7 +20,7 @@ export const dashboard = {
     created.innerHTML += createDate.toDateString();
 
     const posts = document.getElementById("posts");
-    
+
     await projects.forEach(async (project, idx) => {
       const ranking = await api.fetchGET("api/projects/" + project._id + "/topContributors");
       const newCard = await utils.loadTemplate('../components/templates/dashboardCard.html', {
@@ -31,17 +31,17 @@ export const dashboard = {
         likes: project.likeNumber,
         trashID: `trash-${project._id}`,
         rank1User: (ranking[0]) ? ranking[0].username : '-',
-        rank1Avatar: (ranking[0]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank1Avatar: (ranking[0]) ? ranking[0].avatar : '',
         rank1Score: (ranking[0]) ? ranking[0].commentCount : '-',
         rank2User: (ranking[1]) ? ranking[1].username : '-',
-        rank2Avatar: (ranking[1]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank2Avatar: (ranking[1]) ? ranking[1].avatar : '',
         rank2Score: (ranking[1]) ? ranking[1].commentCount : '-',
         rank3User: (ranking[2]) ? ranking[2].username : '-',
-        rank3Avatar: (ranking[2]) ? "https://people.cs.umass.edu/~marius/marius.jpg" : '',
+        rank3Avatar: (ranking[2]) ? ranking[2].avatar : '',
         rank3Score: (ranking[2]) ? ranking[2].commentCount : '-',
       });
-      
-      
+
+
       function toProject() {
         return () => window.location.href = "../project?=" + project._id;
       }

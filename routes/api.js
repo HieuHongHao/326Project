@@ -123,7 +123,7 @@ router.post("/projects/:id/like", async (req, res) => {
 
 // Ranking users based on number of comments in a project
 router.get("/projects/:id/topContributors", async (req, res) => {
-  
+
   try {
     const userRankings = await CommentModel.aggregate([
       {
@@ -144,7 +144,7 @@ router.get("/projects/:id/topContributors", async (req, res) => {
       select: "username avatar"
     })
     res.status(200).json(userRankings.map(ranking => {
-      return { username: ranking._id.username, commentCount: ranking.commentCount }
+      return { username: ranking._id.username, commentCount: ranking.commentCount, avatar: ranking._id.avatar }
     }));
   } catch (error) {
     res.status(500).json({ message: error.message });
