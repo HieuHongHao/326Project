@@ -115,6 +115,10 @@ export const feed = {
         const newPost = await createNewPost(result, numPosts + 1);
         numPosts += 1;
         postContainer.prepend(newPost);
+        await api.fetchPOST('api/canvas/', {
+          user: userId._id,
+          project: result._id
+        });
       });
     } else {
       document.getElementById("newPostBtn").outerHTML = "";
