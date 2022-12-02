@@ -176,12 +176,11 @@ export const feed = {
       response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
     })
 
-    async function getFeed() {
+    async function getFeed(page) {
       console.time("fetching post");
-      const response_json = await api.fetchGET('api/projects?page=1');
+      const response_json = await api.fetchGET('api/projects?page=' + page);
       console.timeEnd("fetching post");
       console.time("Build DOM");
-      postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
       for (const post of posts) {
         postContainer.appendChild(post);
@@ -192,7 +191,15 @@ export const feed = {
 
     }
 
-    getFeed();
+    let page = 1;
+    getFeed(page);
+
+    window.onscroll = function() {
+      if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
+        page += 1;
+        getFeed(page)
+      }
+    }
 
   }
 }
