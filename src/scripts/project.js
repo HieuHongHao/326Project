@@ -32,6 +32,11 @@ export const project = {
       }
       return tagWrapper;
     }
+
+    function toProfile(user) {
+      return () => window.location.href = "../profile?=" + user;
+    }
+
     projectHTML.getElementsByClassName('tags')[0].appendChild(createTag(project.tags));
 
     const commentsDiv = document.getElementById("comments");
@@ -74,5 +79,7 @@ export const project = {
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
+
+    document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
   }
 }
