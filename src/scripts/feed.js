@@ -164,21 +164,36 @@ export const feed = {
           break;
       }
       postContainer.replaceChildren();
-      result.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
+      const posts = await Promise.all(result.map((post, idx) => createNewPost(post, idx)));
+      setTimeout(() => {
+        for(const post of posts){
+          postContainer.appendChild(post);
+        }  
+      }, 550);
       numPosts = result.length;
     });
 
     githubPostBtn.addEventListener("click", async () => {
       const response_json = await api.fetchGET('api/github_repos');
       postContainer.replaceChildren();
-      response_json.projects.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
+      const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
+      setTimeout(() => {
+        for(const post of posts){
+          postContainer.appendChild(post);
+        }  
+      }, 550);
       numPosts = response_json.projects.length;
     })
 
     topBttn.addEventListener("click", async () => {
       const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
       postContainer.replaceChildren();
-      response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
+      const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
+      setTimeout(() => {
+        for(const post of posts){
+          postContainer.appendChild(post);
+        }  
+      }, 550);
     })
 
     async function getFeed(page) {

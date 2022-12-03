@@ -79,6 +79,7 @@ io.on("connection", (socket) => {
     const room = sockets_to_rooms[socket.id];
     const user = usernames[socket.id];
     socket.to(room).emit("chat-message", data);
+    the
     users_chat_commits[user] += 1;
     // socket.broadcast.emit("chat-message", data)
   });
