@@ -74,7 +74,7 @@ const core = {
           await utils.loadModule('../components/changePassword.html', 'modals');
           await utils.loadModule('../components/deleteAccount.html', 'modals');
           await utils.loadModule('../components/deleteProject.html', 'modals');
-          await utils.loadAnimate({ "posts": 250 });
+          await utils.loadAnimate({ "posts": 250});
           dashboard.init(userData);
           break;
         } else {

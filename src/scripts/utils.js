@@ -1,4 +1,6 @@
 import autoAnimate from "./auto-animate/index.mjs";
+import { Chart } from "./chart.js/auto/auto.js";
+import { api } from "./api.js";
 
 export const utils = {
   // Load module

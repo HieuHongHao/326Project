@@ -215,6 +215,9 @@ router.get("/users/:id/stats", async (req, res) => {
   try {
     const userStats = await CanvasModel.find({
       user: req.params.id
+    }).populate({
+      path: "project",
+      select: "title"
     })
     res.status(200).json(userStats);
   }
