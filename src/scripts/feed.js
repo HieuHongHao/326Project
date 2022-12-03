@@ -13,7 +13,7 @@ export const feed = {
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
     let numPosts = 0;
-    
+
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
       .then(html => {
@@ -34,7 +34,7 @@ export const feed = {
     let currentTags = [];
 
     function toProfile(user) {
-      return () => console.log("TODO: Make profile page");
+      return () => window.location.href = "../profile?=" + user;
     }
 
     function toProject(project) {
@@ -86,7 +86,7 @@ export const feed = {
       const template = postTemplate(...vals);
       const parser = new DOMParser();
       const html = parser.parseFromString(template, 'text/html');
-      html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID))
+      html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID._id))
       html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
       html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
       html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))

@@ -68,10 +68,11 @@ export const project = {
       whiteboardBtn.addEventListener("click", () => {
         window.location.href = "../canvas?=" + project._id;
       });
+      document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
     } else {
+      document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
-    document.getElementById("projectPost").appendChild(projectHTML.body.firstChild);
   }
 }

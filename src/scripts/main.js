@@ -4,6 +4,7 @@ import { register } from './register.js';
 import { feed } from './feed.js';
 import { project } from './project.js';
 import { dashboard } from './dashboard.js';
+import { profile } from './profile.js';
 import { canvas } from './canvas.js';
 import { chat } from './chat.js';
 import { index } from './index.js';
@@ -33,7 +34,7 @@ const core = {
     await navbar.init();
     await utils.loadModule('../components/footer.html', 'footer');
     let route = window.location.pathname;
-    
+
     signBtn();
     switch (route) {
       case "/":
@@ -47,7 +48,7 @@ const core = {
       case "/feed":
         await utils.loadModule('../components/searchBar.html', 'topSearch');
         await utils.loadModule('../pages/feed.html', 'content');
-        const toAnimate = { "post-tags": 250,"feed":1000};
+        const toAnimate = { "post-tags": 250, "feed": 1000 };
         await utils.loadAnimate(toAnimate);
         await feed.init();
         break;
@@ -56,6 +57,14 @@ const core = {
         if (projectData !== undefined) {
           await utils.loadModule('../pages/project.html', 'content');
           project.init(projectData);
+          break;
+        }
+      case route.match(/^\/profile\?*/)?.input:
+        const profileData = await api.fetchGET('api/users/' + window.location.search.substring(2));
+        if (profileData !== undefined) {
+          await utils.loadModule('../pages/profile.html', 'content');
+          await utils.loadAnimate({ "posts": 250 });
+          profile.init(profileData);
           break;
         }
       case route.match(/^\/dashboard\?*/)?.input:
