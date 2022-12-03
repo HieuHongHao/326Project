@@ -152,6 +152,8 @@ router.get("/projects/:id/topContributors", async (req, res) => {
 });
 
 
+
+
 // =============================
 //       COMMENT RESOURCES
 // =============================
@@ -197,6 +199,18 @@ router.get("/projects/:id/comments", async (req, res) => {
   }
 });
 
+router.get("/projects/:id/topChatCommits", async(req,res) => {
+  try{
+    const userRankings = await CanvasModel.find({
+      project: req.params.id
+    }).sort("-chatCommits")
+    res.status(200).json(userRankings);
+  }
+  catch{
+    res.status(500).json({message: error.message});
+  }
+})
+
 // =============================
 //       LIKE RESOURCES
 // =============================
@@ -228,6 +242,8 @@ router.post("/api/projects/:id/like", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
 
 
 // =============================
@@ -312,6 +328,8 @@ router.get("/canvas", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+
 
 // Update chat commits
 router.put("/canvas/:id/chatCommits", async (req, res) => {
