@@ -199,15 +199,27 @@ router.get("/projects/:id/comments", async (req, res) => {
   }
 });
 
-router.get("/projects/:id/topChatCommits", async(req,res) => {
-  try{
+router.get("/projects/:id/topChatCommits", async (req, res) => {
+  try {
     const userRankings = await CanvasModel.find({
       project: req.params.id
     }).sort("-chatCommits")
     res.status(200).json(userRankings);
   }
-  catch{
-    res.status(500).json({message: error.message});
+  catch {
+    res.status(500).json({ message: error.message });
+  }
+})
+
+router.get("/users/:id/stats", async (req, res) => {
+  try {
+    const userStats = await CanvasModel.find({
+      user: req.params.id
+    })
+    res.status(200).json(userStats);
+  }
+  catch {
+    res.status(500).json({ message: error.message });
   }
 })
 

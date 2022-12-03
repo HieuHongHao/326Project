@@ -2,6 +2,12 @@ import { api } from './api.js';
 import { utils } from './utils.js';
 export const profile = {
   init: async (user) => {
+    const userStats = await api.fetchGET("api/users/" + user._id + "/stats");
+    const statHTMl = await utils.loadTemplate('../components/templates/stats.html', {
+      commits: userStats.reduce((acc, e) => acc += e.chatCommits, 0),
+      uptime: Math.round(userStats.reduce((acc, e) => acc += e.duration, 0) / 60000),
+    });
+    document.getElementById("stats").appendChild(statHTMl.body.firstChild);
     const projects = await api.fetchGET('api/projects/author/' + user._id);
     const userComments = await api.fetchGET('api/comments/author/' + user._id);
 
