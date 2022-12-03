@@ -72,6 +72,19 @@ const core = {
           document.location.href = "/";
         }
       case route.match(/^\/canvas\?*/)?.input:
+        // check if current user in canvas, if not add them to canvas
+        // get user from await api.isLoggedin()
+        const projectID = new URLSearchParams(window.location.search).get(""); 
+        const user = await api.isLoggedIn();
+        if(!user){
+          console.log("User not logged in");
+        }
+        else if((await api.fetchGET(`api/canvas?user=${user._id}&project=${projectID}`)).length === 0){
+          await api.fetchPOST("api/canvas",{
+            project: projectID,
+            user:user._id
+          })
+        }
         utils.setTitle("Canvas");
         document.getElementById("footer").style.display = "none";
         await utils.loadModule(`pages/canvas.html`, 'content');
