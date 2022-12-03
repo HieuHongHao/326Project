@@ -198,7 +198,7 @@ export const feed = {
 
     let page = 1;
     getFeed(page);
-
+    
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
