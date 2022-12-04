@@ -13,26 +13,45 @@ export const dashboard = {
         ),
       }
     );
-    
-    const chart = new Chart(
-      document.getElementById('user-stats-graph'),
-      {
-        type: 'bar',
-        data: {
-          labels: userStats.map(row => row.project.title),
-          datasets: [
-            {
-              label: 'User activity stat',
-              data: userStats.map(row => row.duration / 60000),
-              borderWidth: 1
-            }
-          ],
+    const chart = new Chart(document.getElementById("user-stats-graph"), {
+      type: "bar",
+      data: {
+        labels: userStats.map((row) => row.project.title),
+        datasets: [
+          {
+            label: "Times in canvas",
+            data: userStats.map((row) => row.duration / 60000),
+            backgroundColor: "#c6d0f5",
+          },
+          {
+            label: "Chat Commits in canvas",
+            data: userStats.map((row) => row.chatCommits),
+            backgroundColor: "#6e738d",
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        indexAxis: "y",
+        scales: {
+          x: {
+            beginAtZero: true,
+          },
         },
-        options: {
-          maintainAspectRatio: false,
-        }
-      }
-    );
+        plugins: {
+          title: {
+            display: true,
+            text: "User Stats",
+            fullSize: true,
+            font:{
+              weight: "bold",
+              size: 25
+            },
+            color: "#c6d0f5"
+          },
+        },
+      },
+    });
     document.getElementById("stats").appendChild(statHTMl.body.firstChild);
     const projects = await api.fetchGET("api/projects/author/" + user._id);
     const userComments = await api.fetchGET("api/comments/author/" + user._id);
@@ -91,14 +110,14 @@ export const dashboard = {
       //     like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
       //   }
       // }
-      
+
       newCard
         .getElementById("title")
         .addEventListener("click", toProject(project._id));
       newCard
         .getElementById("content")
         .addEventListener("click", toProject(project._id));
-      
+
       // const like = newCard.getElementById('like');
       // like.addEventListener("click", likeBtn(like, project));
       posts.appendChild(newCard.body.firstChild);
