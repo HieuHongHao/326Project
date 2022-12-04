@@ -446,3 +446,13 @@ a.hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+#feed a{
+  cursor: pointer;
+}
+
+#newPost input, #newPost textarea{
+  background-color: var(--cat-base) !important;
+  border: 0;
+  padding: 0.6em;
+}
