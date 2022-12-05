@@ -11,7 +11,6 @@ export const index = {
         document.getElementById("loader").style.display = "block";
       }
       else if (children.length > 0) {
-        console.log("hi");
         document.getElementById("loader").style.display = "none";
       }
     })

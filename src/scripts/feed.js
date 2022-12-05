@@ -126,6 +126,16 @@ export const feed = {
       document.getElementById("newPostBtn").outerHTML = "";
     }
 
+    postContainer.addEventListener("DOMSubtreeModified", function() {
+      const children = postContainer.children;
+      if (children.length === 0) {
+        document.getElementById("loader").style.display = "block";
+      }
+      else if (children.length > 0) {
+        document.getElementById("loader").style.display = "none";
+      }
+    })
+
     addTag.addEventListener("click", () => {
       const tag = enterTag.value;
       const tagElement = document.createElement("div");

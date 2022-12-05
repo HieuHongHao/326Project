@@ -62,20 +62,21 @@
         <div class="collapse" id="newPost">
           <form>
             <div class="d-flex flex-column cat-bg-light cat-text-light my-3 rounded-3 feed-post">
-              <div class="px-3 pt-3">
+              <!-- <div class="px-3 pt-3">
                 <img src="../assets/logo.svg" alt="Logo" class="rounded-pill" />
                 <span class="ms-1"><a href="" class="cat-text-light text-decoration-none">Username1</a></span>
-              </div>
+              </div> -->
+              <br/>
               <div class="px-3">
-                <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
+                <input type="text" class="cat-bg-light  cat-text-light mb-3 form-control"
                   placeholder="Enter title" id="post-title" />
                 <div class="pb-4 mb-3 w-100">
-                  <textarea rows="3" class="cat-bg-light cat-border-light cat-text-light form-control"
+                  <textarea rows="3" class="cat-bg-light  cat-text-light form-control"
                     placeholder="Enter post content" id="post-text-area"></textarea>
                 </div>
               </div>
               <div class="px-3">
-                <input type="text" class="cat-bg-light cat-border-light cat-text-light mb-3 form-control"
+                <input type="text" class="cat-bg-light cat-text-light mb-3 form-control"
                   placeholder="Add Tags" id="enter-tags" />
                 <button class="btn btn-outline-light mx-1" type="button" id="add-tags">
                   + Add Tag
@@ -92,6 +93,7 @@
         </div>
         <div id="feed" class="container p-0">
         </div>
+        <center><br/><div class="loader" id="loader"></div></center>   
       </div>
     </div>
 
