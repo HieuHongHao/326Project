@@ -40,6 +40,16 @@ export const dashboard = {
         scales: {
           x: {
             beginAtZero: true,
+            ticks: {color: "#c6d0f5"},
+            border:{
+              color: "#c6d0f5"
+            }
+          },
+          y: {
+            ticks: {color: "#c6d0f5"},
+            border:{
+              color: "#c6d0f5"
+            }
           },
         },
         plugins: {
