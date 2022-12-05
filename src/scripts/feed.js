@@ -12,8 +12,9 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
+    
+    
     let numPosts = 0;
-
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
       .then(html => {
@@ -42,6 +43,7 @@ export const feed = {
     }
 
     // Fix this
+    // Change author id to current user id
     function likeBtn(like, project) {
       return async () => {
         const author = project.authorID._id;
@@ -208,7 +210,7 @@ export const feed = {
       console.timeEnd("Build DOM");
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
-
+      
     }
 
     let page = 1;

@@ -39,6 +39,7 @@ const core = {
     switch (route) {
       case "/":
         await utils.loadModule('../pages/index.html', 'content');
+        await utils.loadAnimate({"top-projects":500});
         index.init();
         break;
       case "/register":

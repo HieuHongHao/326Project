@@ -22,11 +22,15 @@ export const dashboard = {
             label: "Times in canvas",
             data: userStats.map((row) => row.duration / 60000),
             backgroundColor: "#c6d0f5",
+            borderWidth: 1,
+            barPercentage: 0.5
           },
           {
             label: "Chat Commits in canvas",
             data: userStats.map((row) => row.chatCommits),
             backgroundColor: "#6e738d",
+            borderWidth: 1,
+            barPercentage: 0.5
           },
         ],
       },
@@ -43,11 +47,11 @@ export const dashboard = {
             display: true,
             text: "User Stats",
             fullSize: true,
-            font:{
+            font: {
               weight: "bold",
-              size: 25
+              size: 25,
             },
-            color: "#c6d0f5"
+            color: "#c6d0f5",
           },
         },
       },

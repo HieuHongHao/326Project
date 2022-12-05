@@ -4,13 +4,13 @@ export const chat = {
   init: async (socket) => {
     // const socket = io("/");
     
-    
+        
     const chatColor = ["blue", "green", "yellow", "red", "purple"]; //Availalbe colors
     const userChatColor = {}; // Dictionary that maps user to a color randomly selected from chatColor
     const user = await api.isLoggedIn();
     const userId = user.id;
     const canvasId = new URLSearchParams(window.location.search).get("");
-
+    
     const textInput = document.getElementById("text-input");
     
     socket.emit("login", userId, canvasId);
@@ -122,7 +122,7 @@ export const chat = {
         const payload = {
           sender: userId,
           message: textInput.value,
-          receiver: canvasId,
+          // receiver: canvasId,
         };
 
         socket.emit("chat-message", payload);
@@ -130,7 +130,7 @@ export const chat = {
         textInput.value = "";
       }
     });
-
+    
     /*Receive message from socket*/
     socket.on("chat-message", (payload) => {
       const { sender, message, receiver } = payload;
@@ -138,6 +138,7 @@ export const chat = {
         //If it's in the right canvas room
         addChatElement(message, sender, true);
       }
+      addChatElement(message, sender, true);
     });
   },
 };

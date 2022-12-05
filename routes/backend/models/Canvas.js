@@ -31,6 +31,5 @@ canvasSchema.pre("save", function(next){
     this.duration = this.upTime - new Date(null);
     next();
 })
-
 const canvasModel = mongoose.model("Canvas",canvasSchema);
 module.exports = canvasModel;
