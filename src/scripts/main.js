@@ -99,7 +99,7 @@ const core = {
         document.getElementById("footer").style.display = "none";
         await utils.loadModule(`pages/canvas.html`, 'content');
         await utils.loadAnimate({
-          "active-users-container": 250
+          "active-users-container": 300
         })
         await canvas.init(socket);
         await chat.init(socket);

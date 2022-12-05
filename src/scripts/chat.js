@@ -23,10 +23,11 @@ export const chat = {
         const image = document.createElement("img");
         image.src = user.avatar;
         image.classList.add("rounded-circle");
-        image.classList.add("ml-3");
+        // image.classList.add("ml-3");
         image.width = 40;
         image.height = 40;
         image.id = user.id;
+        document.getElementById("active-users-container").appendChild(document.createElement("div"));
         document.getElementById("active-users-container").appendChild(image);
       }
     });
@@ -122,7 +123,7 @@ export const chat = {
         const payload = {
           sender: userId,
           message: textInput.value,
-          // receiver: canvasId,
+          receiver: canvasId,
         };
 
         socket.emit("chat-message", payload);
@@ -138,7 +139,6 @@ export const chat = {
         //If it's in the right canvas room
         addChatElement(message, sender, true);
       }
-      addChatElement(message, sender, true);
     });
   },
 };
