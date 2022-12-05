@@ -53,7 +53,7 @@ export const feed = {
     }
 
     function toCanvas(project) {
-      return () => console.log("TODO: Make link to canvas");
+      return () => window.location.href = "../canvas?=" + project._id;
     }
 
     function createTag(tags) {
