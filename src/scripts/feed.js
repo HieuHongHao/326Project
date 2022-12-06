@@ -204,8 +204,9 @@ export const feed = {
       }, 550);
       numPosts = response_json.projects.length;
     })
-
+    
     topBttn.addEventListener("click", async () => {
+      currentSearch = "default";
       const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
