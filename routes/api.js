@@ -77,6 +77,7 @@ router.post("/projects/delete/:id", async (req, res) => {
     const data = await ProjectModel.findByIdAndDelete(req.params.id);
     await CommentModel.deleteMany({ project: req.params.id });
     await LikeModel.deleteMany({ project: req.params.id });
+    await CanvasModel.deleteMany({ project: req.params.id });
     res.status(200).json({ message: `Project ${data.title} has been deleted..` });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -383,7 +384,7 @@ router.post("/canvas/", async (req, res) => {
 // Get github repos
 router.get("/github_repos", async (req, res) => {
   let page = 0;
-  if(req.query.page){
+  if (req.query.page) {
     page = req.query.page;
   }
   const response = await octokit.rest.search.repos({
