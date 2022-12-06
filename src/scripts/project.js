@@ -79,7 +79,8 @@ export const project = {
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
-
+    
     document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
+    
   }
 }

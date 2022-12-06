@@ -13,6 +13,7 @@ export const dashboard = {
         ),
       }
     );
+    
     const chart = new Chart(document.getElementById("user-stats-graph"), {
       type: "bar",
       data: {
@@ -23,14 +24,16 @@ export const dashboard = {
             data: userStats.map((row) => row.duration / 60000),
             backgroundColor: "#c6d0f5",
             borderWidth: 1,
-            barPercentage: 0.5
+            barPercentage: 0.5, 
+            barThickness: 16
           },
           {
             label: "Chat Commits in canvas",
             data: userStats.map((row) => row.chatCommits),
             backgroundColor: "#6e738d",
             borderWidth: 1,
-            barPercentage: 0.5
+            barPercentage: 0.5,
+            barThickness: 16
           },
         ],
       },
@@ -40,16 +43,22 @@ export const dashboard = {
         scales: {
           x: {
             beginAtZero: true,
-            ticks: {color: "#c6d0f5"},
-            border:{
-              color: "#c6d0f5"
-            }
+            ticks: {
+              color: "#c6d0f5",
+              font: { size: 16 },
+            },
+            border: {
+              color: "#c6d0f5",
+            },
           },
           y: {
-            ticks: {color: "#c6d0f5"},
-            border:{
-              color: "#c6d0f5"
-            }
+            ticks: {
+              color: "#c6d0f5",
+              font: { size: 16 },
+            },
+            border: {
+              color: "#c6d0f5",
+            },
           },
         },
         plugins: {
@@ -62,6 +71,13 @@ export const dashboard = {
               size: 25,
             },
             color: "#c6d0f5",
+          },
+          legend: {
+            labels: {
+              font: {
+                size: 18,
+              },
+            },
           },
         },
       },
@@ -134,6 +150,7 @@ export const dashboard = {
 
       // const like = newCard.getElementById('like');
       // like.addEventListener("click", likeBtn(like, project));
+      
       posts.appendChild(newCard.body.firstChild);
       document
         .getElementById("trash-" + project._id)

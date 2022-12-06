@@ -31,6 +31,7 @@ export const chat = {
         document.getElementById("active-users-container").appendChild(image);
       }
     });
+    
     socket.on("receiveNewUserAlert", (user) => {
       const toast_avatar = document.getElementById("toast-user-avatar");
       const toast_user_name = document.getElementById("toast-user-name");

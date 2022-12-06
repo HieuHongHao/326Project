@@ -58,6 +58,8 @@ export const feed = {
 
     function createTag(tags) {
       const tagWrapper = document.createElement("div");
+      
+      
       tagWrapper.classList.add("tag-container");
       for (const tag of tags) {
         const tagElement = document.createElement("div");
