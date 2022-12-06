@@ -456,3 +456,8 @@ a.hover {
   border: 0;
   padding: 0.6em;
 }
+
+.graph{
+  width: 800px;
+  height: 350px
+}

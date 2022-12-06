@@ -19,7 +19,7 @@ export const dashboard = {
       data: {
         labels: userStats
           .filter((row) => row.project != null)
-          .map((row) => row.project.title),
+          .map((row) => row.project.title.substring(0,10)),
         datasets: [
           {
             label: "Times in canvas",
