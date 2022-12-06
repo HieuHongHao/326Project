@@ -458,6 +458,9 @@ a.hover {
 }
 
 .graph{
-  width: 800px;
-  height: 350px
+  /* width: 800px; */
+  height: 350px;
+  width: 100%;
+  border: 0;
+  /* position: relative; */
 }
