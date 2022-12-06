@@ -14,8 +14,8 @@ export const feed = {
     const topBttn = document.getElementById("top-post-button");
 
     let currentSearch = "default";   // "default" || "Github"
-    
-    
+
+
     let numPosts = 0;
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
@@ -60,8 +60,8 @@ export const feed = {
 
     function createTag(tags) {
       const tagWrapper = document.createElement("div");
-      
-      
+
+
       tagWrapper.classList.add("tag-container");
       for (const tag of tags) {
         const tagElement = document.createElement("div");
@@ -97,7 +97,11 @@ export const feed = {
       html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
       html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))
       const like = html.getElementById(`like-${idx}`);
-      like.addEventListener("click", likeBtn(like, post))
+      if (userId != undefined) {
+        like.addEventListener("click", likeBtn(like, post))
+      } else {
+        like.addEventListener("click", () => alert("Please login to like"))
+      }
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
       if (userId !== undefined) {
         html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
@@ -181,9 +185,9 @@ export const feed = {
       postContainer.replaceChildren();
       const posts = await Promise.all(result.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
-        for(const post of posts){
+        for (const post of posts) {
           postContainer.appendChild(post);
-        }  
+        }
       }, 550);
       numPosts = result.length;
     });
@@ -194,9 +198,9 @@ export const feed = {
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
-        for(const post of posts){
+        for (const post of posts) {
           postContainer.appendChild(post);
-        }  
+        }
       }, 550);
       numPosts = response_json.projects.length;
     })
@@ -207,9 +211,9 @@ export const feed = {
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
-        for(const post of posts){
+        for (const post of posts) {
           postContainer.appendChild(post);
-        }  
+        }
       }, 550);
     })
 
@@ -225,26 +229,26 @@ export const feed = {
       console.timeEnd("Build DOM");
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
-      
+
     }
-    async function getGithubRepo(page){
+    async function getGithubRepo(page) {
       const response_json = await api.fetchGET(`api/github_repos?page=${page}`);
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
-        for(const post of posts){
+        for (const post of posts) {
           postContainer.appendChild(post);
-        }  
+        }
       }, 550);
       numPosts = response_json.projects.length;
     }
 
     let page = 1;
     getFeed(page);
-    
+
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
-        currentSearch === "Github" ? getGithubRepo(page) : getFeed(page) ;
+        currentSearch === "Github" ? getGithubRepo(page) : getFeed(page);
       }
     }
 
