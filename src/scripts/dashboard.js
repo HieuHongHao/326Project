@@ -4,6 +4,7 @@ import { Chart } from "./chart.js/auto/auto.js";
 export const dashboard = {
   init: async (user) => {
     const userStats = await api.fetchGET("api/users/" + user._id + "/stats");
+    console.log(userStats)
     const statHTMl = await utils.loadTemplate(
       "../components/templates/stats.html",
       {
@@ -27,6 +28,7 @@ export const dashboard = {
             borderWidth: 1,
             barPercentage: 0.5,
             barThickness: 16,
+            xAxisID: 'x',
           },
           {
             label: "Chat Commits in canvas",
@@ -35,10 +37,12 @@ export const dashboard = {
             borderWidth: 1,
             barPercentage: 0.5,
             barThickness: 16,
+            xAxisID: 'x1',
           },
         ],
       },
       options: {
+        responsive: true,
         maintainAspectRatio: false,
         indexAxis: "y",
         scales: {
@@ -51,6 +55,18 @@ export const dashboard = {
             border: {
               color: "#c6d0f5",
             },
+            position: "top",
+          },
+          x1: {
+            beginAtZero: true,
+            ticks: {
+              color: "#c6d0f5",
+              font: { size: 16 },
+            },
+            border: {
+              color: "#c6d0f5",
+            },
+            position: "bottom",
           },
           y: {
             ticks: {
@@ -69,14 +85,14 @@ export const dashboard = {
             fullSize: true,
             font: {
               weight: "bold",
-              size: 25,
+              size: 18,
             },
             color: "#c6d0f5",
           },
           legend: {
             labels: {
               font: {
-                size: 18,
+                size: 12,
               },
             },
           },
