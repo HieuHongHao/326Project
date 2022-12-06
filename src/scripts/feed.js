@@ -12,6 +12,8 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
+
+    let currentSearch = "default";   // "default" || "Github"
     
     
     let numPosts = 0;
@@ -137,7 +139,6 @@ export const feed = {
         document.getElementById("loader").style.display = "none";
       }
     })
-
     addTag.addEventListener("click", () => {
       const tag = enterTag.value;
       const tagElement = document.createElement("div");
@@ -188,6 +189,7 @@ export const feed = {
     });
 
     githubPostBtn.addEventListener("click", async () => {
+      currentSearch = "Github";
       const response_json = await api.fetchGET('api/github_repos');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
@@ -224,6 +226,16 @@ export const feed = {
       numPosts = response_json.length;
       
     }
+    async function getGithubRepo(page){
+      const response_json = await api.fetchGET(`api/github_repos?page=${page}`);
+      const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
+      setTimeout(() => {
+        for(const post of posts){
+          postContainer.appendChild(post);
+        }  
+      }, 550);
+      numPosts = response_json.projects.length;
+    }
 
     let page = 1;
     getFeed(page);
@@ -231,7 +243,7 @@ export const feed = {
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
-        getFeed(page)
+        currentSearch === "Github" ? getGithubRepo(page) : getFeed(page) ;
       }
     }
 

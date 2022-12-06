@@ -382,10 +382,16 @@ router.post("/canvas/", async (req, res) => {
 
 // Get github repos
 router.get("/github_repos", async (req, res) => {
+  let page = 0;
+  if(req.query.page){
+    page = req.query.page;
+  }
   const response = await octokit.rest.search.repos({
     q: "java in:topics", // Zhǎo wā
+    page,
+    per_page: 10
   });
-  const repos = response.data.items.slice(0, 6);
+  const repos = response.data.items;
   const projects = repos.map((repo) => {
     return {
       id: repo.id,
