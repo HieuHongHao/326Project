@@ -13,19 +13,20 @@ export const dashboard = {
         ),
       }
     );
-    
     const chart = new Chart(document.getElementById("user-stats-graph"), {
       type: "bar",
       data: {
-        labels: userStats.map((row) => row.project.title),
+        labels: userStats
+          .filter((row) => row.project != null)
+          .map((row) => row.project.title),
         datasets: [
           {
             label: "Times in canvas",
             data: userStats.map((row) => row.duration / 60000),
             backgroundColor: "#c6d0f5",
             borderWidth: 1,
-            barPercentage: 0.5, 
-            barThickness: 16
+            barPercentage: 0.5,
+            barThickness: 16,
           },
           {
             label: "Chat Commits in canvas",
@@ -33,7 +34,7 @@ export const dashboard = {
             backgroundColor: "#6e738d",
             borderWidth: 1,
             barPercentage: 0.5,
-            barThickness: 16
+            barThickness: 16,
           },
         ],
       },
@@ -82,6 +83,7 @@ export const dashboard = {
         },
       },
     });
+    console.log(chart);
     document.getElementById("stats").appendChild(statHTMl.body.firstChild);
     const projects = await api.fetchGET("api/projects/author/" + user._id);
     const userComments = await api.fetchGET("api/comments/author/" + user._id);
@@ -150,7 +152,7 @@ export const dashboard = {
 
       // const like = newCard.getElementById('like');
       // like.addEventListener("click", likeBtn(like, project));
-      
+
       posts.appendChild(newCard.body.firstChild);
       document
         .getElementById("trash-" + project._id)
