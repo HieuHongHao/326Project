@@ -23,7 +23,6 @@ class QueryBuilder {
       console.log(sortFields);
       this.queryChain = this.queryChain.sort(sortFields);
     } else {
-      ``
       this.queryChain = this.queryChain.sort("-createdAt _id");
     }
     return this;

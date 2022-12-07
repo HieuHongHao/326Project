@@ -4,7 +4,6 @@ import { Chart } from "./chart.js/auto/auto.js";
 export const dashboard = {
   init: async (user) => {
     const userStats = await api.fetchGET("api/users/" + user._id + "/stats");
-    console.log(userStats)
     const statHTMl = await utils.loadTemplate(
       "../components/templates/stats.html",
       {
@@ -14,12 +13,13 @@ export const dashboard = {
         ),
       }
     );
+    console.log(userStats);
     const chart = new Chart(document.getElementById("user-stats-graph"), {
       type: "bar",
       data: {
         labels: userStats
           .filter((row) => row.project != null)
-          .map((row) => row.project.title.substring(0,10)),
+          .map((row) => row.project.title),
         datasets: [
           {
             label: "Times in canvas",
@@ -32,7 +32,10 @@ export const dashboard = {
           },
           {
             label: "Chat Commits in canvas",
-            data: userStats.map((row) => row.chatCommits),
+            data: userStats.filter((row) => row.project != null).map((row) => {
+              console.log(row.project.title,row.chatCommits);
+              return row.chatCommits;
+            }),
             backgroundColor: "#6e738d",
             borderWidth: 1,
             barPercentage: 0.5,

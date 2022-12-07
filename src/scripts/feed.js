@@ -229,10 +229,10 @@ export const feed = {
       console.timeEnd("Build DOM");
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
-
     }
     async function getGithubRepo(page) {
       const response_json = await api.fetchGET(`api/github_repos?page=${page}`);
+      
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
         for (const post of posts) {
@@ -244,7 +244,6 @@ export const feed = {
 
     let page = 1;
     getFeed(page);
-
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
