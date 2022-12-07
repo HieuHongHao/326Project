@@ -12,6 +12,7 @@ export const feed = {
     const searchButton = document.getElementById("button-addon1");
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
+    const newBttn = document.getElementById("new-post-button");
 
     let currentSearch = "default";   // "default" || "Github"
 
@@ -204,10 +205,21 @@ export const feed = {
       }, 550);
       numPosts = response_json.projects.length;
     })
-    
+
     topBttn.addEventListener("click", async () => {
       currentSearch = "default";
       const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
+      postContainer.replaceChildren();
+      const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
+      setTimeout(() => {
+        for (const post of posts) {
+          postContainer.appendChild(post);
+        }
+      }, 550);
+    })
+    newBttn.addEventListener("click", async () => {
+      currentSearch = "default";
+      const response_json = await api.fetchGET('api/projects');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
@@ -232,7 +244,7 @@ export const feed = {
     }
     async function getGithubRepo(page) {
       const response_json = await api.fetchGET(`api/github_repos?page=${page}`);
-      
+
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
         for (const post of posts) {
