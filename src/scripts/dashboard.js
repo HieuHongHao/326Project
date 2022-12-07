@@ -88,7 +88,7 @@ export const dashboard = {
             fullSize: true,
             font: {
               weight: "bold",
-              size: 18,
+              size: 20,
             },
             color: "#c6d0f5",
           },

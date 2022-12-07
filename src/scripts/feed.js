@@ -51,6 +51,7 @@ export const feed = {
       const btn = new bootstrap.Button(button);
       btn.toggle();
     }
+    
     // Fix this
     // Change author id to current user id
     function likeBtn(like, project) {
@@ -259,7 +260,6 @@ export const feed = {
     }
     async function getGithubRepo(page) {
       const response_json = await api.fetchGET(`api/github_repos?page=${page}`);
-
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
         for (const post of posts) {
@@ -270,11 +270,21 @@ export const feed = {
     }
 
     let page = 1;
+    let github_page = 1;
     getFeed(page);
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
-        currentSearch === "Github" ? getGithubRepo(page) : getFeed(page);
+        // currentSearch === "Github" ? getGithubRepo(page) : getFeed(page);
+        if(currentSearch === "Github"){
+          github_page += 1;
+          getGithubRepo(github_page);
+          page = 1;
+        }else{
+          page += 1;
+          getFeed(page);
+          github_page = 1;
+        }
       }
     }
 

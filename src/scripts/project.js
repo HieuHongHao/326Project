@@ -19,6 +19,7 @@ export const project = {
       Android: "pn-card-type-blue",
       Guava: "pn-card-type-blue"
     };
+    const relatedProjectColumn = document.getElementById("right-bar-card-body");
     function createTag(tags) {
       const tagWrapper = document.createElement("div");
       tagWrapper.classList.add("tag-container");
@@ -81,6 +82,5 @@ export const project = {
     }
     
     document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
-    
   }
 }
