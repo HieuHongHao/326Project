@@ -15,8 +15,10 @@ export const feed = {
     const newBttn = document.getElementById("new-post-button");
 
     let currentSearch = "default";   // "default" || "Github"
-
-
+    let currentButton = newBttn;
+    toggleButton(currentButton);
+    
+    
     let numPosts = 0;
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
@@ -45,6 +47,10 @@ export const feed = {
       return () => window.location.href = "../project?=" + project;
     }
 
+    function toggleButton(button){
+      const btn = new bootstrap.Button(button);
+      btn.toggle();
+    }
     // Fix this
     // Change author id to current user id
     function likeBtn(like, project) {
@@ -54,7 +60,7 @@ export const feed = {
         like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
       }
     }
-
+    
     function toCanvas(project) {
       return () => window.location.href = "../canvas?=" + project._id;
     }
@@ -195,6 +201,9 @@ export const feed = {
 
     githubPostBtn.addEventListener("click", async () => {
       currentSearch = "Github";
+      toggleButton(currentButton);
+      currentButton = githubPostBtn;
+      toggleButton(currentButton);
       const response_json = await api.fetchGET('api/github_repos');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
@@ -208,6 +217,9 @@ export const feed = {
 
     topBttn.addEventListener("click", async () => {
       currentSearch = "default";
+      toggleButton(currentButton);
+      currentButton = topBttn;
+      toggleButton(currentButton);
       const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
@@ -219,6 +231,9 @@ export const feed = {
     })
     newBttn.addEventListener("click", async () => {
       currentSearch = "default";
+      toggleButton(currentButton);
+      currentButton = newBttn;
+      toggleButton(currentButton);
       const response_json = await api.fetchGET('api/projects');
       postContainer.replaceChildren();
       const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
