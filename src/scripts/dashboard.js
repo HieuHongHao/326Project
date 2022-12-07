@@ -33,7 +33,7 @@ export const dashboard = {
           {
             label: "Chat Commits in canvas",
             data: userStats.filter((row) => row.project != null).map((row) => {
-              console.log(row.project.title,row.chatCommits);
+              console.log(row.project.title, row.chatCommits);
               return row.chatCommits;
             }),
             backgroundColor: "#6e738d",
@@ -167,6 +167,9 @@ export const dashboard = {
         .addEventListener("click", toProject(project._id));
       newCard
         .getElementById("content")
+        .addEventListener("click", toProject(project._id));
+      newCard
+        .getElementById("visit")
         .addEventListener("click", toProject(project._id));
 
       // const like = newCard.getElementById('like');
