@@ -204,7 +204,7 @@ a.hover {
   /* column-gap: 3em; */
   /* text-align: start; */
   /* grid-template-columns: auto auto auto; */
-  color: #c6d0f5;
+  color: var(--cat-text-light) !important;
   padding-bottom: 1.2em !important;
   /* padding-bottom: 0.5rem !important; */
 }
