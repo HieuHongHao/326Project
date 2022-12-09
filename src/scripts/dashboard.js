@@ -13,7 +13,6 @@ export const dashboard = {
         ),
       }
     );
-    console.log(userStats);
     const chart = new Chart(document.getElementById("user-stats-graph"), {
       type: "bar",
       data: {
@@ -33,7 +32,7 @@ export const dashboard = {
           {
             label: "Chat Commits in canvas",
             data: userStats.filter((row) => row.project != null).map((row) => {
-              console.log(row.project.title, row.chatCommits);
+              // console.log(row.project.title, row.chatCommits);
               return row.chatCommits;
             }),
             backgroundColor: "#6e738d",
@@ -102,7 +101,6 @@ export const dashboard = {
         },
       },
     });
-    console.log(chart);
     document.getElementById("stats").appendChild(statHTMl.body.firstChild);
     const projects = await api.fetchGET("api/projects/author/" + user._id);
     const userComments = await api.fetchGET("api/comments/author/" + user._id);
