@@ -14,8 +14,8 @@ export const feed = {
     const topBttn = document.getElementById("top-post-button");
     const newBttn = document.getElementById("new-post-button");
 
-    
-    
+
+
     let currentSearch = "default";   // "default" || "Github"
     let currentButton = newBttn;
     let currentTechTag = "Java";
@@ -50,7 +50,7 @@ export const feed = {
       return () => window.location.href = "../project?=" + project;
     }
 
-    function toGithubrepo(url){
+    function toGithubrepo(url) {
       return () => window.location.href = url;
     }
     function toggleButton(button) {
@@ -117,13 +117,13 @@ export const feed = {
         like.addEventListener("click", () => alert("Please login to like"))
       }
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
-      if("url" in post){
-        html.getElementById(`canvas-${idx}`).children[0].innerHTML = "Github Repo";
-        html.getElementById(`canvas-${idx}`).addEventListener("click",toGithubrepo(post.url));
+      if ("url" in post) {
+        html.getElementById(`canvas-${idx}`).children[1].innerHTML = "Github Repo";
+        html.getElementById(`canvas-${idx}`).addEventListener("click", toGithubrepo(post.url));
       }
       else if (userId !== undefined) {
         html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
-      } 
+      }
       else {
         html.getElementById(`canvas-${idx}`).outerHTML = "";
       }
@@ -190,16 +190,16 @@ export const feed = {
     searchButton.addEventListener("click", async () => {
       const query = searchBar.value.split(":");
       let result;
-      if(currentSearch === "Github"){
+      if (currentSearch === "Github") {
         let response;
-        if(query.length > 0 & query[0] === "tags"){
+        if (query.length > 0 & query[0] === "tags") {
           response = await api.fetchGET(`api/github_repos?tech=${query[1]}`);
-        }else{
+        } else {
           response = await api.fetchGET('api/github_repos');
         }
         result = response.projects;
         currentTechTag = query[1];
-      }else{
+      } else {
         switch (query[0]) {
           case "tags":
             result = await api.fetchGET(`api/projects?tags=${query[1]}`);
@@ -281,7 +281,7 @@ export const feed = {
       // response_json.forEach(async (post, idx) => postContainer.appendChild(await createNewPost(post, idx)));
       numPosts = response_json.length;
     }
-    async function getGithubRepo(page,tag) {
+    async function getGithubRepo(page, tag) {
       const response_json = await api.fetchGET(`api/github_repos?page=${page}&tech=${tag}`);
       const posts = await Promise.all(response_json.projects.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
@@ -291,16 +291,16 @@ export const feed = {
       }, 550);
       numPosts = response_json.projects.length;
     }
-    
+
     let page = 1;
     let github_page = 1;
     getFeed(page);
     window.onscroll = function() {
       if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
         page += 1;
-        if(currentSearch === "Github"){
+        if (currentSearch === "Github") {
           github_page += 1;
-          getGithubRepo(github_page,currentTechTag);
+          getGithubRepo(github_page, currentTechTag);
           page = 1;
         } else {
           page += 1;
