@@ -57,7 +57,7 @@ const core = {
         const projectData = await api.fetchGET('api/projects/' + window.location.search.substring(2));
         if (projectData !== undefined) {
           await utils.loadModule('../pages/project.html', 'content');
-          project.init(projectData);
+          await project.init(projectData);
           break;
         }
       case route.match(/^\/profile\?*/)?.input:

@@ -171,10 +171,9 @@ export const dashboard = {
       newCard
         .getElementById("visit")
         .addEventListener("click", toProject(project._id));
-
+      
       // const like = newCard.getElementById('like');
       // like.addEventListener("click", likeBtn(like, project));
-
       posts.appendChild(newCard.body.firstChild);
       document
         .getElementById("trash-" + project._id)

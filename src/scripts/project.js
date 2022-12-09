@@ -1,5 +1,6 @@
 import { api } from './api.js';
 import { utils } from './utils.js';
+
 export const project = {
   init: async (project) => {
     const user = await api.isLoggedIn();
@@ -82,5 +83,32 @@ export const project = {
     }
     
     document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
+    const relatedProjects = await Promise.all(
+      project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=4`))
+    )
+    for(const row of relatedProjects){
+      for(const proj of row){
+        if(proj.title === project.title){
+          continue;
+        }
+        const h6 = document.createElement("h6");
+        h6.classList.add("d-inline-block");
+        h6.classList.add("fw-bold");
+        h6.innerHTML = proj.title;
+        const badgeContainer = document.createElement("div");
+        badgeContainer.classList.add("d-inline-block");
+        badgeContainer.classList.add("btn");
+        badgeContainer.classList.add("float-left");  
+        for(const tag of proj.tags){
+          const badge = document.createElement("div");
+          badge.classList.add("badge");
+          badge.classList.add(tagStyles[tag]);
+          badge.innerHTML = tag;
+          badgeContainer.appendChild(badge);
+        }
+        relatedProjectColumn.appendChild(h6);
+        relatedProjectColumn.appendChild(badgeContainer);
+      }
+    }
   }
 }
