@@ -37,6 +37,9 @@ export const project = {
     function toProfile(user) {
       return () => window.location.href = "../profile?=" + user;
     }
+    function toProject(project) {
+      return () => window.location.href = "../project?=" + project;
+    }
 
     projectHTML.getElementsByClassName('tags')[0].appendChild(createTag(project.tags));
 
@@ -94,6 +97,7 @@ export const project = {
         h6.classList.add("d-inline-block");
         h6.classList.add("fw-bold");
         h6.innerHTML = proj.title;
+        h6.addEventListener("click",toProject(proj.id))
         const badgeContainer = document.createElement("div");
         badgeContainer.classList.add("d-inline-block");
         badgeContainer.classList.add("btn");
