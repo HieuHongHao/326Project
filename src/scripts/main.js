@@ -57,7 +57,7 @@ const core = {
         const projectData = await api.fetchGET('api/projects/' + window.location.search.substring(2));
         if (projectData !== undefined) {
           await utils.loadModule('../pages/project.html', 'content');
-          const toAnimate = {"right-bar-card-body":300};
+          const toAnimate = {"right-bar-card-body":300,"comments":500};
           await utils.loadAnimate(toAnimate);
           await project.init(projectData);
           break;
