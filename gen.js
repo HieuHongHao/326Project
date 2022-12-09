@@ -13,7 +13,7 @@ let tags = ["React", "Python", "Java", "PostgreSQL", "Go"];
 
 
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 30; i++) {
   const password = faker.random.alphaNumeric(15);
   const newUser = new userModel({
     username: faker.name.firstName() + " " + faker.name.lastName(),
@@ -38,7 +38,7 @@ for (let i = 0; i < 50; i++) {
 }
 
 let comments = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 150; i++) {
   const randomProject = projects.sort(() => 0.5 - Math.random())[0];
   const newComment = new commentModel({
     project: randomProject._id,
@@ -61,7 +61,7 @@ for (let i = 0; i < projects.length; i++) {
 
 let likes = [];
 for (let i = 0; i < projects.length; i++) {
-  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * (users.length * 0.75)));
+  const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * (users.length * 0.80)));
   for (let j = 0; j < randomUsers.length; j++) {
     const like = new likeModel({
       project: projects[i]._id,
