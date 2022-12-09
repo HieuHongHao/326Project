@@ -1,6 +1,5 @@
 import { api } from './api.js';
 import { utils } from './utils.js';
-
 export const project = {
   init: async (project) => {
     const user = await api.isLoggedIn();

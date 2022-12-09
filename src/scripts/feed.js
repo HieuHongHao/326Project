@@ -50,6 +50,9 @@ export const feed = {
       return () => window.location.href = "../project?=" + project;
     }
 
+    function toGithubrepo(url){
+      return () => window.location.href = url;
+    }
     function toggleButton(button) {
       const btn = new bootstrap.Button(button);
       btn.toggle();
@@ -114,12 +117,16 @@ export const feed = {
         like.addEventListener("click", () => alert("Please login to like"))
       }
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
-      if (userId !== undefined) {
+      if("url" in post){
+        html.getElementById(`canvas-${idx}`).children[0].innerHTML = "Github Repo";
+        html.getElementById(`canvas-${idx}`).addEventListener("click",toGithubrepo(post.url));
+      }
+      else if (userId !== undefined) {
         html.getElementById(`canvas-${idx}`).addEventListener("click", toCanvas(post))
-      } else {
+      } 
+      else {
         html.getElementById(`canvas-${idx}`).outerHTML = "";
       }
-      
       return html.body.firstChild;
     }
 

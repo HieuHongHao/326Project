@@ -397,7 +397,6 @@ router.get("/github_repos", async (req, res) => {
     per_page: 10
   });
   const repos = response.data.items;
-  console.log(repos);
   const projects = repos.map((repo) => {
     return {
       id: repo.id,
@@ -413,8 +412,8 @@ router.get("/github_repos", async (req, res) => {
         avatar: repo.owner.avatar_url,
       },
       comments: ["Github"],
-      commentNumber: repo.open_issues_count
-      // url: html_url
+      commentNumber: repo.open_issues_count,
+      url: repo.html_url
     };
   });
   res.status(200).json({
