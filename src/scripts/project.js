@@ -86,13 +86,17 @@ export const project = {
     
     document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
     const relatedProjects = await Promise.all(
-      project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=4`))
+      project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=2`))
     )
+    console.log(relatedProjects);
+    let seen_projects = new Set();
+    seen_projects.add(project.title);
     for(const row of relatedProjects){
       for(const proj of row){
-        if(proj.title === project.title){
+        if(seen_projects.has(proj.title)){
           continue;
         }
+        seen_projects.add(proj.title);
         const h6 = document.createElement("h6");
         h6.classList.add("d-inline-block");
         h6.classList.add("fw-bold");

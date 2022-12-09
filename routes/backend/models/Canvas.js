@@ -21,7 +21,7 @@ const canvasSchema = new Schema({
         default: new Date(null),
     },
     duration:{
-        type:Number,
+        type: Number,
         default: 0
     }
 })
