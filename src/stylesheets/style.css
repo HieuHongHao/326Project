@@ -461,3 +461,6 @@ a.hover {
   width: 800px;
   height: 400px
 }
+.tool-icon {
+  font-size: 1.5em;
+}

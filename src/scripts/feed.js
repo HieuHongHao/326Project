@@ -20,8 +20,8 @@ export const feed = {
     let currentButton = newBttn;
     let currentTechTag = "Java";
     toggleButton(currentButton);
-    
-    
+
+
     let numPosts = 0;
     const postTemplate = await fetch('../components/templates/feedPost.html')
       .then(response => response.text())
@@ -50,11 +50,11 @@ export const feed = {
       return () => window.location.href = "../project?=" + project;
     }
 
-    function toggleButton(button){
+    function toggleButton(button) {
       const btn = new bootstrap.Button(button);
       btn.toggle();
     }
-    
+
     // Fix this
     // Change author id to current user id
     function likeBtn(like, project) {
@@ -64,7 +64,7 @@ export const feed = {
         like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
       }
     }
-    
+
     function toCanvas(project) {
       return () => window.location.href = "../canvas?=" + project._id;
     }
@@ -87,8 +87,8 @@ export const feed = {
 
     async function createNewPost(post, idx) {
       let vals = Object.values({
-        avatar: post.authorID.avatar,
-        username: post.authorID.username,
+        avatar: (post.authorID.avatar === undefined) ? userId.avatar : post.authorID.avatar,
+        username: (post.authorID.username === undefined) ? userId.username : post.authorID.username,
         userID: `user-${idx}`,
         title: post.title,
         titleID: `title-${idx}`,
@@ -127,7 +127,7 @@ export const feed = {
       newPostBtn.addEventListener("click", async () => {
         const content = document.getElementById("post-text-area").value;
         const title = document.getElementById("post-title").value;
-        const result = await api.fetchPOST('api/projects/', {
+        let result = await api.fetchPOST('api/projects/', {
           authorID: userId._id,
           title: title,
           content: content,
@@ -295,7 +295,7 @@ export const feed = {
           github_page += 1;
           getGithubRepo(github_page,currentTechTag);
           page = 1;
-        }else{
+        } else {
           page += 1;
           getFeed(page);
           github_page = 1;
