@@ -2,6 +2,7 @@ import { api } from './api.js';
 import { utils } from './utils.js';
 export const feed = {
   init: async () => {
+    utils.loadModule('../components/leftColumn.html', 'leftColumn');
     const userId = await api.isLoggedIn();
     const newPostBtn = document.getElementById("post-button");
     const postContainer = document.getElementById("feed");
