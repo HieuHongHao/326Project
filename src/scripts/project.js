@@ -5,7 +5,6 @@ export const project = {
     const user = await api.isLoggedIn();
     const newest = await api.fetchGET('api/projects?limit=99');
     const top = await api.fetchGET('api/projects?sort=-likeNumber');
-    console.log(newest[0])
     const leftColumn = (await utils.loadTemplate('../components/templates/leftColumn.html', {
       title: newest[0].title,
       link: "../project?=" + newest[0]._id,
@@ -102,12 +101,12 @@ export const project = {
     const relatedProjects = await Promise.all(
       project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=2`))
     )
-    console.log(relatedProjects);
+    // console.log(relatedProjects);
     let seen_projects = new Set();
     seen_projects.add(project.title);
-    for(const row of relatedProjects){
-      for(const proj of row){
-        if(seen_projects.has(proj.title)){
+    for (const row of relatedProjects) {
+      for (const proj of row) {
+        if (seen_projects.has(proj.title)) {
           continue;
         }
         seen_projects.add(proj.title);
