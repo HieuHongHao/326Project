@@ -3,6 +3,20 @@ import { utils } from './utils.js';
 export const project = {
   init: async (project) => {
     const user = await api.isLoggedIn();
+    const newest = await api.fetchGET('api/projects?limit=99');
+    const top = await api.fetchGET('api/projects?sort=-likeNumber');
+    console.log(newest[0])
+    const leftColumn = (await utils.loadTemplate('../components/templates/leftColumn.html', {
+      title: newest[0].title,
+      link: "../project?=" + newest[0]._id,
+      title1: top[0].title,
+      link1: "../project?=" + top[0]._id,
+      title2: top[1].title,
+      link2: "../project?=" + top[1]._id,
+      title3: top[2].title,
+      link3: "../project?=" + top[2]._id,
+    })).body.firstChild;
+    document.getElementById('leftColumn').append(leftColumn);
     const projectHTML = await utils.loadTemplate("../components/templates/projectPost.html", {
       avatar: project.authorID.avatar,
       username: project.authorID.username,
@@ -83,7 +97,7 @@ export const project = {
       document.getElementById("commentInput").outerHTML = "";
       document.getElementById("whiteboardContainer").outerHTML = "";
     }
-    
+
     document.getElementById('author').addEventListener('click', toProfile(project.authorID._id))
     const relatedProjects = await Promise.all(
       project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=2`))
@@ -101,12 +115,12 @@ export const project = {
         h6.classList.add("d-inline-block");
         h6.classList.add("fw-bold");
         h6.innerHTML = proj.title;
-        h6.addEventListener("click",toProject(proj.id))
+        h6.addEventListener("click", toProject(proj.id))
         const badgeContainer = document.createElement("div");
         badgeContainer.classList.add("d-inline-block");
         badgeContainer.classList.add("btn");
-        badgeContainer.classList.add("float-left");  
-        for(const tag of proj.tags){
+        badgeContainer.classList.add("float-left");
+        for (const tag of proj.tags) {
           const badge = document.createElement("div");
           badge.classList.add("badge");
           badge.classList.add(tagStyles[tag]);

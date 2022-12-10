@@ -13,8 +13,40 @@ export const feed = {
     const githubPostBtn = document.getElementById("github-project-button");
     const topBttn = document.getElementById("top-post-button");
     const newBttn = document.getElementById("new-post-button");
-
-
+    const newest = (await api.fetchGET('api/projects?limit=99'))
+    const top = await api.fetchGET('api/projects?sort=-likeNumber');
+    const leftColumn = (await utils.loadTemplate('../components/templates/leftColumn.html', {
+      title: newest[0].title,
+      link: "../project?=" + newest[0]._id,
+      title1: top[0].title,
+      link1: "../project?=" + top[0]._id,
+      title2: top[1].title,
+      link2: "../project?=" + top[1]._id,
+      title3: top[2].title,
+      link3: "../project?=" + top[2]._id,
+    })).body.firstChild;
+    document.getElementById('leftColumn').append(leftColumn);
+    const tags = newest.reduce((acc, e) => [...acc, ...e.tags], []);
+    let tagCount = {
+      React: 0,
+      Java: 0,
+      Python: 0,
+      Go: 0,
+      PostgreSQL: 0,
+    };
+    tags.forEach((val, idx) => {
+      if (val in tagCount) {
+        tagCount[val] += 1;
+      }
+    });
+    const rightColumn = (await utils.loadTemplate('../components/templates/rightColumn.html', {
+      react: tagCount.React,
+      js: tagCount.Java,
+      python: tagCount.Python,
+      go: tagCount.Go,
+      sql: tagCount.PostgreSQL
+    })).body.firstChild;
+    document.getElementById('rightColumn').append(rightColumn);
 
     let currentSearch = "default";   // "default" || "Github"
     let currentButton = newBttn;
@@ -243,9 +275,8 @@ export const feed = {
       toggleButton(currentButton);
       currentButton = topBttn;
       toggleButton(currentButton);
-      const response_json = await api.fetchGET('api/projects?sort=-likeNumber');
       postContainer.replaceChildren();
-      const posts = await Promise.all(response_json.map((post, idx) => createNewPost(post, idx)));
+      const posts = await Promise.all(top.map((post, idx) => createNewPost(post, idx)));
       setTimeout(() => {
         for (const post of posts) {
           postContainer.appendChild(post);

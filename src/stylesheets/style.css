@@ -155,6 +155,11 @@
   border-color: var(--cat-crust) !important;
 }
 
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
 a.hover {
     text-decoration: underline !important;
 }
