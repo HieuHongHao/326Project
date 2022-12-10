@@ -49,12 +49,22 @@ for (let i = 0; i < 150; i++) {
   comments.push(newComment);
 }
 
+function randomDate(start, end, startHour, endHour) {
+  var date = new Date(+start + Math.random() * (end - start));
+  var hour = startHour + Math.random() * (endHour - startHour) | 0;
+  date.setHours(hour);
+  return date;
+}
+
 let canvases = [];
 for (let i = 0; i < projects.length; i++) {
   const project = projects[i]._id;
+  const weight = Math.floor(Math.random() * 50);
   const newCanvas = new canvasModel({
-    user: project.authorId,
+    user: projects[i].authorID,
     project,
+    chatCommits: weight,
+    upTime: randomDate(new Date(null), new Date(99999999), 19, 24)
   });
   canvases.push(newCanvas);
 }
