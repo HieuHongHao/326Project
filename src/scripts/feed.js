@@ -26,6 +26,27 @@ export const feed = {
       link3: "../project?=" + top[2]._id,
     })).body.firstChild;
     document.getElementById('leftColumn').append(leftColumn);
+    const tags = newest.reduce((acc, e) => [...acc, ...e.tags], []);
+    let tagCount = {
+      React: 0,
+      Java: 0,
+      Python: 0,
+      Go: 0,
+      PostgreSQL: 0,
+    };
+    tags.forEach((val, idx) => {
+      if (val in tagCount) {
+        tagCount[val] += 1;
+      }
+    });
+    const rightColumn = (await utils.loadTemplate('../components/templates/rightColumn.html', {
+      react: tagCount.React,
+      js: tagCount.Java,
+      python: tagCount.Python,
+      go: tagCount.Go,
+      sql: tagCount.PostgreSQL
+    })).body.firstChild;
+    document.getElementById('rightColumn').append(rightColumn);
 
     let currentSearch = "default";   // "default" || "Github"
     let currentButton = newBttn;
