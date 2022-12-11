@@ -43,7 +43,7 @@ Semester: Fall 2022
 <img src="../demos/final/delete_project.gif">
 
 ## Feed
-- Toggle between "new", "top", and "github projects
+- Toggle between "new", "top", and "github projects"
 - Like and unlike a post
 - View post contents
 - Redirection to post-specific pages (project page)
