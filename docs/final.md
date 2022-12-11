@@ -1,6 +1,6 @@
-# Team Alef ($\alef$)
-## Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a>
-## Semester: Fall 2022
+# Team Alef (ℵ)
+<h2>Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a></h2>
+<h2>Semester: Fall 2022</h2>
 
 # Overview
 
@@ -73,9 +73,10 @@
 
 ## Canvas
 - Unique URL
-- Draw on canvas (change paint brush, toggle eraser, change brush color, change brush size, real-time)
+- Draw on canvas (real-time, change paint brush, toggle eraser, change brush color, change brush size)
 - Drawing is interactive through websockets
-- Chat (send messages and math equations, toggle chat visibility, real-time)
+- Chat (send messages and math equations in real-time, toggle chat visibility)
+- Each project has its own canvas page and chat
 - Notification when someone joins canvas page with avatar of active users
 
 <img src="../demos/final/canvas.gif">
@@ -85,10 +86,30 @@
 
 # APIs
 
+| Path          | Method      | Input | Example     | Description |
+| ------------- | ----------- | ----------- | ----------- | ----------- |
+| `/users/:id`  | GET         | N/A | here]()         | Get user by id         |
+| `/users` | POST | username, email, password, avatar | [here]() | Create user 
+
+
+<!-- api/posts: returning all the posts query: tag: return all the posts with matching tags titles: return all the posts with matching titles
+api/posts/:id: return the data of post with matching id
+api/posts?sort=dec: sorts the post in descending order
+api/posts/id/comment: get all the comments of a post
+api/users: return all users information
+api/users/id: return all information of user
+api/canvas: print all information of every canvas
+api/canvas/id: get all the information of a certain canvas -->
+
+
+# Database
+
+# URL Routes/Mappings
+
 # Authentication
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
 
-```
+```javascript
 const hashPassword = await sha256(password, 12)
 const correctPass = hashPassword === user[0].password;
 ```
@@ -98,3 +119,7 @@ const correctPass = hashPassword === user[0].password;
 
 In the following example, you only have the option to "create post" once you're logged in:
 <img src="../demos/final/authorization_example.gif">
+
+# Division of Labor
+
+# Conclusion
