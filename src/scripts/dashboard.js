@@ -169,7 +169,7 @@ export const dashboard = {
       newCard
         .getElementById("visit")
         .addEventListener("click", toProject(project._id));
-      
+
       // const like = newCard.getElementById('like');
       // like.addEventListener("click", likeBtn(like, project));
       posts.appendChild(newCard.body.firstChild);
@@ -180,5 +180,25 @@ export const dashboard = {
           document.getElementById("project-" + project._id).outerHTML = "";
         });
     });
+
+    document.getElementById("changePassBtn").addEventListener("click", async () => {
+      const newPass = document.getElementById("newPass").value;
+      const confirmPass = document.getElementById("confirmPass").value;
+      if (newPass === confirmPass) {
+        const test = await api.fetchPUT("api/users/" + user._id, { password: newPass });
+        window.localStorage.removeItem('token');
+        window.location.href = "/";
+      } else {
+        alert("Passwords do not match");
+      }
+    });
+
+    document.getElementById("deleteAcc").addEventListener("click", async () => {
+
+    });
+
+
+
+
   },
 };
