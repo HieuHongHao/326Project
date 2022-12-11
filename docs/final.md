@@ -1,9 +1,13 @@
+<img src="../demos/final/intro.gif">
+
 # Team Alef (ℵ)
 Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a>
 
 Semester: Fall 2022
 
 # Overview
+<center><h2>!!!TODO TODO TODO!!!</h2></center>
+
 
 # Team Members
 - Hieu Nguyen ([HieuHongHao](https://github.com/HieuHongHao))
