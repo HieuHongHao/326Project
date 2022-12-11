@@ -9,6 +9,7 @@ const CommentModel = require("./backend/models/Comment");
 const CanvasModel = require("./backend/models/Canvas");
 const LikeModel = require("./backend/models/Like");
 const QueryBuilder = require("./backend/QueryBuilder");
+const bcrypt = require("bcryptjs");
 
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
@@ -321,7 +322,11 @@ router.post("/users/delete/:id", async (req, res) => {
 // Update user information
 router.put("/users/:id", async (req, res) => {
   try {
-    let newUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if ('password' in req.body) {
+      const salt = await bcrypt.genSalt(10);
+      req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+    const newUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -388,7 +393,7 @@ router.get("/github_repos", async (req, res) => {
   if (req.query.page) {
     page = req.query.page;
   }
-  if(req.query.tech){
+  if (req.query.tech) {
     tech = req.query.tech;
   }
   const response = await octokit.rest.search.repos({
