@@ -339,7 +339,16 @@ Cedrick.Halvorson@yahoo.com || p1ywj76nhbvpr4c
 
 # Division of Labor
 
+Peter Phan: feed page, project page, dashboard, backend, API endpoints, CRUD, fake data generation, database design, database implementation, frontend (bootstrap), routing, code refactoring, code organization, built in-house template engine, authentication, authorization, deployment
 
+Hieu Nguyen: feed page, project page, account page (statistics / graphs), canvas page (notification), backend, API endpoints, Github API, CRUD, database design, database implementation, frontend (using JS libraries), query-builder helper, deployment
 
+Phat Nguyen (Peter): canvas page (canvas + chat), landing page, feed page, frontend, backend (implemented API), database design, password encryption, milestone docs, deployment
+
+We all contributed equally at each milestone. But of course everyone's priorities and strengths were different so we contributed to different aspects of the website in an optimal way.
 
 # Conclusion
+
+This assignment gave us an opportunity to learn how to develop a website from start to finish in a team environment. Some of the things that we learned include: routing, API endpoints, and deployment. Some technologies we learned include: socket.io and bootstrap.
+
+One of the major difficulties we faced was with routing with dynamically generated content. We found this process challenging when we realized our routing implementation was not set up correctly. As a result, we had to reorganize a large part of our code-base and this took a lot of time. If there is something we would like to know prior to starting this project, was that we would prioritize more time in designing the routing of the project. We did this half-way through the project but ideally we want to think about this at the very start. Lastly, another difficulty was with deploying to Heroku. Our heroku code require some changes for it to work: such as the socket.io URL. 
