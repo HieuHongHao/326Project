@@ -1,4 +1,4 @@
-const ENV = "local";
+const ENV = "not_local";
 
 export function getURL() {
   if (ENV === "local") {
