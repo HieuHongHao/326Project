@@ -339,7 +339,12 @@ Cedrick.Halvorson@yahoo.com || p1ywj76nhbvpr4c
 
 # Division of Labor
 
+Peter Phan: feed page, project page, dashboard, backend, API endpoints, CRUD, fake data generation, database design, database implementation, frontend (bootstrap), routing, code refactoring, code organization, built in-house template engine, authentication, authorization, deployment
 
+Hieu Nguyen: feed page, project page, account page (statistics / graphs), canvas page (notification), backend, API endpoints, Github API, CRUD, database design, database implementation, frontend (using JS libraries), query-builder helper, deployment
 
+Phat Nguyen (Peter): canvas page (canvas + chat), landing page, feed page, frontend, backend (implemented API), database design, password encryption, milestone docs, deployment
+
+We all contributed equally at each milestone. But of course everyone's priorities and strengths were different so we contributed to different aspects of the website in an optimal way.
 
 # Conclusion
