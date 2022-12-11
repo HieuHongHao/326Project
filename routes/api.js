@@ -309,11 +309,18 @@ router.post("/users", async (req, res) => {
 // Delete a user and their projects, comments, likes
 router.post("/users/delete/:id", async (req, res) => {
   try {
+    // if ('password' in req.body) {
+    //   const salt = await bcrypt.genSalt(10);
+    //   const pass = await bcrypt.hash(req.body.password, salt);
+    //   if (UserMode.findById(req.params.id).password === pass) {
     const data = await UserModel.findByIdAndDelete(req.params.id);
     await ProjectModel.deleteMany({ authorID: req.params.id });
     await CommentModel.deleteMany({ author: req.params.id });
     await LikeModel.deleteMany({ author: req.params.id });
-    res.send(`User ${data.username} has been deleted..`);
+    await CanvasModel.deleteMany({ user: req.params.id });
+    res.status(200).json({ message: `User ${data.username} has been deleted..` });
+    // }
+    // }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
