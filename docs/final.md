@@ -49,7 +49,7 @@ Semester: Fall 2022
 - Redirection to post-specific pages (project page)
 - Add new posts
 - Infinite scrolling
-- Search posts by tags or title (i.e. `tags: [...]` and `title: [...]`)
+- Search posts by tags or title (i.e. '`tags: [...]`' and '`title: [...]`')
 - Search posts from Github by tags or title
 
 <img src="../demos/final/feed.gif">
@@ -137,7 +137,7 @@ Semester: Fall 2022
 
 For the database we are using MongoDB. 
 ### User Schema
-```
+```javascript
 /*User's name*/
 username: {
     type: String,
@@ -170,7 +170,7 @@ favouriteTechStack: [{ type: String }]
 <img src="../demos/users.png">
 
 ### Project Schema
-```
+```javascript
 authorID: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -207,7 +207,7 @@ tags: [
 <img src="../demos/projects.png">
 
 ### Comment Schema
-```
+```javascript
 _id: {
     type: Schema.Types.ObjectId,
     ref: "Comment"
@@ -235,7 +235,7 @@ content:{
 <img src="../demos/comments.png">
 
 ### Like Schema
-```
+```javascript
 /*Used to link a user's like to a post/project*/
 project: {
     type: Schema.Types.ObjectId,
@@ -250,7 +250,7 @@ author: {
 <img src="../demos/likes.png">
 
 ### Canvas Schema
-```
+```javascript
 user:{
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Use"
