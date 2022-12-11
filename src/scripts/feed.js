@@ -138,15 +138,13 @@ export const feed = {
       const template = postTemplate(...vals);
       const parser = new DOMParser();
       const html = parser.parseFromString(template, 'text/html');
-      html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID._id))
-      html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
-      html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
-      html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))
       const like = html.getElementById(`like-${idx}`);
-      if (userId != undefined) {
+      if (userId != undefined && !("url" in post)) {
         like.addEventListener("click", likeBtn(like, post))
-      } else {
-        like.addEventListener("click", () => alert("Please login to like"))
+        html.getElementById(`user-${idx}`).addEventListener("click", toProfile(post.authorID._id))
+        html.getElementById(`title-${idx}`).addEventListener("click", toProject(post._id))
+        html.getElementById(`content-${idx}`).addEventListener("click", toProject(post._id))
+        html.getElementById(`comment-${idx}`).addEventListener("click", toProject(post._id))
       }
       html.getElementsByClassName('tags')[0].appendChild(createTag(post.tags));
       if ("url" in post) {
