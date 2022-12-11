@@ -103,7 +103,7 @@ KanvasWire is a platform that enable users to post their project ideas to collab
 ## Users
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/users/:id`        | GET  | N/A                               | [here](https://cs326project.herokuapp.com/api/users/6393d0f23e1af091efe8e7a3) | Get user by id   
+| `/users/:id`        | GET  | N/A                               | [here](https://cs326project.herokuapp.com/api/users/63964855caa665632eee2612) | Get user by id   
 | `/users`            | POST | username, email, password, avatar | Use UI   | Create user 
 | `/users/delete/:id` | POST | id                                | Use UI   | Delete user and their projects, comments, likes
 | `/users/:id`        | PUT  | id, req.body                      | Use UI   | Update user information
@@ -125,9 +125,9 @@ KanvasWire is a platform that enable users to post their project ideas to collab
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
 | `/projects/:id/comments` | POST | id, authorID, content | Use UI | Create a new comment for a project
-| `/comments/author/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/comments/author/6393d0f23e1af091efe8e7a3) | Get comments by user ID
-| `/projects/:id/comments` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7c3/comments) | Get all comments from a project
-| `/projects/:id/topChatCommits` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7d6/topChatCommits) | Ranking users based on number of chat commits in a project
+| `/comments/author/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/comments/author/63964855caa665632eee2612) | Get comments by user ID
+| `/projects/:id/comments` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/63964855caa665632eee2654/comments) | Get all comments from a project
+| `/projects/:id/topChatCommits` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/63964855caa665632eee2654/topChatCommits) | Ranking users based on number of chat commits in a project
 
 ## Canvas
 | Path          | Method      | Input | Example     | Description |
