@@ -194,7 +194,10 @@ export const dashboard = {
     });
 
     document.getElementById("deleteAcc").addEventListener("click", async () => {
-
+      const pass = document.getElementById("deleteAccPass").value;
+      await api.fetchPOST("api/users/delete/" + user._id, { password: pass });
+      window.localStorage.removeItem('token');
+      window.location.href = "/";
     });
 
 
