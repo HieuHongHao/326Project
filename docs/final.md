@@ -137,7 +137,7 @@ Semester: Fall 2022
 
 For the database we are using MongoDB. 
 ### User Schema
-```json
+```
 /*User's name*/
 username: {
     type: String,
@@ -170,7 +170,7 @@ favouriteTechStack: [{ type: String }]
 <img src="../demos/users.png">
 
 ### Project Schema
-```json
+```
 authorID: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -207,7 +207,7 @@ tags: [
 <img src="../demos/projects.png">
 
 ### Comment Schema
-```json
+```
 _id: {
     type: Schema.Types.ObjectId,
     ref: "Comment"
@@ -235,7 +235,7 @@ content:{
 <img src="../demos/comments.png">
 
 ### Like Schema
-```json
+```
 /*Used to link a user's like to a post/project*/
 project: {
     type: Schema.Types.ObjectId,
@@ -250,7 +250,7 @@ author: {
 <img src="../demos/likes.png">
 
 ### Canvas Schema
-```json
+```
 user:{
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Use"
