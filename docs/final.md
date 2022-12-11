@@ -20,7 +20,7 @@
 
 ## Login
 - Login and be redirected to account page
-- Authorization
+- Authorization (more info [here](#authorization))
 
 <img src="../demos/final/login.gif">
 
@@ -95,3 +95,6 @@ const correctPass = hashPassword === user[0].password;
 
 ## Authorization
 - You can only use some features if you are already login (authenticated)
+
+In the following example, you only have the option to "create post" once you're logged in:
+<img src="../demos/final/authorization_example.gif">
