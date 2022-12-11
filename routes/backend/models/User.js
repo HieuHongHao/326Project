@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://people.cs.umass.edu/~marius/marius.jpg",
+    default: "https://loremflickr.com/480/480/people?lock=39714",
   },
   dateCreated: {
     type: Date,
