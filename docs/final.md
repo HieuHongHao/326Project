@@ -119,14 +119,14 @@ Semester: Fall 2022
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
 | `/projects/:id/comments` | POST | id, authorID, content | Use UI | Create a new comment for a project
-| `/comments/author/:id` | GET | id | [here]() | Get comments by user ID
-| `/projects/:id/comments` | GET | projectID | [here]() | Get all comments from a project
-| `/projects/:id/topChatCommits` | GET | projectID | [here]() | Ranking users based on number of chat commits in a project
+| `/comments/author/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/comments/author/6393d0f23e1af091efe8e7a3) | Get comments by user ID
+| `/projects/:id/comments` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7c3/comments) | Get all comments from a project
+| `/projects/:id/topChatCommits` | GET | projectID | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7d6/topChatCommits) | Ranking users based on number of chat commits in a project
 
 ## Canvas
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/canvas` | GET | N/A | [here]() | Get all canvas
+| `/canvas` | GET | N/A | [here](https://cs326project.herokuapp.com/api/canvas) | Get all canvas
 | `/canvas` | POST | req.body | Use UI | Create canvas stats
 | `/canvas/:id/chatCommits` | PUT | id, req.body | Use UI | Update chat commits
 | `/users/:id/stats` | GET | userID | Use UI | Get user stats from all projects
@@ -134,7 +134,7 @@ Semester: Fall 2022
 ## GitHub
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/github_repos` | GET | N/A | [here]() | Get top Github repos
+| `/github_repos` | GET | N/A | [here](https://cs326project.herokuapp.com/api/github_repos) | Get top Github repos
 
 
 # Database
