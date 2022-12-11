@@ -1,4 +1,4 @@
-# Team Alef ($\aleph$)
+# Team Alef ($\alef$)
 ## Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a>
 ## Semester: Fall 2022
 
@@ -10,6 +10,7 @@
 - Phat Nguyen ([PeterNg15](https://github.com/PeterNg15))
 
 # User Interface
+- Toggle light/dark mode
 
 ## Landing page
 - View new projects, project leaderboard
@@ -37,7 +38,7 @@
 - Manage projects
 - Manage account (edit passwords, delete account)
 
-### Manage projects
+<center><h2>Manage projects</h2></center>
 <img src="../demos/final/delete_project.gif">
 
 ## Feed
@@ -52,13 +53,13 @@
 
 <img src="../demos/final/feed.gif">
 
-### Search
+<center><h2>Search</h2></center>
 <img src="../demos/final/search.gif">
 
-### Search in Github
+<center><h2>Search in Github</h2></center>
 <img src="../demos/final/search_github.gif">
 
-### Create Post
+<center><h2>Create Post</h2></center>
 <img src="../demos/final/new_post.gif">
 
 ## Project page
