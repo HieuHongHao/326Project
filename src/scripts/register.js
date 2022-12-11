@@ -19,7 +19,7 @@ export const register = {
           username: username,
           email: email,
           password: password,
-          avatar: "https://people.cs.umass.edu/~marius/marius.jpg"
+          avatar: "https://loremflickr.com/480/480/people?lock=39714"
         });
         if ("token" in result) {
           window.localStorage.setItem("token", result.token);
