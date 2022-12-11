@@ -1,6 +1,7 @@
 # Team Alef (ℵ)
-<h2>Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a></h2>
-<h2>Semester: Fall 2022</h2>
+Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a>
+
+Semester: Fall 2022
 
 # Overview
 
@@ -84,6 +85,9 @@
 <center><h2>Chat</h2></center>
 <img src="../demos/final/chat.gif">
 
+## Custom 404 Page
+<img src="../demos/404_demo.gif">
+
 # APIs
 
 ## Users
@@ -131,7 +135,154 @@
 
 # Database
 
+For the database we are using MongoDB. 
+### User Schema
+```json
+/*User's name*/
+username: {
+    type: String,
+    required: [true, "User must have a username"]
+},
+/*Users email they use to login*/
+email: {
+    type: String,
+    required: [true, "User must have an email"]
+},
+/*Encrypted password using SHA256*/
+password: {
+    type: String,
+    require: [true, "User must have a password"],
+    minlength: 6,
+},
+/*URL to their avatar*/
+avatar: {
+    type: String,
+    default: "https://loremflickr.com/cache/resized/65535_52235423932_e5012af91a_b_480_480_nofilter.jpg",
+},
+/*Datetime the user created the account*/
+dateCreated: {
+    type: Date,
+    default: Date.now(),
+},
+/*Fun facts and stats we'll use to display in the future*/
+favouriteTechStack: [{ type: String }]
+```
+<img src="../demos/users.png">
+
+### Project Schema
+```json
+authorID: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: [true, "A project must have a author"],
+},
+/*Title of the project*/
+title: {
+    type: String,
+    required: [true, "A Project must have a title"],
+},
+/*Each project has a post. The post will include this content*/
+content: {
+    type: String,
+    required: [true, "A project must have content"],
+    maxlength: 1000,
+},
+/*Number of likes; We'll populate this with from the "like" database*/
+likeNumber: {
+    type: Number,
+    default: 0,
+},
+/*Number of comments; We'll populate this from the "comment" database*/
+commentNumber: {
+    type: Number,
+    default: 0,
+},
+/*Like hashtags/keywords of a post/project*/
+tags: [
+    {
+    type: String,
+    },
+]
+```
+<img src="../demos/projects.png">
+
+### Comment Schema
+```json
+_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Comment"
+}
+/*Used to link a user's comment to a post*/
+project: {
+    type: Schema.Types.ObjectId,
+    ref: "Project"
+},
+/*Used to link a comment from a post to a user*/
+author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+},
+/*Date posted*/
+createdAt:{
+    type: Date,
+    default: Date.now()
+},
+/*Comment message*/
+content:{
+    type: String
+}
+```
+<img src="../demos/comments.png">
+
+### Like Schema
+```json
+/*Used to link a user's like to a post/project*/
+project: {
+    type: Schema.Types.ObjectId,
+    ref: "Project"
+  },
+/*Used to link a like from a post to a user*/
+author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+}
+```
+<img src="../demos/likes.png">
+
+### Canvas Schema
+```json
+user:{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Use"
+},
+project:{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Project"
+},
+/*For stats*/
+chatCommits:{
+    type:Number,
+    default: 0
+},
+/*Also for stats*/
+upTime:{
+    type: Date,
+    default: Date.now(),
+}
+```
+<img src="../demos/canvas.png">
+
+
 # URL Routes / Mappings
+| URL Path          | Description      | Authentication |
+| ------------- | ----------- | ----------- |
+| `/` | Landing page | not required
+| `/feed` | Feed page | not required but some features are restricted to only login users (see [below](#authorization))
+| `/project?=...` | Each project has its own page | not required but some features are restricted to only login users
+| `/canvas?=...` | Each project has its own canvas page | not required but some features are restricted to only login users
+| `/profile?=...` | Other users profile | required
+| `/dashboard` | Users own profile | required
+
 
 # Authentication
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
@@ -146,6 +297,15 @@ const correctPass = hashPassword === user[0].password;
 
 In the following example, you only have the option to "create post" once you're logged in:
 <img src="../demos/final/authorization_example.gif">
+
+Some features that require authentication first:
+- Create post (in feed page)
+- Visit other users profile (in profile page)
+- Visit your own profile (in account page)
+- See chat and interact in chat (in canvas page)
+- Manage projects (in account page)
+
+Refer to [this section](#url-routes--mappings) for more information on which page requires authentication
 
 # Division of Labor
 
