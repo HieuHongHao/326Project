@@ -49,7 +49,7 @@ Semester: Fall 2022
 - Redirection to post-specific pages (project page)
 - Add new posts
 - Infinite scrolling
-- Search posts by tags or title (i.e. 'tags: [...]' and 'title: [...]')
+- Search posts by tags or title (i.e. `tags: [...]` and `title: [...]`)
 - Search posts from Github by tags or title
 
 <img src="../demos/final/feed.gif">
