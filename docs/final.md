@@ -6,8 +6,7 @@ Application name: <a href="https://cs326project.herokuapp.com/">KanvasWire</a>
 Semester: Fall 2022
 
 # Overview
-<center><h2>!!!TODO TODO TODO!!!</h2></center>
-
+KanvasWire is a platform that enable users to post their project ideas to collaborate with like-minded individuals. KanvasWire offers a variety of services for collaboration such as: a comment section for discussion, an interactive canvas to illustrate their ideas, and a chat to communicate with collaborators. The novelty of our platform comes in the form of combining those services together into one innovative product. Our platform's target audience are people with a STEM and tech background and we made sure to address their needs through our website. For instance, we implemented a chat feature to enable users to send equations using LaTeX as we believe this would improve communication and enhance productivity. You can try out KanvasWire [here](https://cs326project.herokuapp.com/) or through the url: [https://cs326project.herokuapp.com/](https://cs326project.herokuapp.com/). 
 
 # Team Members
 - Hieu Nguyen ([HieuHongHao](https://github.com/HieuHongHao))
@@ -40,17 +39,23 @@ Semester: Fall 2022
 ## Account
 - Display account info (profile picture, username)
 - Display personal statistics
-- Manage projects
-- Manage account (edit passwords, delete account)
+- Manage projects (view project, see number of likes, navigate to project, delete project)
+- Manage account (change passwords, delete account)
 
 <center><h2>Manage projects</h2></center>
 <img src="../demos/final/delete_project.gif">
+
+<center><h2>Change password</h2></center>
+<img src="../demos/final/change_password.gif">
+
+<center><h2>Delete account</h2></center>
+<img src="../demos/final/delete_account.gif">
 
 ## Feed
 - Toggle between "new", "top", and "github projects"
 - Like and unlike a post
 - View post contents
-- Redirection to post-specific pages (project page)
+- Redirection to post-specific pages (project page, Kanvas page)
 - Add new posts
 - Infinite scrolling
 - Search posts by tags or title (i.e. '`tags: [...]`' and '`title: [...]`')
@@ -82,7 +87,8 @@ Semester: Fall 2022
 - Drawing is interactive through websockets
 - Chat (send messages and math equations in real-time, toggle chat visibility)
 - Each project has its own canvas page and chat
-- Notification when someone joins canvas page with avatar of active users
+- Notification when someone joins canvas page with avatar of active users in the bottom left of page
+- Update chat commit and uptime AFTER disconnecting/refreshing canvas page (for statistics)
 
 <img src="../demos/final/canvas.gif">
 
@@ -304,6 +310,9 @@ In the following example, you only have the option to "create post" once you're 
 
 Some features that require authentication first:
 - Create post (in feed page)
+- Liking a post (in feed page)
+- Wont be redirected to a project page (in feed page) but can still access a project if given a URL
+- No button to redirect to Kanvas page (in feed page) but can still access a project if given a URL
 - Visit other users profile (in profile page)
 - Visit your own profile (in account page)
 - See chat and interact in chat (in canvas page)
@@ -311,6 +320,26 @@ Some features that require authentication first:
 
 Refer to [this section](#url-routes--mappings) for more information on which page requires authentication
 
+## Existing accounts
+For testing purposes we provide the following list of account and password for testing:
+```
+Username || Pasword
+
+Micaela.Cole14@hotmail.com || n7wjfolfvmxeujl
+Eudora.Huels@hotmail.com || gsq3578gyxusqw6
+Rossie.Mosciski99@gmail.com || ylnq5uicn10pggr
+Jacques.Dickinson67@gmail.com || s72dp7nusdlogo2
+Marcelino.Hand71@hotmail.com || dqd5dblbh80znrx
+Prudence19@yahoo.com || x767t8s28uirbg7
+Maegan_Murray@gmail.com || mpv8vekko5i2573
+Cheyanne_Grady18@yahoo.com || 20220qjadpl72sp
+Lavon.Goldner@yahoo.com || n5xg3sm9fdwtig1
+Cedrick.Halvorson@yahoo.com || p1ywj76nhbvpr4c
+```
+
 # Division of Labor
+
+
+
 
 # Conclusion
