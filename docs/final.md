@@ -97,7 +97,7 @@ Semester: Fall 2022
 ## Users
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/users/:id`        | GET  | N/A                               | [here]() | Get user by id   
+| `/users/:id`        | GET  | N/A                               | [here](https://cs326project.herokuapp.com/api/users/6393d0f23e1af091efe8e7a3) | Get user by id   
 | `/users`            | POST | username, email, password, avatar | Use UI   | Create user 
 | `/users/delete/:id` | POST | id                                | Use UI   | Delete user and their projects, comments, likes
 | `/users/:id`        | PUT  | id, req.body                      | Use UI   | Update user information
@@ -106,14 +106,14 @@ Semester: Fall 2022
 ## Projects / Posts
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/projects` | GET | N/A | [here]() | Get all projects
-| `/projects/:id` | GET | id | [here]() | Get project by ID
-| `/projects/author/:id` | GET | authorID | [here]() | Get project by author ID
+| `/projects` | GET | N/A | [here](https://cs326project.herokuapp.com/api/projects) | Get all projects
+| `/projects/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7de) | Get project by ID
+| `/projects/author/:id` | GET | authorID | [here](https://cs326project.herokuapp.com/api/projects/author/6393d0f23e1af091efe8e7a3) | Get project by author ID
 | `/projects` | POST | authorID, title, content, tags | Use UI | Create a new project
 | `/projects/delete/:id` | POST | id | Use UI | Delete project and its comments, likes
 | `/projects/:id` | PUT | id, req.body | N/A | Update a project
 | `/api/projects/:id/like` | POST | id, userID | Use UI | Create or delete a like for a project
-| `/projects/:id/topContributors` | GET | id | [here]() | Ranking users based on number of comments in a project
+| `/projects/:id/topContributors` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7c3/topContributors) | Ranking users based on number of comments in a project
 
 ## Comments
 | Path          | Method      | Input | Example     | Description |
