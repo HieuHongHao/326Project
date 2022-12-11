@@ -325,16 +325,12 @@ For testing purposes we provide the following list of account and password for t
 ```
 Username || Pasword
 
-Micaela.Cole14@hotmail.com || n7wjfolfvmxeujl
-Eudora.Huels@hotmail.com || gsq3578gyxusqw6
-Rossie.Mosciski99@gmail.com || ylnq5uicn10pggr
-Jacques.Dickinson67@gmail.com || s72dp7nusdlogo2
-Marcelino.Hand71@hotmail.com || dqd5dblbh80znrx
-Prudence19@yahoo.com || x767t8s28uirbg7
-Maegan_Murray@gmail.com || mpv8vekko5i2573
-Cheyanne_Grady18@yahoo.com || 20220qjadpl72sp
-Lavon.Goldner@yahoo.com || n5xg3sm9fdwtig1
-Cedrick.Halvorson@yahoo.com || p1ywj76nhbvpr4c
+Caterina.Paucek@yahoo.com || anyr6z01ub0f71x
+Tyler.Kovacek35@gmail.com || gm98uzvrlz5zvqe
+Stacy41@gmail.com || vmkmuekzj10cs8i
+Constantin39@hotmail.com || rl9psodbsx7ktei
+Elisa_Howell@gmail.com || 7ew1xlh803z9c4x
+Hazel53@yahoo.com || ti9zbxw1gz8zjp3
 ```
 
 # Division of Labor
