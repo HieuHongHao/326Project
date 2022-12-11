@@ -113,13 +113,13 @@ KanvasWire is a platform that enable users to post their project ideas to collab
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
 | `/projects` | GET | N/A | [here](https://cs326project.herokuapp.com/api/projects) | Get all projects
-| `/projects/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7de) | Get project by ID
-| `/projects/author/:id` | GET | authorID | [here](https://cs326project.herokuapp.com/api/projects/author/6393d0f23e1af091efe8e7a3) | Get project by author ID
+| `/projects/:id` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/63964855caa665632eee2654) | Get project by ID
+| `/projects/author/:id` | GET | authorID | [here](https://cs326project.herokuapp.com/api/projects/author/63964855caa665632eee2612) | Get project by author ID
 | `/projects` | POST | authorID, title, content, tags | Use UI | Create a new project
 | `/projects/delete/:id` | POST | id | Use UI | Delete project and its comments, likes
 | `/projects/:id` | PUT | id, req.body | N/A | Update a project
 | `/api/projects/:id/like` | POST | id, userID | Use UI | Create or delete a like for a project
-| `/projects/:id/topContributors` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/6393d0f23e1af091efe8e7c3/topContributors) | Ranking users based on number of comments in a project
+| `/projects/:id/topContributors` | GET | id | [here](https://cs326project.herokuapp.com/api/projects/63964855caa665632eee2654/topContributors) | Ranking users based on number of comments in a project
 
 ## Comments
 | Path          | Method      | Input | Example     | Description |
