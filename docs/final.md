@@ -31,7 +31,56 @@
 
 <img src="../demos/newUser.png">
 
+## Account
+- Display account info (profile picture, username)
+- Display personal statistics
+- Manage projects
+- Manage account (edit passwords, delete account)
 
+### Manage projects
+<img src="../demos/final/delete_project.gif">
+
+## Feed
+- Toggle between "new", "top", and "github projects
+- Like and unlike a post
+- View post contents
+- Redirection to post-specific pages (project page)
+- Add new posts
+- Infinite scrolling
+- Search posts by tags or title (i.e. 'tags: [...]' and 'title: [...]')
+- Search posts from Github by tags or title
+
+<img src="../demos/final/feed.gif">
+
+### Search
+<img src="../demos/final/search.gif">
+
+### Search in Github
+<img src="../demos/final/search_github.gif">
+
+### Create Post
+<img src="../demos/final/new_post.gif">
+
+## Project page
+- Unique URL
+- Add comment
+- See number of likes
+- View post content
+- Redirection to Canvas page
+
+<img src="../demos/final/project_page.gif">
+
+## Canvas
+- Unique URL
+- Draw on canvas (change paint brush, toggle eraser, change brush color, change brush size, real-time)
+- Drawing is interactive through websockets
+- Chat (send messages and math equations, toggle chat visibility, real-time)
+- Notification when someone joins canvas page with avatar of active users
+
+<img src="../demos/final/canvas.gif">
+
+<center><h2>Chat</h2></center>
+<img src="../demos/final/chat.gif">
 
 # APIs
 
