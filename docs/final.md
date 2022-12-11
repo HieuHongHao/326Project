@@ -86,25 +86,52 @@
 
 # APIs
 
+## Users
 | Path          | Method      | Input | Example     | Description |
 | ------------- | ----------- | ----------- | ----------- | ----------- |
-| `/users/:id`  | GET         | N/A | here]()         | Get user by id         |
-| `/users` | POST | username, email, password, avatar | [here]() | Create user 
+| `/users/:id`        | GET  | N/A                               | [here]() | Get user by id   
+| `/users`            | POST | username, email, password, avatar | Use UI   | Create user 
+| `/users/delete/:id` | POST | id                                | Use UI   | Delete user and their projects, comments, likes
+| `/users/:id`        | PUT  | id, req.body                      | Use UI   | Update user information
 
 
-<!-- api/posts: returning all the posts query: tag: return all the posts with matching tags titles: return all the posts with matching titles
-api/posts/:id: return the data of post with matching id
-api/posts?sort=dec: sorts the post in descending order
-api/posts/id/comment: get all the comments of a post
-api/users: return all users information
-api/users/id: return all information of user
-api/canvas: print all information of every canvas
-api/canvas/id: get all the information of a certain canvas -->
+## Projects / Posts
+| Path          | Method      | Input | Example     | Description |
+| ------------- | ----------- | ----------- | ----------- | ----------- |
+| `/projects` | GET | N/A | [here]() | Get all projects
+| `/projects/:id` | GET | id | [here]() | Get project by ID
+| `/projects/author/:id` | GET | authorID | [here]() | Get project by author ID
+| `/projects` | POST | authorID, title, content, tags | Use UI | Create a new project
+| `/projects/delete/:id` | POST | id | Use UI | Delete project and its comments, likes
+| `/projects/:id` | PUT | id, req.body | N/A | Update a project
+| `/api/projects/:id/like` | POST | id, userID | Use UI | Create or delete a like for a project
+| `/projects/:id/topContributors` | GET | id | [here]() | Ranking users based on number of comments in a project
+
+## Comments
+| Path          | Method      | Input | Example     | Description |
+| ------------- | ----------- | ----------- | ----------- | ----------- |
+| `/projects/:id/comments` | POST | id, authorID, content | Use UI | Create a new comment for a project
+| `/comments/author/:id` | GET | id | [here]() | Get comments by user ID
+| `/projects/:id/comments` | GET | projectID | [here]() | Get all comments from a project
+| `/projects/:id/topChatCommits` | GET | projectID | [here]() | Ranking users based on number of chat commits in a project
+
+## Canvas
+| Path          | Method      | Input | Example     | Description |
+| ------------- | ----------- | ----------- | ----------- | ----------- |
+| `/canvas` | GET | N/A | [here]() | Get all canvas
+| `/canvas` | POST | req.body | Use UI | Create canvas stats
+| `/canvas/:id/chatCommits` | PUT | id, req.body | Use UI | Update chat commits
+| `/users/:id/stats` | GET | userID | Use UI | Get user stats from all projects
+
+## GitHub
+| Path          | Method      | Input | Example     | Description |
+| ------------- | ----------- | ----------- | ----------- | ----------- |
+| `/github_repos` | GET | N/A | [here]() | Get top Github repos
 
 
 # Database
 
-# URL Routes/Mappings
+# URL Routes / Mappings
 
 # Authentication
 Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
