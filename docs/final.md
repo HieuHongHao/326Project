@@ -295,11 +295,34 @@ upTime:{
 
 
 # Authentication
-Passwords are encrypted using SHA256 (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```modal.js```:
+Passwords are encrypted using Bcrypt library (1-way encryption). During login we encrypt the string and compare it with the password stored in the database (this password is already encrypted). You can see this in ```/routes/user.js```:
 
 ```javascript
-const hashPassword = await sha256(password, 12)
-const correctPass = hashPassword === user[0].password;
+const isMatch = await bcrypt.compare(password, user.password);
+if (!isMatch){
+    ...
+}
+```
+Once the user logins, we use the `jsonwebtoken` library to create a JSON web token that we can use to create a login session for the user
+```javascript
+jwt.sign(
+    payload,
+    "randomString",
+    {
+        expiresIn: 3600
+    },
+    (err, token) => {
+        if (err) throw err;
+        res.status(200).json({
+        token
+        });
+    }
+);
+```
+
+To authenticate we can verify using the JSON web token
+```javascript
+jwt.verify(token, "randomString");
 ```
 
 ## Authorization
