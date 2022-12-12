@@ -22,13 +22,10 @@ const database = mongoose.connection;
 
 const app = express();
 
-// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src')));
-// app.use(express.static(__dirname));
-console.log(path.join(__dirname, 'src'));
 app.use('/user', userRouter);
 app.use('/', indexRouter);
 app.use('/api', apiRouter);

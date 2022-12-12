@@ -8,8 +8,6 @@ export function getURL() {
 }
 
 const URL = getURL();
-
-// const URL = "https://cs326project.herokuapp.com/";
 export const api = {
   fetchGET: async (url) => {
     let response = await fetch(URL + url);

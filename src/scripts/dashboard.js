@@ -32,7 +32,6 @@ export const dashboard = {
           {
             label: "Chat Commits in canvas",
             data: userStats.filter((row) => row.project != null).map((row) => {
-              // console.log(row.project.title, row.chatCommits);
               return row.chatCommits;
             }),
             backgroundColor: "#6e738d",
@@ -153,13 +152,6 @@ export const dashboard = {
         return () => (window.location.href = "../project?=" + project._id);
       }
 
-      // function likeBtn() {
-      //   return async () => {
-      //     const likes = await postRequest({ user }, `/${project._id}/like`);
-      //     like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
-      //   }
-      // }
-
       newCard
         .getElementById("title")
         .addEventListener("click", toProject(project._id));
@@ -170,8 +162,6 @@ export const dashboard = {
         .getElementById("visit")
         .addEventListener("click", toProject(project._id));
 
-      // const like = newCard.getElementById('like');
-      // like.addEventListener("click", likeBtn(like, project));
       posts.appendChild(newCard.body.firstChild);
       document
         .getElementById("trash-" + project._id)
@@ -199,9 +189,6 @@ export const dashboard = {
       const test = await api.fetchPOST("api/users/delete/" + user._id, { password: pass });
       window.location.href = "/";
     });
-
-
-
 
   },
 };

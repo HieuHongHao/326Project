@@ -51,17 +51,8 @@ export const profile = {
         return () => window.location.href = "../project?=" + project._id;
       }
 
-      // function likeBtn() {
-      //   return async () => {
-      //     const likes = await postRequest({ user }, `/${project._id}/like`);
-      //     like.innerHTML = `<div id="like-0"><i class="fa-regular fa-heart"></i><span>${likes}</span></div>`;
-      //   }
-      // }
-
       newCard.getElementById('title').addEventListener("click", toProject(project._id));
       newCard.getElementById('content').addEventListener("click", toProject(project._id));
-      // const like = newCard.getElementById('like');
-      // like.addEventListener("click", likeBtn(like, project));
 
       posts.appendChild(newCard.body.firstChild);
     });

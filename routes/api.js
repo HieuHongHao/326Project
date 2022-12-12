@@ -267,18 +267,6 @@ router.post("/api/projects/:id/like", async (req, res) => {
 //       USER RESOURCES
 // =============================
 
-// // Get all users [NOT SURE IF NEEDED]
-// router.get("/users", async (req, res) => {
-//   try {
-//     let query_builder = new QueryBuilder(req.query, UserModel.find());
-//     query_builder = query_builder.filter().sort().paginate();
-//     const users = await query_builder.queryChain;
-//     res.status(200).json(users);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
-
 // Get user by id
 router.get("/users/:id", async (req, res) => {
   try {
@@ -309,18 +297,12 @@ router.post("/users", async (req, res) => {
 // Delete a user and their projects, comments, likes
 router.post("/users/delete/:id", async (req, res) => {
   try {
-    // if ('password' in req.body) {
-    //   const salt = await bcrypt.genSalt(10);
-    //   const pass = await bcrypt.hash(req.body.password, salt);
-    //   if (UserMode.findById(req.params.id).password === pass) {
     const data = await UserModel.findByIdAndDelete(req.params.id);
     await ProjectModel.deleteMany({ authorID: req.params.id });
     await CommentModel.deleteMany({ author: req.params.id });
     await LikeModel.deleteMany({ author: req.params.id });
     await CanvasModel.deleteMany({ user: req.params.id });
     res.status(200).json({ message: `User ${data.username} has been deleted..` });
-    // }
-    // }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

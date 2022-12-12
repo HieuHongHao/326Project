@@ -19,51 +19,25 @@
 }
 
 .chat-container{
-    /* width: 20%; */
-    /* float: right; */
     height: 100%;
     right: 0;
     z-index: 233;
     position: absolute;
-    /* background-color: #424b59; */
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .chat-background{
     width: 100%;
     height: 100%;
-    /* box-shadow: inset 0 0 2000px rgba(255, 255, 255, 1); */
     filter: blur(4px);
-    
     background-color: #464646;
-    /* background: rgb(70,70,70);
-    background: linear-gradient(180deg, rgba(70,70,70,0.020045518207282953) 0%, rgba(64,64,64,0.9) 61%); */
-    /* background: linear-gradient(180deg, rgba(133,133,133,1) 0%, rgba(66,75,89,1) 76%); */
-    /* background: rgb(51,51,51);
-background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%); */
-    /* opacity: 0.95; */
-
     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('https://i.imgur.com/7bjZxqS.gif') no-repeat center center fixed;
-    /* background: url("https://i.pinimg.com/originals/80/8b/ac/808bac097a1fb99f766efr32c8315bd9f.gif") no-repeat center center fixed;  */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    
     position: absolute;
     clip: rect(0px, 999999px, 999999px, 0px);
-
-
-    /*
-    https://cdna.artstation.com/p/assets/images/images/025/965/386/original/lennart-butz-idea5anim4.gif?1587480606
-
-    https://i.pinimg.com/originals/bd/56/5d/bd565dcc0a556add0b0a0ed6b26d686e.gif
-
-    https://i.pinimg.com/originals/00/43/04/0043044fd8e3c55c584ddaf0c9c134e2.gif
-
-    https://raw.githubusercontent.com/catppuccin/wallpapers/main/misc/waves.png
-    */
-
 }
 
 .chat-container::before{
@@ -87,8 +61,6 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
     bottom: 8.5em;
     float: bottom;
     position: absolute;
-    /* background-color: #424b59; */
-    /* opacity: 0.7; */
     opacity: 1;
 
     overflow: auto;
@@ -107,7 +79,6 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
     margin: 0;
     padding: 0;
     text-align: center;
-    /* background-color: #424b59; */
 }
 
 .chat-input-container input[type=text]{
@@ -138,13 +109,11 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
 
 .chat-texts-container .text-dummy{
     width: 23%;
-    /* float: left; */
     height: 0.1em;
     float: left;
 }
 
 .chat-texts-container .blue-text, .chat-texts-container .my-text, .chat-texts-container .yellow-text, .chat-texts-container .red-text, .chat-texts-container .purple-text, .chat-texts-container .green-text{
-    /* display:block; */
     max-width: 70%;
     padding: 0.6em;
     margin: 0.5em 0 0.9em 0.7em;
@@ -226,18 +195,15 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
 
 .drawing-tools-container{
     position: absolute;
-    /* bottom: 0; */
     top: 6em;
     left: 0em;
 }
 
 .drawing-tools-container input[type=color]{
-    /* display: none; */
     opacity: 0;
     bottom: 0;
     left: 0;
     position: absolute;
-    /* border: 0; */
 }
 
 .drawing-tools-container span{
@@ -285,11 +251,6 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
     z-index: 3;
     width: 100%;
     color: rgb(58, 58, 58);
-    /* text-align: right; */
-}
-
-.chat-header-container:hover .chat-header-background{
-    /* background-color: rgb(24, 24, 24); */
 }
 
 .chat-header-background{
@@ -329,7 +290,6 @@ background: linear-gradient(180deg, rgba(51,51,51,0) 10%, rgba(36,41,48,1) 76%);
     right: 1em;
     text-align: right;
     font-size: 22px;
-    
 }
 
 .chat-open-container i{

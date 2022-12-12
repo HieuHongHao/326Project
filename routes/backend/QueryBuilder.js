@@ -9,7 +9,6 @@ class QueryBuilder {
     }
     this.queryObject = queryObject; // query object from request
     this.filteredQuery = createFilterQuery(this.queryObject);
-    console.log(this.filteredQuery);
     this.queryChain = queryChain;  // to chain query together
   }
 
@@ -20,7 +19,6 @@ class QueryBuilder {
   sort() {
     if ("sort" in this.queryObject) {
       const sortFields = this.queryObject.sort.split(",").join(" ")
-      console.log(sortFields);
       this.queryChain = this.queryChain.sort(sortFields);
     } else {
       this.queryChain = this.queryChain.sort("-createdAt _id");

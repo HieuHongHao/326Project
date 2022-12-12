@@ -1,7 +1,4 @@
 import { autoScroll } from './chat.js';
-// import '../scripts/MathJax-master/es5/tex-mml-chtml.js?config=TeX-AMS-MML_HTMLorMML';
-// import "../node_modules/mathjax/es5/tex-chtml.js"
-
 
 
 export const canvas = {
@@ -10,18 +7,10 @@ export const canvas = {
     document.body.style = "overflow-y: hidden";
     autoScroll(); // autoscroll chat to be at bottom
     
-    // const socket = io("/");
-    
-    
     
     const canvasID = new URLSearchParams(window.location.search).get('') //get canvas ID
-    
-    
-    // const userId = localStorage.getItem("loggedIn");
 
-    const colorPicker = document.getElementById("color-picker-input")
-    // const drawingContainer = document.getElementById("canvas")
-    
+    const colorPicker = document.getElementById("color-picker-input")    
     
    /*Canvas stuff*/
     const canvas = document.getElementById("canvas")

@@ -101,7 +101,6 @@ export const project = {
     const relatedProjects = await Promise.all(
       project.tags.map(tag => api.fetchGET(`api/projects/?tags=${tag}&limit=2`))
     )
-    // console.log(relatedProjects);
     let seen_projects = new Set();
     seen_projects.add(project.title);
     for (const row of relatedProjects) {

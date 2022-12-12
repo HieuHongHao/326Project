@@ -1,9 +1,7 @@
 import { api } from "./api.js";
 
 export const chat = {
-  init: async (socket) => {
-    // const socket = io("/");
-    
+  init: async (socket) => {    
         
     const chatColor = ["blue", "green", "yellow", "red", "purple"]; //Availalbe colors
     const userChatColor = {}; // Dictionary that maps user to a color randomly selected from chatColor
@@ -15,7 +13,6 @@ export const chat = {
     
     socket.emit("login", userId, canvasId);
     socket.on("receiveOnlineUsersAvatar", (users) => {
-      // document.getElementById("active-users-container").replaceChildren();
       for (const user of users) {
         if(document.getElementById(user.id)){
           continue;

@@ -62,7 +62,6 @@ io.on("connection", (socket) => {
       };
     }
     const user = await userModel.findById(username).select("avatar username");
-    // console.log(sockets_to_rooms, roomsData);
     if (user) {
       roomsData[canvasID].users.push(user);
     }
@@ -85,7 +84,6 @@ io.on("connection", (socket) => {
   });
   
   socket.on("disconnect", async () => {
-    // console.log(socket.id);
     const username = usernames[socket.id];
     const canvasID = sockets_to_rooms[socket.id];
     if (canvasID && username) {
